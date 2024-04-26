@@ -1,2 +1,6 @@
-# silvermanch.github.io
-My website, this would be plain, I can't be arsed to keep this project up.
+# Hi, i'm Emmanuel.
+It seems you've gained access to my website.
+
+### Have some links here:
+My server:
+https://discord.com/invite/rmTSprqF29
