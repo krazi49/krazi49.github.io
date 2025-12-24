@@ -27,12 +27,12 @@
             padding: 40px 0 80px 0; overflow-x: hidden; -webkit-font-smoothing: antialiased;
         }
 
-        /* Navigation */
+        /* Nav */
         .m3-nav { position: fixed; top: 32px; display: flex; background: var(--item-bg); padding: 4px; border-radius: 100px; z-index: 100; }
         .nav-pill { position: absolute; top: 4px; left: 4px; width: 140px; height: calc(100% - 8px); background: var(--nav-accent); border-radius: 100px; transition: transform var(--anim-speed) var(--m3-easing); }
         .nav-item { position: relative; width: 140px; padding: 12px 0; border: none; background: transparent; color: white; font-size: 14px; font-weight: 600; cursor: pointer; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit; }
 
-        /* Card Viewport */
+        /* Viewport */
         #viewport {
             width: 94%; max-width: 520px; margin-top: 80px; overflow: hidden; border-radius: 28px; background: var(--container); box-shadow: 0 16px 48px rgba(0,0,0,0.4);
             transition: height var(--anim-speed) var(--m3-easing); position: relative;
@@ -61,12 +61,12 @@
         .eq-bar { width: 3px; background: #3d2352; border-radius: 10px; animation: eq-bounce 0.8s ease-in-out infinite alternate; }
         @keyframes eq-bounce { 0% { height: 4px; } 100% { height: 16px; } }
 
-        /* All 5 Social Buttons */
+        /* Icon Shapes */
         .icon-row { display: flex; gap: 12px; margin: 12px 0 24px 0; justify-content: center; flex-wrap: wrap; }
         .shape-btn {
             width: 58px; height: 58px; background: var(--item-bg); color: white;
             display: flex; align-items: center; justify-content: center; font-size: 20px;
-            border-radius: 50%; transition: 0.4s var(--m3-easing); text-decoration: none;
+            border-radius: 50%; transition: 0.4s var(--m3-easing); text-decoration: none; cursor: pointer; border: none;
         }
         .shape-btn:hover { background: var(--nav-accent); }
         .shape-btn:nth-child(1):hover { border-radius: 12px 30px 12px 30px; }
@@ -75,21 +75,35 @@
         .shape-btn:nth-child(4):hover { border-radius: 30px 4px 30px 30px; }
         .shape-btn:nth-child(5):hover { border-radius: 15px; }
 
-        /* Pixel Settings UI Driver List */
+        /* --- PIXEL SETTINGS UI --- */
         .section-label { font-size: 11px; font-weight: 900; text-transform: uppercase; color: var(--primary-btn); padding: 0 0 10px 8px; letter-spacing: 1.5px; opacity: 0.8; margin-top: 24px; }
-        .settings-group { display: flex; flex-direction: column; gap: 6px; }
-        .driver-link { text-decoration: none; color: inherit; display: block; }
-        .settings-item { background: var(--item-bg); padding: 16px 20px; display: flex; align-items: center; transition: 0.3s; border-radius: 16px; }
+        .settings-group { display: flex; flex-direction: column; background: var(--item-bg); border-radius: 28px; overflow: hidden; }
+
+        /* KILL THE UNDERLINES AND FORCE COLOR */
+        .settings-group a {
+            text-decoration: none !important;
+            color: inherit !important;
+            display: block;
+        }
+
+        .settings-item {
+            padding: 18px 20px; display: flex; align-items: center;
+            transition: 0.2s; border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
         .settings-item:hover { background: rgba(255,255,255,0.08); }
 
-        .team-indicator { width: 4px; height: 32px; border-radius: 10px; margin-right: 18px; flex-shrink: 0; }
+        .settings-group a:first-child .settings-item { border-radius: 28px 28px 4px 4px; }
+        .settings-group a:last-child .settings-item { border-radius: 4px 4px 28px 28px; border-bottom: none; }
+        .settings-group a:not(:first-child):not(:last-child) .settings-item { border-radius: 4px; }
+
+        .team-indicator { width: 4px; height: 36px; border-radius: 10px; margin-right: 18px; flex-shrink: 0; }
         .rbr { background-color: #0600EF; } .mcl { background-color: #FF8700; } .fer { background-color: #E8002D; } .haa { background-color: #ffffff; } .vcb { background-color: #6692FF; }
 
         .headshot { width: 52px; height: 52px; border-radius: 50%; background-size: cover; background-position: center top; margin-right: 18px; flex-shrink: 0; background-color: #333; }
         .info { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
-        .info b { font-size: 16px; color: var(--text-main); font-weight: 700; }
-        .info span { font-size: 13px; color: var(--text-secondary); opacity: 0.7; line-height: 1.4; white-space: normal; }
-        .number { font-weight: 900; opacity: 0.15; font-size: 26px; margin-left: auto; padding-left: 10px; }
+        .info b { font-size: 16px; color: var(--text-main); font-weight: 700; display: block; margin-bottom: 2px; text-decoration: none !important; }
+        .info span { font-size: 13px; color: var(--text-secondary); opacity: 0.7; line-height: 1.4; text-decoration: none !important; }
+        .number { font-weight: 900; opacity: 0.15; font-size: 26px; margin-left: auto; padding-left: 10px; color: white; }
 
         .subject-pill { background: var(--item-bg); padding: 10px 18px; border-radius: 100px; font-size: 13px; font-weight: 700; display: inline-block; margin: 0 8px 8px 0; border: 1px solid rgba(255,255,255,0.05); }
     </style>
@@ -139,32 +153,32 @@
 
                 <div class="section-label">Hobbies</div>
                 <div class="icon-row" style="justify-content: flex-start;">
-                    <div class="shape-btn"><i class="fa-solid fa-code"></i></div>
-                    <div class="shape-btn"><i class="fa-solid fa-flag-checkered"></i></div>
-                    <div class="shape-btn"><i class="fa-solid fa-headphones"></i></div>
+                    <button class="shape-btn"><i class="fa-solid fa-code"></i></button>
+                    <button class="shape-btn"><i class="fa-solid fa-flag-checkered"></i></button>
+                    <button class="shape-btn"><i class="fa-solid fa-headphones"></i></button>
                 </div>
 
                 <div class="section-label">Top Drivers</div>
                 <div class="settings-group">
-                    <a href="https://www.formula1.com/en/drivers/max-verstappen" class="driver-link" target="_blank">
-                        <div class="settings-item"><div class="team-indicator rbr"></div><div class="headshot" style="background-image: url('assets/images/verstappen.webp')"></div><div class="info"><b>Max Verstappen</b><span>"I HATE LOSING! Sleep is for losers."</span></div><div class="number">1</div></div>
+                    <a href="https://www.formula1.com/en/drivers/max-verstappen" target="_blank">
+                        <div class="settings-item"><div class="team-indicator rbr"></div><div class="headshot" style="background-image: url('assets/images/verstappen.webp')"></div><div class="info"><b>Max Verstappen</b><span>"I HATE LOSING!"</span></div><div class="number">1</div></div>
                     </a>
-                    <a href="https://www.formula1.com/en/drivers/oscar-piastri" class="driver-link" target="_blank">
+                    <a href="https://www.formula1.com/en/drivers/oscar-piastri" target="_blank">
                         <div class="settings-item"><div class="team-indicator mcl"></div><div class="headshot" style="background-image: url('assets/images/piastri.webp')"></div><div class="info"><b>Oscar Piastri</b><span>"I like cars, I like racing, but I think the competition side of things is probably the number one thing."</span></div><div class="number">81</div></div>
                     </a>
-                    <a href="https://www.formula1.com/en/drivers/lando-norris" class="driver-link" target="_blank">
+                    <a href="https://www.formula1.com/en/drivers/lando-norris" target="_blank">
                         <div class="settings-item"><div class="team-indicator mcl"></div><div class="headshot" style="background-image: url('assets/images/norris.webp')"></div><div class="info"><b>Lando Norris</b><span>"I’m ready to bring the fight to everyone. We did it, world champion!"</span></div><div class="number">4</div></div>
                     </a>
-                    <a href="https://www.formula1.com/en/drivers/charles-leclerc" class="driver-link" target="_blank">
+                    <a href="https://www.formula1.com/en/drivers/charles-leclerc" target="_blank">
                         <div class="settings-item"><div class="team-indicator fer"></div><div class="headshot" style="background-image: url('assets/images/leclerc.webp')"></div><div class="info"><b>Charles Leclerc</b><span>"Whatever the position is at stake, you've got to do your absolute best as a driver."</span></div><div class="number">16</div></div>
                     </a>
-                    <a href="https://www.formula1.com/en/drivers/lewis-hamilton" class="driver-link" target="_blank">
+                    <a href="https://www.formula1.com/en/drivers/lewis-hamilton" target="_blank">
                         <div class="settings-item"><div class="team-indicator fer"></div><div class="headshot" style="background-image: url('assets/images/hamilton.webp')"></div><div class="info"><b>Lewis Hamilton</b><span>"I don't aspire to be like other drivers - I aspire to be unique in my own way."</span></div><div class="number">44</div></div>
                     </a>
-                    <a href="https://www.formula1.com/en/drivers/oliver-bearman" class="driver-link" target="_blank">
+                    <a href="https://www.formula1.com/en/drivers/oliver-bearman" target="_blank">
                         <div class="settings-item"><div class="team-indicator haa"></div><div class="headshot" style="background-image: url('assets/images/bearman.webp')"></div><div class="info"><b>Oliver Bearman</b><span>"There's no length, there's nothing that I wouldn't do to get to F1, there's nothing stopping me."</span></div><div class="number">87</div></div>
                     </a>
-                    <a href="https://www.formula1.com/en/drivers/isack-hadjar" class="driver-link" target="_blank">
+                    <a href="https://www.formula1.com/en/drivers/isack-hadjar" target="_blank">
                         <div class="settings-item"><div class="team-indicator vcb"></div><div class="headshot" style="background-image: url('assets/images/hadjar.webp')"></div><div class="info"><b>Isack Hadjar</b><span>"I'm someone who fought his way to F1 the hard way. I always had at least a little car in my hand."</span></div><div class="number">6</div></div>
                     </a>
                 </div>
@@ -192,22 +206,16 @@
                 const res = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=silvermanch&api_key=4f08815f48f04e98c8ec8f294b21d080&format=json&limit=1`);
                 const data = await res.json();
                 const track = data.recenttracks.track[0];
-                const isNowPlaying = track['@attr'] && track['@attr'].nowplaying === 'true';
-
                 document.getElementById('track-name').innerText = track.name;
                 document.getElementById('track-artist').innerText = track.artist['#text'];
                 document.getElementById('track-album').innerText = track.album['#text'];
                 document.getElementById('track-art').src = track.image.find(i => i.size === 'extralarge')['#text'];
-                document.getElementById('scrobble-status').innerText = isNowPlaying ? "Now Playing" : "Last Played";
-                document.getElementById('eq-container').style.display = isNowPlaying ? "flex" : "none";
-                document.getElementById('track-year').innerText = (track.album['#text'] === "Monstercat Uncaged Vol. 11") ? "2021" : "2025";
                 updateHeight();
             } catch (e) {}
         }
 
         window.onload = () => { updateScrobbler(); updateHeight(); };
         window.onresize = updateHeight;
-        setInterval(updateScrobbler, 30000);
     </script>
 </body>
 </html>
