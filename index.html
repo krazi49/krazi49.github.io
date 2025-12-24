@@ -1,51 +1,309 @@
 <!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>krazierthanu</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-<html>
-	<head>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,slnt,wdth,wght@12..36,-6..0,75..150,300..900&display=swap" rel="stylesheet">
-<meta property="og:title" content="kraziest website ever created"/>
-<meta property=”og:description” content=”hi, i am learning html, css and some javascript.” />
-<meta property=”og:type” content=”website”/>
-<meta property=”og:url” content=”https://krazi49.github.io”/></head>
-		<title>the internet is waiting...</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
-		<div id="wrapper">
-			<div id="bg"></div>
-			<div id="overlay"></div>
-			<div id="main">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-				<!-- Header -->
-					<header id="header">
-						<h1>pine again...</h1>
-						<p>what are you doing clicking around on my profile &nbsp;&bull;&nbsp; the internet is waiting... &nbsp;&bull;&nbsp; hello, i got places to be</p>
-						<nav>
-							<ul>
-								<li><a href="https://discordapp.com/users/1276859631729115208" class="icon brands fa-discord"><span class="label">my discord</span></a></li>
-								<li><a href="https://archlinux.org" class="icon brands fa-linux"><span class="label">i use arch btw.</span></a></li>
-								<li><a href="https://github.com/krazi49" class="icon brands fa-github"><span class="label">my github</span></a></li>
-															<li><a href="https://music.youtube.com/watch?v=Ho_2xO-UpFA&si=NNqj3iRLVyj12Dmc" class="fa regular fa-music"><span class="label">surprise song</span></a></li>
-							</ul>
-						</nav>
-					</header>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-				<!-- Footer -->
-					<footer id="footer">
-						<span class="copyright">&copy; krazierchat, website last updated Tuesday, 12th Aug 2025. <a href="https://krazi49.github.io">Back to the start</a>.</span>
-					</footer>
+    <style>
 
-			</div>
-		</div>
-		<script>
-			window.onload = function() { document.body.classList.remove('is-preload'); }
-			window.ontouchmove = function() { return false; }
-			window.onorientationchange = function() { document.body.scrollTop = 0; }
-		</script>
-	</body>
+    /* --- DYNAMIC BACKGROUND --- */
+body {
+    background-color: #0f1113; /* Deeper black for better contrast */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated Blur Blobs */
+body::before, body::after {
+    content: "";
+    position: fixed;
+    width: 50vw;
+    height: 50vw;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    opacity: 0.15;
+    animation: float 20s infinite alternate-reverse var(--md-sys-motion-easing-standard);
+}
+
+body::before {
+    background: var(--md-sys-color-primary);
+    top: -10%;
+    left: -10%;
+}
+
+body::after {
+    background: #ffb4ab; /* M3 Error/Accent tone for a splash of color */
+    bottom: -10%;
+    right: -10%;
+    animation-duration: 25s;
+}
+
+@keyframes float {
+    from { transform: translate(0, 0) rotate(0deg); }
+    to { transform: translate(10vw, 15vh) rotate(30deg); }
+}
+
+/* --- VIBRANT SOCIAL ICONS --- */
+.social-row a {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Specific colors for each platform on hover */
+.social-row a:nth-child(1):hover { color: #5865F2; border-color: #5865F2; box-shadow: 0 0 20px rgba(88, 101, 242, 0.3); } /* Discord */
+.social-row a:nth-child(2):hover { color: #1793D1; border-color: #1793D1; box-shadow: 0 0 20px rgba(23, 147, 209, 0.3); } /* Arch */
+.social-row a:nth-child(3):hover { color: #ffffff; border-color: #ffffff; box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); } /* GitHub */
+.social-row a:nth-child(4):hover { color: #FF0000; border-color: #FF0000; box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); } /* Music */
+
+/* --- GLOWING LAST.FM --- */
+#lastfm-container {
+    background: rgba(208, 228, 255, 0.08);
+    border: 1px solid rgba(208, 228, 255, 0.1);
+    box-shadow: 0 0 20px rgba(208, 228, 255, 0.05);
+}
+        :root {
+            --md-sys-color-surface: #1a1c1e;
+            --md-sys-color-on-surface: #e2e2e6;
+            --md-sys-color-surface-container: #212426;
+            --md-sys-color-primary: #d0e4ff;
+            --md-sys-color-secondary-container: #3e4759;
+            --md-sys-color-on-secondary-container: #d7e3f7;
+            --md-sys-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        body {
+            background-color: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-surface);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- M3 SLIDER --- */
+        .m3-slider-bar {
+            position: fixed;
+            top: 40px;
+            display: inline-flex;
+            background-color: var(--md-sys-color-surface-container);
+            padding: 6px;
+            border-radius: 100px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.8s var(--md-sys-motion-easing-standard);
+        }
+
+        .slider-pill {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            width: 130px;
+            height: calc(100% - 12px);
+            background-color: var(--md-sys-color-secondary-container);
+            border-radius: 100px;
+            transition: transform 0.5s var(--md-sys-motion-easing-standard);
+            z-index: 0;
+        }
+
+        .nav-item {
+            position: relative;
+            width: 130px;
+            padding: 12px 0;
+            border: none;
+            background: transparent;
+            color: var(--md-sys-color-on-surface);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .nav-item.active { color: var(--md-sys-color-on-secondary-container); }
+        .pos-0 { transform: translateX(0px); }
+        .pos-1 { transform: translateX(130px); }
+
+        /* --- MAIN CARD --- */
+        #main-card {
+            text-align: center;
+            max-width: 650px;
+            width: 90%;
+            transition: opacity 0.4s var(--md-sys-motion-easing-standard),
+                        transform 0.4s var(--md-sys-motion-easing-standard);
+        }
+
+        .content-hidden { opacity: 0; transform: translateY(60px) scale(0.95); }
+        .content-exit { opacity: 0; transform: translateY(20px) scale(0.98); }
+
+        h1 {
+            font-family: 'Google Sans', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 3.5rem);
+            margin-bottom: 0.5rem;
+            color: var(--md-sys-color-primary);
+        }
+
+        /* --- LAST.FM STYLING --- */
+        #lastfm-container {
+            margin-top: 24px;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 100px;
+            color: var(--md-sys-color-primary);
+            transition: opacity 0.3s ease;
+        }
+
+        /* Equalizer Animation */
+        .eq { display: flex; align-items: flex-end; gap: 2px; height: 12px; }
+        .eq-bar { width: 3px; background: currentColor; border-radius: 1px; animation: eq 1s ease-in-out infinite; }
+        .eq-bar:nth-child(2) { animation-delay: 0.2s; }
+        .eq-bar:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes eq { 0%, 100% { height: 4px; } 50% { height: 12px; } }
+
+        /* --- SOCIAL ICONS --- */
+        .social-row {
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-row a {
+            color: #ffffff;
+            width: 55px; height: 55px;
+            display: flex; align-items: center; justify-content: center;
+            border: 2px solid rgba(255,255,255,0.4);
+            border-radius: 50%;
+            opacity: 0; transform: translateY(15px);
+            transition: all 0.4s var(--md-sys-motion-easing-standard);
+            text-decoration: none;
+        }
+
+        .social-row.show-icons a { opacity: 1; transform: translateY(0); }
+        .social-row.show-icons a:nth-child(1) { transition-delay: 0.05s; }
+        .social-row.show-icons a:nth-child(2) { transition-delay: 0.10s; }
+        .social-row.show-icons a:nth-child(3) { transition-delay: 0.15s; }
+        .social-row.show-icons a:nth-child(4) { transition-delay: 0.20s; }
+
+        .social-row a:hover { background: rgba(255,255,255,0.1); transform: scale(1.1) !important; }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <nav class="m3-slider-bar" id="navbar">
+        <div id="pill" class="slider-pill pos-0"></div>
+        <button class="nav-item active" onclick="swap(0)"><i class="fa-solid fa-star"></i> Home</button>
+        <button class="nav-item" onclick="swap(1)"><i class="fa-solid fa-user"></i> About me</button>
+    </nav>
+
+    <div id="main-card" class="content-hidden">
+        <h1 id="title">krazierthanu</h1>
+        <div id="para-container">
+            <p>how many days of the week are there? &bull; 2026 will be our year</p>
+        </div>
+
+        <div id="lastfm-container">
+            <div class="eq" id="eq-icon"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div>
+            <span id="track-info">Checking scrobbles...</span>
+        </div>
+
+        <div id="socials" class="social-row">
+            <a href="https://discordapp.com/users/1276859631729115208"><i class="fa-brands fa-discord"></i></a>
+            <a href="https://archlinux.org"><i class="fa-brands fa-linux"></i></a>
+            <a href="https://github.com/krazi49"><i class="fa-brands fa-github"></i></a>
+            <a href="https://music.youtube.com/watch?v=Ho_2xO-UpFA"><i class="fa-solid fa-music"></i></a>
+        </div>
+    </div>
+
+    <script>
+        const FM_KEY = '4f08815f48f04e98c8ec8f294b21d080';
+        const FM_USER = 'silvermanch';
+
+        async function fetchLastFM() {
+            try {
+                const res = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${FM_USER}&api_key=${FM_KEY}&format=json&limit=1`);
+                const data = await res.json();
+                const track = data.recenttracks.track[0];
+                const nowPlaying = track['@attr'] && track['@attr'].nowplaying === 'true';
+
+                document.getElementById('track-info').innerHTML =
+                    `${nowPlaying ? 'Listening to: ' : 'Last played: '} <strong>${track.name}</strong>`;
+
+                document.getElementById('eq-icon').style.display = nowPlaying ? 'flex' : 'none';
+            } catch (e) { document.getElementById('lastfm-container').style.opacity = "0"; }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchLastFM();
+            setInterval(fetchLastFM, 30000);
+            setTimeout(() => {
+                document.getElementById('navbar').style.opacity = "1";
+                document.getElementById('main-card').classList.remove('content-hidden');
+                setTimeout(() => document.getElementById('socials').classList.add('show-icons'), 300);
+            }, 200);
+        });
+
+        function swap(idx) {
+            const pill = document.getElementById('pill');
+            const btns = document.querySelectorAll('.nav-item');
+            const card = document.getElementById('main-card');
+            const title = document.getElementById('title');
+            const para = document.getElementById('para-container');
+            const socials = document.getElementById('socials');
+            const fm = document.getElementById('lastfm-container');
+
+            pill.className = 'slider-pill pos-' + idx;
+            btns.forEach((b, i) => b.classList.toggle('active', i === idx));
+            card.classList.add('content-exit');
+            socials.classList.remove('show-icons');
+
+            setTimeout(() => {
+                card.classList.remove('content-exit');
+                card.classList.add('content-hidden');
+
+                if (idx === 1) {
+                    title.innerText = "👋 Hi, I'm krazierchat";
+                    para.innerHTML = `<p>Hi, I'm Emmanuel, also known as krazierchat. I'm currently learning HTML, CSS and JavaScript, while also knowing some JSON, C and TOML. Ask me to print "Hello World" in any of those languages and I'd still have no clue. Some people call me annoying, and others call me a nice person. Ah, the duality of man.</p>`;
+                    socials.classList.add('hidden');
+                    fm.classList.add('hidden');
+                } else {
+                    title.innerText = "krazierthanu";
+                    para.innerHTML = `<p>how many days of the week are there? &bull; 2026 will be our year</p>`;
+                    socials.classList.remove('hidden');
+                    fm.classList.remove('hidden');
+                }
+
+                requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        card.classList.remove('content-hidden');
+                        if (idx === 0) setTimeout(() => socials.classList.add('show-icons'), 200);
+                    }, 50);
+                });
+            }, 400);
+        }
+    </script>
+</body>
 </html>
