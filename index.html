@@ -5,71 +5,108 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..1000&family=Google+Sans+Code:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.7.0/dist/font.min.css">
 
     <style>
         :root {
-            --md-sys-color-surface: #141218;
-            --md-sys-color-on-surface: #e6e1e5;
-            --md-sys-color-surface-container: #211f26;
-            --md-sys-color-primary: #d0bcff;
-            --md-sys-color-on-primary: #381e72;
-            --md-sys-color-secondary-container: #4a4458;
-            --md-sys-color-on-secondary-container: #e8def8;
+            /* MONOCHROME PALETTE */
+            --md-sys-color-surface: #000000;
+            --md-sys-color-on-surface: #ffffff;
+            --md-sys-color-surface-container: #111111;
+            --md-sys-color-primary: #ffffff;
+            --md-sys-color-on-primary: #000000;
+            --md-sys-color-secondary-container: #222222;
+            --md-sys-color-on-secondary-container: #ffffff;
             --m3-easing: cubic-bezier(0.2, 0, 0, 1);
+            --border-style: 2px solid #ffffff;
         }
 
         [data-theme="light"] {
-            --md-sys-color-surface: #fdf7ff;
-            --md-sys-color-on-surface: #1d1b20;
-            --md-sys-color-surface-container: #f3edf7;
-            --md-sys-color-primary: #6750a4;
+            --md-sys-color-surface: #ffffff;
+            --md-sys-color-on-surface: #000000;
+            --md-sys-color-surface-container: #eeeeee;
+            --md-sys-color-primary: #000000;
             --md-sys-color-on-primary: #ffffff;
-            --md-sys-color-secondary-container: #e8def8;
-            --md-sys-color-on-secondary-container: #1d192b;
+            --md-sys-color-secondary-container: #dddddd;
+            --md-sys-color-on-secondary-container: #000000;
+            --border-style: 2px solid #000000;
         }
 
         body {
             background-color: var(--md-sys-color-surface);
             color: var(--md-sys-color-on-surface);
-            font-family: 'Google Sans Flex', sans-serif;
+            font-family: 'Geist Pixel Square', sans-serif;
             margin: 0; padding: 20px 0 140px 0;
             display: flex; flex-direction: column; align-items: center;
             transition: background-color 0.5s var(--m3-easing);
         }
 
-        /* --- M3 EXPRESSIVE SHAPES & HAPTICS --- */
-        .m3-card, .nav-item, .chip {
-            transition: all 0.5s var(--m3-easing);
-            border-radius: 24px;
+        /* --- SQUARE SHAPES & BORDERS --- */
+        .m3-card, .nav-item, .chip, #viewport, .nav-pill, .m3-nav {
+            border-radius: 0 !important; /* NO ROUNDED CORNERS */
         }
-        .m3-card:hover { border-radius: 8px 40px 8px 40px; transform: scale(1.02); }
-        .m3-card:active { transform: scale(0.96); }
+        
+        .m3-card {
+            border: var(--border-style);
+            background: var(--md-sys-color-secondary-container);
+            color: var(--md-sys-color-on-secondary-container);
+            padding: 20px;
+            margin-bottom: 16px;
+            text-decoration: none;
+            display: block;
+            transition: transform 0.2s var(--m3-easing);
+        }
+        .m3-card:hover { transform: translateY(-2px); }
+        .m3-card:active { transform: scale(0.98); }
 
         /* --- F1 CALENDAR STYLES --- */
-        #f1-timer { font-family: 'Google Sans Code', monospace; font-weight: 700; font-size: 22px; color: var(--md-sys-color-primary); }
-        .live-pulse { display: inline-block; width: 10px; height: 10px; background: #ff5252; border-radius: 50%; margin-right: 8px; animation: pulse 1s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.2); } }
+        #f1-timer { font-family: 'Geist Mono', monospace; font-weight: 700; font-size: 22px; color: var(--md-sys-color-primary); }
+        .live-pulse { display: inline-block; width: 10px; height: 10px; background: var(--md-sys-color-primary); border-radius: 0; margin-right: 8px; animation: pulse 1s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        /* --- COMPONENT STYLES --- */
-        .m3-nav { position: fixed; bottom: 24px; display: flex; background: var(--md-sys-color-surface-container); padding: 8px; border-radius: 32px; z-index: 100; backdrop-filter: blur(20px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
-        .nav-pill { position: absolute; top: 8px; left: 8px; width: 120px; height: calc(100% - 16px); background: var(--md-sys-color-primary); border-radius: 24px; transition: transform 0.6s var(--m3-easing); }
-        .nav-item { position: relative; width: 120px; padding: 14px 0; border: none; background: transparent; color: var(--md-sys-color-on-surface); font-size: 14px; font-weight: 600; cursor: pointer; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit; }
+        /* --- NAV STYLES --- */
+        .m3-nav { 
+            position: fixed; bottom: 24px; display: flex; 
+            background: var(--md-sys-color-surface-container); 
+            padding: 4px; border: var(--border-style);
+            z-index: 100; backdrop-filter: blur(20px); 
+        }
+        .nav-pill { 
+            position: absolute; top: 4px; left: 4px; width: 120px; height: calc(100% - 8px); 
+            background: var(--md-sys-color-primary); transition: transform 0.6s var(--m3-easing); 
+        }
+        .nav-item { 
+            position: relative; width: 120px; padding: 14px 0; border: none; 
+            background: transparent; color: var(--md-sys-color-on-surface); 
+            font-size: 14px; font-weight: 600; cursor: pointer; z-index: 1; 
+            display: flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit; 
+        }
         .nav-item.active { color: var(--md-sys-color-on-primary); }
 
-        #viewport { width: 92%; max-width: 480px; border-radius: 32px; background: var(--md-sys-color-surface-container); overflow: hidden; transition: height 0.6s var(--m3-easing); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+        #viewport { 
+            width: 92%; max-width: 480px; 
+            background: var(--md-sys-color-surface-container); 
+            border: var(--border-style);
+            overflow: hidden; transition: height 0.6s var(--m3-easing); 
+        }
         #slider { display: flex; width: 200%; transition: transform 0.6s var(--m3-easing); }
         .page { width: 50%; padding: 24px; box-sizing: border-box; }
 
-        .m3-card { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); padding: 20px; margin-bottom: 16px; text-decoration: none; display: block; }
-        
         /* --- NEOFETCH UI --- */
-        .neofetch { font-family: 'Google Sans Code', monospace; font-size: 13px; line-height: 1.4; display: flex; gap: 16px; }
+        .neofetch { font-family: 'Geist Mono', monospace; font-size: 13px; line-height: 1.4; display: flex; gap: 16px; }
         .neofetch-logo { color: var(--md-sys-color-primary); font-weight: 900; }
         .neofetch-data b { color: var(--md-sys-color-primary); }
 
         .chip-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none; }
-        .chip { background: var(--md-sys-color-surface); padding: 6px 16px; font-size: 12px; font-weight: 700; border: 1px solid rgba(255,255,255,0.1); white-space: nowrap; cursor: copy; }
+        .chip { 
+            background: var(--md-sys-color-surface); 
+            padding: 6px 16px; font-size: 12px; font-weight: 700; 
+            border: var(--border-style);
+            white-space: nowrap; cursor: copy; 
+        }
+        
+        #track-art { border: 1px solid var(--md-sys-color-on-surface); border-radius: 0 !important; }
     </style>
 </head>
 <body data-theme="dark">
@@ -83,8 +120,8 @@
     <div id="viewport">
         <div id="slider">
             <div class="page" id="page-0">
-                <h2 id="greeting" style="margin: 0 0 4px 0; font-weight: 900;">Hello!</h2>
-                <p style="margin: 0 0 24px 0; opacity: 0.6; font-size: 14px;">krazierthanu // silvermanch</p>
+                <h2 id="greeting" style="margin: 0 0 4px 0; font-weight: 900; text-transform: uppercase;">Hello!</h2>
+                <p style="margin: 0 0 24px 0; opacity: 0.6; font-size: 14px; font-family: 'Geist Mono';">krazierthanu // silvermanch</p>
 
                 <div class="m3-card">
                     <span id="event-label" style="font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;">Season Opener</span>
@@ -92,19 +129,19 @@
                 </div>
 
                 <a href="https://last.fm/user/silvermanch" class="m3-card" style="display: flex; align-items: center; gap: 16px;">
-                    <img id="track-art" src="" style="width: 56px; height: 56px; border-radius: 12px; object-fit: cover;">
+                    <img id="track-art" src="" style="width: 56px; height: 56px; object-fit: cover;">
                     <div style="overflow: hidden;">
-                        <b id="track-name" style="display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Music Offline</b>
-                        <span id="track-artist" style="font-size: 13px; opacity: 0.7;">Syncing Last.fm...</span>
+                        <b id="track-name" style="display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-transform: uppercase;">Music Offline</b>
+                        <span id="track-artist" style="font-size: 13px; opacity: 0.7; font-family: 'Geist Mono';">Syncing Last.fm...</span>
                     </div>
                 </a>
 
                 <div class="section-label" style="font-size: 11px; font-weight: 900; opacity: 0.5; margin-bottom: 8px;">2026 GRID PALETTE</div>
                 <div class="chip-row">
-                    <div class="chip" style="border-left: 4px solid #0600EF;" onclick="copy('#0600EF')">RBR</div>
-                    <div class="chip" style="border-left: 4px solid #FF8700;" onclick="copy('#FF8700')">MCL</div>
-                    <div class="chip" style="border-left: 4px solid #E8002D;" onclick="copy('#E8002D')">FER</div>
-                    <div class="chip" style="border-left: 4px solid #00D2BE;" onclick="copy('#00D2BE')">MER</div>
+                    <div class="chip" onclick="copy('#0600EF')">RBR</div>
+                    <div class="chip" onclick="copy('#FF8700')">MCL</div>
+                    <div class="chip" onclick="copy('#E8002D')">FER</div>
+                    <div class="chip" onclick="copy('#00D2BE')">MER</div>
                 </div>
             </div>
 
@@ -135,82 +172,41 @@
     </div>
 
     <script>
-
-       const f1Schedule = [
-    // PRE-SEASON TESTING (3 SEPARATE WINDOWS)
-    { name: "Pre-Season Test 1 (Barcelona)", start: new Date("2026-01-26T08:00:00Z"), end: new Date("2026-01-30T16:00:00Z") },
-    { name: "Pre-Season Test 2 (Bahrain)", start: new Date("2026-02-11T07:00:00Z"), end: new Date("2026-02-13T16:00:00Z") },
-    { name: "Pre-Season Test 3 (Bahrain)", start: new Date("2026-02-18T07:00:00Z"), end: new Date("2026-02-20T16:00:00Z") },
-
-    // FULL SEASON CALENDAR
-    { name: "Australian GP (Melbourne)", start: new Date("2026-03-08T05:00:00Z"), end: new Date("2026-03-08T07:00:00Z") },
-    { name: "Chinese GP (Sprint Weekend)", start: new Date("2026-03-13T03:30:00Z"), end: new Date("2026-03-15T09:00:00Z") },
-    { name: "Japanese GP (Suzuka)", start: new Date("2026-03-29T05:00:00Z"), end: new Date("2026-03-29T07:00:00Z") },
-    { name: "Bahrain GP (Sakhir)", start: new Date("2026-04-12T15:00:00Z"), end: new Date("2026-04-12T17:00:00Z") },
-    { name: "Saudi Arabian GP (Jeddah)", start: new Date("2026-04-19T17:00:00Z"), end: new Date("2026-04-19T19:00:00Z") },
-    { name: "Miami GP (Sprint Weekend)", start: new Date("2026-05-01T16:30:00Z"), end: new Date("2026-05-03T22:00:00Z") },
-    { name: "Canadian GP (Sprint Weekend)", start: new Date("2026-05-22T16:30:00Z"), end: new Date("2026-05-24T22:00:00Z") },
-    { name: "Monaco GP (Monte Carlo)", start: new Date("2026-06-07T13:00:00Z"), end: new Date("2026-06-07T15:00:00Z") },
-    { name: "Barcelona-Catalunya GP", start: new Date("2026-06-14T13:00:00Z"), end: new Date("2026-06-14T15:00:00Z") },
-    { name: "Austrian GP (Spielberg)", start: new Date("2026-06-28T13:00:00Z"), end: new Date("2026-06-28T15:00:00Z") },
-    { name: "British GP (Sprint Weekend)", start: new Date("2026-07-03T11:30:00Z"), end: new Date("2026-07-05T16:00:00Z") },
-    { name: "Belgian GP (Spa)", start: new Date("2026-07-19T13:00:00Z"), end: new Date("2026-07-19T15:00:00Z") },
-    { name: "Hungarian GP (Budapest)", start: new Date("2026-07-26T13:00:00Z"), end: new Date("2026-07-26T15:00:00Z") },
-    { name: "Dutch GP (Sprint Weekend)", start: new Date("2026-08-21T10:30:00Z"), end: new Date("2026-08-23T15:00:00Z") },
-    { name: "Italian GP (Monza)", start: new Date("2026-09-06T13:00:00Z"), end: new Date("2026-09-06T15:00:00Z") },
-    { name: "Spanish GP (Madrid Debut)", start: new Date("2026-09-13T13:00:00Z"), end: new Date("2026-09-13T15:00:00Z") },
-    { name: "Azerbaijan GP (Baku - Saturday Race)", start: new Date("2026-09-26T11:00:00Z"), end: new Date("2026-09-26T13:00:00Z") },
-    { name: "Singapore GP (Sprint Weekend)", start: new Date("2026-10-09T09:30:00Z"), end: new Date("2026-10-11T14:00:00Z") },
-    { name: "United States GP (Austin)", start: new Date("2026-10-25T19:00:00Z"), end: new Date("2026-10-25T21:00:00Z") },
-    { name: "Mexico City GP", start: new Date("2026-11-01T19:00:00Z"), end: new Date("2026-11-01T21:00:00Z") },
-    { name: "São Paulo GP (Interlagos)", start: new Date("2026-11-08T17:00:00Z"), end: new Date("2026-11-08T19:00:00Z") },
-    { name: "Las Vegas GP (Saturday Night)", start: new Date("2026-11-22T06:00:00Z"), end: new Date("2026-11-22T08:00:00Z") },
-    { name: "Qatar GP (Lusail)", start: new Date("2026-11-29T17:00:00Z"), end: new Date("2026-11-29T19:00:00Z") },
-    { name: "Abu Dhabi GP (Yas Marina)", start: new Date("2026-12-06T13:00:00Z"), end: new Date("2026-12-06T15:00:00Z") }
-];
-
-function updateLiveTimer() {
-    const now = new Date();
-    // Find the first event that ends in the future
-    const activeEvent = f1Schedule.find(event => now < event.end);
-
-    if (!activeEvent) {
-        console.clear();
-        console.log("🏁 THE 2026 SEASON HAS CONCLUDED.");
-        return;
-    }
-
-    const isOngoing = now >= activeEvent.start;
-    const diff = isOngoing ? activeEvent.end - now : activeEvent.start - now;
-
-    console.clear();
-    console.log(`=================================`);
-    console.log(`   🏎️  F1 2026 LIVE TRACKER  🏎️   `);
-    console.log(`=================================`);
-    console.log(`EVENT: ${activeEvent.name}`);
-    console.log(`STATUS: ${isOngoing ? "🔴 ONGOING" : "🕒 UPCOMING"}`);
-    console.log(`${isOngoing ? "Ends in:" : "Starts in:"} ${formatTime(diff)}`);
-    console.log(`=================================`);
-}
-
-function formatTime(ms) {
-    const days = Math.floor(ms / (24 * 60 * 60 * 1000));
-    const hours = Math.floor((ms % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
-    const mins = Math.floor((ms % (60 * 60 * 1000)) / (60 * 1000));
-    const secs = Math.floor((ms % (60 * 1000)) / 1000);
-    return `${days}d ${hours}h ${mins}m ${secs}s`;
-}
-
-// Run every second
-setInterval(updateLiveTimer, 1000);
+        const f1Schedule = [
+            { name: "Pre-Season Test 1 (Barcelona)", start: new Date("2026-01-26T08:00:00Z"), end: new Date("2026-01-30T16:00:00Z") },
+            { name: "Pre-Season Test 2 (Bahrain)", start: new Date("2026-02-11T07:00:00Z"), end: new Date("2026-02-13T16:00:00Z") },
+            { name: "Pre-Season Test 3 (Bahrain)", start: new Date("2026-02-18T07:00:00Z"), end: new Date("2026-02-20T16:00:00Z") },
+            { name: "Australian GP (Melbourne)", start: new Date("2026-03-08T05:00:00Z"), end: new Date("2026-03-08T07:00:00Z") },
+            { name: "Chinese GP (Sprint Weekend)", start: new Date("2026-03-13T03:30:00Z"), end: new Date("2026-03-15T09:00:00Z") },
+            { name: "Japanese GP (Suzuka)", start: new Date("2026-03-29T05:00:00Z"), end: new Date("2026-03-29T07:00:00Z") },
+            { name: "Bahrain GP (Sakhir)", start: new Date("2026-04-12T15:00:00Z"), end: new Date("2026-04-12T17:00:00Z") },
+            { name: "Saudi Arabian GP (Jeddah)", start: new Date("2026-04-19T17:00:00Z"), end: new Date("2026-04-19T19:00:00Z") },
+            { name: "Miami GP (Sprint Weekend)", start: new Date("2026-05-01T16:30:00Z"), end: new Date("2026-05-03T22:00:00Z") },
+            { name: "Canadian GP (Sprint Weekend)", start: new Date("2026-05-22T16:30:00Z"), end: new Date("2026-05-24T22:00:00Z") },
+            { name: "Monaco GP (Monte Carlo)", start: new Date("2026-06-07T13:00:00Z"), end: new Date("2026-06-07T15:00:00Z") },
+            { name: "Barcelona-Catalunya GP", start: new Date("2026-06-14T13:00:00Z"), end: new Date("2026-06-14T15:00:00Z") },
+            { name: "Austrian GP (Spielberg)", start: new Date("2026-06-28T13:00:00Z"), end: new Date("2026-06-28T15:00:00Z") },
+            { name: "British GP (Sprint Weekend)", start: new Date("2026-07-03T11:30:00Z"), end: new Date("2026-07-05T16:00:00Z") },
+            { name: "Belgian GP (Spa)", start: new Date("2026-07-19T13:00:00Z"), end: new Date("2026-07-19T15:00:00Z") },
+            { name: "Hungarian GP (Budapest)", start: new Date("2026-07-26T13:00:00Z"), end: new Date("2026-07-26T15:00:00Z") },
+            { name: "Dutch GP (Sprint Weekend)", start: new Date("2026-08-21T10:30:00Z"), end: new Date("2026-08-23T15:00:00Z") },
+            { name: "Italian GP (Monza)", start: new Date("2026-09-06T13:00:00Z"), end: new Date("2026-09-06T15:00:00Z") },
+            { name: "Spanish GP (Madrid Debut)", start: new Date("2026-09-13T13:00:00Z"), end: new Date("2026-09-13T15:00:00Z") },
+            { name: "Azerbaijan GP (Baku - Saturday Race)", start: new Date("2026-09-26T11:00:00Z"), end: new Date("2026-09-26T13:00:00Z") },
+            { name: "Singapore GP (Sprint Weekend)", start: new Date("2026-10-09T09:30:00Z"), end: new Date("2026-10-11T14:00:00Z") },
+            { name: "United States GP (Austin)", start: new Date("2026-10-25T19:00:00Z"), end: new Date("2026-10-25T21:00:00Z") },
+            { name: "Mexico City GP", start: new Date("2026-11-01T19:00:00Z"), end: new Date("2026-11-01T21:00:00Z") },
+            { name: "São Paulo GP (Interlagos)", start: new Date("2026-11-08T17:00:00Z"), end: new Date("2026-11-08T19:00:00Z") },
+            { name: "Las Vegas GP (Saturday Night)", start: new Date("2026-11-22T06:00:00Z"), end: new Date("2026-11-22T08:00:00Z") },
+            { name: "Qatar GP (Lusail)", start: new Date("2026-11-29T17:00:00Z"), end: new Date("2026-11-29T19:00:00Z") },
+            { name: "Abu Dhabi GP (Yas Marina)", start: new Date("2026-12-06T13:00:00Z"), end: new Date("2026-12-06T15:00:00Z") }
+        ];
 
         function updateUI() {
-            // Greeting
             const hour = new Date().getHours();
             const greet = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
             document.getElementById("greeting").innerText = `${greet}`;
 
-            // F1 Timer
             const now = new Date();
             let event = f1Schedule.find(e => now < e.end) || { name: "Season End", start: now };
             const diff = event.start - now;
@@ -225,7 +221,6 @@ setInterval(updateLiveTimer, 1000);
             }
         }
 
-        // --- UTILS ---
         function swap(idx) {
             document.getElementById('indicator').style.transform = `translateX(${idx * 120}px)`;
             document.getElementById('slider').style.transform = `translateX(-${idx * 50}%)`;
