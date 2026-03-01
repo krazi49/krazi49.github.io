@@ -1,16 +1,17 @@
 <!DOCTYPE HTML>
 <html lang="en">
+<meta charset="UTF-8">
 <head>
-    <title>krazierthanu</title>
+    <title>kraziestonearound</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.7.0/dist/font.min.css">
 
+    <!-- the overall monochrome theme -->
     <style>
         :root {
-            /* MONOCHROME PALETTE */
             --md-sys-color-surface: #000000;
             --md-sys-color-on-surface: #ffffff;
             --md-sys-color-surface-container: #111111;
@@ -42,9 +43,8 @@
             transition: background-color 0.5s var(--m3-easing);
         }
 
-        /* --- SQUARE SHAPES & BORDERS --- */
         .m3-card, .nav-item, .chip, #viewport, .nav-pill, .m3-nav {
-            border-radius: 0 !important; /* NO ROUNDED CORNERS */
+            border-radius: 0 !important;
         }
         
         .m3-card {
@@ -60,12 +60,10 @@
         .m3-card:hover { transform: translateY(-2px); }
         .m3-card:active { transform: scale(0.98); }
 
-        /* --- F1 CALENDAR STYLES --- */
         #f1-timer { font-family: 'Geist Mono', monospace; font-weight: 700; font-size: 22px; color: var(--md-sys-color-primary); }
         .live-pulse { display: inline-block; width: 10px; height: 10px; background: var(--md-sys-color-primary); border-radius: 0; margin-right: 8px; animation: pulse 1s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        /* --- NAV STYLES --- */
         .m3-nav { 
             position: fixed; bottom: 24px; display: flex; 
             background: var(--md-sys-color-surface-container); 
@@ -93,7 +91,6 @@
         #slider { display: flex; width: 200%; transition: transform 0.6s var(--m3-easing); }
         .page { width: 50%; padding: 24px; box-sizing: border-box; }
 
-        /* --- NEOFETCH UI --- */
         .neofetch { font-family: 'Geist Mono', monospace; font-size: 13px; line-height: 1.4; display: flex; gap: 16px; }
         .neofetch-logo { color: var(--md-sys-color-primary); font-weight: 900; }
         .neofetch-data b { color: var(--md-sys-color-primary); }
@@ -120,28 +117,30 @@
     <div id="viewport">
         <div id="slider">
             <div class="page" id="page-0">
-                <h2 id="greeting" style="margin: 0 0 4px 0; font-weight: 900; text-transform: uppercase;">Hello!</h2>
-                <p style="margin: 0 0 24px 0; opacity: 0.6; font-size: 14px; font-family: 'Geist Mono';">krazierthanu // silvermanch</p>
+                <h2 id="greeting" style="margin: 0 0 4px 0; font-weight: 400; text-transform: lowercase;">Hello!</h2>
+                <p style="margin: 0 0 0px 0; opacity: 0.6; font-size: 14px; font-family: 'Geist Mono';">krazierthanu // silvermanch</p>
+                <p style="margin: 0 0 24px 0; opacity: 0.6; font-size: 14px; font-family: 'Geist Mono';">Last updated 21:51 on 1/3/26</p>
 
                 <div class="m3-card">
-                    <span id="event-label" style="font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;">Season Opener</span>
+                    <span id="event-label" style="font-size: 12px; font-weight: 900; text-transform: lowercase; letter-spacing: 1px;">Counting the days to Formula 1</span>
                     <div id="f1-timer" style="margin-top: 8px;">00:00:00:00</div>
                 </div>
 
                 <a href="https://last.fm/user/silvermanch" class="m3-card" style="display: flex; align-items: center; gap: 16px;">
                     <img id="track-art" src="" style="width: 56px; height: 56px; object-fit: cover;">
                     <div style="overflow: hidden;">
-                        <b id="track-name" style="display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-transform: uppercase;">Music Offline</b>
-                        <span id="track-artist" style="font-size: 13px; opacity: 0.7; font-family: 'Geist Mono';">Syncing Last.fm...</span>
+                        <b id="track-name" style="display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-transform: lowercase">Can't find your music (yet?)</b>
+                        <span id="track-artist" style="font-size: 13px; opacity: 0.7; font-family: 'Geist Pixel Square';">Syncing Last.fm.</span><br>
+                        <span id="track-album" style="font-size: 13px; opacity: 0.7; font-family: 'Geist Pixel Square';">check code later if this doesn't progress</span>
                     </div>
                 </a>
 
-                <div class="section-label" style="font-size: 11px; font-weight: 900; opacity: 0.5; margin-bottom: 8px;">2026 GRID PALETTE</div>
+                <div class="section-label" style="font-size: 11px; font-weight: 900; opacity: 0.5; margin-bottom: 8px;">TEAMS TO WATCH IN 2026</div>
                 <div class="chip-row">
-                    <div class="chip" onclick="copy('#0600EF')">RBR</div>
-                    <div class="chip" onclick="copy('#FF8700')">MCL</div>
-                    <div class="chip" onclick="copy('#E8002D')">FER</div>
-                    <div class="chip" onclick="copy('#00D2BE')">MER</div>
+                    <div class="chip" onclick="copy('#0600EF')">ORBR</div>
+                    <div class="chip" onclick="copy('#FF8700')">MCLA</div>
+                    <div class="chip" onclick="copy('#E8002D')">FERR</div>
+                    <div class="chip" onclick="copy('#00D2BE')">MERC</div>
                 </div>
             </div>
 
@@ -154,8 +153,11 @@
                         <div class="neofetch-data">
                             <b>user</b>: krazierchat<br>
                             <b>host</b>: krazi49.github.io<br>
-                            <b>stack</b>: HTML, CSS, JS, C<br>
-                            <b>shell</b>: fish (on arch btw)<br>
+                            <b>learning</b>: HTML, CSS, JS, C<br>
+                            <b>shell</b>: zsh, on arch<br>
+                            <b>subjects</b>: cs, music, history<br>
+                            <b>karting pb @ ts leeds:</b> 41.1<br>
+                            <b>are you are you coming to madrid</b>
                         </div>
                     </div>
                 </div>
@@ -166,11 +168,15 @@
                     <a href="https://music.youtube.com/watch?v=u1hyLQOr6no&si=oHj-sY6zpCmiUdaC" class="m3-card" style="margin: 0; text-align: center; padding: 12px;"><i class="fa-brands fa-youtube"></i> Music</a>
                     <a href="https://f1.com" class="m3-card" style="margin: 0; text-align: center; padding: 12px;"><i class="fa-solid fa-car-on"></i> F1</a>
                     <a href="#" onclick="toggleTheme()" class="m3-card" style="margin: 0; text-align: center; padding: 12px;"><i class="fa-solid fa-circle-half-stroke"></i> Theme</a>
+                    <a href="https://pitwall.me" class="m3-card" style="margin: 0; text-align: center; padding: 12px;"><i class="fa-solid fa-tower-broadcast"></i> Timing screen</a>
+                    <a href="https://google.com" class="m3-card" style="margin: 0; text-align: center; padding: 12px;"><i class="fa-brands fa-google"></i> Google</a>
                 </div>
             </div>
         </div>
     </div>
 
+
+    <!-- big f1 schedule widget that actually ticks down -->
     <script>
         const f1Schedule = [
             { name: "Pre-Season Test 1 (Barcelona)", start: new Date("2026-01-26T08:00:00Z"), end: new Date("2026-01-30T16:00:00Z") },
@@ -179,8 +185,8 @@
             { name: "Australian GP (Melbourne)", start: new Date("2026-03-08T05:00:00Z"), end: new Date("2026-03-08T07:00:00Z") },
             { name: "Chinese GP (Sprint Weekend)", start: new Date("2026-03-13T03:30:00Z"), end: new Date("2026-03-15T09:00:00Z") },
             { name: "Japanese GP (Suzuka)", start: new Date("2026-03-29T05:00:00Z"), end: new Date("2026-03-29T07:00:00Z") },
-            { name: "Bahrain GP (Sakhir)", start: new Date("2026-04-12T15:00:00Z"), end: new Date("2026-04-12T17:00:00Z") },
-            { name: "Saudi Arabian GP (Jeddah)", start: new Date("2026-04-19T17:00:00Z"), end: new Date("2026-04-19T19:00:00Z") },
+            { name: "Bahrain GP (Sakhir?)", start: new Date("2026-04-12T15:00:00Z"), end: new Date("2026-04-12T17:00:00Z") },
+            { name: "Saudi Arabian GP (Jeddah?)", start: new Date("2026-04-19T17:00:00Z"), end: new Date("2026-04-19T19:00:00Z") },
             { name: "Miami GP (Sprint Weekend)", start: new Date("2026-05-01T16:30:00Z"), end: new Date("2026-05-03T22:00:00Z") },
             { name: "Canadian GP (Sprint Weekend)", start: new Date("2026-05-22T16:30:00Z"), end: new Date("2026-05-24T22:00:00Z") },
             { name: "Monaco GP (Monte Carlo)", start: new Date("2026-06-07T13:00:00Z"), end: new Date("2026-06-07T15:00:00Z") },
@@ -202,18 +208,19 @@
             { name: "Abu Dhabi GP (Yas Marina)", start: new Date("2026-12-06T13:00:00Z"), end: new Date("2026-12-06T15:00:00Z") }
         ];
 
+        // javascript
         function updateUI() {
             const hour = new Date().getHours();
-            const greet = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
+            const greet = hour < 12 ? "urhiọke.." : hour < 18 ? "oghẹruvo.." :"ovwọvwọ..";
             document.getElementById("greeting").innerText = `${greet}`;
 
             const now = new Date();
-            let event = f1Schedule.find(e => now < e.end) || { name: "Season End", start: now };
+            let event = f1Schedule.find(e => now < e.end) || { name: "Season's over", start: now };
             const diff = event.start - now;
             
             if (now >= event.start && now <= event.end) {
                 document.getElementById("event-label").innerHTML = `<span class="live-pulse"></span>LIVE NOW: ${event.name}`;
-                document.getElementById("f1-timer").innerText = "TRACK ACTION";
+                document.getElementById("f1-timer").innerText = "Things are happening";
             } else {
                 document.getElementById("event-label").innerText = `NEXT: ${event.name}`;
                 const d = Math.floor(diff / 86400000), h = Math.floor((diff % 86400000) / 3600000), m = Math.floor((diff % 3600000) / 60000), s = Math.floor((diff % 60000) / 1000);
@@ -236,16 +243,20 @@
             navigator.clipboard.writeText(text);
         }
 
-        async function updateScrobbler() {
-            try {
-                const res = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=silvermanch&api_key=4f08815f48f04e98c8ec8f294b21d080&format=json&limit=1`);
-                const data = await res.json();
-                const track = data.recenttracks.track[0];
-                document.getElementById('track-name').innerText = track.name;
-                document.getElementById('track-artist').innerText = track.artist['#text'];
-                document.getElementById('track-art').src = track.image.find(i => i.size === 'extralarge')['#text'];
-            } catch (e) {}
-        }
+async function updateScrobbler() {
+    try {
+        const res = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=silvermanch&api_key=4f08815f48f04e98c8ec8f294b21d080&format=json&limit=1`);
+        const data = await res.json();
+        const track = data.recenttracks.track[0];
+        document.getElementById('track-name').innerText = track.name;
+        document.getElementById('track-artist').innerText = track.artist['#text'];
+        document.getElementById('track-album').innerText = track.album['#text'] || 'Single';
+        const artUrl = track.image.find(i => i.size === 'extralarge')['#text'];
+        document.getElementById('track-art').src = artUrl || 'path/to/default-art.png';
+    } catch (e) {
+        console.error("Scrobbler Error:", e);
+    }
+}
 
         setInterval(updateUI, 1000);
         setInterval(updateScrobbler, 30000);
