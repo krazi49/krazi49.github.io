@@ -1,17 +1,18 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<meta charset="UTF-8">
 <head>
-    <title>kraziestonearound</title>
+    <title>krazierthanu</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.7.0/dist/font.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="krazierthanu — personal site, f1 countdown, music scrobbler, neofetch" />
+    <meta property="og:title" content="krazierthanu" />
+    <meta property="og:description" content="f1 countdown, music scrobbler, neofetch" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏎️</text></svg>" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
 
-    <!-- the overall monochrome theme -->
     <style>
-        
         @font-face {
             font-family: 'Geist Pixel Square';
             src: url('assets/webfonts/GeistPixel-Square.woff2') format('woff2');
@@ -19,7 +20,6 @@
             font-style: normal;
             font-display: swap;
         }
-
         @font-face {
             font-family: 'Geist Pixel Line';
             src: url('assets/webfonts/GeistPixel-Line.woff2') format('woff2');
@@ -27,132 +27,39 @@
             font-style: normal;
             font-display: swap;
         }
-
-        :root {
-            --md-sys-color-surface: #000000;
-            --md-sys-color-on-surface: #ffffff;
-            --md-sys-color-surface-container: #111111;
-            --md-sys-color-primary: #ffffff;
-            --md-sys-color-on-primary: #000000;
-            --md-sys-color-secondary-container: #222222;
-            --md-sys-color-on-secondary-container: #ffffff;
-            --m3-easing: cubic-bezier(0.2, 0, 0, 1);
-            --border-style: 2px solid #ffffff;
-        }
-
-        [data-theme="light"] {
-            --md-sys-color-surface: #ffffff;
-            --md-sys-color-on-surface: #000000;
-            --md-sys-color-surface-container: #eeeeee;
-            --md-sys-color-primary: #000000;
-            --md-sys-color-on-primary: #ffffff;
-            --md-sys-color-secondary-container: #dddddd;
-            --md-sys-color-on-secondary-container: #000000;
-            --border-style: 2px solid #000000;
-        }
-
-        body {
-            background-color: var(--md-sys-color-surface);
-            color: var(--md-sys-color-on-surface);
-            font-family: 'Geist Pixel Square', sans-serif;
-            margin: 0; padding: 20px 0 140px 0;
-            display: flex; flex-direction: column; align-items: center;
-            transition: background-color 0.5s var(--m3-easing);
-        }
-
-        .m3-card, .nav-item, .chip, #viewport, .nav-pill, .m3-nav {
-            border-radius: 0 !important;
-        }
-        
-        .m3-card {
-            border: var(--border-style);
-            background: var(--md-sys-color-secondary-container);
-            color: var(--md-sys-color-on-secondary-container);
-            padding: 20px;
-            margin-bottom: 16px;
-            text-decoration: none;
-            display: block;
-            transition: transform 0.2s var(--m3-easing);
-        }
-        .m3-card:hover { transform: translateY(-2px); }
-        .m3-card:active { transform: scale(0.98); }
-
-        #f1-timer { font-family: 'Geist Mono', monospace; font-weight: 700; font-size: 22px; color: var(--md-sys-color-primary); }
-        .live-pulse { display: inline-block; width: 10px; height: 10px; background: var(--md-sys-color-primary); border-radius: 0; margin-right: 8px; animation: pulse 1s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-        .m3-nav { 
-            position: fixed; bottom: 24px; display: flex; 
-            background: var(--md-sys-color-surface-container); 
-            padding: 4px; border: var(--border-style);
-            z-index: 100; backdrop-filter: blur(20px); 
-        }
-        .nav-pill { 
-            position: absolute; top: 4px; left: 4px; width: 120px; height: calc(100% - 8px); 
-            background: var(--md-sys-color-primary); transition: transform 0.6s var(--m3-easing); 
-        }
-        .nav-item { 
-            position: relative; width: 120px; padding: 14px 0; border: none; 
-            background: transparent; color: var(--md-sys-color-on-surface); 
-            font-size: 14px; font-weight: 600; cursor: pointer; z-index: 1; 
-            display: flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit; 
-        }
-        .nav-item.active { color: var(--md-sys-color-on-primary); }
-
-        #viewport { 
-            width: 92%; max-width: 480px; 
-            background: var(--md-sys-color-surface-container); 
-            border: var(--border-style);
-            overflow: hidden; transition: height 0.6s var(--m3-easing); 
-        }
-        #slider { display: flex; width: 200%; transition: transform 0.6s var(--m3-easing); }
-        .page { width: 50%; padding: 24px; box-sizing: border-box; }
-
-        .neofetch { font-family: 'Geist Mono', monospace; font-size: 13px; line-height: 1.4; display: flex; gap: 16px; }
-        .neofetch-logo { color: var(--md-sys-color-primary); font-weight: 900; }
-        .neofetch-data b { color: var(--md-sys-color-primary); }
-
-        .chip-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none; }
-        .chip { 
-            background: var(--md-sys-color-surface); 
-            padding: 6px 16px; font-size: 12px; font-weight: 700; 
-            border: var(--border-style);
-            white-space: nowrap; cursor: copy; 
-        }
-        
-        #track-art { border: 1px solid var(--md-sys-color-on-surface); border-radius: 0 !important; }
     </style>
 </head>
 <body data-theme="dark">
 
-    <nav class="m3-nav">
-        <div class="nav-pill" id="indicator"></div>
-        <button class="nav-item active" onclick="swap(0)"><i class="fa-solid fa-house"></i> Home</button>
-        <button class="nav-item" onclick="swap(1)"><i class="fa-solid fa-code"></i> Dev</button>
-    </nav>
+    <div class="shell">
+        <aside class="sidebar">
+            <div class="side-label">Pages</div>
+            <button class="nav-item active" data-page="home"><i class="fa-solid fa-house"></i> Home</button>
+            <button class="nav-item" data-page="dev"><i class="fa-solid fa-code"></i> Dev</button>
+            <div class="side-label">Actions</div>
+            <button class="nav-item" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i> Theme</button>
+        </aside>
 
-    <div id="viewport">
-        <div id="slider">
-            <div class="page" id="page-0">
-                <h2 id="greeting" style="margin: 0 0 4px 0; font-weight: 400; text-transform: lowercase;">Hello!</h2>
-                <p style="margin: 0 0 0px 0; opacity: 0.6; font-size: 14px; font-family: 'Geist Mono';">krazierthanu // silvermanch</p>
-                <p style="margin: 0 0 24px 0; opacity: 0.6; font-size: 14px; font-family: 'Geist Mono';">Last updated 21:51 on 1/3/26</p>
+        <main class="content">
+            <div class="page active" id="page-home">
+                <h2 id="greeting">Hello!</h2>
+                <p class="subtitle">krazierthanu // silvermanch</p>
 
-                <div class="m3-card">
-                    <span id="event-label" style="font-size: 12px; font-weight: 900; text-transform: lowercase; letter-spacing: 1px;">Counting the days to Formula 1</span>
-                    <div id="f1-timer" style="margin-top: 8px;">00:00:00:00</div>
+                <div class="card">
+                    <span id="event-label">Counting the days to Formula 1</span>
+                    <div id="f1-timer">00:00:00:00</div>
                 </div>
 
-                <a href="https://last.fm/user/silvermanch" class="m3-card" style="display: flex; align-items: center; gap: 16px;">
-                    <img id="track-art" src="" style="width: 56px; height: 56px; object-fit: cover;">
-                    <div style="overflow: hidden;">
-                        <b id="track-name" style="display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-transform: lowercase">Can't find your music (yet?)</b>
-                        <span id="track-artist" style="font-size: 13px; opacity: 0.7; font-family: 'Geist Pixel Square';">Syncing Last.fm.</span><br>
-                        <span id="track-album" style="font-size: 13px; opacity: 0.7; font-family: 'Geist Pixel Square';">check code later if this doesn't progress</span>
+                <a href="https://last.fm/user/silvermanch" class="card scrobbler">
+                    <img id="track-art" src="" alt="Current track album art" />
+                    <div class="scrobbler-text">
+                        <span id="track-name">Can't find your music (yet?)</span>
+                        <span id="track-artist">Syncing Last.fm...</span><br />
+                        <span id="track-album"></span>
                     </div>
                 </a>
 
-                <div class="section-label" style="font-size: 11px; font-weight: 900; opacity: 0.5; margin-bottom: 8px;">TEAMS TO WATCH IN 2026</div>
+                <div class="section-label">Teams to watch in 2026</div>
                 <div class="chip-row">
                     <div class="chip" onclick="copy('#0600EF')">ORBR</div>
                     <div class="chip" onclick="copy('#FF8700')">MCLA</div>
@@ -161,41 +68,39 @@
                 </div>
             </div>
 
-            <div class="page" id="page-1">
-                <div class="m3-card">
+            <div class="page" id="page-dev">
+                <div class="card">
                     <div class="neofetch">
                         <div class="neofetch-logo">
-                            &nbsp;&nbsp;/\<br>&nbsp;/&nbsp;&nbsp;\<br>/&nbsp;/\&nbsp;\<br>/_/_&nbsp;\_/
+                            &nbsp;&nbsp;/\<br />&nbsp;/&nbsp;&nbsp;\<br />/&nbsp;/\&nbsp;\<br />/_/_&nbsp;\_/
                         </div>
                         <div class="neofetch-data">
-                            <b>user</b>: krazierchat<br>
-                            <b>host</b>: krazi49.github.io<br>
-                            <b>learning</b>: HTML, CSS, JS, C<br>
-                            <b>shell</b>: zsh, on arch<br>
-                            <b>subjects</b>: cs, music, history<br>
-                            <b>karting pb @ ts leeds:</b> 41.1<br>
+                            <b>user</b>: krazierchat<br />
+                            <b>host</b>: krazi49.github.io<br />
+                            <b>learning</b>: html, css, js, c<br />
+                            <b>shell</b>: zsh, on arch<br />
+                            <b>subjects</b>: cs, music, history<br />
+                            <b>karting pb @ ts leeds</b>: 41.1<br />
                             <b>are you are you coming to madrid</b>
                         </div>
                     </div>
                 </div>
 
-                <div class="section-label" style="font-size: 11px; font-weight: 900; opacity: 0.5; margin: 24px 0 8px 0;">QUICK LINKS</div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                    <a href="https://github.com/krazi49" class="m3-card" style="margin: 0; text-align: center; padding: 12px;"><i class="fa-brands fa-github"></i> GitHub</a>
-                    <a href="https://music.youtube.com/watch?v=u1hyLQOr6no&si=oHj-sY6zpCmiUdaC" class="m3-card" style="margin: 0; text-align: center; padding: 12px;"><i class="fa-brands fa-youtube"></i> Music</a>
-                    <a href="https://f1.com" class="m3-card" style="margin: 0; text-align: center; padding: 12px;"><i class="fa-solid fa-car-on"></i> F1</a>
-                    <a href="#" onclick="toggleTheme()" class="m3-card" style="margin: 0; text-align: center; padding: 12px;"><i class="fa-solid fa-circle-half-stroke"></i> Theme</a>
-                    <a href="https://pitwall.me" class="m3-card" style="margin: 0; text-align: center; padding: 12px;"><i class="fa-solid fa-tower-broadcast"></i> Timing screen</a>
-                    <a href="https://google.com" class="m3-card" style="margin: 0; text-align: center; padding: 12px;"><i class="fa-brands fa-google"></i> Google</a>
+                <div class="section-label">Quick Links</div>
+                <div class="card-row">
+                    <a href="https://github.com/krazi49" class="card"><i class="fa-brands fa-github"></i> GitHub</a>
+                    <a href="https://music.youtube.com/watch?v=u1hyLQOr6no" class="card"><i class="fa-brands fa-youtube"></i> Music</a>
+                    <a href="https://f1.com" class="card"><i class="fa-solid fa-car-on"></i> F1</a>
+                    <a href="https://pitwall.me" class="card"><i class="fa-solid fa-tower-broadcast"></i> Timing</a>
                 </div>
             </div>
-        </div>
+        </main>
     </div>
 
+    <div id="toast" class="tooltip-toast">Copied!</div>
 
-    <!-- big f1 schedule widget that actually ticks down -->
     <script>
-        const f1Schedule = [
+        var f1Schedule = [
             { name: "Pre-Season Test 1 (Barcelona)", start: new Date("2026-01-26T08:00:00Z"), end: new Date("2026-01-30T16:00:00Z") },
             { name: "Pre-Season Test 2 (Bahrain)", start: new Date("2026-02-11T07:00:00Z"), end: new Date("2026-02-13T16:00:00Z") },
             { name: "Pre-Season Test 3 (Bahrain)", start: new Date("2026-02-18T07:00:00Z"), end: new Date("2026-02-20T16:00:00Z") },
@@ -225,31 +130,46 @@
             { name: "Abu Dhabi GP (Yas Marina)", start: new Date("2026-12-06T13:00:00Z"), end: new Date("2026-12-06T15:00:00Z") }
         ];
 
-        // javascript
-        function updateUI() {
-            const hour = new Date().getHours();
-            const greet = hour < 12 ? "urhiọke.." : hour < 18 ? "oghẹruvo.." :"ovwọvwọ..";
-            document.getElementById("greeting").innerText = `${greet}`;
+        var scrobblerFailed = false;
 
-            const now = new Date();
-            let event = f1Schedule.find(e => now < e.end) || { name: "Season's over", start: now };
-            const diff = event.start - now;
-            
-            if (now >= event.start && now <= event.end) {
-                document.getElementById("event-label").innerHTML = `<span class="live-pulse"></span>LIVE NOW: ${event.name}`;
+        function updateUI() {
+            var hour = new Date().getHours();
+            var greet = hour < 12 ? "Morning" : hour < 18 ? "Evening" : "Afternoon";
+            document.getElementById("greeting").innerText = greet;
+
+            var now = Date.now();
+            var event = null;
+            for (var i = 0; i < f1Schedule.length; i++) {
+                if (now < f1Schedule[i].end.getTime()) { event = f1Schedule[i]; break; }
+            }
+            if (!event) { event = { name: "Season's over", start: new Date() }; }
+
+            if (now >= event.start.getTime() && now <= event.end.getTime()) {
+                document.getElementById("event-label").innerHTML = '<span class="live-pulse"></span>LIVE NOW: ' + event.name;
                 document.getElementById("f1-timer").innerText = "Things are happening";
             } else {
-                document.getElementById("event-label").innerText = `NEXT: ${event.name}`;
-                const d = Math.floor(diff / 86400000), h = Math.floor((diff % 86400000) / 3600000), m = Math.floor((diff % 3600000) / 60000), s = Math.floor((diff % 60000) / 1000);
-                document.getElementById("f1-timer").innerText = `${d}D:${h}H:${m}M:${s}S`;
+                document.getElementById("event-label").innerText = "NEXT: " + event.name;
+                var diff = event.start.getTime() - now;
+                var d = Math.floor(diff / 86400000);
+                var h = Math.floor((diff % 86400000) / 3600000);
+                var m = Math.floor((diff % 3600000) / 60000);
+                var s = Math.floor((diff % 60000) / 1000);
+                document.getElementById("f1-timer").innerText = d + "D:" + h + "H:" + m + "M:" + s + "S";
             }
         }
 
-        function swap(idx) {
-            document.getElementById('indicator').style.transform = `translateX(${idx * 120}px)`;
-            document.getElementById('slider').style.transform = `translateX(-${idx * 50}%)`;
-            document.querySelectorAll('.nav-item').forEach((btn, i) => i === idx ? btn.classList.add('active') : btn.classList.remove('active'));
-            setTimeout(() => { document.getElementById('viewport').style.height = document.getElementById(`page-${idx}`).offsetHeight + "px"; }, 50);
+        function showPage(name) {
+            var pages = document.querySelectorAll('.page');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active');
+            }
+            document.getElementById('page-' + name).classList.add('active');
+
+            var btns = document.querySelectorAll('.nav-item[data-page]');
+            for (var i = 0; i < btns.length; i++) {
+                if (btns[i].getAttribute('data-page') === name) btns[i].classList.add('active');
+                else btns[i].classList.remove('active');
+            }
         }
 
         function toggleTheme() {
@@ -257,27 +177,59 @@
         }
 
         function copy(text) {
-            navigator.clipboard.writeText(text);
+            navigator.clipboard.writeText(text).then(function() {
+                var toast = document.getElementById('toast');
+                toast.style.opacity = '1';
+                setTimeout(function() { toast.style.opacity = '0'; }, 1200);
+            });
         }
 
-async function updateScrobbler() {
-    try {
-        const res = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=silvermanch&api_key=4f08815f48f04e98c8ec8f294b21d080&format=json&limit=1`);
-        const data = await res.json();
-        const track = data.recenttracks.track[0];
-        document.getElementById('track-name').innerText = track.name;
-        document.getElementById('track-artist').innerText = track.artist['#text'];
-        document.getElementById('track-album').innerText = track.album['#text'] || 'Single';
-        const artUrl = track.image.find(i => i.size === 'extralarge')['#text'];
-        document.getElementById('track-art').src = artUrl || 'path/to/default-art.png';
-    } catch (e) {
-        console.error("Scrobbler Error:", e);
-    }
-}
+        function updateScrobbler() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=silvermanch&api_key=4f08815f48f04e98c8ec8f294b21d080&format=json&limit=1');
+            xhr.onload = function() {
+                if (xhr.status !== 200) { handleScrobblerError(); return; }
+                try {
+                    var data = JSON.parse(xhr.responseText);
+                    var track = data.recenttracks.track[0];
+                    if (!track) { handleScrobblerError(); return; }
+                    document.getElementById('track-name').innerText = track.name || 'Unknown';
+                    document.getElementById('track-artist').innerText = track.artist['#text'] || 'Unknown';
+                    document.getElementById('track-album').innerText = (track.album['#text'] || 'Single');
+                    var art = null;
+                    for (var i = 0; i < track.image.length; i++) {
+                        if (track.image[i].size === 'extralarge') { art = track.image[i]; break; }
+                    }
+                    if (art && art['#text']) {
+                        document.getElementById('track-art').src = art['#text'];
+                    }
+                    scrobblerFailed = false;
+                } catch (e) { handleScrobblerError(); }
+            };
+            xhr.onerror = handleScrobblerError;
+            xhr.send();
+        }
+
+        function handleScrobblerError() {
+            if (scrobblerFailed) return;
+            scrobblerFailed = true;
+            document.getElementById('track-name').innerText = 'Scrobbler offline';
+            document.getElementById('track-artist').innerText = 'Will retry...';
+        }
 
         setInterval(updateUI, 1000);
         setInterval(updateScrobbler, 30000);
-        window.onload = () => { updateUI(); updateScrobbler(); swap(0); };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var btns = document.querySelectorAll('.nav-item[data-page]');
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].addEventListener('click', function() {
+                    showPage(this.getAttribute('data-page'));
+                });
+            }
+            updateUI();
+            updateScrobbler();
+        });
     </script>
 </body>
 </html>

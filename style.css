@@ -1,0 +1,366 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&family=Google+Sans+Flex:opsz,wght,GRAD,XROT,YROT@6..144,1..1000,-25..150,-100..100,-100..100&display=swap');
+
+:root {
+    --surface: #101415;
+    --surface-container: #1c2021;
+    --surface-container-high: #262b2b;
+    --surface-container-highest: #313636;
+    --primary: #7bd4e1;
+    --on-primary: #00363c;
+    --on-surface: #dfe3e4;
+    --on-surface-variant: #bdc8ca;
+    --outline: #889394;
+    --outline-variant: #3e494a;
+    --error: #ffb4ab;
+    --border-subtle: 1px solid rgba(255, 255, 255, 0.08);
+    --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    --easing: cubic-bezier(0.4, 0, 0.2, 1);
+    --radius-pill: 100px;
+    --radius-card: 16px;
+    --sidebar-w: 160px;
+}
+
+[data-theme="light"] {
+    --surface: #ffffff;
+    --surface-container: #f5f5f5;
+    --surface-container-high: #ebebeb;
+    --surface-container-highest: #e0e0e0;
+    --primary: #006973;
+    --on-primary: #ffffff;
+    --on-surface: #1a1c1d;
+    --on-surface-variant: #494f50;
+    --outline: #727c7e;
+    --outline-variant: #c3c7c8;
+    --error: #ba1a1a;
+    --border-subtle: 1px solid rgba(0, 0, 0, 0.08);
+    --shadow-inset: inset 0 1px 0 rgba(0, 0, 0, 0.04);
+}
+
+* {
+    min-height: 0;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Google Sans Flex', 'Geist', sans-serif;
+    background: var(--surface);
+    color: var(--on-surface);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* ── Shell ──────────────────────────────────────────────── */
+.shell {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    max-width: 640px;
+    min-height: 400px;
+}
+
+/* ── Sidebar ────────────────────────────────────────────── */
+.sidebar {
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    background: var(--surface-container);
+    border-radius: var(--radius-card);
+    border: var(--border-subtle);
+    box-shadow: var(--shadow-inset);
+    padding: 12px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: sticky;
+    top: 20px;
+}
+
+.side-label {
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--outline);
+    padding: 8px 12px 4px 12px;
+    margin-top: 4px;
+}
+
+.side-label:first-child { margin-top: 0; }
+
+.nav-item {
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    background: transparent;
+    color: var(--on-surface-variant);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: var(--radius-pill);
+    transition: background 0.25s var(--easing), color 0.25s var(--easing), padding 0.4s var(--easing);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+}
+
+.nav-item i {
+    width: 16px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.nav-item:hover {
+    background: var(--surface-container-high);
+    color: var(--on-surface);
+    padding: 10px 16px;
+}
+
+.nav-item.active {
+    background: var(--primary);
+    color: var(--on-primary);
+}
+
+/* ── Main content area ──────────────────────────────────── */
+.content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.page {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.page.active { display: flex; }
+
+/* ── Cards ──────────────────────────────────────────────── */
+.card {
+    background: var(--surface-container-high);
+    border-radius: var(--radius-card);
+    border: var(--border-subtle);
+    box-shadow: var(--shadow-inset);
+    padding: 14px 16px;
+    text-decoration: none;
+    display: block;
+    color: var(--on-surface);
+    transition: background 0.25s var(--easing), transform 0.25s var(--easing), box-shadow 0.25s var(--easing);
+    font-size: 13px;
+}
+
+a.card:hover {
+    background: var(--surface-container-highest);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-inset), 0 2px 8px rgba(0,0,0,0.15);
+}
+
+a.card:active { transform: scale(0.98); }
+
+.card-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.card-row .card {
+    text-align: center;
+    padding: 10px;
+}
+
+/* ── Chips ──────────────────────────────────────────────── */
+.chip-row {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+}
+
+.chip-row::-webkit-scrollbar { display: none; }
+
+.chip {
+    background: var(--surface-container);
+    border: var(--border-subtle);
+    box-shadow: var(--shadow-inset);
+    padding: 5px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+    cursor: copy;
+    transition: background 0.25s var(--easing), color 0.25s var(--easing);
+    color: var(--on-surface-variant);
+    user-select: none;
+}
+
+.chip:hover {
+    background: var(--primary);
+    color: var(--on-primary);
+}
+
+.chip:active { transform: scale(0.95); }
+
+/* ── Section label ──────────────────────────────────────── */
+.section-label {
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--outline);
+    margin-top: 4px;
+}
+
+/* ── F1 Timer ───────────────────────────────────────────── */
+#f1-timer {
+    font-family: 'Geist Mono', monospace;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--primary);
+    margin-top: 6px;
+}
+
+.live-pulse {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--error);
+    border-radius: var(--radius-pill);
+    margin-right: 8px;
+    animation: pulse 1s ease-in-out infinite;
+    vertical-align: middle;
+}
+
+#event-label {
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: lowercase;
+    letter-spacing: 1px;
+    color: var(--on-surface-variant);
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* ── Scrobbler ──────────────────────────────────────────── */
+.scrobbler {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#track-art {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-card);
+    border: var(--border-subtle);
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.scrobbler-text {
+    overflow: hidden;
+    min-width: 0;
+}
+
+#track-name {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 600;
+}
+
+#track-artist,
+#track-album {
+    font-size: 12px;
+    color: var(--on-surface-variant);
+    font-family: 'Geist Mono', monospace;
+}
+
+#track-album { opacity: 0.6; }
+
+/* ── Neofetch ───────────────────────────────────────────── */
+.neofetch {
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    display: flex;
+    gap: 14px;
+}
+
+.neofetch-logo {
+    color: var(--primary);
+    font-weight: 900;
+    line-height: 1.2;
+    flex-shrink: 0;
+}
+
+.neofetch-data b { color: var(--primary); }
+
+/* ── Greeting ───────────────────────────────────────────── */
+#greeting {
+    margin: 0;
+    font-weight: 400;
+    text-transform: lowercase;
+    font-size: 20px;
+}
+
+.subtitle {
+    margin: 0 0 4px 0;
+    color: var(--on-surface-variant);
+    font-size: 12px;
+    font-family: 'Geist Mono', monospace;
+}
+
+/* ── Toast ──────────────────────────────────────────────── */
+.tooltip-toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface-container-highest);
+    color: var(--on-surface);
+    border-radius: var(--radius-pill);
+    border: var(--border-subtle);
+    box-shadow: var(--shadow-inset);
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.25s var(--easing);
+    pointer-events: none;
+    z-index: 200;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 540px) {
+    .shell { flex-direction: column; max-width: 480px; }
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        position: static;
+        padding: 6px 8px;
+        gap: 4px;
+        overflow-x: auto;
+    }
+    .side-label { display: none; }
+    .nav-item {
+        width: auto;
+        padding: 8px 14px;
+        flex-shrink: 0;
+    }
+    .nav-item:hover { padding: 8px 14px; }
+}
