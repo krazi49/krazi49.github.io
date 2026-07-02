@@ -1,235 +1,652 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>krazierthanu</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="krazierthanu — personal site, f1 countdown, music scrobbler, neofetch" />
-    <meta property="og:title" content="krazierthanu" />
-    <meta property="og:description" content="f1 countdown, music scrobbler, neofetch" />
-    <meta property="og:type" content="website" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏎️</text></svg>" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="style.css" />
+  <title>krazierthanu</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="krazierthanu — about, f1, music, projects" />
+  <meta property="og:title" content="krazierthanu" />
+  <meta property="og:description" content="personal site — f1, music, projects" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏎️</text></svg>" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
 
-    <style>
-        @font-face {
-            font-family: 'Geist Pixel Square';
-            src: url('assets/webfonts/GeistPixel-Square.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'Geist Pixel Line';
-            src: url('assets/webfonts/GeistPixel-Line.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-    </style>
 </head>
 <body data-theme="dark">
 
-    <div class="shell">
-        <aside class="sidebar">
-            <div class="side-label">Pages</div>
-            <button class="nav-item active" data-page="home"><i class="fa-solid fa-house"></i> Home</button>
-            <button class="nav-item" data-page="dev"><i class="fa-solid fa-code"></i> Dev</button>
-            <div class="side-label">Actions</div>
-            <button class="nav-item" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i> Theme</button>
-        </aside>
+  <div class="shell">
+    <!-- ─── Sidebar ─── -->
+    <aside class="sidebar">
+      <div class="sidebar-header">krazierthanu</div>
+      <button class="nav-item active" data-page="about"><i class="fa-solid fa-user"></i> about</button>
+      <button class="nav-item" data-page="f1"><i class="fa-solid fa-car"></i> f1</button>
+      <button class="nav-item" data-page="music"><i class="fa-solid fa-headphones"></i> music</button>
+      <button class="nav-item" data-page="projects"><i class="fa-solid fa-cube"></i> projects</button>
+      <button class="nav-item" data-page="now"><i class="fa-solid fa-clock"></i> /now</button>
+      <div style="margin-top:auto;padding-top:12px;">
+        <button class="nav-item" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i> theme</button>
+      </div>
+    </aside>
 
-        <main class="content">
-            <div class="page active" id="page-home">
-                <h2 id="greeting">Hello!</h2>
-                <p class="subtitle">krazierthanu // silvermanch</p>
+    <!-- ─── Main ─── -->
+    <div class="main">
 
-                <div class="card">
-                    <span id="event-label">Counting the days to Formula 1</span>
-                    <div id="f1-timer">00:00:00:00</div>
-                </div>
+      <!-- ─── ABOUT ─── -->
+      <div class="section active" id="section-about">
+        <div class="hero">
+          <div class="hero-avatar">K</div>
+          <div class="hero-text">
+            <h1 id="greeting">hey.</h1>
+            <p>krazierthanu // silvermanch</p>
+          </div>
+        </div>
 
-                <a href="https://last.fm/user/silvermanch" class="card scrobbler">
-                    <img id="track-art" src="" alt="Current track album art" />
-                    <div class="scrobbler-text">
-                        <span id="track-name">Can't find your music (yet?)</span>
-                        <span id="track-artist">Syncing Last.fm...</span><br />
-                        <span id="track-album"></span>
-                    </div>
-                </a>
+        <div class="card neofetch-wrap">
+          <div class="neofetch-logo">
+  /\
+ /  \
+/ /\ \
+/_/_ \_/
+          </div>
+          <div class="neofetch-data">
+<b>user</b>     krazierchat<br />
+<b>host</b>     krazi49.github.io<br />
+<b>os</b>       arch linux<br />
+<b>shell</b>    zsh<br />
+<b>wm</b>       hyprland<br />
+<b>location</b> leeds, uk<br />
+<b>karting</b>  41.1 @ ts leeds<br />
+<b>are you</b>  are you coming to madrid
+          </div>
+        </div>
 
-                <div class="section-label">Teams to watch in 2026</div>
-                <div class="chip-row">
-                    <div class="chip" onclick="copy('#0600EF')">ORBR</div>
-                    <div class="chip" onclick="copy('#FF8700')">MCLA</div>
-                    <div class="chip" onclick="copy('#E8002D')">FERR</div>
-                    <div class="chip" onclick="copy('#00D2BE')">MERC</div>
-                </div>
+        <div class="status-row">
+          <span class="status-badge"><i class="fa-solid fa-location-dot"></i> leeds, uk</span>
+          <span class="status-badge"><i class="fa-solid fa-clock"></i> gmt+1</span>
+          <span class="status-badge"><i class="fa-solid fa-car"></i> alpine</span>
+          <span class="status-badge"><i class="fa-solid fa-keyboard"></i> ortho</span>
+        </div>
+      </div>
+
+      <!-- ─── F1 ─── -->
+      <div class="section" id="section-f1">
+        <div class="section-header">formula 1 2026</div>
+
+        <div class="card">
+          <div id="f1-label">next race</div>
+          <div id="f1-race-name"></div>
+          <div id="f1-countdown">--d --h --m --s</div>
+        </div>
+
+        <div class="section-header" style="margin-top:4px;">teams to watch</div>
+        <div class="chip-row" id="team-chips">
+          <div class="chip" data-team="ALPN" onclick="toggleTeam('ALPN')">ALPN</div>
+          <div class="chip" data-team="ORBR" onclick="toggleTeam('ORBR')">ORBR</div>
+          <div class="chip" data-team="MCLA" onclick="toggleTeam('MCLA')">MCLA</div>
+          <div class="chip" data-team="FERR" onclick="toggleTeam('FERR')">FERR</div>
+          <div class="chip" data-team="MERC" onclick="toggleTeam('MERC')">MERC</div>
+          <div class="chip" data-team="RBR" onclick="toggleTeam('RBR')">RBR</div>
+        </div>
+
+        <div class="section-header" style="margin-top:4px;">2026 calendar</div>
+        <div class="card" id="f1-calendar" style="font-family:'Paper Mono',monospace;font-size:12px;line-height:1.8;">
+          loading...
+        </div>
+      </div>
+
+      <!-- ─── MUSIC ─── -->
+      <div class="section" id="section-music">
+        <div class="section-header">now playing</div>
+
+        <a href="https://last.fm/user/silvermanch" class="card scrobbler" id="scrobbler-card" target="_blank">
+          <img id="track-art" src="" alt="album art" />
+          <div class="scrobbler-text">
+            <div class="scrobbler-top-row">
+              <span id="track-name">loading...</span>
+              <span class="equaliser" id="eq">
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+              </span>
             </div>
+            <span id="track-artist"></span>
+            <span id="track-album"></span>
+          </div>
+        </a>
 
-            <div class="page" id="page-dev">
-                <div class="card">
-                    <div class="neofetch">
-                        <div class="neofetch-logo">
-                            &nbsp;&nbsp;/\<br />&nbsp;/&nbsp;&nbsp;\<br />/&nbsp;/\&nbsp;\<br />/_/_&nbsp;\_/
-                        </div>
-                        <div class="neofetch-data">
-                            <b>user</b>: krazierchat<br />
-                            <b>host</b>: krazi49.github.io<br />
-                            <b>learning</b>: html, css, js, c<br />
-                            <b>shell</b>: zsh, on arch<br />
-                            <b>subjects</b>: cs, music, history<br />
-                            <b>karting pb @ ts leeds</b>: 41.1<br />
-                            <b>are you are you coming to madrid</b>
-                        </div>
-                    </div>
-                </div>
+        <div class="section-header" style="margin-top:4px;">recent tracks</div>
+        <div class="card" id="recent-list" style="padding:8px 12px;">
+          <div class="recent-list" id="recent-tracks">
+            <div style="padding:6px 8px;font-size:12px;color:var(--text-3);font-family:'Paper Mono',monospace;">loading...</div>
+          </div>
+        </div>
 
-                <div class="section-label">Quick Links</div>
-                <div class="card-row">
-                    <a href="https://github.com/krazi49" class="card"><i class="fa-brands fa-github"></i> GitHub</a>
-                    <a href="https://music.youtube.com/watch?v=u1hyLQOr6no" class="card"><i class="fa-brands fa-youtube"></i> Music</a>
-                    <a href="https://f1.com" class="card"><i class="fa-solid fa-car-on"></i> F1</a>
-                    <a href="https://pitwall.me" class="card"><i class="fa-solid fa-tower-broadcast"></i> Timing</a>
-                </div>
-            </div>
-        </main>
+        <p style="font-size:12px;color:var(--text-3);">
+          scrobbling to <a href="https://last.fm/user/silvermanch" class="link-out" target="_blank">last.fm/silvermanch <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:10px;"></i></a>
+        </p>
+      </div>
+
+      <!-- ─── PROJECTS ─── -->
+      <div class="section" id="section-projects">
+        <div class="section-header">stuff i'm building</div>
+
+        <div class="card project">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <h3>lumina</h3>
+            <span class="project-tag">in progress</span>
+          </div>
+          <p>broadcast graphics design system targeting sports broadcasters. real-time compositing, data-driven overlays, everything in the browser.</p>
+          <div class="status-row">
+            <span class="status-badge"><i class="fa-brands fa-js"></i> webgpu</span>
+            <span class="status-badge"><i class="fa-solid fa-tv"></i> srt/ndi</span>
+          </div>
+        </div>
+
+        <div class="card project">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <h3>krazierthanu</h3>
+            <span class="project-tag">live</span>
+          </div>
+          <p>this site. personal homepage with f1 countdown, last.fm scrobbler, and a terminal-inspired aesthetic.</p>
+        </div>
+
+        <div class="section-header" style="margin-top:4px;">elsewhere</div>
+        <div class="card-row">
+          <a href="https://github.com/krazi49" class="card" target="_blank"><i class="fa-brands fa-github"></i> github</a>
+          <a href="https://last.fm/user/silvermanch" class="card" target="_blank"><i class="fa-brands fa-lastfm"></i> last.fm</a>
+          <a href="https://music.youtube.com/watch?v=u1hyLQOr6no" class="card" target="_blank"><i class="fa-brands fa-youtube"></i> music</a>
+          <a href="https://pitwall.me" class="card" target="_blank"><i class="fa-solid fa-tower-broadcast"></i> timing</a>
+        </div>
+      </div>
+
+      <!-- ─── /NOW ─── -->
+      <div class="section" id="section-now">
+        <div class="section-header">/now — july 2026</div>
+
+        <div class="card project">
+          <h3 style="margin-bottom:4px;">🎵 music</h3>
+          <p>deep in a hardstyle/speed house kick. producing on the side, figuring out serum presets and failing at sound design.</p>
+        </div>
+
+        <div class="card project">
+          <h3 style="margin-bottom:4px;">🏎️ f1</h3>
+          <p>british gp weekend. alpine is showing signs of life. gasly p11 in fp1/2, colapinto had moments. cautiously optimistic.</p>
+        </div>
+
+        <div class="card project">
+          <h3 style="margin-bottom:4px;">🖥️ building</h3>
+          <p>lumina broadcast graphics. the hyprland ricing is never done (waybar on its 47th iteration). personal site relaunch.</p>
+        </div>
+
+        <div class="card project">
+          <h3 style="margin-bottom:4px;">🎯 goals</h3>
+          <p>sub-40 at karting. ship lumina mvp before spa. stop starting new projects.</p>
+        </div>
+      </div>
+
     </div>
+  </div>
 
-    <div id="toast" class="tooltip-toast">Copied!</div>
+  <div class="toast" id="toast">copied!</div>
 
-    <script>
-        var f1Schedule = [
-            { name: "Pre-Season Test 1 (Barcelona)", start: new Date("2026-01-26T08:00:00Z"), end: new Date("2026-01-30T16:00:00Z") },
-            { name: "Pre-Season Test 2 (Bahrain)", start: new Date("2026-02-11T07:00:00Z"), end: new Date("2026-02-13T16:00:00Z") },
-            { name: "Pre-Season Test 3 (Bahrain)", start: new Date("2026-02-18T07:00:00Z"), end: new Date("2026-02-20T16:00:00Z") },
-            { name: "Australian GP (Melbourne)", start: new Date("2026-03-08T05:00:00Z"), end: new Date("2026-03-08T07:00:00Z") },
-            { name: "Chinese GP (Sprint Weekend)", start: new Date("2026-03-13T03:30:00Z"), end: new Date("2026-03-15T09:00:00Z") },
-            { name: "Japanese GP (Suzuka)", start: new Date("2026-03-29T05:00:00Z"), end: new Date("2026-03-29T07:00:00Z") },
-            { name: "Bahrain GP (Sakhir?)", start: new Date("2026-04-12T15:00:00Z"), end: new Date("2026-04-12T17:00:00Z") },
-            { name: "Saudi Arabian GP (Jeddah?)", start: new Date("2026-04-19T17:00:00Z"), end: new Date("2026-04-19T19:00:00Z") },
-            { name: "Miami GP (Sprint Weekend)", start: new Date("2026-05-01T16:30:00Z"), end: new Date("2026-05-03T22:00:00Z") },
-            { name: "Canadian GP (Sprint Weekend)", start: new Date("2026-05-22T16:30:00Z"), end: new Date("2026-05-24T22:00:00Z") },
-            { name: "Monaco GP (Monte Carlo)", start: new Date("2026-06-07T13:00:00Z"), end: new Date("2026-06-07T15:00:00Z") },
-            { name: "Barcelona-Catalunya GP", start: new Date("2026-06-14T13:00:00Z"), end: new Date("2026-06-14T15:00:00Z") },
-            { name: "Austrian GP (Spielberg)", start: new Date("2026-06-28T13:00:00Z"), end: new Date("2026-06-28T15:00:00Z") },
-            { name: "British GP (Sprint Weekend)", start: new Date("2026-07-03T11:30:00Z"), end: new Date("2026-07-05T16:00:00Z") },
-            { name: "Belgian GP (Spa)", start: new Date("2026-07-19T13:00:00Z"), end: new Date("2026-07-19T15:00:00Z") },
-            { name: "Hungarian GP (Budapest)", start: new Date("2026-07-26T13:00:00Z"), end: new Date("2026-07-26T15:00:00Z") },
-            { name: "Dutch GP (Sprint Weekend)", start: new Date("2026-08-21T10:30:00Z"), end: new Date("2026-08-23T15:00:00Z") },
-            { name: "Italian GP (Monza)", start: new Date("2026-09-06T13:00:00Z"), end: new Date("2026-09-06T15:00:00Z") },
-            { name: "Spanish GP (Madrid Debut)", start: new Date("2026-09-13T13:00:00Z"), end: new Date("2026-09-13T15:00:00Z") },
-            { name: "Azerbaijan GP (Baku - Saturday Race)", start: new Date("2026-09-26T11:00:00Z"), end: new Date("2026-09-26T13:00:00Z") },
-            { name: "Singapore GP (Sprint Weekend)", start: new Date("2026-10-09T09:30:00Z"), end: new Date("2026-10-11T14:00:00Z") },
-            { name: "United States GP (Austin)", start: new Date("2026-10-25T19:00:00Z"), end: new Date("2026-10-25T21:00:00Z") },
-            { name: "Mexico City GP", start: new Date("2026-11-01T19:00:00Z"), end: new Date("2026-11-01T21:00:00Z") },
-            { name: "São Paulo GP (Interlagos)", start: new Date("2026-11-08T17:00:00Z"), end: new Date("2026-11-08T19:00:00Z") },
-            { name: "Las Vegas GP (Saturday Night)", start: new Date("2026-11-22T06:00:00Z"), end: new Date("2026-11-22T08:00:00Z") },
-            { name: "Qatar GP (Lusail)", start: new Date("2026-11-29T17:00:00Z"), end: new Date("2026-11-29T19:00:00Z") },
-            { name: "Abu Dhabi GP (Yas Marina)", start: new Date("2026-12-06T13:00:00Z"), end: new Date("2026-12-06T15:00:00Z") }
-        ];
+  <script>
+    // ─── Greeting ───
+    (function updateGreeting() {
+      var h = new Date().getHours();
+      var g = h < 12 ? 'morning' : h < 18 ? 'afternoon' : 'evening';
+      document.getElementById('greeting').textContent = 'good ' + g + '!';
+    })();
 
-        var scrobblerFailed = false;
+    // ─── Navigation ───
+    var navBtns = document.querySelectorAll('.nav-item[data-page]');
+    var sections = {};
 
-        function updateUI() {
-            var hour = new Date().getHours();
-            var greet = hour < 12 ? "Morning" : hour < 18 ? "Evening" : "Afternoon";
-            document.getElementById("greeting").innerText = greet;
+    navBtns.forEach(function(b) {
+      var page = b.getAttribute('data-page');
+      sections[page] = document.getElementById('section-' + page);
+      b.addEventListener('click', function() {
+        navBtns.forEach(function(n) { n.classList.remove('active'); });
+        Object.keys(sections).forEach(function(k) { sections[k].classList.remove('active'); });
+        b.classList.add('active');
+        sections[page].classList.add('active');
+      });
+    });
 
-            var now = Date.now();
-            var event = null;
-            for (var i = 0; i < f1Schedule.length; i++) {
-                if (now < f1Schedule[i].end.getTime()) { event = f1Schedule[i]; break; }
+    // ─── Theme ───
+    function toggleTheme() {
+      var body = document.body;
+      body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    }
+
+    // ─── Toast ───
+    function showToast(msg) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.opacity = '1';
+      setTimeout(function() { t.style.opacity = '0'; }, 1200);
+    }
+
+    function copyColor(c) {
+      navigator.clipboard.writeText(c).then(function() { showToast('copied ' + c); });
+    }
+
+    // ─── F1 ───
+    var f1Schedule = [
+      { name: "Australian GP",          date: "2026-03-08T05:00:00Z", flag: "🇦🇺", circuit: "Albert Park Grand Prix Circuit", loc: "Melbourne", laps: 58, length: "5.278 km", dist: "306.1 km", sprint: false, sessions: { fp1: "2026-03-06T02:30:00Z", fp2: "2026-03-06T06:00:00Z", fp3: "2026-03-07T02:30:00Z", quali: "2026-03-07T06:00:00Z", race: "2026-03-08T05:00:00Z" } },
+      { name: "Chinese GP",             date: "2026-03-15T07:00:00Z", flag: "🇨🇳", circuit: "Shanghai International Circuit", loc: "Shanghai", laps: 56, length: "5.451 km", dist: "305.3 km", sprint: true,  sessions: { fp1: "2026-03-13T03:30:00Z", sq: "2026-03-13T07:30:00Z", sprint: "2026-03-14T03:00:00Z", quali: "2026-03-14T07:00:00Z", race: "2026-03-15T07:00:00Z" } },
+      { name: "Japanese GP",            date: "2026-03-29T05:00:00Z", flag: "🇯🇵", circuit: "Suzuka International Racing Course", loc: "Suzuka", laps: 53, length: "5.807 km", dist: "307.8 km", sprint: false, sessions: { fp1: "2026-03-27T03:30:00Z", fp2: "2026-03-27T07:00:00Z", fp3: "2026-03-28T03:30:00Z", quali: "2026-03-28T07:00:00Z", race: "2026-03-29T05:00:00Z" } },
+      { name: "Miami GP",               date: "2026-05-03T21:00:00Z", flag: "🇺🇸", circuit: "Miami International Autodrome", loc: "Miami", laps: 57, length: "5.412 km", dist: "308.5 km", sprint: true,  sessions: { fp1: "2026-05-01T17:30:00Z", sq: "2026-05-01T21:30:00Z", sprint: "2026-05-02T18:00:00Z", quali: "2026-05-02T22:00:00Z", race: "2026-05-03T21:00:00Z" } },
+      { name: "Canadian GP",            date: "2026-05-24T19:00:00Z", flag: "🇨🇦", circuit: "Circuit Gilles Villeneuve", loc: "Montreal", laps: 70, length: "4.361 km", dist: "305.3 km", sprint: true,  sessions: { fp1: "2026-05-22T17:30:00Z", sq: "2026-05-22T21:30:00Z", sprint: "2026-05-23T18:00:00Z", quali: "2026-05-23T22:00:00Z", race: "2026-05-24T19:00:00Z" } },
+      { name: "Monaco GP",              date: "2026-06-07T13:00:00Z", flag: "🇲🇨", circuit: "Circuit de Monaco", loc: "Monte Carlo", laps: 78, length: "3.337 km", dist: "260.3 km", sprint: false, sessions: { fp1: "2026-06-05T11:30:00Z", fp2: "2026-06-05T15:00:00Z", fp3: "2026-06-06T10:30:00Z", quali: "2026-06-06T14:00:00Z", race: "2026-06-07T13:00:00Z" } },
+      { name: "Spanish GP",             date: "2026-06-14T13:00:00Z", flag: "🇪🇸", circuit: "Circuit de Barcelona-Catalunya", loc: "Barcelona", laps: 66, length: "4.657 km", dist: "307.4 km", sprint: false, sessions: { fp1: "2026-06-12T11:30:00Z", fp2: "2026-06-12T15:00:00Z", fp3: "2026-06-13T10:30:00Z", quali: "2026-06-13T14:00:00Z", race: "2026-06-14T13:00:00Z" } },
+      { name: "Austrian GP",            date: "2026-06-28T13:00:00Z", flag: "🇦🇹", circuit: "Red Bull Ring", loc: "Spielberg", laps: 71, length: "4.318 km", dist: "306.6 km", sprint: false, sessions: { fp1: "2026-06-26T10:30:00Z", fp2: "2026-06-26T14:30:00Z", fp3: "2026-06-27T09:30:00Z", quali: "2026-06-27T13:00:00Z", race: "2026-06-28T13:00:00Z" } },
+      { name: "British GP",             date: "2026-07-05T15:00:00Z", flag: "🇬🇧", circuit: "Silverstone Circuit", loc: "Silverstone", laps: 52, length: "5.891 km", dist: "306.3 km", sprint: true,  sessions: { fp1: "2026-07-03T11:30:00Z", sq: "2026-07-03T15:30:00Z", sprint: "2026-07-04T11:00:00Z", quali: "2026-07-04T15:00:00Z", race: "2026-07-05T15:00:00Z" } },
+      { name: "Belgian GP",             date: "2026-07-19T14:00:00Z", flag: "🇧🇪", circuit: "Circuit de Spa-Francorchamps", loc: "Spa", laps: 44, length: "7.004 km", dist: "308.2 km", sprint: false, sessions: { fp1: "2026-07-17T11:30:00Z", fp2: "2026-07-17T15:00:00Z", fp3: "2026-07-18T10:30:00Z", quali: "2026-07-18T14:00:00Z", race: "2026-07-19T14:00:00Z" } },
+      { name: "Hungarian GP",           date: "2026-07-26T14:00:00Z", flag: "🇭🇺", circuit: "Hungaroring", loc: "Budapest", laps: 70, length: "4.381 km", dist: "306.7 km", sprint: false, sessions: { fp1: "2026-07-24T11:30:00Z", fp2: "2026-07-24T15:00:00Z", fp3: "2026-07-25T10:30:00Z", quali: "2026-07-25T14:00:00Z", race: "2026-07-26T14:00:00Z" } },
+      { name: "Dutch GP",               date: "2026-08-23T14:00:00Z", flag: "🇳🇱", circuit: "Circuit Zandvoort", loc: "Zandvoort", laps: 72, length: "4.259 km", dist: "306.6 km", sprint: true,  sessions: { fp1: "2026-08-21T10:30:00Z", sq: "2026-08-21T14:30:00Z", sprint: "2026-08-22T11:00:00Z", quali: "2026-08-22T15:00:00Z", race: "2026-08-23T14:00:00Z" } },
+      { name: "Italian GP",             date: "2026-09-06T13:00:00Z", flag: "🇮🇹", circuit: "Autodromo Nazionale di Monza", loc: "Monza", laps: 53, length: "5.793 km", dist: "307.1 km", sprint: false, sessions: { fp1: "2026-09-04T11:30:00Z", fp2: "2026-09-04T15:00:00Z", fp3: "2026-09-05T10:30:00Z", quali: "2026-09-05T14:00:00Z", race: "2026-09-06T13:00:00Z" } },
+      { name: "Madrid GP",              date: "2026-09-13T14:00:00Z", flag: "🇪🇸", circuit: "Circuito San Sebastián", loc: "Madrid", laps: 55, length: "5.610 km", dist: "308.6 km", sprint: false, sessions: { fp1: "2026-09-11T12:00:00Z", fp2: "2026-09-11T15:30:00Z", fp3: "2026-09-12T11:00:00Z", quali: "2026-09-12T14:30:00Z", race: "2026-09-13T14:00:00Z" } },
+      { name: "Azerbaijan GP",          date: "2026-09-26T11:00:00Z", flag: "🇦🇿", circuit: "Baku City Circuit", loc: "Baku", laps: 51, length: "6.003 km", dist: "306.2 km", sprint: false, sessions: { fp1: "2026-09-25T07:00:00Z", fp2: "2026-09-25T10:30:00Z", fp3: "2026-09-26T07:00:00Z", quali: "2026-09-26T10:30:00Z", race: "2026-09-26T11:00:00Z" } },
+      { name: "Singapore GP",           date: "2026-10-11T14:00:00Z", flag: "🇸🇬", circuit: "Marina Bay Street Circuit", loc: "Singapore", laps: 62, length: "4.940 km", dist: "306.3 km", sprint: true,  sessions: { fp1: "2026-10-09T10:30:00Z", sq: "2026-10-09T14:30:00Z", sprint: "2026-10-10T11:00:00Z", quali: "2026-10-10T15:00:00Z", race: "2026-10-11T14:00:00Z" } },
+      { name: "United States GP",       date: "2026-10-25T20:00:00Z", flag: "🇺🇸", circuit: "Circuit of the Americas", loc: "Austin", laps: 56, length: "5.513 km", dist: "308.8 km", sprint: false, sessions: { fp1: "2026-10-23T17:30:00Z", fp2: "2026-10-23T21:00:00Z", fp3: "2026-10-24T17:30:00Z", quali: "2026-10-24T21:00:00Z", race: "2026-10-25T20:00:00Z" } },
+      { name: "Mexico City GP",         date: "2026-11-01T20:00:00Z", flag: "🇲🇽", circuit: "Autódromo Hermanos Rodríguez", loc: "Mexico City", laps: 71, length: "4.304 km", dist: "305.6 km", sprint: false, sessions: { fp1: "2026-10-30T17:30:00Z", fp2: "2026-10-30T21:00:00Z", fp3: "2026-10-31T16:30:00Z", quali: "2026-10-31T20:00:00Z", race: "2026-11-01T20:00:00Z" } },
+      { name: "São Paulo GP",           date: "2026-11-08T18:00:00Z", flag: "🇧🇷", circuit: "Autódromo José Carlos Pace", loc: "São Paulo", laps: 71, length: "4.309 km", dist: "305.9 km", sprint: false, sessions: { fp1: "2026-11-06T14:30:00Z", fp2: "2026-11-06T18:00:00Z", fp3: "2026-11-07T14:30:00Z", quali: "2026-11-07T18:00:00Z", race: "2026-11-08T18:00:00Z" } },
+      { name: "Las Vegas GP",           date: "2026-11-22T06:00:00Z", flag: "🇺🇸", circuit: "Las Vegas Strip Circuit", loc: "Las Vegas", laps: 50, length: "6.201 km", dist: "310.1 km", sprint: false, sessions: { fp1: "2026-11-20T02:30:00Z", fp2: "2026-11-20T06:00:00Z", fp3: "2026-11-21T02:30:00Z", quali: "2026-11-21T06:00:00Z", race: "2026-11-22T06:00:00Z" } },
+      { name: "Qatar GP",               date: "2026-11-29T17:00:00Z", flag: "🇶🇦", circuit: "Lusail International Circuit", loc: "Lusail", laps: 57, length: "5.419 km", dist: "308.9 km", sprint: false, sessions: { fp1: "2026-11-27T13:30:00Z", fp2: "2026-11-27T17:00:00Z", fp3: "2026-11-28T13:30:00Z", quali: "2026-11-28T17:00:00Z", race: "2026-11-29T17:00:00Z" } },
+      { name: "Abu Dhabi GP",           date: "2026-12-06T13:00:00Z", flag: "🇦🇪", circuit: "Yas Marina Circuit", loc: "Abu Dhabi", laps: 55, length: "5.281 km", dist: "290.5 km", sprint: false, sessions: { fp1: "2026-12-04T09:30:00Z", fp2: "2026-12-04T13:00:00Z", fp3: "2026-12-05T09:30:00Z", quali: "2026-12-05T13:00:00Z", race: "2026-12-06T13:00:00Z" } }
+    ];
+
+    var f1Teams = {
+      'MCLA': { color: '#FF8700', full: 'McLaren', drivers: [{n:'Lando Norris',    num:'4'},{n:'Oscar Piastri', num:'81'}], engine: 'Mercedes', url: 'https://www.formula1.com/en/teams/mclaren' },
+      'FERR': { color: '#E8002D', full: 'Ferrari', drivers: [{n:'Charles Leclerc', num:'16'},{n:'Lewis Hamilton',num:'44'}], engine: 'Ferrari', url: 'https://www.formula1.com/en/teams/ferrari' },
+      'MERC': { color: '#00D2BE', full: 'Mercedes', drivers: [{n:'George Russell', num:'63'},{n:'Kimi Antonelli',num:'12'}], engine: 'Mercedes', url: 'https://www.formula1.com/en/teams/mercedes' },
+      'RBR':  { color: '#CD0068', full: 'Red Bull', drivers: [{n:'Max Verstappen', num:'3'},{n:'Isack Hadjar',  num:'6'}], engine: 'Red Bull Ford', url: 'https://www.formula1.com/en/teams/red-bull-racing' },
+      'ALPN': { color: '#0090FF', full: 'Alpine',  drivers: [{n:'Pierre Gasly', num:'10'},{n:'Franco Colapinto',num:'43'}], engine: 'Mercedes', url: 'https://www.formula1.com/en/teams/alpine' },
+      'ORBR': { color: '#0600EF', full: 'Racing Bulls', drivers: [{n:'Liam Lawson', num:'30'},{n:'Arvid Lindblad',num:'41'}], engine: 'Red Bull Ford', url: 'https://www.formula1.com/en/teams/rb' }
+    };
+
+    var expandedRace = null;
+    var expandedTeam = null;
+    var nextSessKey = null;
+    var nextSessTime = null;
+
+    // Add 2025 winners to each circuit
+    var pastWinners = {
+      'albert park': {n:'Oscar Piastri', num:'81'},
+      'shanghai': {n:'Max Verstappen', num:'1'},
+      'suzuka': {n:'Charles Leclerc', num:'16'},
+      'miami': {n:'Lando Norris', num:'4'},
+      'gilles villeneuve': {n:'Max Verstappen', num:'1'},
+      'monaco': {n:'Carlos Sainz', num:'55'},
+      'barcelona-catalunya': {n:'Lando Norris', num:'4'},
+      'red bull ring': {n:'Max Verstappen', num:'1'},
+      'silverstone': {n:'Lando Norris', num:'4'},
+      'spa-francorchamps': {n:'George Russell', num:'63'},
+      'hungaroring': {n:'Oscar Piastri', num:'81'},
+      'zandvoort': {n:'Max Verstappen', num:'1'},
+      'monza': {n:'Oscar Piastri', num:'81'},
+      'san sebastián': null,
+      'baku': {n:'Lando Norris', num:'4'},
+      'marina bay': {n:'Lando Norris', num:'4'},
+      'americas': {n:'Max Verstappen', num:'1'},
+      'hermanos rodríguez': {n:'Lando Norris', num:'4'},
+      'josé carlos pace': {n:'Lando Norris', num:'4'},
+      'las vegas strip': {n:'Max Verstappen', num:'1'},
+      'lusail': {n:'Oscar Piastri', num:'81'},
+      'yas marina': {n:'Max Verstappen', num:'1'}
+    };
+
+    function getWinner(r) {
+      var key = r.circuit.toLowerCase();
+      for (var k in pastWinners) {
+        if (key.indexOf(k) !== -1) return pastWinners[k];
+      }
+      return null;
+    }
+
+    function isSessPast(iso) {
+      return new Date(iso).getTime() <= Date.now();
+    }
+
+    function getNextSessionIdx(r) {
+      var order = ['fp1','sq','fp2','fp3','sprint','quali','race'];
+      var s = r.sessions;
+      var now = Date.now();
+      for (var x = 0; x < order.length; x++) {
+        var k = order[x];
+        if (s[k] && new Date(s[k]).getTime() > now) return k;
+      }
+      return null;
+    }
+
+    function getSessionsByDay(r) {
+      var s = r.sessions;
+      var keys = r.sprint ? ['fp1','sq','fp2','sprint','quali','race'] : ['fp1','fp2','fp3','quali','race'];
+      // Sprint order: fp1+sq = fri, fp2+sprint = sat, quali+race = sun
+      var groups = { fri: [], sat: [], sun: [] };
+      var map = r.sprint
+        ? { fp1:'fri', sq:'fri', fp2:'sat', sprint:'sat', quali:'sun', race:'sun' }
+        : { fp1:'fri', fp2:'fri', fp3:'sat', quali:'sat', race:'sun' };
+      for (var x = 0; x < keys.length; x++) {
+        var k = keys[x];
+        if (!s[k]) continue;
+        var day = map[k];
+        var d = new Date(s[k]);
+        var label = k === 'fp1' ? 'FP1' : k === 'fp2' ? 'FP2' : k === 'fp3' ? 'FP3' : k === 'sq' ? 'Sprint Q' : k === 'sprint' ? 'Sprint' : k === 'quali' ? 'Quali' : 'Race';
+        var time = d.toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit', timeZone:'Europe/London' });
+        var past = isSessPast(s[k]);
+        groups[day].push({key:k, label:label, time:time, past:past, iso:s[k]});
+      }
+      return groups;
+    }
+
+    function updateF1() {
+      var now = Date.now();
+      var nextRace = null;
+      var nextRaceIdx = -1;
+      nextSessKey = null;
+      nextSessTime = null;
+
+      for (var i = 0; i < f1Schedule.length; i++) {
+        var raceTime = new Date(f1Schedule[i].date).getTime();
+        if (now < raceTime + 7200000) { nextRaceIdx = i; nextRace = f1Schedule[i]; break; }
+      }
+
+      var label = document.getElementById('f1-label');
+      var timer = document.getElementById('f1-countdown');
+      var nameEl = document.getElementById('f1-race-name');
+
+      if (!nextRace) {
+        label.innerHTML = 'season over';
+        timer.textContent = '---';
+        nameEl.textContent = 'see you in 2027';
+        return;
+      }
+
+      // Find next upcoming session
+      var order = ['fp1','sq','fp2','fp3','sprint','quali','race'];
+      var raceStart = new Date(nextRace.date).getTime();
+      nextSessKey = null;
+      nextSessTime = null;
+      for (var x = 0; x < order.length; x++) {
+        var k = order[x];
+        if (nextRace.sessions[k]) {
+          var st = new Date(nextRace.sessions[k]).getTime();
+          if (st > now) { nextSessKey = k; nextSessTime = st; break; }
+        }
+      }
+
+      var targetTime = nextSessTime || raceStart;
+      var diff = targetTime - now;
+
+      if (nextSessTime && diff < 3600000 && diff > 0) {
+        label.innerHTML = '<span class="live-pulse"></span>' + nextSessKey;
+      } else {
+        var sessLabel = nextSessKey
+          ? ({fp1:'FP1', sq:'Sprint Q', fp2:'FP2', fp3:'FP3', sprint:'Sprint', quali:'Quali', race:'Race'})[nextSessKey] + ' → '
+          : '';
+        label.textContent = sessLabel + nextRace.flag + ' ' + nextRace.name;
+      }
+
+      if (diff > 0) {
+        var d = Math.floor(diff / 86400000);
+        var h = Math.floor((diff % 86400000) / 3600000);
+        var m = Math.floor((diff % 3600000) / 60000);
+        var s = Math.floor((diff % 60000) / 1000);
+        timer.textContent = d + 'd ' + h + 'h ' + m + 'm ' + s + 's';
+      } else if (diff > -7200000) {
+        timer.textContent = nextSessTime ? (nextSessKey === 'race' ? 'RACE START' : 'LIVE') : 'RACE WEEKEND';
+      } else {
+        timer.textContent = 'past';
+      }
+
+      var rd = new Date(nextRace.date);
+      var opts = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London' };
+      nameEl.textContent = rd.toLocaleDateString('en-GB', opts) + ' BST';
+    }
+
+    function toggleRace(idx) {
+      if (expandedRace === idx) { expandedRace = null; }
+      else { expandedRace = idx; expandedTeam = null; }
+      renderCalendar();
+      renderTeams();
+    }
+
+    function toggleTeam(code) {
+      if (expandedTeam === code) { expandedTeam = null; }
+      else { expandedTeam = code; expandedRace = null; renderCalendar(); }
+      var chips = document.querySelectorAll('.chip[data-team]');
+      chips.forEach(function(c) { c.classList.remove('active'); });
+      if (expandedTeam) {
+        var activeChip = document.querySelector('.chip[data-team="' + expandedTeam + '"]');
+        if (activeChip) activeChip.classList.add('active');
+      }
+      renderTeams();
+    }
+
+    function renderCalendar() {
+      var now = Date.now();
+      var html = '';
+      for (var i = 0; i < f1Schedule.length; i++) {
+        var r = f1Schedule[i];
+        var raceDate = new Date(r.date);
+        var isPast = raceDate.getTime() + 7200000 < now;
+        var isExpanded = expandedRace === i;
+        var isNext = false;
+        if (!isPast && !isExpanded) {
+          for (var k = 0; k < f1Schedule.length; k++) {
+            if (!(new Date(f1Schedule[k].date).getTime() + 7200000 < now)) {
+              isNext = k === i;
+              break;
             }
-            if (!event) { event = { name: "Season's over", start: new Date() }; }
+          }
+        }
 
-            if (now >= event.start.getTime() && now <= event.end.getTime()) {
-                document.getElementById("event-label").innerHTML = '<span class="live-pulse"></span>LIVE NOW: ' + event.name;
-                document.getElementById("f1-timer").innerText = "Things are happening";
-            } else {
-                document.getElementById("event-label").innerText = "NEXT: " + event.name;
-                var diff = event.start.getTime() - now;
-                var d = Math.floor(diff / 86400000);
-                var h = Math.floor((diff % 86400000) / 3600000);
-                var m = Math.floor((diff % 3600000) / 60000);
-                var s = Math.floor((diff % 60000) / 1000);
-                document.getElementById("f1-timer").innerText = d + "D:" + h + "H:" + m + "M:" + s + "S";
+        var w = getWinner(r);
+        var fontWeight = isNext ? '600' : '400';
+        var dateStr = raceDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+        var bg = isExpanded ? 'var(--surface)' : 'transparent';
+        var border = isExpanded ? '3px solid var(--primary)' : '3px solid transparent';
+
+        html += '<div class="cal-row' + (isExpanded ? ' expanded' : '') + '" onclick="toggleRace(' + i + ')" style="cursor:pointer;display:flex;flex-direction:column;padding-left:8px;margin:0 -4px;border-radius:var(--radius-sm);background:' + bg + ';border-left:' + border + ';' + (isPast && !isExpanded ? 'opacity:0.35;' : '') + '">';
+        html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:3px 4px;font-weight:' + fontWeight + ';">';
+        html += '<span>' + r.flag + ' ' + r.name + (r.sprint ? ' <span class="sprint-tag">S</span>' : '') + '</span>';
+        html += '<span style="color:var(--text-3);font-size:11px;">' + dateStr + (isExpanded ? ' <span style="color:var(--primary);">▲</span>' : ' <span style="color:var(--text-3);">▼</span>') + '</span>';
+        html += '</div>';
+
+        if (isExpanded) {
+          var groups = getSessionsByDay(r);
+          var dayLabels = { fri:'friday', sat:'saturday', sun:'sunday' };
+          for (var d in dayLabels) {
+            var items = groups[d];
+            if (!items || items.length === 0) continue;
+            html += '<div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:6px 4px 2px;">' + dayLabels[d] + '</div>';
+            html += '<div style="display:grid;grid-template-columns:auto 1fr;gap:1px 12px;padding:0 4px;font-size:11px;">';
+            for (var g = 0; g < items.length; g++) {
+              var it = items[g];
+              var col = it.key === nextSessKey && !it.past ? 'var(--primary)' : 'var(--text-3)';
+              var deco = it.past ? 'line-through' : 'none';
+              var op = it.past ? '0.5' : '1';
+              html += '<span style="color:' + col + ';opacity:' + op + ';">' + it.label + '</span>';
+              html += '<span style="opacity:' + op + ';text-decoration:' + deco + ';">' + it.time + '</span>';
             }
-        }
+            html += '</div>';
+          }
 
-        function showPage(name) {
-            var pages = document.querySelectorAll('.page');
-            for (var i = 0; i < pages.length; i++) {
-                pages[i].classList.remove('active');
+          // Circuit info
+          html += '<div style="border-top:1px solid var(--outline);margin:6px 4px 4px;"></div>';
+          html += '<div style="display:flex;justify-content:space-between;font-size:11px;padding:0 4px;">';
+          html += '<span style="color:var(--text-3);font-family:\'Paper Mono\',monospace;">' + r.circuit + '</span>';
+          html += '<span style="color:var(--text-3);font-family:\'Paper Mono\',monospace;">' + r.loc + '</span>';
+          html += '</div>';
+
+          // Stats row
+          html += '<div style="display:flex;gap:14px;font-size:11px;color:var(--text-2);padding:2px 4px 4px;">';
+          html += '<span style="font-family:\'Paper Mono\',monospace;">' + r.laps + ' laps</span>';
+          html += '<span style="font-family:\'Paper Mono\',monospace;">' + r.length + '</span>';
+          html += '<span style="font-family:\'Paper Mono\',monospace;">' + r.dist + '</span>';
+          html += '</div>';
+
+          // 2025 winner
+          if (w) {
+            html += '<div style="border-top:1px solid var(--outline);margin:2px 4px 4px;"></div>';
+            html += '<div style="display:flex;align-items:center;gap:6px;font-size:11px;padding:2px 4px 4px;color:var(--text-2);">';
+            html += '<span style="font-size:12px;">🏁</span>';
+            html += '<span style="font-family:\'Paper Mono\',monospace;font-weight:600;">#' + w.num + '</span>';
+            html += '<span>' + w.n + '</span>';
+            html += '<span style="color:var(--text-3);margin-left:auto;">2025 winner</span>';
+            html += '</div>';
+          }
+        }
+        html += '</div>';
+      }
+      document.getElementById('f1-calendar').innerHTML = html;
+    }
+
+    function renderTeams() {
+      var existing = document.getElementById('team-detail');
+      if (existing) existing.remove();
+
+      if (!expandedTeam) return;
+
+      var t = f1Teams[expandedTeam];
+      var div = document.createElement('div');
+      div.id = 'team-detail';
+      div.className = 'card';
+      div.style.cssText = 'margin-top:4px;font-size:13px;animation:fadeIn 0.2s ease;';
+
+      var driverHtml = '';
+      for (var d = 0; d < t.drivers.length; d++) {
+        var drv = t.drivers[d];
+        driverHtml += '<div style="display:flex;align-items:center;gap:8px;padding:4px 0;">'
+          + '<span style="font-family:\'Paper Mono\',monospace;font-size:13px;font-weight:600;color:var(--text-3);width:24px;">#' + drv.num + '</span>'
+          + '<span style="font-weight:600;font-size:14px;">' + drv.n + '</span>'
+          + '</div>';
+      }
+
+      div.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">'
+        + '<div style="display:flex;align-items:center;gap:8px;"><span style="width:10px;height:10px;border-radius:50%;background:' + t.color + ';"></span><strong>' + t.full + '</strong></div>'
+        + '<a href="' + t.url + '" target="_blank" class="link-out" style="font-size:11px;">f1 page <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:9px;"></i></a>'
+        + '</div>'
+        + '<div style="margin:6px 0 6px;">'
+        + driverHtml
+        + '</div>'
+        + '<div style="display:flex;gap:12px;font-family:\'Paper Mono\',monospace;font-size:11px;color:var(--text-3);padding-top:6px;border-top:1px solid var(--outline);">'
+        + '<span>powertrain: ' + t.engine + '</span>'
+        + '</div>';
+
+      var chips = document.getElementById('team-chips');
+      chips.parentNode.insertBefore(div, chips.nextSibling);
+    }
+
+    setInterval(updateF1, 1000);
+    updateF1();
+    renderCalendar();
+    renderTeams();
+
+    // ─── Scrobbler ───
+    var scrobblerFailed = false;
+    var recentCache = [];
+
+    function updateScrobbler() {
+      var xhr = new XMLHttpRequest();
+      var apiKey = '4f08815f48f04e98c8ec8f294b21d080';
+      xhr.open('GET', 'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=silvermanch&api_key=' + apiKey + '&format=json&limit=10');
+      xhr.onload = function() {
+        if (xhr.status !== 200) { handleScrobbleError(); return; }
+        try {
+          var data = JSON.parse(xhr.responseText);
+          var tracks = data.recenttracks.track;
+          if (!tracks || tracks.length === 0) { handleScrobbleError(); return; }
+
+          var nowPlaying = tracks[0];
+          var isNowPlaying = nowPlaying['@attr'] && nowPlaying['@attr'].nowplaying === 'true';
+          var eq = document.getElementById('eq');
+          var bars = eq.querySelectorAll('.eq-bar');
+
+          var scrobbleUrl = 'https://www.last.fm/music/' + encodeURIComponent(nowPlaying.artist['#text'] || '') + '/_/' + encodeURIComponent(nowPlaying.name || '');
+
+          if (isNowPlaying) {
+            document.getElementById('track-name').textContent = nowPlaying.name || 'unknown';
+            document.getElementById('track-artist').textContent = nowPlaying.artist['#text'] || 'unknown';
+            document.getElementById('track-album').textContent = nowPlaying.album['#text'] || 'single';
+            document.getElementById('scrobbler-card').href = scrobbleUrl;
+            var art = null;
+            for (var j = 0; j < nowPlaying.image.length; j++) {
+              if (nowPlaying.image[j].size === 'extralarge') { art = nowPlaying.image[j]; break; }
             }
-            document.getElementById('page-' + name).classList.add('active');
-
-            var btns = document.querySelectorAll('.nav-item[data-page]');
-            for (var i = 0; i < btns.length; i++) {
-                if (btns[i].getAttribute('data-page') === name) btns[i].classList.add('active');
-                else btns[i].classList.remove('active');
+            if (art && art['#text']) {
+              document.getElementById('track-art').src = art['#text'];
             }
+            recentCache = tracks.slice(1, 6);
+            bars.forEach(function(b) { b.classList.remove('paused'); });
+          } else {
+            document.getElementById('track-name').textContent = nowPlaying.name || 'unknown';
+            document.getElementById('track-artist').textContent = nowPlaying.artist['#text'] || 'unknown';
+            document.getElementById('track-album').textContent = nowPlaying.album['#text'] || 'single';
+            document.getElementById('scrobbler-card').href = scrobbleUrl;
+            recentCache = tracks.slice(0, 5);
+            bars.forEach(function(b) { b.classList.add('paused'); });
+          }
+
+          renderRecent();
+          scrobblerFailed = false;
+        } catch (e) { handleScrobbleError(); }
+      };
+      xhr.onerror = handleScrobbleError;
+      xhr.send();
+    }
+
+    function renderRecent() {
+      var el = document.getElementById('recent-tracks');
+      if (!recentCache.length) {
+        el.innerHTML = '<div style="padding:6px 8px;font-size:12px;color:var(--text-3);font-family:\'Paper Mono\',monospace;">no recent tracks</div>';
+        return;
+      }
+      var html = '';
+      for (var i = 0; i < recentCache.length; i++) {
+        var t = recentCache[i];
+        var name = t.name || 'unknown';
+        var artist = t.artist['#text'] || 'unknown';
+        var thumb = '';
+        for (var j = 0; j < t.image.length; j++) {
+          if (t.image[j].size === 'small') { thumb = t.image[j]['#text']; break; }
         }
-
-        function toggleTheme() {
-            document.body.setAttribute('data-theme', document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        var imgHtml = thumb
+          ? '<img class="recent-thumb" src="' + thumb + '" alt="" />'
+          : '<div class="recent-thumb" style="background:var(--surface-3)"></div>';
+        var timeStr = '';
+        if (t.date && t.date['#text']) {
+          var d = new Date(t.date['#text']);
+          var mins = Math.floor((Date.now() - d.getTime()) / 60000);
+          if (mins < 60) timeStr = mins + 'm ago';
+          else timeStr = Math.floor(mins / 60) + 'h ago';
         }
+        var trackUrl = 'https://www.last.fm/music/' + encodeURIComponent(artist) + '/_/' + encodeURIComponent(name);
+        html += '<a href="' + trackUrl + '" class="recent-item" target="_blank">';
+        html += imgHtml;
+        html += '<div class="recent-meta"><div class="r-name">' + name + '</div><div class="r-artist">' + artist + '</div></div>';
+        html += '<span class="recent-time">' + timeStr + '</span>';
+        html += '</a>';
+      }
+      el.innerHTML = html;
+    }
 
-        function copy(text) {
-            navigator.clipboard.writeText(text).then(function() {
-                var toast = document.getElementById('toast');
-                toast.style.opacity = '1';
-                setTimeout(function() { toast.style.opacity = '0'; }, 1200);
-            });
-        }
+    function handleScrobbleError() {
+      if (scrobblerFailed) return;
+      scrobblerFailed = true;
+      document.getElementById('track-name').textContent = 'scrobbler offline';
+      document.getElementById('track-artist').textContent = 'will retry...';
+      var bars = document.querySelectorAll('.eq-bar');
+      bars.forEach(function(b) { b.classList.add('paused'); });
+    }
 
-        function updateScrobbler() {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=silvermanch&api_key=4f08815f48f04e98c8ec8f294b21d080&format=json&limit=1');
-            xhr.onload = function() {
-                if (xhr.status !== 200) { handleScrobblerError(); return; }
-                try {
-                    var data = JSON.parse(xhr.responseText);
-                    var track = data.recenttracks.track[0];
-                    if (!track) { handleScrobblerError(); return; }
-                    document.getElementById('track-name').innerText = track.name || 'Unknown';
-                    document.getElementById('track-artist').innerText = track.artist['#text'] || 'Unknown';
-                    document.getElementById('track-album').innerText = (track.album['#text'] || 'Single');
-                    var art = null;
-                    for (var i = 0; i < track.image.length; i++) {
-                        if (track.image[i].size === 'extralarge') { art = track.image[i]; break; }
-                    }
-                    if (art && art['#text']) {
-                        document.getElementById('track-art').src = art['#text'];
-                    }
-                    scrobblerFailed = false;
-                } catch (e) { handleScrobblerError(); }
-            };
-            xhr.onerror = handleScrobblerError;
-            xhr.send();
-        }
-
-        function handleScrobblerError() {
-            if (scrobblerFailed) return;
-            scrobblerFailed = true;
-            document.getElementById('track-name').innerText = 'Scrobbler offline';
-            document.getElementById('track-artist').innerText = 'Will retry...';
-        }
-
-        setInterval(updateUI, 1000);
-        setInterval(updateScrobbler, 30000);
-
-        document.addEventListener('DOMContentLoaded', function() {
-            var btns = document.querySelectorAll('.nav-item[data-page]');
-            for (var i = 0; i < btns.length; i++) {
-                btns[i].addEventListener('click', function() {
-                    showPage(this.getAttribute('data-page'));
-                });
-            }
-            updateUI();
-            updateScrobbler();
-        });
-    </script>
+    setInterval(updateScrobbler, 30000);
+    updateScrobbler();
+  </script>
 </body>
 </html>
