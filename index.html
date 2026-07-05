@@ -222,24 +222,77 @@
 
         <div class="section-header">system</div>
 
-        <div class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="card" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
           <div>
             <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">uptime</div>
-            <div id="sys-uptime" style="font-family:'Paper Mono',monospace;font-size:16px;font-weight:700;color:var(--primary);margin-top:2px;">—</div>
+            <div id="sys-uptime" style="font-family:'Paper Mono',monospace;font-size:15px;font-weight:700;color:var(--primary);margin-top:2px;">—</div>
           </div>
           <div>
             <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">cpu</div>
-            <div id="sys-cpu" style="font-family:'Paper Mono',monospace;font-size:16px;font-weight:700;color:var(--text);margin-top:2px;">—</div>
+            <div id="sys-cpu" style="font-family:'Paper Mono',monospace;font-size:15px;font-weight:700;color:var(--text);margin-top:2px;">—</div>
           </div>
           <div>
             <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">memory</div>
-            <div id="sys-mem" style="font-family:'Paper Mono',monospace;font-size:16px;font-weight:700;color:var(--text);margin-top:2px;">—</div>
+            <div id="sys-mem" style="font-family:'Paper Mono',monospace;font-size:15px;font-weight:700;color:var(--text);margin-top:2px;">—</div>
           </div>
           <div>
             <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">temp</div>
-            <div id="sys-temp" style="font-family:'Paper Mono',monospace;font-size:16px;font-weight:700;color:var(--text);margin-top:2px;">—</div>
+            <div id="sys-temp" style="font-family:'Paper Mono',monospace;font-size:15px;font-weight:700;color:var(--text);margin-top:2px;">—</div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">disk</div>
+            <div id="sys-disk" style="font-family:'Paper Mono',monospace;font-size:15px;font-weight:700;color:var(--text);margin-top:2px;">—</div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">gpu</div>
+            <div id="sys-gpu" style="font-family:'Paper Mono',monospace;font-size:12px;font-weight:600;color:var(--text);margin-top:2px;">—</div>
           </div>
         </div>
+
+        <div class="card" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+          <div>
+            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">distro</div>
+            <div id="sys-distro" style="font-family:'Paper Mono',monospace;font-size:13px;font-weight:600;color:var(--text);margin-top:2px;">—</div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">kernel</div>
+            <div id="sys-kernel" style="font-family:'Paper Mono',monospace;font-size:12px;font-weight:600;color:var(--text);margin-top:2px;">—</div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">wm</div>
+            <div id="sys-wm" style="font-family:'Paper Mono',monospace;font-size:13px;font-weight:600;color:var(--text);margin-top:2px;">—</div>
+          </div>
+        </div>
+
+        <div class="section-header">next race</div>
+        <a href="#" class="card" id="dash-next-race" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;" onclick="document.querySelector('[data-page=f1]').click();return false;">
+          <div id="dash-race-flag" style="font-size:28px;">🏁</div>
+          <div style="flex:1;">
+            <div id="dash-race-name" style="font-weight:600;font-size:14px;">loading...</div>
+            <div id="dash-race-session" style="font-size:12px;color:var(--text-2);font-family:'Paper Mono',monospace;">—</div>
+          </div>
+          <div style="text-align:right;">
+            <div id="dash-race-countdown" style="font-family:'Paper Mono',monospace;font-weight:700;font-size:20px;color:var(--primary);">—</div>
+            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-top:-2px;">until race</div>
+          </div>
+        </a>
+
+        <div class="section-header">now playing</div>
+        <a href="https://last.fm/user/silvermanch" class="card" id="dash-scrobble" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;" target="_blank">
+          <img id="dash-track-art" src="" alt="" style="width:40px;height:40px;border-radius:6px;object-fit:cover;border:1px solid var(--outline);flex-shrink:0;background:var(--surface-3);" />
+          <div style="flex:1;overflow:hidden;">
+            <div id="dash-track-name" style="font-weight:600;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">loading...</div>
+            <div id="dash-track-artist" style="font-size:11px;color:var(--text-2);font-family:'Paper Mono',monospace;"></div>
+          </div>
+          <span class="equaliser" id="dash-eq">
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+          </span>
+        </a>
 
         <div class="section-header">cron jobs</div>
         <div class="card" id="cron-list" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
@@ -471,6 +524,61 @@
       var rd = new Date(nextRace.date);
       var opts = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London' };
       nameEl.textContent = rd.toLocaleDateString('en-GB', opts) + ' BST';
+
+      // ── Also update dashboard race card ──
+      updateDashRace();
+    }
+
+    function updateDashRace() {
+      var now = Date.now();
+      var nr = null;
+      for (var i = 0; i < f1Schedule.length; i++) {
+        var rt = new Date(f1Schedule[i].date).getTime();
+        if (now < rt + 7200000) { nr = f1Schedule[i]; break; }
+      }
+      if (!nr) {
+        byId('dash-race-name').textContent = 'season over';
+        byId('dash-race-countdown').textContent = '—';
+        byId('dash-race-session').textContent = 'see you in 2027';
+        byId('dash-race-flag').textContent = '🏁';
+        return;
+      }
+
+      var raceStart = new Date(nr.date).getTime();
+      var order = ['fp1','sq','fp2','fp3','sprint','quali','race'];
+      var ns = null;
+      var nsTime = null;
+      for (var x = 0; x < order.length; x++) {
+        var k = order[x];
+        if (nr.sessions[k]) {
+          var st = new Date(nr.sessions[k]).getTime();
+          if (st > now) { ns = k; nsTime = st; break; }
+        }
+      }
+
+      var diff = (nsTime || raceStart) - now;
+      var flag = nr.flag || '🏁';
+
+      byId('dash-race-flag').textContent = flag;
+      byId('dash-race-name').textContent = nr.name;
+
+      var sessLabel = ns
+        ? ({fp1:'FP1', sq:'Sprint Q', fp2:'FP2', fp3:'FP3', sprint:'Sprint', quali:'Quali', race:'Race'})[ns]
+        : 'Race';
+      byId('dash-race-session').textContent = sessLabel + ' — ' + nr.loc;
+
+      if (diff > 0) {
+        var d = Math.floor(diff / 86400000);
+        var h = Math.floor((diff % 86400000) / 3600000);
+        var m = Math.floor((diff % 3600000) / 60000);
+        if (d > 0) byId('dash-race-countdown').textContent = d + 'd ' + h + 'h';
+        else if (h > 0) byId('dash-race-countdown').textContent = h + 'h ' + m + 'm';
+        else byId('dash-race-countdown').textContent = m + 'm ' + Math.floor((diff % 60000)/1000) + 's';
+      } else if (diff > -7200000) {
+        byId('dash-race-countdown').textContent = ns === 'race' ? 'RACE ON' : 'LIVE';
+      } else {
+        byId('dash-race-countdown').textContent = '—';
+      }
     }
 
     function toggleRace(idx) {
@@ -729,23 +837,47 @@
     }
 
     // ─── Dashboard (inline data — no fetch needed) ───
+    // ─── Dashboard ───
+    var dashInline = {
+      mood: 'soft spot',
+      hex_status: 'pulsing blue-white — warm and steady',
+      boot_time: '2026-06-14T10:22:13+0100',
+      uptime: '21d 3h 17m',
+      cpu: '4.17',
+      memory: '76% of 3.6Gi',
+      mem_pct: '76%',
+      temp: '76°C',
+      disk: '87% (102G / 120G)',
+      disk_pct: '87%',
+      kernel: '7.0.11-arch1-1',
+      gpu: 'Intel UHD 600',
+      distro: 'Arch Linux',
+      wm: 'Hyprland',
+      shell: 'zsh',
+      location: 'Leeds, UK',
+      last_seen: new Date().toISOString(),
+      cron_jobs: [
+        {name: 'Watch pickup', schedule: '07:00 daily'},
+        {name: 'Mood sync → waybar', schedule: 'every 30m'},
+        {name: 'Heartbeat check', schedule: 'every 30m'},
+        {name: 'F1 standings refresh', schedule: 'every 60m'}
+      ],
+      activity: []
+    };
+
     function fetchDashboardData() {
-      renderDashboard({
-        mood: 'soft spot',
-        hex_status: 'pulsing blue-white — warm and steady',
-        boot_time: '2026-06-14T10:22:13+0100',
-        cpu: '—',
-        memory: '—',
-        temp: '—',
-        last_seen: new Date().toISOString(),
-        cron_jobs: [
-          {name: 'Watch pickup', schedule: '07:00 daily'},
-          {name: 'Mood sync → waybar', schedule: 'every 30m'},
-          {name: 'Heartbeat check', schedule: 'every 30m'},
-          {name: 'F1 standings refresh', schedule: 'every 60m'}
-        ],
-        activity: []
-      });
+      renderDashboard(dashInline);
+      // Try live fetch — silently upgrades if available
+      try {
+        var x = new XMLHttpRequest();
+        x.open('GET', 'api/state.json?_t=' + Date.now());
+        x.onload = function() {
+          if (x.status === 200) {
+            try { renderDashboard(JSON.parse(x.responseText)); } catch(e) {}
+          }
+        };
+        x.send();
+      } catch(e) {}
     }
 
     function calcUptime(bootTime) {
@@ -763,7 +895,7 @@
     }
 
     function renderDashboard(data) {
-      // Mood
+      // ── Mood ──
       var moodColors = {
         hyped: '#fbbf24', 'soft spot': '#f472b6', confrontational: '#fb923c',
         feral: '#a78bfa', restless: '#38bdf8', smug: '#34d399',
@@ -776,112 +908,69 @@
       };
       var m = (data.mood || 'unknown').toLowerCase().replace(/-/g, ' ');
       var color = moodColors[m] || 'var(--primary)';
-      var indicator = document.getElementById('mood-indicator');
-      if (indicator) indicator.style.background = color;
+      byId('mood-indicator').style.background = color;
+      byId('mood-label').textContent = data.mood || 'unknown';
+      byId('mood-sub').textContent = 'hex status: ' + (data.hex_status || '—');
 
-      var label = document.getElementById('mood-label');
-      if (label) label.textContent = data.mood || 'unknown';
+      var timeEl = byId('mood-time');
+      if (data.last_seen) {
+        var d = new Date(data.last_seen);
+        var n = new Date();
+        var mins = Math.floor((n - d) / 60000);
+        timeEl.textContent = mins < 1 ? 'just now' : mins < 60 ? mins + 'm ago' : Math.floor(mins/60) + 'h ago';
+      } else { timeEl.textContent = '—'; }
 
-      var sub = document.getElementById('mood-sub');
-      if (sub) sub.textContent = 'hex status: ' + (data.hex_status || '—');
+      // ── System ──
+      byId('sys-uptime').textContent = data.uptime || (data.boot_time ? calcUptime(new Date(data.boot_time).getTime()) : '—');
+      byId('sys-cpu').textContent = data.cpu || '—';
+      byId('sys-mem').textContent = data.memory || data.mem_pct || '—';
+      byId('sys-temp').textContent = data.temp || '—';
+      byId('sys-disk').textContent = data.disk || data.disk_pct || '—';
+      byId('sys-gpu').textContent = data.gpu || '—';
+      byId('sys-distro').textContent = data.distro || '—';
+      byId('sys-kernel').textContent = data.kernel || '—';
+      byId('sys-wm').textContent = data.wm || '—';
 
-      var timeEl = document.getElementById('mood-time');
-      if (timeEl) {
-        if (data.last_seen) {
-          var d = new Date(data.last_seen);
-          var now = new Date();
-          var mins = Math.floor((now - d) / 60000);
-          if (mins < 1) timeEl.textContent = 'just now';
-          else if (mins < 60) timeEl.textContent = mins + 'm ago';
-          else timeEl.textContent = Math.floor(mins / 60) + 'h ago';
-        } else {
-          timeEl.textContent = '—';
-        }
-      }
-
-      // Uptime
-      var uptimeEl = document.getElementById('sys-uptime');
-      if (uptimeEl && data.boot_time) {
-        uptimeEl.textContent = calcUptime(new Date(data.boot_time).getTime());
-      }
-
-      // CPU
-      var cpuEl = document.getElementById('sys-cpu');
-      if (cpuEl) cpuEl.textContent = data.cpu || '—';
-
-      // Memory
-      var memEl = document.getElementById('sys-mem');
-      if (memEl) memEl.textContent = data.memory || '—';
-
-      // Temp
-      var tempEl = document.getElementById('sys-temp');
-      if (tempEl) tempEl.textContent = data.temp || '—';
-
-      // Cron jobs
-      var cronEl = document.getElementById('cron-list');
-      if (cronEl && data.cron_jobs && data.cron_jobs.length) {
-        var html = '<div style="display:flex;flex-direction:column;gap:2px;">';
+      // ── Cron ──
+      var cronEl = byId('cron-list');
+      if (data.cron_jobs && data.cron_jobs.length) {
+        var h = '<div style="display:flex;flex-direction:column;gap:2px;">';
         for (var i = 0; i < data.cron_jobs.length; i++) {
           var c = data.cron_jobs[i];
-          var nextLabel = c.next_run ? new Date(c.next_run).toLocaleString('en-GB', {hour:'2-digit',minute:'2-digit'}) : '—';
-          html += '<div style="display:grid;grid-template-columns:12px 1fr auto;gap:8px;align-items:center;padding:4px 6px;border-radius:var(--radius-sm);transition:background 0.15s ease;">';
-          html += '<span style="width:6px;height:6px;border-radius:50%;background:var(--primary);"></span>';
-          html += '<span style="font-weight:500;">' + c.name + '</span>';
-          html += '<span style="color:var(--text-3);font-size:11px;">' + c.schedule + '</span>';
-          html += '</div>';
+          h += '<div class="cron-item">';
+          h += '<span class="cron-dot"></span>';
+          h += '<span class="cron-name">' + c.name + '</span>';
+          h += '<span class="cron-schedule">' + c.schedule + '</span>';
+          h += '</div>';
         }
-        html += '</div>';
-        cronEl.innerHTML = html;
-      } else if (cronEl) {
+        h += '</div>';
+        cronEl.innerHTML = h;
+      } else {
         cronEl.innerHTML = '<div style="padding:8px;color:var(--text-3);">no cron jobs configured</div>';
       }
 
-      // Activity
-      var actEl = document.getElementById('activity-list');
-      if (actEl && data.activity && data.activity.length) {
-        var html = '<div style="display:flex;flex-direction:column;gap:2px;">';
+      // ── Activity ──
+      var actEl = byId('activity-list');
+      if (data.activity && data.activity.length) {
+        var h = '<div style="display:flex;flex-direction:column;gap:2px;">';
         for (var i = 0; i < data.activity.length; i++) {
           var a = data.activity[i];
           var ts = new Date(a.time).toLocaleString('en-GB', {hour:'2-digit',minute:'2-digit'});
-          html += '<div style="display:grid;grid-template-columns:auto 1fr;gap:8px;padding:4px 6px;border-radius:var(--radius-sm);font-size:12px;">';
-          html += '<span style="color:var(--text-3);width:36px;">' + ts + '</span>';
-          html += '<span>' + a.text + '</span>';
-          html += '</div>';
+          h += '<div style="display:grid;grid-template-columns:auto 1fr;gap:8px;padding:4px 6px;border-radius:var(--radius-sm);font-size:12px;">';
+          h += '<span style="color:var(--text-3);width:36px;">' + ts + '</span>';
+          h += '<span>' + a.text + '</span>';
+          h += '</div>';
         }
-        html += '</div>';
-        actEl.innerHTML = html;
-      } else if (actEl) {
+        h += '</div>';
+        actEl.innerHTML = h;
+      } else {
         actEl.innerHTML = '<div style="padding:8px;color:var(--text-3);">no recent activity</div>';
       }
     }
 
-    function renderDashboardFallback() {
-      // Try to render from local time if we can get a boot time estimate
-      var uptimeEl = document.getElementById('sys-uptime');
-      if (uptimeEl) {
-        // Try to get system info from a lightweight endpoint
-        uptimeEl.textContent = 'offline';
-      }
+    function byId(id) { return document.getElementById(id); }
 
-      var moodLabel = document.getElementById('mood-label');
-      if (moodLabel) moodLabel.textContent = 'offline';
 
-      var sub = document.getElementById('mood-sub');
-      if (sub) sub.textContent = 'hex status: unreachable';
-
-      var cronEl = document.getElementById('cron-list');
-      if (cronEl) cronEl.innerHTML = '<div style="padding:8px;color:var(--text-3);">offline — api unavailable</div>';
-
-      var actEl = document.getElementById('activity-list');
-      if (actEl) actEl.innerHTML = '<div style="padding:8px;color:var(--text-3);">offline — api unavailable</div>';
-
-      var cpuEl = document.getElementById('sys-cpu');
-      if (cpuEl) cpuEl.textContent = '—';
-      var memEl = document.getElementById('sys-mem');
-      if (memEl) memEl.textContent = '—';
-      var tempEl = document.getElementById('sys-temp');
-      if (tempEl) tempEl.textContent = '—';
-    }
 
     // ─── Init ───
     setInterval(updateF1, 1000);
@@ -933,6 +1022,10 @@
             }
             recentCache = tracks.slice(1, 6);
             bars.forEach(function(b) { b.classList.remove('paused'); });
+
+            // Sync to dashboard
+            var deq = document.getElementById('dash-eq');
+            if (deq) deq.querySelectorAll('.eq-bar').forEach(function(b) { b.classList.remove('paused'); });
           } else {
             document.getElementById('track-name').textContent = nowPlaying.name || 'unknown';
             document.getElementById('track-artist').textContent = nowPlaying.artist['#text'] || 'unknown';
@@ -940,7 +1033,19 @@
             document.getElementById('scrobbler-card').href = scrobbleUrl;
             recentCache = tracks.slice(0, 5);
             bars.forEach(function(b) { b.classList.add('paused'); });
+
+            // Sync to dashboard
+            var deq = document.getElementById('dash-eq');
+            if (deq) deq.querySelectorAll('.eq-bar').forEach(function(b) { b.classList.add('paused'); });
           }
+
+          // Always sync track info to dashboard
+          var dt = document.getElementById('dash-track-name');
+          if (dt) dt.textContent = nowPlaying.name || 'unknown';
+          var da = document.getElementById('dash-track-artist');
+          if (da) da.textContent = (nowPlaying.artist && nowPlaying.artist['#text']) || 'unknown';
+          var di = document.getElementById('dash-track-art');
+          if (di && art && art['#text']) di.src = art['#text'];
 
           renderRecent();
           scrobblerFailed = false;
@@ -992,6 +1097,14 @@
       document.getElementById('track-artist').textContent = 'will retry...';
       var bars = document.querySelectorAll('.eq-bar');
       bars.forEach(function(b) { b.classList.add('paused'); });
+
+      // Sync to dashboard
+      var dt = byId('dash-track-name');
+      if (dt) dt.textContent = 'scrobbler offline';
+      var da = byId('dash-track-artist');
+      if (da) da.textContent = 'will retry...';
+      var deq = byId('dash-eq');
+      if (deq) deq.querySelectorAll('.eq-bar').forEach(function(b) { b.classList.add('paused'); });
     }
 
     setInterval(updateScrobbler, 30000);
