@@ -18,15 +18,20 @@
 
   <div class="shell">
     <!-- ─── Sidebar ─── -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">krazierthanu</div>
-      <button class="nav-item active" data-page="about"><i class="fa-solid fa-user"></i> about</button>
-      <button class="nav-item" data-page="f1"><i class="fa-solid fa-car"></i> f1</button>
-      <button class="nav-item" data-page="music"><i class="fa-solid fa-headphones"></i> music</button>
-      <button class="nav-item" data-page="projects"><i class="fa-solid fa-cube"></i> projects</button>
-      <button class="nav-item" data-page="dashboard"><i class="fa-solid fa-gauge-high"></i> dashboard</button>
-      <button class="nav-item" data-page="now"><i class="fa-solid fa-clock"></i> /now</button>
-      <div style="margin-top:auto;padding-top:12px;">
+      <div class="nav-primary">
+        <button class="nav-item active" data-page="about"><i class="fa-solid fa-user"></i> about</button>
+        <button class="nav-item" data-page="f1"><i class="fa-solid fa-car"></i> f1</button>
+        <button class="nav-item" data-page="music"><i class="fa-solid fa-headphones"></i> music</button>
+        <button class="nav-item" data-page="dashboard"><i class="fa-solid fa-gauge-high"></i> dashboard</button>
+      </div>
+      <button class="nav-item nav-more" id="nav-more-btn" onclick="toggleNavMore()"><i class="fa-solid fa-ellipsis-h"></i> more</button>
+
+      <div class="nav-overlay" id="nav-overlay" onclick="closeNavMore()"></div>
+      <div class="nav-expanded" id="nav-expanded">
+        <button class="nav-item" data-page="projects"><i class="fa-solid fa-cube"></i> projects</button>
+        <button class="nav-item" data-page="now"><i class="fa-solid fa-clock"></i> /now</button>
         <button class="nav-item" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i> theme</button>
       </div>
     </aside>
@@ -404,8 +409,28 @@
         Object.keys(sections).forEach(function(k) { sections[k].classList.remove('active'); });
         b.classList.add('active');
         sections[page].classList.add('active');
+        closeNavMore();
       });
     });
+
+    // ─── Nav expand/collapse (mobile) ───
+    function toggleNavMore() {
+      var expanded = document.getElementById('nav-expanded');
+      var overlay = document.getElementById('nav-overlay');
+      var isOpen = expanded.classList.contains('open');
+      if (isOpen) {
+        expanded.classList.remove('open');
+        overlay.classList.remove('show');
+      } else {
+        expanded.classList.add('open');
+        overlay.classList.add('show');
+      }
+    }
+
+    function closeNavMore() {
+      document.getElementById('nav-expanded').classList.remove('open');
+      document.getElementById('nav-overlay').classList.remove('show');
+    }
 
     // ─── Theme ───
     function toggleTheme() {
