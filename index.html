@@ -906,6 +906,7 @@
             var data = JSON.parse(xhr.responseText);
             wikiCache[title] = {
               thumb: data.thumbnail ? data.thumbnail.source : null,
+              orig: data.originalimage ? data.originalimage.source : null,
               desc: data.description || '',
               extract: data.extract || ''
             };
@@ -919,6 +920,18 @@
     function wikiThumb(url) {
       var title = wikiPageTitle(url);
       return title && wikiCache[title] ? wikiCache[title].thumb : null;
+    }
+    // Get the cleanest logo image for a constructor — prefers raw SVG, then full-res original
+    function wikiLogoUrl(url) {
+      var title = wikiPageTitle(url);
+      if (!title || !wikiCache[title]) return null;
+      var t = wikiCache[title].thumb;
+      if (t && t.match(/\.svg\.png$/)) {
+        // Extract raw SVG URL from the thumbnail path
+        return t.replace(/\/thumb\//, '/')
+                .replace(/\/\d+px-.+\.svg\.png$/, '.svg');
+      }
+      return wikiCache[title].orig || t;
     }
 
     var expandedDrvIdx = -1;
@@ -975,6 +988,7 @@
         var bg = isExpanded ? 'var(--surface)' : 'transparent';
         var border = isExpanded ? '2px solid ' + teamColor : '2px solid transparent';
         var hasThumb = !!thumb;
+        var conLogoUrl = wikiLogoUrl(d.Constructors[0].url);
 
         html += '<div onclick="toggleDriver(\'' + d.Driver.driverId + '\')" style="cursor:pointer;display:flex;flex-direction:column;border-radius:var(--radius-sm);background:' + bg + ';border-left:' + border + ';padding-left:6px;margin:0 -4px;transition:all 0.15s ease;' + (pos > 10 ? 'opacity:0.55;' : '') + '">';
         html += '<div style="display:grid;grid-template-columns:20px 22px 1fr 36px 28px auto;gap:2px 4px;align-items:center;padding:3px 4px;">';
@@ -984,8 +998,8 @@
         html += '<div style="font-weight:600;color:' + color + ';text-align:right;font-size:13px;">' + d.points + '</div>';
         html += '<div style="text-align:right;color:' + (isTop ? 'var(--primary)' : 'var(--text-3)') + ';font-size:10px;">' + d.wins + '</div>';
         html += '<div style="display:flex;justify-content:flex-end;align-items:center;height:22px;">' 
-          + (wikiThumb(d.Constructors[0].url) 
-            ? '<img src="' + wikiThumb(d.Constructors[0].url) + '" alt="' + teamId + '" style="height:20px;max-width:45px;object-fit:contain;" />'
+          + (conLogoUrl 
+            ? '<img src="' + conLogoUrl + '" alt="' + teamId + '" style="height:20px;max-width:45px;object-fit:contain;" />'
             : '<span style="color:var(--text-3);font-size:9px;font-weight:700;text-transform:uppercase;">' + teamCode + '</span>')
           + '</div>';
         html += '</div>';
@@ -1072,7 +1086,8 @@
         html += '<div style="display:grid;grid-template-columns:20px 24px 1fr 36px 28px;gap:2px 4px;align-items:center;padding:3px 4px;">';
         html += '<div style="font-weight:' + (isTop ? '700' : '400') + ';color:' + color + ';text-align:center;font-size:12px;">' + c.position + '</div>';
         html += '<div style="width:24px;height:24px;border-radius:4px;overflow:hidden;border:1px solid var(--outline);background:var(--surface-2);display:flex;align-items:center;justify-content:center;' + (thumb ? '' : 'background:transparent;border:none;') + '">' + (thumb ? '<img src="' + thumb + '" alt="" style="max-width:100%;max-height:100%;object-fit:contain;" onerror="this.parentElement.style.display=\'none\'" />' : '') + '</div>'
-        html += '<div style="display:flex;align-items:center;height:24px;">' + (thumb ? '<img src="' + thumb + '" alt="' + c.Constructor.name + '" style="height:22px;max-width:70px;object-fit:contain;" />' : '<span style="font-weight:' + (isTop ? '700' : '500') + ';color:' + color + ';font-size:13px;">' + c.Constructor.name + '</span>') + '</div>';
+        var conLogo = wikiLogoUrl(c.Constructor.url);
+        html += '<div style="display:flex;align-items:center;height:24px;">' + (conLogo ? '<img src="' + conLogo + '" alt="' + c.Constructor.name + '" style="height:22px;max-width:70px;object-fit:contain;" />' : '<span style="font-weight:' + (isTop ? '700' : '500') + ';color:' + color + ';font-size:13px;">' + c.Constructor.name + '</span>') + '</div>';
         html += '<div style="font-weight:600;color:' + color + ';text-align:right;font-size:13px;">' + c.points + '</div>';
         html += '<div style="text-align:right;color:' + (isTop ? 'var(--primary)' : 'var(--text-3)') + ';font-size:10px;">' + c.wins + '</div>';
         html += '</div>';
@@ -1197,7 +1212,7 @@
         html += '<div style="width:20px;height:20px;border-radius:50%;overflow:hidden;border:1.5px solid ' + (hasFL ? '#fbbf24' : 'var(--outline)') + ';' + (thumb ? '' : 'visibility:hidden;') + '">' + (thumb ? '<img src="' + thumb + '" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'" />' : '') + '</div>';
         // Team logo
         var rConUrl = r.Constructors && r.Constructors[0] && r.Constructors[0].url ? r.Constructors[0].url : null;
-        var rConThumb = rConUrl ? wikiThumb(rConUrl) : null;
+        var rConThumb = rConUrl ? wikiLogoUrl(rConUrl) : null;
         html += '<div style="display:flex;align-items:center;justify-content:center;height:20px;">' + (rConThumb ? '<img src="' + rConThumb + '" alt="" style="height:16px;max-width:28px;object-fit:contain;" />' : '') + '</div>';
         html += '<div style="font-weight:' + (isPodium ? '700' : '500') + ';color:' + col + ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;">' + driverCode + ' ' + r.Driver.familyName + (hasFL ? ' <span title="fastest lap" style="display:inline-block;font-size:9px;color:#fbbf24;transform:translateY(-1px);">⚡</span>' : '') + '</div>';
         html += '<div style="text-align:right;color:' + col + ';font-size:11px;font-weight:600;">' + pts + '</div>';
