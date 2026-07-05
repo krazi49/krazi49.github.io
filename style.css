@@ -770,20 +770,18 @@ a.card:active { transform: scale(0.98); }
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    margin: 8px -8px 0;
-    padding: 0 8px 4px;
+    margin: -4px -8px 4px;
+    padding: 0 8px 8px;
     gap: 6px;
-    order: 999;
     -webkit-mask-image: linear-gradient(to right, transparent, black 12px, black 88%, transparent);
     mask-image: linear-gradient(to right, transparent, black 12px, black 88%, transparent);
-    pointer-events: none;
   }
   .mobile-nav::-webkit-scrollbar { display: none; }
   .mobile-nav-inner {
     display: flex;
     gap: 6px;
     padding: 2px 0;
-    pointer-events: auto;
+
   }
   .mobile-nav-chip {
     display: inline-flex;
@@ -833,18 +831,6 @@ a.card:active { transform: scale(0.98); }
     border: none;
     min-height: 100dvh;
     gap: 16px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .main > .section {
-    flex: 1;
-  }
-
-  .mobile-nav {
-    margin-top: auto;
-    margin-bottom: 0;
-    order: 999;
   }
 
   .card-row {
