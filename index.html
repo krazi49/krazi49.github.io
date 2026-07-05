@@ -433,7 +433,7 @@
       { name: "Monaco GP",              date: "2026-06-07T13:00:00Z", flag: "🇲🇨", circuit: "Circuit de Monaco", loc: "Monte Carlo", laps: 78, length: "3.337 km", dist: "260.3 km", sprint: false, circuit_wiki: "Circuit_de_Monaco", sessions: { fp1: "2026-06-05T11:30:00Z", fp2: "2026-06-05T15:00:00Z", fp3: "2026-06-06T10:30:00Z", quali: "2026-06-06T14:00:00Z", race: "2026-06-07T13:00:00Z" } },
       { name: "Spanish GP",             date: "2026-06-14T13:00:00Z", flag: "🇪🇸", circuit: "Circuit de Barcelona-Catalunya", loc: "Barcelona", laps: 66, length: "4.657 km", dist: "307.4 km", sprint: false, circuit_wiki: "Circuit_de_Barcelona-Catalunya", sessions: { fp1: "2026-06-12T11:30:00Z", fp2: "2026-06-12T15:00:00Z", fp3: "2026-06-13T10:30:00Z", quali: "2026-06-13T14:00:00Z", race: "2026-06-14T13:00:00Z" } },
       { name: "Austrian GP",            date: "2026-06-28T13:00:00Z", flag: "🇦🇹", circuit: "Red Bull Ring", loc: "Spielberg", laps: 71, length: "4.318 km", dist: "306.6 km", sprint: false, circuit_wiki: "Red_Bull_Ring", sessions: { fp1: "2026-06-26T10:30:00Z", fp2: "2026-06-26T14:30:00Z", fp3: "2026-06-27T09:30:00Z", quali: "2026-06-27T13:00:00Z", race: "2026-06-28T13:00:00Z" } },
-      { name: "British GP",             date: "2026-07-05T14:00:00Z", flag: "🇬🇧", circuit: "Silverstone Circuit", loc: "Silverstone", laps: 52, length: "5.891 km", dist: "306.3 km", sprint: true,  circuit_wiki: "Silverstone_Circuit", sessions: { fp1: "2026-07-03T11:30:00Z", sq: "2026-07-03T14:30:00Z", sprint: "2026-07-04T10:00:00Z", quali: "2026-07-04T15:00:00Z", race: "2026-07-05T14:00:00Z" } },
+      { name: "British GP",             date: "2026-07-05T14:00:00Z", flag: "🇬🇧", circuit: "Silverstone Circuit", loc: "Silverstone", laps: 52, length: "5.891 km", dist: "306.3 km", sprint: true,  circuit_wiki: "Silverstone_Circuit", sessions: { fp1: "2026-07-03T11:30:00Z", sq: "2026-07-03T15:30:00Z", sprint: "2026-07-04T11:00:00Z", quali: "2026-07-04T15:00:00Z", race: "2026-07-05T14:00:00Z" } },
       { name: "Belgian GP",             date: "2026-07-19T13:00:00Z", flag: "🇧🇪", circuit: "Circuit de Spa-Francorchamps", loc: "Spa", laps: 44, length: "7.004 km", dist: "308.2 km", sprint: false, circuit_wiki: "Circuit_de_Spa-Francorchamps", sessions: { fp1: "2026-07-17T11:30:00Z", fp2: "2026-07-17T15:00:00Z", fp3: "2026-07-18T10:30:00Z", quali: "2026-07-18T14:00:00Z", race: "2026-07-19T13:00:00Z" } },
       { name: "Hungarian GP",           date: "2026-07-26T13:00:00Z", flag: "🇭🇺", circuit: "Hungaroring", loc: "Budapest", laps: 70, length: "4.381 km", dist: "306.7 km", sprint: false, circuit_wiki: "Hungaroring", sessions: { fp1: "2026-07-24T11:30:00Z", fp2: "2026-07-24T15:00:00Z", fp3: "2026-07-25T10:30:00Z", quali: "2026-07-25T14:00:00Z", race: "2026-07-26T13:00:00Z" } },
       { name: "Dutch GP",               date: "2026-08-23T13:00:00Z", flag: "🇳🇱", circuit: "Circuit Zandvoort", loc: "Zandvoort", laps: 72, length: "4.259 km", dist: "306.6 km", sprint: true,  circuit_wiki: "Circuit_Zandvoort", sessions: { fp1: "2026-08-21T10:30:00Z", sq: "2026-08-21T14:30:00Z", sprint: "2026-08-22T10:00:00Z", quali: "2026-08-22T14:00:00Z", race: "2026-08-23T13:00:00Z" } },
@@ -648,8 +648,8 @@
       }
 
       var rd = new Date(nextRace.date);
-      var opts = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London' };
-      nameEl.textContent = rd.toLocaleDateString('en-GB', opts) + ' BST';
+      var opts = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London', timeZoneName: 'short' };
+      nameEl.textContent = rd.toLocaleDateString('en-GB', opts);
 
       // ── Also update dashboard race card ──
       updateDashRace();
