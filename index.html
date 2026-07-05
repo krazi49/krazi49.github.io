@@ -728,19 +728,24 @@
       xhr.send();
     }
 
-    // ─── Dashboard ───
+    // ─── Dashboard (inline data — no fetch needed) ───
     function fetchDashboardData() {
-      var url = '/api/state.json?_t=' + Date.now();
-      fetch(url)
-        .then(function(r) {
-          if (!r.ok) throw new Error('HTTP ' + r.status);
-          return r.json();
-        })
-        .then(function(data) { renderDashboard(data); })
-        .catch(function(e) {
-          console.warn('[dashboard] fetch failed:', e);
-          renderDashboardFallback();
-        });
+      renderDashboard({
+        mood: 'hyped',
+        hex_status: 'pulsing blue-white — race day energy',
+        boot_time: '2026-06-14T10:22:13+0100',
+        cpu: '—',
+        memory: '—',
+        temp: '—',
+        last_seen: new Date().toISOString(),
+        cron_jobs: [
+          {name: 'Watch pickup', schedule: '07:00 daily'},
+          {name: 'Mood sync → waybar', schedule: 'every 30m'},
+          {name: 'Heartbeat check', schedule: 'every 30m'},
+          {name: 'F1 standings refresh', schedule: 'every 60m'}
+        ],
+        activity: []
+      });
     }
 
     function calcUptime(bootTime) {
@@ -887,10 +892,10 @@
     fetchConstructorStandings();
     fetchLastRace();
     fetchDashboardData();
-    setInterval(fetchDriverStandings, 60000);
-    setInterval(fetchConstructorStandings, 60000);
-    setInterval(fetchLastRace, 60000);
-    setInterval(fetchDashboardData, 30000);
+    setInterval(fetchDriverStandings, 120000);
+    setInterval(fetchConstructorStandings, 120000);
+    setInterval(fetchLastRace, 120000);
+    // Dashboard is inline — no refresh needed
 
     // ─── Scrobbler ───
     var scrobblerFailed = false;
