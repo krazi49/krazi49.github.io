@@ -730,7 +730,7 @@
 
     // ─── Dashboard ───
     function fetchDashboardData() {
-      var url = window.location.origin + '/api/state.json?_t=' + Date.now();
+      var url = '/api/state.json?_t=' + Date.now();
       fetch(url)
         .then(function(r) {
           if (!r.ok) throw new Error('HTTP ' + r.status);
