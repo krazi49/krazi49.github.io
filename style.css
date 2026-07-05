@@ -759,7 +759,7 @@ a.card:active { transform: scale(0.98); }
 }
 
 /* ── Bottom Nav (mobile) ──────────────────────────── */
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   body {
     padding: 0 0 64px;
     min-height: 100dvh;
@@ -917,7 +917,7 @@ a.card:active { transform: scale(0.98); }
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .sidebar .nav-item {
     padding: 4px 8px;
     font-size: 9px;
