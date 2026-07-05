@@ -610,43 +610,70 @@
         return;
       }
 
-      // Find next upcoming session
+      // Find current & next sessions
       var order = ['fp1','sq','fp2','fp3','sprint','quali','race'];
       var raceStart = new Date(nextRace.date).getTime();
+      var sessLabels = {fp1:'FP1', sq:'Sprint Q', fp2:'FP2', fp3:'FP3', sprint:'Sprint', quali:'Quali', race:'Race'};
+
       nextSessKey = null;
       nextSessTime = null;
+      var currentSessKey = null;
+      var currentSessTime = null;
+
+      // Find current session (most recent started) & next upcoming
       for (var x = 0; x < order.length; x++) {
         var k = order[x];
         if (nextRace.sessions[k]) {
           var st = new Date(nextRace.sessions[k]).getTime();
-          if (st > now) { nextSessKey = k; nextSessTime = st; break; }
+          if (st > now && !nextSessTime) { nextSessKey = k; nextSessTime = st; }
+          if (st <= now) { currentSessKey = k; currentSessTime = st; }
         }
       }
 
       var targetTime = nextSessTime || raceStart;
       var diff = targetTime - now;
 
-      var sessLabel = nextSessKey
-        ? ({fp1:'FP1', sq:'Sprint Q', fp2:'FP2', fp3:'FP3', sprint:'Sprint', quali:'Quali', race:'Race'})[nextSessKey]
-        : '';
-      if (nextSessTime && diff < 3600000 && diff > 0) {
-        label.innerHTML = '<span class="live-pulse"></span>' + sessLabel;
-      } else if (sessLabel) {
-        label.textContent = sessLabel;
-      } else {
-        label.innerHTML = 'next race';
+      // Is a session in-progress? use gap to next session when available
+      var inSession = !!currentSessTime;
+      var sessionActive = false;
+      if (inSession) {
+        var sessElapsed_ms = now - currentSessTime;
+        var gapToNext = nextSessTime ? (nextSessTime - currentSessTime) : 10800000;
+        var maxActive = Math.min(gapToNext + 1800000, (currentSessKey === 'race') ? 10800000 : 7200000);
+        sessionActive = sessElapsed_ms < maxActive;
       }
 
-      if (diff > 0) {
+      if (sessionActive) {
+        // ── Session in progress: show elapsed time ──
+        var elapsed = Math.floor((now - currentSessTime) / 1000);
+        var em = Math.floor(elapsed / 60);
+        var es = elapsed % 60;
+        label.innerHTML = '<span class="live-pulse"></span>' + sessLabels[currentSessKey];
+        timer.innerHTML = em + 'm ' + es + 's <span style="font-size:18px;font-weight:400;color:var(--text-3);">elapsed</span>';
+      } else if (diff > 0) {
+        // ── Countdown to next session ──
         var d = Math.floor(diff / 86400000);
         var h = Math.floor((diff % 86400000) / 3600000);
         var m = Math.floor((diff % 3600000) / 60000);
         var s = Math.floor((diff % 60000) / 1000);
+        if (nextSessTime && diff < 3600000) {
+          label.innerHTML = '<span class="live-pulse"></span>' + sessLabels[nextSessKey];
+        } else {
+          label.textContent = nextSessKey ? sessLabels[nextSessKey] : 'next race';
+        }
         timer.textContent = d + 'd ' + h + 'h ' + m + 'm ' + s + 's';
       } else if (diff > -7200000) {
-        timer.textContent = nextSessTime ? (nextSessKey === 'race' ? 'RACE START' : 'LIVE') : 'RACE WEEKEND';
+        // ── In the 2h cooldown after last session ──
+        if (currentSessKey) {
+          label.innerHTML = '<span class="live-pulse"></span>' + sessLabels[currentSessKey];
+          timer.innerHTML = 'done <span style="font-size:18px;font-weight:400;color:var(--text-3);">' + sessLabels[currentSessKey] + ' over</span>';
+        } else {
+          label.textContent = 'race weekend';
+          timer.textContent = 'done';
+        }
       } else {
         timer.textContent = 'past';
+        label.textContent = 'next race';
       }
 
       var rd = new Date(nextRace.date);
@@ -676,11 +703,15 @@
       var order = ['fp1','sq','fp2','fp3','sprint','quali','race'];
       var ns = null;
       var nsTime = null;
+      var curSessKey = null;
+      var curSessTime = null;
+      var sessLabels = {fp1:'FP1', sq:'Sprint Q', fp2:'FP2', fp3:'FP3', sprint:'Sprint', quali:'Quali', race:'Race'};
       for (var x = 0; x < order.length; x++) {
         var k = order[x];
         if (nr.sessions[k]) {
           var st = new Date(nr.sessions[k]).getTime();
-          if (st > now) { ns = k; nsTime = st; break; }
+          if (st > now && !nsTime) { ns = k; nsTime = st; }
+          if (st <= now) { curSessKey = k; curSessTime = st; }
         }
       }
 
@@ -690,22 +721,37 @@
       byId('dash-race-flag').textContent = flag;
       byId('dash-race-name').textContent = nr.name;
 
-      var sessLabel = ns
-        ? ({fp1:'FP1', sq:'Sprint Q', fp2:'FP2', fp3:'FP3', sprint:'Sprint', quali:'Quali', race:'Race'})[ns]
-        : 'Race';
-      byId('dash-race-session').textContent = sessLabel + ' — ' + nr.loc;
+      var inSession = !!curSessTime;
+      var sessionActive = false;
+      if (inSession) {
+        var sElapsed = now - curSessTime;
+        var gapToNext = nsTime ? (nsTime - curSessTime) : 10800000;
+        var maxActive = Math.min(gapToNext + 1800000, (curSessKey === 'race') ? 10800000 : 7200000);
+        sessionActive = sElapsed < maxActive;
+      }
 
-      if (diff > 0) {
-        var d = Math.floor(diff / 86400000);
-        var h = Math.floor((diff % 86400000) / 3600000);
-        var m = Math.floor((diff % 3600000) / 60000);
-        if (d > 0) byId('dash-race-countdown').textContent = d + 'd ' + h + 'h';
-        else if (h > 0) byId('dash-race-countdown').textContent = h + 'h ' + m + 'm';
-        else byId('dash-race-countdown').textContent = m + 'm ' + Math.floor((diff % 60000)/1000) + 's';
-      } else if (diff > -7200000) {
-        byId('dash-race-countdown').textContent = ns === 'race' ? 'RACE ON' : 'LIVE';
+      if (sessionActive) {
+        var elapsed = Math.floor((now - curSessTime) / 1000);
+        var em = Math.floor(elapsed / 60);
+        var es = elapsed % 60;
+        byId('dash-race-session').textContent = sessLabels[curSessKey] + ' \u00b7 ' + nr.loc;
+        byId('dash-race-countdown').textContent = em + 'm ' + es + 's elapsed';
       } else {
-        byId('dash-race-countdown').textContent = '—';
+        var sessLabel = ns ? (sessLabels[ns] || 'Race') : 'Race';
+        byId('dash-race-session').textContent = sessLabel + ' — ' + nr.loc;
+        if (diff > 0) {
+          var d = Math.floor(diff / 86400000);
+          var h = Math.floor((diff % 86400000) / 3600000);
+          var m = Math.floor((diff % 3600000) / 60000);
+          if (d > 0) byId('dash-race-countdown').textContent = d + 'd ' + h + 'h';
+          else if (h > 0) byId('dash-race-countdown').textContent = h + 'h ' + m + 'm';
+          else byId('dash-race-countdown').textContent = m + 'm ' + Math.floor((diff % 60000)/1000) + 's';
+        } else if (diff > -7200000) {
+          if (curSessKey) byId('dash-race-countdown').textContent = sessLabels[curSessKey] + ' done';
+          else byId('dash-race-countdown').textContent = 'done';
+        } else {
+          byId('dash-race-countdown').textContent = '\u2014';
+        }
       }
     }
 
