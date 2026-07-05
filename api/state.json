@@ -1,0 +1,34 @@
+{
+  "mood": "soft-spot",
+  "hex_status": "pulsing blue-white",
+  "boot_time": "2026-06-14T10:22:13+0100",
+  "cpu": "5.66",
+  "memory": "76%",
+  "temp": "76°C",
+  "last_seen": "2026-07-05T13:25:22+0100",
+  "cron_jobs": [
+    {
+      "name": "Watch pickup",
+      "schedule": "07:00 daily",
+      "next_run": "2026-07-05T13:55:22+0100"
+    },
+    {
+      "name": "Mood sync → waybar",
+      "schedule": "every 30m",
+      "next_run": "2026-07-05T13:55:22+0100"
+    },
+    {
+      "name": "Heartbeat check",
+      "schedule": "every 30m",
+      "next_run": "2026-07-05T13:55:22+0100"
+    },
+    {
+      "name": "F1 standings refresh",
+      "schedule": "every 60m",
+      "next_run": "2026-07-05T14:25:22+0100"
+    }
+  ],
+  "activity": [
+    {"time": "2026-07-05T13:25:22+0100", "text": "Dashboard state refreshed"}
+  ]
+}

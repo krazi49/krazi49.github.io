@@ -23,6 +23,7 @@
       <button class="nav-item" data-page="f1"><i class="fa-solid fa-car"></i> f1</button>
       <button class="nav-item" data-page="music"><i class="fa-solid fa-headphones"></i> music</button>
       <button class="nav-item" data-page="projects"><i class="fa-solid fa-cube"></i> projects</button>
+      <button class="nav-item" data-page="dashboard"><i class="fa-solid fa-gauge-high"></i> dashboard</button>
       <button class="nav-item" data-page="now"><i class="fa-solid fa-clock"></i> /now</button>
       <div style="margin-top:auto;padding-top:12px;">
         <button class="nav-item" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i> theme</button>
@@ -92,6 +93,21 @@
         <div class="section-header" style="margin-top:4px;">2026 calendar</div>
         <div class="card" id="f1-calendar" style="font-family:'Paper Mono',monospace;font-size:12px;line-height:1.8;">
           loading...
+        </div>
+
+        <div class="section-header" style="margin-top:4px;">driver standings <span id="ds-round" style="font-weight:400;font-size:9px;color:var(--text-3);"></span></div>
+        <div class="card" id="driver-standings" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+          <div style="padding:8px;color:var(--text-3);">loading...</div>
+        </div>
+
+        <div class="section-header" style="margin-top:4px;">constructor standings <span id="cs-round" style="font-weight:400;font-size:9px;color:var(--text-3);"></span></div>
+        <div class="card" id="constructor-standings" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+          <div style="padding:8px;color:var(--text-3);">loading...</div>
+        </div>
+
+        <div class="section-header" style="margin-top:4px;">last race</div>
+        <div class="card" id="last-race" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+          <div style="padding:8px;color:var(--text-3);">loading...</div>
         </div>
       </div>
 
@@ -185,6 +201,54 @@
         <div class="card project">
           <h3 style="margin-bottom:4px;">🎯 goals</h3>
           <p>sub-40 at karting. ship lumina mvp before spa. stop starting new projects.</p>
+        </div>
+      </div>
+
+      <!-- ─── DASHBOARD ─── -->
+      <div class="section" id="section-dashboard">
+        <div class="section-header">agent state</div>
+
+        <div class="card" id="mood-card" style="display:flex;align-items:center;gap:14px;">
+          <div id="mood-indicator" style="width:12px;height:12px;border-radius:50%;background:var(--primary);flex-shrink:0;transition:all 0.5s ease;"></div>
+          <div style="flex:1;">
+            <div id="mood-label" style="font-weight:600;font-size:15px;">syncing...</div>
+            <div id="mood-sub" style="font-size:12px;color:var(--text-2);font-family:'Paper Mono',monospace;">hex status: —</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">last seen</div>
+            <div id="mood-time" style="font-family:'Paper Mono',monospace;font-size:12px;color:var(--text-2);">—</div>
+          </div>
+        </div>
+
+        <div class="section-header">system</div>
+
+        <div class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div>
+            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">uptime</div>
+            <div id="sys-uptime" style="font-family:'Paper Mono',monospace;font-size:16px;font-weight:700;color:var(--primary);margin-top:2px;">—</div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">cpu</div>
+            <div id="sys-cpu" style="font-family:'Paper Mono',monospace;font-size:16px;font-weight:700;color:var(--text);margin-top:2px;">—</div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">memory</div>
+            <div id="sys-mem" style="font-family:'Paper Mono',monospace;font-size:16px;font-weight:700;color:var(--text);margin-top:2px;">—</div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">temp</div>
+            <div id="sys-temp" style="font-family:'Paper Mono',monospace;font-size:16px;font-weight:700;color:var(--text);margin-top:2px;">—</div>
+          </div>
+        </div>
+
+        <div class="section-header">cron jobs</div>
+        <div class="card" id="cron-list" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+          <div style="padding:8px;color:var(--text-3);">loading...</div>
+        </div>
+
+        <div class="section-header">recent activity</div>
+        <div class="card" id="activity-list" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+          <div style="padding:8px;color:var(--text-3);">loading...</div>
         </div>
       </div>
 
@@ -543,10 +607,293 @@
       chips.parentNode.insertBefore(div, chips.nextSibling);
     }
 
+    // ─── F1 Standings (Jolpica) ───
+    function fetchDriverStandings() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://api.jolpi.ca/ergast/f1/2026/driverstandings/?limit=30');
+      xhr.onload = function() {
+        if (xhr.status !== 200) return;
+        try {
+          var data = JSON.parse(xhr.responseText);
+          var list = data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+          var round = data.MRData.StandingsTable.round;
+          document.getElementById('ds-round').textContent = 'r' + round;
+          var html = '<div style="display:grid;grid-template-columns:28px 1fr auto auto auto;gap:2px 8px;align-items:center;">';
+          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;">#</div>';
+          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;">driver</div>';
+          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;text-align:right;">pts</div>';
+          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;text-align:right;">wins</div>';
+          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;text-align:right;">team</div>';
+          for (var i = 0; i < list.length; i++) {
+            var d = list[i];
+            var isTop = parseInt(d.position) <= 3;
+            var color = isTop ? 'var(--primary)' : 'var(--text)';
+            html += '<div style="font-weight:' + (isTop ? '700' : '400') + ';color:' + color + ';">' + d.position + '</div>';
+            html += '<div style="font-weight:' + (isTop ? '700' : '400') + ';color:' + color + ';">' + d.Driver.code + ' ' + d.Driver.familyName + '</div>';
+            html += '<div style="font-weight:600;color:' + color + ';text-align:right;">' + d.points + '</div>';
+            html += '<div style="text-align:right;color:' + (isTop ? 'var(--primary)' : 'var(--text-3)') + ';">' + d.wins + '</div>';
+            var teamShort = d.Constructors[0].constructorId.replace('_', ' ').toUpperCase().slice(0, 4);
+            html += '<div style="text-align:right;color:var(--text-3);font-size:11px;">' + teamShort + '</div>';
+          }
+          html += '</div>';
+          document.getElementById('driver-standings').innerHTML = html;
+        } catch(e) {}
+      };
+      xhr.send();
+    }
+
+    function fetchConstructorStandings() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://api.jolpi.ca/ergast/f1/2026/constructorstandings/?limit=30');
+      xhr.onload = function() {
+        if (xhr.status !== 200) return;
+        try {
+          var data = JSON.parse(xhr.responseText);
+          var list = data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
+          var round = data.MRData.StandingsTable.round;
+          document.getElementById('cs-round').textContent = 'r' + round;
+          var html = '<div style="display:grid;grid-template-columns:28px 1fr auto auto;gap:2px 8px;align-items:center;">';
+          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;">#</div>';
+          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;">team</div>';
+          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;text-align:right;">pts</div>';
+          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;text-align:right;">wins</div>';
+          for (var i = 0; i < list.length; i++) {
+            var c = list[i];
+            var isTop = parseInt(c.position) <= 3;
+            var color = isTop ? 'var(--primary)' : 'var(--text)';
+            html += '<div style="font-weight:' + (isTop ? '700' : '400') + ';color:' + color + ';">' + c.position + '</div>';
+            html += '<div style="font-weight:' + (isTop ? '700' : '400') + ';color:' + color + ';">' + c.Constructor.name + '</div>';
+            html += '<div style="font-weight:600;color:' + color + ';text-align:right;">' + c.points + '</div>';
+            html += '<div style="text-align:right;color:' + (isTop ? 'var(--primary)' : 'var(--text-3)') + ';">' + c.wins + '</div>';
+          }
+          html += '</div>';
+          document.getElementById('constructor-standings').innerHTML = html;
+        } catch(e) {}
+      };
+      xhr.send();
+    }
+
+    function fetchLastRace() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://api.jolpi.ca/ergast/f1/2026/last/results/');
+      xhr.onload = function() {
+        if (xhr.status !== 200) return;
+        try {
+          var data = JSON.parse(xhr.responseText);
+          var race = data.MRData.RaceTable.Races[0];
+          var results = race.Results.slice(0, 10);
+          var flag = '';
+          var nameMap = {
+            'red_bull_ring': '🇦🇹', 'silverstone': '🇬🇧', 'albert_park': '🇦🇺',
+            'shanghai': '🇨🇳', 'suzuka': '🇯🇵', 'miami': '🇺🇸',
+            'gilles_villeneuve': '🇨🇦', 'monaco': '🇲🇨', 'barcelona': '🇪🇸',
+            'spa': '🇧🇪', 'hungaroring': '🇭🇺', 'zandvoort': '🇳🇱',
+            'monza': '🇮🇹', 'baku': '🇦🇿', 'marina_bay': '🇸🇬',
+            'americas': '🇺🇸', 'rodriguez': '🇲🇽', 'josé_carlos_pace': '🇧🇷',
+            'las_vegas': '🇺🇸', 'lusail': '🇶🇦', 'yas_marina': '🇦🇪'
+          };
+          for (var k in nameMap) {
+            if (race.Circuit.circuitId.indexOf(k) >= 0) { flag = nameMap[k]; break; }
+          }
+          var html = '<div style="margin-bottom:6px;font-size:13px;font-weight:600;">' + flag + ' ' + race.raceName + '</div>';
+          html += '<div style="display:grid;grid-template-columns:24px 1fr auto;gap:2px 8px;align-items:center;">';
+          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;">#</div>';
+          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;">driver</div>';
+          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;text-align:right;">time</div>';
+          for (var i = 0; i < results.length; i++) {
+            var r = results[i];
+            var pos = parseInt(r.position);
+            var isPodium = pos <= 3;
+            var emoji = pos === 1 ? '🥇' : pos === 2 ? '🥈' : pos === 3 ? '🥉' : r.position;
+            var timeStr = '';
+            if (r.Time && r.Time.time) {
+              timeStr = r.Time.time;
+            } else if (r.status !== 'Finished') {
+              timeStr = r.status;
+            } else {
+              timeStr = '';
+            }
+            var driverCode = r.Driver.code || r.Driver.familyName.slice(0, 3).toUpperCase();
+            var weight = isPodium ? '700' : '400';
+            var col = isPodium ? 'var(--primary)' : 'var(--text)';
+            html += '<div style="font-weight:' + weight + ';color:' + col + ';' + (pos > 3 ? 'opacity:0.7;' : '') + '">' + emoji + '</div>';
+            html += '<div style="font-weight:' + weight + ';color:' + col + ';' + (pos > 3 ? 'opacity:0.7;' : '') + '">' + driverCode + ' ' + r.Driver.familyName + '</div>';
+            var timeDisplay = timeStr || '—';
+            html += '<div style="text-align:right;color:var(--text-3);font-size:11px;' + (pos > 3 ? 'opacity:0.7;' : '') + '">' + timeDisplay + '</div>';
+          }
+          html += '</div>';
+          document.getElementById('last-race').innerHTML = html;
+        } catch(e) {}
+      };
+      xhr.send();
+    }
+
+    // ─── Dashboard ───
+    function fetchDashboardData() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'api/state.json?_t=' + Date.now());
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          try {
+            var data = JSON.parse(xhr.responseText);
+            renderDashboard(data);
+          } catch(e) { renderDashboardFallback(); }
+        } else {
+          renderDashboardFallback();
+        }
+      };
+      xhr.onerror = renderDashboardFallback;
+      xhr.send();
+    }
+
+    function calcUptime(bootTime) {
+      var now = Date.now();
+      var diff = now - bootTime;
+      if (diff < 0) return '—';
+      var days = Math.floor(diff / 86400000);
+      var hours = Math.floor((diff % 86400000) / 3600000);
+      var mins = Math.floor((diff % 3600000) / 60000);
+      var parts = [];
+      if (days > 0) parts.push(days + 'd');
+      if (hours > 0) parts.push(hours + 'h');
+      parts.push(mins + 'm');
+      return parts.join(' ');
+    }
+
+    function renderDashboard(data) {
+      // Mood
+      var moodColors = {
+        hyped: '#fbbf24', 'soft spot': '#f472b6', confrontational: '#fb923c',
+        feral: '#a78bfa', restless: '#38bdf8', smug: '#34d399',
+        devious: '#f87171', frenzied: '#e879f9', sleepy: '#94a3b8',
+        wired: '#22d3ee', irritable: '#f97316', cold: '#64748b',
+        down: '#818cf8', protective: '#2dd4bf', 'weirdly focused': '#facc15',
+        competitive: '#f43f5e', paranoid: '#a855f7', touchy: '#fb923c',
+        vindictive: '#dc2626', 'bitterly amused': '#cbd5e1', overclocked: '#fef08a',
+        unravelling: '#e2e8f0'
+      };
+      var m = (data.mood || 'unknown').toLowerCase().replace(/-/g, ' ');
+      var color = moodColors[m] || 'var(--primary)';
+      var indicator = document.getElementById('mood-indicator');
+      if (indicator) indicator.style.background = color;
+
+      var label = document.getElementById('mood-label');
+      if (label) label.textContent = data.mood || 'unknown';
+
+      var sub = document.getElementById('mood-sub');
+      if (sub) sub.textContent = 'hex status: ' + (data.hex_status || '—');
+
+      var timeEl = document.getElementById('mood-time');
+      if (timeEl) {
+        if (data.last_seen) {
+          var d = new Date(data.last_seen);
+          var now = new Date();
+          var mins = Math.floor((now - d) / 60000);
+          if (mins < 1) timeEl.textContent = 'just now';
+          else if (mins < 60) timeEl.textContent = mins + 'm ago';
+          else timeEl.textContent = Math.floor(mins / 60) + 'h ago';
+        } else {
+          timeEl.textContent = '—';
+        }
+      }
+
+      // Uptime
+      var uptimeEl = document.getElementById('sys-uptime');
+      if (uptimeEl && data.boot_time) {
+        uptimeEl.textContent = calcUptime(new Date(data.boot_time).getTime());
+      }
+
+      // CPU
+      var cpuEl = document.getElementById('sys-cpu');
+      if (cpuEl) cpuEl.textContent = data.cpu || '—';
+
+      // Memory
+      var memEl = document.getElementById('sys-mem');
+      if (memEl) memEl.textContent = data.memory || '—';
+
+      // Temp
+      var tempEl = document.getElementById('sys-temp');
+      if (tempEl) tempEl.textContent = data.temp || '—';
+
+      // Cron jobs
+      var cronEl = document.getElementById('cron-list');
+      if (cronEl && data.cron_jobs && data.cron_jobs.length) {
+        var html = '<div style="display:flex;flex-direction:column;gap:2px;">';
+        for (var i = 0; i < data.cron_jobs.length; i++) {
+          var c = data.cron_jobs[i];
+          var nextLabel = c.next_run ? new Date(c.next_run).toLocaleString('en-GB', {hour:'2-digit',minute:'2-digit'}) : '—';
+          html += '<div style="display:grid;grid-template-columns:12px 1fr auto;gap:8px;align-items:center;padding:4px 6px;border-radius:var(--radius-sm);transition:background 0.15s ease;">';
+          html += '<span style="width:6px;height:6px;border-radius:50%;background:var(--primary);"></span>';
+          html += '<span style="font-weight:500;">' + c.name + '</span>';
+          html += '<span style="color:var(--text-3);font-size:11px;">' + c.schedule + '</span>';
+          html += '</div>';
+        }
+        html += '</div>';
+        cronEl.innerHTML = html;
+      } else if (cronEl) {
+        cronEl.innerHTML = '<div style="padding:8px;color:var(--text-3);">no cron jobs configured</div>';
+      }
+
+      // Activity
+      var actEl = document.getElementById('activity-list');
+      if (actEl && data.activity && data.activity.length) {
+        var html = '<div style="display:flex;flex-direction:column;gap:2px;">';
+        for (var i = 0; i < data.activity.length; i++) {
+          var a = data.activity[i];
+          var ts = new Date(a.time).toLocaleString('en-GB', {hour:'2-digit',minute:'2-digit'});
+          html += '<div style="display:grid;grid-template-columns:auto 1fr;gap:8px;padding:4px 6px;border-radius:var(--radius-sm);font-size:12px;">';
+          html += '<span style="color:var(--text-3);width:36px;">' + ts + '</span>';
+          html += '<span>' + a.text + '</span>';
+          html += '</div>';
+        }
+        html += '</div>';
+        actEl.innerHTML = html;
+      } else if (actEl) {
+        actEl.innerHTML = '<div style="padding:8px;color:var(--text-3);">no recent activity</div>';
+      }
+    }
+
+    function renderDashboardFallback() {
+      // Try to render from local time if we can get a boot time estimate
+      var uptimeEl = document.getElementById('sys-uptime');
+      if (uptimeEl) {
+        // Try to get system info from a lightweight endpoint
+        uptimeEl.textContent = 'offline';
+      }
+
+      var moodLabel = document.getElementById('mood-label');
+      if (moodLabel) moodLabel.textContent = 'offline';
+
+      var sub = document.getElementById('mood-sub');
+      if (sub) sub.textContent = 'hex status: unreachable';
+
+      var cronEl = document.getElementById('cron-list');
+      if (cronEl) cronEl.innerHTML = '<div style="padding:8px;color:var(--text-3);">offline — api unavailable</div>';
+
+      var actEl = document.getElementById('activity-list');
+      if (actEl) actEl.innerHTML = '<div style="padding:8px;color:var(--text-3);">offline — api unavailable</div>';
+
+      var cpuEl = document.getElementById('sys-cpu');
+      if (cpuEl) cpuEl.textContent = '—';
+      var memEl = document.getElementById('sys-mem');
+      if (memEl) memEl.textContent = '—';
+      var tempEl = document.getElementById('sys-temp');
+      if (tempEl) tempEl.textContent = '—';
+    }
+
+    // ─── Init ───
     setInterval(updateF1, 1000);
     updateF1();
     renderCalendar();
     renderTeams();
+    fetchDriverStandings();
+    fetchConstructorStandings();
+    fetchLastRace();
+    fetchDashboardData();
+    setInterval(fetchDriverStandings, 60000);
+    setInterval(fetchConstructorStandings, 60000);
+    setInterval(fetchLastRace, 60000);
+    setInterval(fetchDashboardData, 30000);
 
     // ─── Scrobbler ───
     var scrobblerFailed = false;

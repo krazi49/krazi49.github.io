@@ -634,6 +634,98 @@ a.card:active { transform: scale(0.98); }
   z-index: 100;
 }
 
+/* ── Dashboard ────────────────────────────────────── */
+.dashboard-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dashboard-card h3 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.dashboard-card p {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.mood-dot {
+  transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* ── F1 Standings ──────────────────────────────────── */
+.standings-grid {
+  display: grid;
+  gap: 2px 8px;
+  align-items: center;
+}
+
+.standings-header {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-3);
+  padding: 2px 0;
+}
+
+.standings-row {
+  display: contents;
+}
+
+.standings-row > div {
+  padding: 3px 0;
+  transition: background 0.15s ease;
+}
+
+.standings-row:hover > div {
+  background: rgba(255,255,255,0.03);
+  border-radius: 4px;
+}
+
+.pos-1, .pos-2, .pos-3 {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.podium-medal {
+  font-size: 14px;
+}
+
+/* ── Cron / Activity ───────────────────────────────── */
+.cron-item {
+  display: grid;
+  grid-template-columns: 12px 1fr auto;
+  gap: 8px;
+  align-items: center;
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s ease;
+}
+
+.cron-item:hover {
+  background: var(--surface);
+}
+
+.cron-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.cron-name {
+  font-weight: 500;
+}
+
+.cron-schedule {
+  color: var(--text-3);
+  font-size: 11px;
+}
+
 /* ── Mobile ─────────────────────────────────────────── */
 @media (max-width: 600px) {
   body { padding: 12px; }
