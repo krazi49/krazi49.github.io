@@ -20,24 +20,31 @@
     <!-- ─── Sidebar ─── -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">krazierthanu</div>
-      <div class="nav-primary">
-        <button class="nav-item active" data-page="about"><i class="fa-solid fa-user"></i> about</button>
-        <button class="nav-item" data-page="f1"><i class="fa-solid fa-car"></i> f1</button>
-        <button class="nav-item" data-page="music"><i class="fa-solid fa-headphones"></i> music</button>
-        <button class="nav-item" data-page="dashboard"><i class="fa-solid fa-gauge-high"></i> dashboard</button>
-      </div>
-      <button class="nav-item nav-more" id="nav-more-btn" onclick="toggleNavMore()"><i class="fa-solid fa-ellipsis-h"></i> more</button>
-
-      <div class="nav-overlay" id="nav-overlay" onclick="closeNavMore()"></div>
-      <div class="nav-expanded" id="nav-expanded">
-        <button class="nav-item" data-page="projects"><i class="fa-solid fa-cube"></i> projects</button>
-        <button class="nav-item" data-page="now"><i class="fa-solid fa-clock"></i> /now</button>
+      <button class="nav-item active" data-page="about"><i class="fa-solid fa-user"></i> about</button>
+      <button class="nav-item" data-page="f1"><i class="fa-solid fa-car"></i> f1</button>
+      <button class="nav-item" data-page="music"><i class="fa-solid fa-headphones"></i> music</button>
+      <button class="nav-item" data-page="projects"><i class="fa-solid fa-cube"></i> projects</button>
+      <button class="nav-item" data-page="dashboard"><i class="fa-solid fa-gauge-high"></i> dashboard</button>
+      <button class="nav-item" data-page="now"><i class="fa-solid fa-clock"></i> /now</button>
+      <div style="margin-top:auto;padding-top:12px;">
         <button class="nav-item" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i> theme</button>
       </div>
     </aside>
 
     <!-- ─── Main ─── -->
-    <div class="main">
+    <div class="main" id="main-content">
+      <!-- ─── Mobile chip nav ─── -->
+      <div class="mobile-nav">
+        <div class="mobile-nav-inner" id="mobile-nav-inner">
+          <span class="mobile-nav-chip active" data-page="about">about</span>
+          <span class="mobile-nav-chip" data-page="f1">f1</span>
+          <span class="mobile-nav-chip" data-page="music">music</span>
+          <span class="mobile-nav-chip" data-page="projects">projects</span>
+          <span class="mobile-nav-chip" data-page="dashboard">dashboard</span>
+          <span class="mobile-nav-chip" data-page="now">/now</span>
+          <span class="mobile-nav-chip" onclick="toggleTheme()">theme</span>
+        </div>
+      </div>
 
       <!-- ─── ABOUT ─── -->
       <div class="section active" id="section-about">
@@ -409,28 +416,44 @@
         Object.keys(sections).forEach(function(k) { sections[k].classList.remove('active'); });
         b.classList.add('active');
         sections[page].classList.add('active');
-        closeNavMore();
+        // Sync mobile chips
+        document.querySelectorAll('.mobile-nav-chip').forEach(function(c) {
+          c.classList.toggle('active', c.getAttribute('data-page') === page);
+        });
       });
     });
 
-    // ─── Nav expand/collapse (mobile) ───
-    function toggleNavMore() {
-      var expanded = document.getElementById('nav-expanded');
-      var overlay = document.getElementById('nav-overlay');
-      var isOpen = expanded.classList.contains('open');
-      if (isOpen) {
-        expanded.classList.remove('open');
-        overlay.classList.remove('show');
-      } else {
-        expanded.classList.add('open');
-        overlay.classList.add('show');
-      }
-    }
+    // ─── Mobile chip nav ───
+    document.querySelectorAll('.mobile-nav-chip[data-page]').forEach(function(c) {
+      c.addEventListener('click', function() {
+        var page = c.getAttribute('data-page');
+        // Trigger the matching sidebar button
+        document.querySelectorAll('.nav-item[data-page="' + page + '"]').forEach(function(b) { b.click(); });
+      });
+    });
 
-    function closeNavMore() {
-      document.getElementById('nav-expanded').classList.remove('open');
-      document.getElementById('nav-overlay').classList.remove('show');
-    }
+    // ─── Swipe detection ───
+    var touchStartX = 0;
+    var mainEl = document.getElementById('main-content');
+    var pageOrder = ['about','f1','music','projects','dashboard','now'];
+    mainEl.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    mainEl.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(dx) < 60) return;
+      var dir = dx > 0 ? -1 : 1; // swipe right=prev, left=next
+      var currentIdx = -1;
+      for (var i = 0; i < pageOrder.length; i++) {
+        var s = document.getElementById('section-' + pageOrder[i]);
+        if (s && s.classList.contains('active')) { currentIdx = i; break; }
+      }
+      if (currentIdx === -1) return;
+      var nextIdx = currentIdx + dir;
+      if (nextIdx < 0 || nextIdx >= pageOrder.length) return;
+      var targetBtn = document.querySelector('.nav-item[data-page="' + pageOrder[nextIdx] + '"]');
+      if (targetBtn) targetBtn.click();
+    }, { passive: true });
 
     // ─── Theme ───
     function toggleTheme() {

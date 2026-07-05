@@ -76,8 +76,6 @@ body {
   max-width: 720px;
 }
 
-/* nav-more, overlay, expanded exist only in mobile media query */
-
 /* ── Sidebar ────────────────────────────────────────── */
 .sidebar {
   width: 160px;
@@ -85,12 +83,6 @@ body {
   position: sticky;
   top: 20px;
   height: fit-content;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.nav-primary {
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -766,16 +758,58 @@ a.card:active { transform: scale(0.98); }
   font-size: 11px;
 }
 
-/* ── Bottom Nav (mobile) ──────────────────────────── */
+/* ── Mobile chip nav ──────────────────────────────── */
+.mobile-nav {
+  display: none;
+}
+
 @media (max-width: 900px) {
-  .nav-more, .nav-overlay, .nav-expanded {
+  .mobile-nav {
     display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: -4px -8px 4px;
+    padding: 0 8px 4px;
+    gap: 6px;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 12px, black 88%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 12px, black 88%, transparent);
   }
-  .nav-overlay { display: none; }
-  .nav-expanded { display: none; }
+  .mobile-nav::-webkit-scrollbar { display: none; }
+  .mobile-nav-inner {
+    display: flex;
+    gap: 6px;
+    padding: 2px 0;
+  }
+  .mobile-nav-chip {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 8px 18px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: var(--radius-full);
+    background: var(--surface-2);
+    border: 1px solid var(--outline);
+    color: var(--text-2);
+    cursor: pointer;
+    transition: all 0.2s var(--ease);
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mobile-nav-chip:active {
+    transform: scale(0.96);
+  }
+  .mobile-nav-chip.active {
+    background: var(--primary);
+    color: var(--on-primary);
+    border-color: var(--primary);
+    box-shadow: 0 0 16px rgba(123,212,225,0.15);
+  }
 
   body {
-    padding: 0 0 80px;
+    padding: 0;
     min-height: 100dvh;
     font-size: 16px;
   }
@@ -784,118 +818,10 @@ a.card:active { transform: scale(0.98); }
     flex-direction: column;
     gap: 0;
     max-width: 100%;
+    padding: 0;
   }
 
-  .sidebar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: auto;
-    width: 100%;
-    height: 76px;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    gap: 0;
-    overflow: visible;
-    background: var(--surface-2);
-    border-top: 1px solid var(--outline);
-    z-index: 50;
-    padding: 6px 8px;
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-  }
-
-  .sidebar-header { display: none; }
-
-  .sidebar .nav-primary {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    flex: 1;
-    gap: 0;
-  }
-
-  .sidebar .nav-item {
-    width: auto;
-    flex-shrink: 0;
-    padding: 4px 10px;
-    font-size: 12px;
-    font-weight: 500;
-    gap: 2px;
-    flex-direction: column;
-    border-radius: var(--radius-sm);
-    min-width: 0;
-    white-space: nowrap;
-    position: relative;
-    z-index: 2;
-  }
-
-  .sidebar .nav-item i {
-    font-size: 20px;
-    width: auto;
-  }
-
-  .sidebar .nav-item:last-child {
-    margin-top: 0;
-  }
-
-  .sidebar > div:last-child {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-  }
-
-  .nav-more {
-    flex-shrink: 0;
-  }
-
-  /* ── Nav overlay ── */
-  .nav-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.4);
-    z-index: 0;
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
-  }
-  .nav-overlay.show {
-    display: block !important;
-  }
-
-  /* ── Nav expanded panel ── */
-  .nav-expanded {
-    display: none;
-    position: fixed;
-    bottom: 76px;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    background: var(--surface-2);
-    border-top: 1px solid var(--outline);
-    padding: 8px 8px 4px;
-    flex-direction: row;
-    justify-content: space-around;
-    animation: slideUp 0.2s ease;
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-  }
-  .nav-expanded.open {
-    display: flex !important;
-  }
-  .nav-expanded .nav-item {
-    padding: 6px 10px;
-  }
-
-  @keyframes slideUp {
-    from { transform: translateY(100%); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
+  .sidebar { display: none; }
 
   .main {
     padding: 24px;
