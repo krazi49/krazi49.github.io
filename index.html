@@ -144,7 +144,7 @@
         </div>
 
         <p style="font-size:12px;color:var(--text-3);">
-          scrobbling to <a href="https://last.fm/user/silvermanch" class="link-out" target="_blank">last.fm/silvermanch <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:10px;"></i></a>
+          scrobbling to <a href="https://last.fm/user/silvermanch" class="link-out" target="_blank">last.fm/silvermanch 🔗</a>
         </p>
       </div>
 
@@ -1026,9 +1026,6 @@
         html += '<div class="cal-row' + (isExpanded ? ' expanded' : '') + '" onclick="toggleRace(' + i + ')" style="cursor:pointer;display:flex;flex-direction:column;padding-left:8px;margin:0 -4px;border-radius:var(--radius-sm);background:' + bg + ';border-left:' + border + ';' + (isPast && !isExpanded ? 'opacity:0.55;' : '') + animStyle + '">';
         html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 4px;font-weight:' + (isNext ? '600' : '400') + ';">';
         html += '<div style="display:flex;align-items:center;gap:6px;overflow:hidden;">';
-        if (thumb && !isPast) {
-          html += '<div style="width:24px;height:24px;border-radius:4px;overflow:hidden;flex-shrink:0;border:1px solid var(--outline);background:var(--surface-3);"><img src="' + thumb + '" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'" /></div>';
-        }
         html += '<span>' + r.flag + ' ' + r.name + (r.sprint ? ' <span class="sprint-tag">S</span>' : '') + '</span>';
         html += '</div>';
         html += '<span style="color:var(--text-3);font-size:11px;white-space:nowrap;">' + dateStr + (isExpanded ? ' <span style="color:var(--primary);">▲</span>' : ' <span style="color:var(--text-3);">▼</span>') + '</span>';
@@ -1036,11 +1033,6 @@
 
         if (isExpanded) {
           html += '<div style="animation:fadeIn 0.2s ease;">';
-
-          // ── Circuit image ──
-          if (thumb) {
-            html += '<div style="margin:4px 4px 8px;border-radius:var(--radius-sm);overflow:hidden;max-height:100px;background:var(--surface-3);border:1px solid var(--outline);"><img src="' + thumb + '" alt="' + r.circuit + '" style="width:100%;height:100px;object-fit:cover;" /></div>';
-          }
 
           // ── Session times ──
           var groups = getSessionsByDay(r);
@@ -1118,7 +1110,7 @@
 
       div.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1px;">'
         + '<div style="display:flex;align-items:center;gap:8px;"><span style="width:10px;height:10px;border-radius:50%;background:' + t.color + ';"></span><strong style="font-size:15px;">' + t.full + '</strong></div>'
-        + (t.url ? '<a href="' + t.url + '" target="_blank" class="link-out" style="font-size:11px;">f1 page <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:9px;"></i></a>' : '')
+        + (t.url ? '<a href="' + t.url + '" target="_blank" class="link-out" style="font-size:11px;">f1 page 🔗</a>' : '')
         + '</div>'
         + '<div style="margin:6px 0 0;">'
         + driverHtml
@@ -1259,7 +1251,7 @@
             if (info.desc) html += '<div style="color:var(--text-2);margin-bottom:1px;">' + info.desc + '</div>';
             if (info.extract && !info.desc) html += '<div style="color:var(--text-2);margin-bottom:1px;line-height:1.4;">' + info.extract.slice(0, 200) + (info.extract.length > 200 ? '…' : '') + '</div>';
           }
-          html += '<a href="' + d.Driver.url + '" target="_blank" class="link-out" style="font-size:11px;">wikipedia <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:8px;"></i></a>';
+          html += '<a href="' + d.Driver.url + '" target="_blank" class="link-out" style="font-size:11px;">wikipedia 🔗</a>';
           html += '</div>';
         }
         html += '</div>';
@@ -1347,7 +1339,7 @@
             html += '</div>';
           }
           if (info && info.desc) html += '<div style="color:var(--text-2);margin-bottom:1px;">' + info.desc + '</div>';
-          html += '<a href="' + c.Constructor.url + '" target="_blank" class="link-out" style="font-size:11px;">wikipedia <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:8px;"></i></a>';
+          html += '<a href="' + c.Constructor.url + '" target="_blank" class="link-out" style="font-size:11px;">wikipedia 🔗</a>';
           html += '</div>';
         }
         html += '</div>';
@@ -1472,7 +1464,7 @@
             html += '</div>';
           }
           html += '<div style="margin-top:4px;">';
-          html += '<a href="' + driverUrl + '" target="_blank" class="link-out" style="font-size:11px;">driver wiki <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:8px;"></i></a>';
+          html += '<a href="' + driverUrl + '" target="_blank" class="link-out" style="font-size:11px;">driver wiki 🔗</a>';
           html += '</div>';
           html += '</div>';
         }
