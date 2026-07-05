@@ -462,6 +462,7 @@
     var expandedTeam = null;
     var nextSessKey = null;
     var nextSessTime = null;
+    var _calendarAnimated = false;
 
     // Add 2025 winners to each circuit
     var pastWinners = {
@@ -773,8 +774,11 @@
         var border = isExpanded ? '3px solid var(--primary)' : '3px solid transparent';
         var animDelay = (i * 10) + 'ms';
         var thumb = r.circuit_wiki ? circuitThumbs[r.circuit_wiki] : null;
+        var animStyle = _calendarAnimated
+          ? 'transition:background 0.15s ease, border-left 0.15s ease, opacity 0.15s ease;'
+          : 'transition:background 0.15s ease, border-left 0.15s ease, opacity 0.15s ease;animation:slideDown 0.2s ease both;animation-delay:' + animDelay + ';';
 
-        html += '<div class="cal-row' + (isExpanded ? ' expanded' : '') + '" onclick="toggleRace(' + i + ')" style="cursor:pointer;display:flex;flex-direction:column;padding-left:8px;margin:0 -4px;border-radius:var(--radius-sm);background:' + bg + ';border-left:' + border + ';' + (isPast && !isExpanded ? 'opacity:0.55;' : '') + 'transition:background 0.15s ease, border-left 0.15s ease, opacity 0.15s ease;animation:slideDown 0.2s ease both;animation-delay:' + animDelay + '">';
+        html += '<div class="cal-row' + (isExpanded ? ' expanded' : '') + '" onclick="toggleRace(' + i + ')" style="cursor:pointer;display:flex;flex-direction:column;padding-left:8px;margin:0 -4px;border-radius:var(--radius-sm);background:' + bg + ';border-left:' + border + ';' + (isPast && !isExpanded ? 'opacity:0.55;' : '') + animStyle + '">';
         html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 4px;font-weight:' + (isNext ? '600' : '400') + ';">';
         html += '<div style="display:flex;align-items:center;gap:6px;overflow:hidden;">';
         if (thumb && !isPast) {
@@ -1396,6 +1400,7 @@
     setInterval(updateF1, 1000);
     updateF1();
     renderCalendar();
+    _calendarAnimated = true;
     renderTeams();
     fetchDriverStandings();
     fetchConstructorStandings();
