@@ -425,28 +425,28 @@
 
     // ─── F1 ───
     var f1Schedule = [
-      { name: "Australian GP",          date: "2026-03-08T05:00:00Z", flag: "🇦🇺", circuit: "Albert Park Grand Prix Circuit", loc: "Melbourne", laps: 58, length: "5.278 km", dist: "306.1 km", sprint: false, sessions: { fp1: "2026-03-06T02:30:00Z", fp2: "2026-03-06T06:00:00Z", fp3: "2026-03-07T02:30:00Z", quali: "2026-03-07T06:00:00Z", race: "2026-03-08T05:00:00Z" } },
-      { name: "Chinese GP",             date: "2026-03-15T07:00:00Z", flag: "🇨🇳", circuit: "Shanghai International Circuit", loc: "Shanghai", laps: 56, length: "5.451 km", dist: "305.3 km", sprint: true,  sessions: { fp1: "2026-03-13T03:30:00Z", sq: "2026-03-13T07:30:00Z", sprint: "2026-03-14T03:00:00Z", quali: "2026-03-14T07:00:00Z", race: "2026-03-15T07:00:00Z" } },
-      { name: "Japanese GP",            date: "2026-03-29T05:00:00Z", flag: "🇯🇵", circuit: "Suzuka International Racing Course", loc: "Suzuka", laps: 53, length: "5.807 km", dist: "307.8 km", sprint: false, sessions: { fp1: "2026-03-27T03:30:00Z", fp2: "2026-03-27T07:00:00Z", fp3: "2026-03-28T03:30:00Z", quali: "2026-03-28T07:00:00Z", race: "2026-03-29T05:00:00Z" } },
-      { name: "Miami GP",               date: "2026-05-03T21:00:00Z", flag: "🇺🇸", circuit: "Miami International Autodrome", loc: "Miami", laps: 57, length: "5.412 km", dist: "308.5 km", sprint: true,  sessions: { fp1: "2026-05-01T17:30:00Z", sq: "2026-05-01T21:30:00Z", sprint: "2026-05-02T18:00:00Z", quali: "2026-05-02T22:00:00Z", race: "2026-05-03T21:00:00Z" } },
-      { name: "Canadian GP",            date: "2026-05-24T19:00:00Z", flag: "🇨🇦", circuit: "Circuit Gilles Villeneuve", loc: "Montreal", laps: 70, length: "4.361 km", dist: "305.3 km", sprint: true,  sessions: { fp1: "2026-05-22T17:30:00Z", sq: "2026-05-22T21:30:00Z", sprint: "2026-05-23T18:00:00Z", quali: "2026-05-23T22:00:00Z", race: "2026-05-24T19:00:00Z" } },
-      { name: "Monaco GP",              date: "2026-06-07T13:00:00Z", flag: "🇲🇨", circuit: "Circuit de Monaco", loc: "Monte Carlo", laps: 78, length: "3.337 km", dist: "260.3 km", sprint: false, sessions: { fp1: "2026-06-05T11:30:00Z", fp2: "2026-06-05T15:00:00Z", fp3: "2026-06-06T10:30:00Z", quali: "2026-06-06T14:00:00Z", race: "2026-06-07T13:00:00Z" } },
-      { name: "Spanish GP",             date: "2026-06-14T13:00:00Z", flag: "🇪🇸", circuit: "Circuit de Barcelona-Catalunya", loc: "Barcelona", laps: 66, length: "4.657 km", dist: "307.4 km", sprint: false, sessions: { fp1: "2026-06-12T11:30:00Z", fp2: "2026-06-12T15:00:00Z", fp3: "2026-06-13T10:30:00Z", quali: "2026-06-13T14:00:00Z", race: "2026-06-14T13:00:00Z" } },
-      { name: "Austrian GP",            date: "2026-06-28T13:00:00Z", flag: "🇦🇹", circuit: "Red Bull Ring", loc: "Spielberg", laps: 71, length: "4.318 km", dist: "306.6 km", sprint: false, sessions: { fp1: "2026-06-26T10:30:00Z", fp2: "2026-06-26T14:30:00Z", fp3: "2026-06-27T09:30:00Z", quali: "2026-06-27T13:00:00Z", race: "2026-06-28T13:00:00Z" } },
-      { name: "British GP",             date: "2026-07-05T15:00:00Z", flag: "🇬🇧", circuit: "Silverstone Circuit", loc: "Silverstone", laps: 52, length: "5.891 km", dist: "306.3 km", sprint: true,  sessions: { fp1: "2026-07-03T11:30:00Z", sq: "2026-07-03T15:30:00Z", sprint: "2026-07-04T11:00:00Z", quali: "2026-07-04T15:00:00Z", race: "2026-07-05T15:00:00Z" } },
-      { name: "Belgian GP",             date: "2026-07-19T14:00:00Z", flag: "🇧🇪", circuit: "Circuit de Spa-Francorchamps", loc: "Spa", laps: 44, length: "7.004 km", dist: "308.2 km", sprint: false, sessions: { fp1: "2026-07-17T11:30:00Z", fp2: "2026-07-17T15:00:00Z", fp3: "2026-07-18T10:30:00Z", quali: "2026-07-18T14:00:00Z", race: "2026-07-19T14:00:00Z" } },
-      { name: "Hungarian GP",           date: "2026-07-26T14:00:00Z", flag: "🇭🇺", circuit: "Hungaroring", loc: "Budapest", laps: 70, length: "4.381 km", dist: "306.7 km", sprint: false, sessions: { fp1: "2026-07-24T11:30:00Z", fp2: "2026-07-24T15:00:00Z", fp3: "2026-07-25T10:30:00Z", quali: "2026-07-25T14:00:00Z", race: "2026-07-26T14:00:00Z" } },
-      { name: "Dutch GP",               date: "2026-08-23T14:00:00Z", flag: "🇳🇱", circuit: "Circuit Zandvoort", loc: "Zandvoort", laps: 72, length: "4.259 km", dist: "306.6 km", sprint: true,  sessions: { fp1: "2026-08-21T10:30:00Z", sq: "2026-08-21T14:30:00Z", sprint: "2026-08-22T11:00:00Z", quali: "2026-08-22T15:00:00Z", race: "2026-08-23T14:00:00Z" } },
-      { name: "Italian GP",             date: "2026-09-06T13:00:00Z", flag: "🇮🇹", circuit: "Autodromo Nazionale di Monza", loc: "Monza", laps: 53, length: "5.793 km", dist: "307.1 km", sprint: false, sessions: { fp1: "2026-09-04T11:30:00Z", fp2: "2026-09-04T15:00:00Z", fp3: "2026-09-05T10:30:00Z", quali: "2026-09-05T14:00:00Z", race: "2026-09-06T13:00:00Z" } },
-      { name: "Madrid GP",              date: "2026-09-13T14:00:00Z", flag: "🇪🇸", circuit: "Circuito San Sebastián", loc: "Madrid", laps: 55, length: "5.610 km", dist: "308.6 km", sprint: false, sessions: { fp1: "2026-09-11T12:00:00Z", fp2: "2026-09-11T15:30:00Z", fp3: "2026-09-12T11:00:00Z", quali: "2026-09-12T14:30:00Z", race: "2026-09-13T14:00:00Z" } },
-      { name: "Azerbaijan GP",          date: "2026-09-26T11:00:00Z", flag: "🇦🇿", circuit: "Baku City Circuit", loc: "Baku", laps: 51, length: "6.003 km", dist: "306.2 km", sprint: false, sessions: { fp1: "2026-09-25T07:00:00Z", fp2: "2026-09-25T10:30:00Z", fp3: "2026-09-26T07:00:00Z", quali: "2026-09-26T10:30:00Z", race: "2026-09-26T11:00:00Z" } },
-      { name: "Singapore GP",           date: "2026-10-11T14:00:00Z", flag: "🇸🇬", circuit: "Marina Bay Street Circuit", loc: "Singapore", laps: 62, length: "4.940 km", dist: "306.3 km", sprint: true,  sessions: { fp1: "2026-10-09T10:30:00Z", sq: "2026-10-09T14:30:00Z", sprint: "2026-10-10T11:00:00Z", quali: "2026-10-10T15:00:00Z", race: "2026-10-11T14:00:00Z" } },
-      { name: "United States GP",       date: "2026-10-25T20:00:00Z", flag: "🇺🇸", circuit: "Circuit of the Americas", loc: "Austin", laps: 56, length: "5.513 km", dist: "308.8 km", sprint: false, sessions: { fp1: "2026-10-23T17:30:00Z", fp2: "2026-10-23T21:00:00Z", fp3: "2026-10-24T17:30:00Z", quali: "2026-10-24T21:00:00Z", race: "2026-10-25T20:00:00Z" } },
-      { name: "Mexico City GP",         date: "2026-11-01T20:00:00Z", flag: "🇲🇽", circuit: "Autódromo Hermanos Rodríguez", loc: "Mexico City", laps: 71, length: "4.304 km", dist: "305.6 km", sprint: false, sessions: { fp1: "2026-10-30T17:30:00Z", fp2: "2026-10-30T21:00:00Z", fp3: "2026-10-31T16:30:00Z", quali: "2026-10-31T20:00:00Z", race: "2026-11-01T20:00:00Z" } },
-      { name: "São Paulo GP",           date: "2026-11-08T18:00:00Z", flag: "🇧🇷", circuit: "Autódromo José Carlos Pace", loc: "São Paulo", laps: 71, length: "4.309 km", dist: "305.9 km", sprint: false, sessions: { fp1: "2026-11-06T14:30:00Z", fp2: "2026-11-06T18:00:00Z", fp3: "2026-11-07T14:30:00Z", quali: "2026-11-07T18:00:00Z", race: "2026-11-08T18:00:00Z" } },
-      { name: "Las Vegas GP",           date: "2026-11-22T06:00:00Z", flag: "🇺🇸", circuit: "Las Vegas Strip Circuit", loc: "Las Vegas", laps: 50, length: "6.201 km", dist: "310.1 km", sprint: false, sessions: { fp1: "2026-11-20T02:30:00Z", fp2: "2026-11-20T06:00:00Z", fp3: "2026-11-21T02:30:00Z", quali: "2026-11-21T06:00:00Z", race: "2026-11-22T06:00:00Z" } },
-      { name: "Qatar GP",               date: "2026-11-29T17:00:00Z", flag: "🇶🇦", circuit: "Lusail International Circuit", loc: "Lusail", laps: 57, length: "5.419 km", dist: "308.9 km", sprint: false, sessions: { fp1: "2026-11-27T13:30:00Z", fp2: "2026-11-27T17:00:00Z", fp3: "2026-11-28T13:30:00Z", quali: "2026-11-28T17:00:00Z", race: "2026-11-29T17:00:00Z" } },
-      { name: "Abu Dhabi GP",           date: "2026-12-06T13:00:00Z", flag: "🇦🇪", circuit: "Yas Marina Circuit", loc: "Abu Dhabi", laps: 55, length: "5.281 km", dist: "290.5 km", sprint: false, sessions: { fp1: "2026-12-04T09:30:00Z", fp2: "2026-12-04T13:00:00Z", fp3: "2026-12-05T09:30:00Z", quali: "2026-12-05T13:00:00Z", race: "2026-12-06T13:00:00Z" } }
+      { name: "Australian GP",          date: "2026-03-08T05:00:00Z", flag: "🇦🇺", circuit: "Albert Park Grand Prix Circuit", loc: "Melbourne", laps: 58, length: "5.278 km", dist: "306.1 km", sprint: false, circuit_wiki: "Albert_Park_Circuit", sessions: { fp1: "2026-03-06T02:30:00Z", fp2: "2026-03-06T06:00:00Z", fp3: "2026-03-07T02:30:00Z", quali: "2026-03-07T06:00:00Z", race: "2026-03-08T05:00:00Z" } },
+      { name: "Chinese GP",             date: "2026-03-15T07:00:00Z", flag: "🇨🇳", circuit: "Shanghai International Circuit", loc: "Shanghai", laps: 56, length: "5.451 km", dist: "305.3 km", sprint: true,  circuit_wiki: "Shanghai_International_Circuit", sessions: { fp1: "2026-03-13T03:30:00Z", sq: "2026-03-13T07:30:00Z", sprint: "2026-03-14T03:00:00Z", quali: "2026-03-14T07:00:00Z", race: "2026-03-15T07:00:00Z" } },
+      { name: "Japanese GP",            date: "2026-03-29T05:00:00Z", flag: "🇯🇵", circuit: "Suzuka International Racing Course", loc: "Suzuka", laps: 53, length: "5.807 km", dist: "307.8 km", sprint: false, circuit_wiki: "Suzuka_International_Racing_Course", sessions: { fp1: "2026-03-27T03:30:00Z", fp2: "2026-03-27T07:00:00Z", fp3: "2026-03-28T03:30:00Z", quali: "2026-03-28T07:00:00Z", race: "2026-03-29T05:00:00Z" } },
+      { name: "Miami GP",               date: "2026-05-03T21:00:00Z", flag: "🇺🇸", circuit: "Miami International Autodrome", loc: "Miami", laps: 57, length: "5.412 km", dist: "308.5 km", sprint: true,  circuit_wiki: "Miami_International_Autodrome", sessions: { fp1: "2026-05-01T17:30:00Z", sq: "2026-05-01T21:30:00Z", sprint: "2026-05-02T18:00:00Z", quali: "2026-05-02T22:00:00Z", race: "2026-05-03T21:00:00Z" } },
+      { name: "Canadian GP",            date: "2026-05-24T19:00:00Z", flag: "🇨🇦", circuit: "Circuit Gilles Villeneuve", loc: "Montreal", laps: 70, length: "4.361 km", dist: "305.3 km", sprint: true,  circuit_wiki: "Circuit_Gilles_Villeneuve", sessions: { fp1: "2026-05-22T17:30:00Z", sq: "2026-05-22T21:30:00Z", sprint: "2026-05-23T18:00:00Z", quali: "2026-05-23T22:00:00Z", race: "2026-05-24T19:00:00Z" } },
+      { name: "Monaco GP",              date: "2026-06-07T13:00:00Z", flag: "🇲🇨", circuit: "Circuit de Monaco", loc: "Monte Carlo", laps: 78, length: "3.337 km", dist: "260.3 km", sprint: false, circuit_wiki: "Circuit_de_Monaco", sessions: { fp1: "2026-06-05T11:30:00Z", fp2: "2026-06-05T15:00:00Z", fp3: "2026-06-06T10:30:00Z", quali: "2026-06-06T14:00:00Z", race: "2026-06-07T13:00:00Z" } },
+      { name: "Spanish GP",             date: "2026-06-14T13:00:00Z", flag: "🇪🇸", circuit: "Circuit de Barcelona-Catalunya", loc: "Barcelona", laps: 66, length: "4.657 km", dist: "307.4 km", sprint: false, circuit_wiki: "Circuit_de_Barcelona-Catalunya", sessions: { fp1: "2026-06-12T11:30:00Z", fp2: "2026-06-12T15:00:00Z", fp3: "2026-06-13T10:30:00Z", quali: "2026-06-13T14:00:00Z", race: "2026-06-14T13:00:00Z" } },
+      { name: "Austrian GP",            date: "2026-06-28T13:00:00Z", flag: "🇦🇹", circuit: "Red Bull Ring", loc: "Spielberg", laps: 71, length: "4.318 km", dist: "306.6 km", sprint: false, circuit_wiki: "Red_Bull_Ring", sessions: { fp1: "2026-06-26T10:30:00Z", fp2: "2026-06-26T14:30:00Z", fp3: "2026-06-27T09:30:00Z", quali: "2026-06-27T13:00:00Z", race: "2026-06-28T13:00:00Z" } },
+      { name: "British GP",             date: "2026-07-05T15:00:00Z", flag: "🇬🇧", circuit: "Silverstone Circuit", loc: "Silverstone", laps: 52, length: "5.891 km", dist: "306.3 km", sprint: true,  circuit_wiki: "Silverstone_Circuit", sessions: { fp1: "2026-07-03T11:30:00Z", sq: "2026-07-03T15:30:00Z", sprint: "2026-07-04T11:00:00Z", quali: "2026-07-04T15:00:00Z", race: "2026-07-05T15:00:00Z" } },
+      { name: "Belgian GP",             date: "2026-07-19T14:00:00Z", flag: "🇧🇪", circuit: "Circuit de Spa-Francorchamps", loc: "Spa", laps: 44, length: "7.004 km", dist: "308.2 km", sprint: false, circuit_wiki: "Circuit_de_Spa-Francorchamps", sessions: { fp1: "2026-07-17T11:30:00Z", fp2: "2026-07-17T15:00:00Z", fp3: "2026-07-18T10:30:00Z", quali: "2026-07-18T14:00:00Z", race: "2026-07-19T14:00:00Z" } },
+      { name: "Hungarian GP",           date: "2026-07-26T14:00:00Z", flag: "🇭🇺", circuit: "Hungaroring", loc: "Budapest", laps: 70, length: "4.381 km", dist: "306.7 km", sprint: false, circuit_wiki: "Hungaroring", sessions: { fp1: "2026-07-24T11:30:00Z", fp2: "2026-07-24T15:00:00Z", fp3: "2026-07-25T10:30:00Z", quali: "2026-07-25T14:00:00Z", race: "2026-07-26T14:00:00Z" } },
+      { name: "Dutch GP",               date: "2026-08-23T14:00:00Z", flag: "🇳🇱", circuit: "Circuit Zandvoort", loc: "Zandvoort", laps: 72, length: "4.259 km", dist: "306.6 km", sprint: true,  circuit_wiki: "Circuit_Zandvoort", sessions: { fp1: "2026-08-21T10:30:00Z", sq: "2026-08-21T14:30:00Z", sprint: "2026-08-22T11:00:00Z", quali: "2026-08-22T15:00:00Z", race: "2026-08-23T14:00:00Z" } },
+      { name: "Italian GP",             date: "2026-09-06T13:00:00Z", flag: "🇮🇹", circuit: "Autodromo Nazionale di Monza", loc: "Monza", laps: 53, length: "5.793 km", dist: "307.1 km", sprint: false, circuit_wiki: "Autodromo_Nazionale_di_Monza", sessions: { fp1: "2026-09-04T11:30:00Z", fp2: "2026-09-04T15:00:00Z", fp3: "2026-09-05T10:30:00Z", quali: "2026-09-05T14:00:00Z", race: "2026-09-06T13:00:00Z" } },
+      { name: "Madrid GP",              date: "2026-09-13T14:00:00Z", flag: "🇪🇸", circuit: "Circuito San Sebastián", loc: "Madrid", laps: 55, length: "5.610 km", dist: "308.6 km", sprint: false, circuit_wiki: "Circuito_San_Sebasti%C3%A1n", sessions: { fp1: "2026-09-11T12:00:00Z", fp2: "2026-09-11T15:30:00Z", fp3: "2026-09-12T11:00:00Z", quali: "2026-09-12T14:30:00Z", race: "2026-09-13T14:00:00Z" } },
+      { name: "Azerbaijan GP",          date: "2026-09-26T11:00:00Z", flag: "🇦🇿", circuit: "Baku City Circuit", loc: "Baku", laps: 51, length: "6.003 km", dist: "306.2 km", sprint: false, circuit_wiki: "Baku_City_Circuit", sessions: { fp1: "2026-09-25T07:00:00Z", fp2: "2026-09-25T10:30:00Z", fp3: "2026-09-26T07:00:00Z", quali: "2026-09-26T10:30:00Z", race: "2026-09-26T11:00:00Z" } },
+      { name: "Singapore GP",           date: "2026-10-11T14:00:00Z", flag: "🇸🇬", circuit: "Marina Bay Street Circuit", loc: "Singapore", laps: 62, length: "4.940 km", dist: "306.3 km", sprint: true,  circuit_wiki: "Marina_Bay_Street_Circuit", sessions: { fp1: "2026-10-09T10:30:00Z", sq: "2026-10-09T14:30:00Z", sprint: "2026-10-10T11:00:00Z", quali: "2026-10-10T15:00:00Z", race: "2026-10-11T14:00:00Z" } },
+      { name: "United States GP",       date: "2026-10-25T20:00:00Z", flag: "🇺🇸", circuit: "Circuit of the Americas", loc: "Austin", laps: 56, length: "5.513 km", dist: "308.8 km", sprint: false, circuit_wiki: "Circuit_of_the_Americas", sessions: { fp1: "2026-10-23T17:30:00Z", fp2: "2026-10-23T21:00:00Z", fp3: "2026-10-24T17:30:00Z", quali: "2026-10-24T21:00:00Z", race: "2026-10-25T20:00:00Z" } },
+      { name: "Mexico City GP",         date: "2026-11-01T20:00:00Z", flag: "🇲🇽", circuit: "Autódromo Hermanos Rodríguez", loc: "Mexico City", laps: 71, length: "4.304 km", dist: "305.6 km", sprint: false, circuit_wiki: "Aut%C3%B3dromo_Hermanos_Rodr%C3%ADguez", sessions: { fp1: "2026-10-30T17:30:00Z", fp2: "2026-10-30T21:00:00Z", fp3: "2026-10-31T16:30:00Z", quali: "2026-10-31T20:00:00Z", race: "2026-11-01T20:00:00Z" } },
+      { name: "São Paulo GP",           date: "2026-11-08T18:00:00Z", flag: "🇧🇷", circuit: "Autódromo José Carlos Pace", loc: "São Paulo", laps: 71, length: "4.309 km", dist: "305.9 km", sprint: false, circuit_wiki: "Aut%C3%B3dromo_Jos%C3%A9_Carlos_Pace", sessions: { fp1: "2026-11-06T14:30:00Z", fp2: "2026-11-06T18:00:00Z", fp3: "2026-11-07T14:30:00Z", quali: "2026-11-07T18:00:00Z", race: "2026-11-08T18:00:00Z" } },
+      { name: "Las Vegas GP",           date: "2026-11-22T06:00:00Z", flag: "🇺🇸", circuit: "Las Vegas Strip Circuit", loc: "Las Vegas", laps: 50, length: "6.201 km", dist: "310.1 km", sprint: false, circuit_wiki: "Las_Vegas_Strip_Circuit", sessions: { fp1: "2026-11-20T02:30:00Z", fp2: "2026-11-20T06:00:00Z", fp3: "2026-11-21T02:30:00Z", quali: "2026-11-21T06:00:00Z", race: "2026-11-22T06:00:00Z" } },
+      { name: "Qatar GP",               date: "2026-11-29T17:00:00Z", flag: "🇶🇦", circuit: "Lusail International Circuit", loc: "Lusail", laps: 57, length: "5.419 km", dist: "308.9 km", sprint: false, circuit_wiki: "Lusail_International_Circuit", sessions: { fp1: "2026-11-27T13:30:00Z", fp2: "2026-11-27T17:00:00Z", fp3: "2026-11-28T13:30:00Z", quali: "2026-11-28T17:00:00Z", race: "2026-11-29T17:00:00Z" } },
+      { name: "Abu Dhabi GP",           date: "2026-12-06T13:00:00Z", flag: "🇦🇪", circuit: "Yas Marina Circuit", loc: "Abu Dhabi", laps: 55, length: "5.281 km", dist: "290.5 km", sprint: false, circuit_wiki: "Yas_Marina_Circuit", sessions: { fp1: "2026-12-04T09:30:00Z", fp2: "2026-12-04T13:00:00Z", fp3: "2026-12-05T09:30:00Z", quali: "2026-12-05T13:00:00Z", race: "2026-12-06T13:00:00Z" } }
     ];
 
     var f1Teams = {
@@ -489,11 +489,64 @@
       'yas marina': {n:'Max Verstappen', num:'1'}
     };
 
-    function getWinner(r) {
+    var pastWinners2024 = {
+      'albert park': {n:'Carlos Sainz', num:'55'},
+      'shanghai': {n:'Max Verstappen', num:'1'},
+      'suzuka': {n:'Max Verstappen', num:'1'},
+      'miami': {n:'Lando Norris', num:'4'},
+      'gilles villeneuve': {n:'Max Verstappen', num:'1'},
+      'monaco': {n:'Charles Leclerc', num:'16'},
+      'barcelona-catalunya': {n:'Max Verstappen', num:'1'},
+      'red bull ring': {n:'George Russell', num:'63'},
+      'silverstone': {n:'Lewis Hamilton', num:'44'},
+      'spa-francorchamps': {n:'Lewis Hamilton', num:'44'},
+      'hungaroring': {n:'Oscar Piastri', num:'81'},
+      'zandvoort': {n:'Lando Norris', num:'4'},
+      'monza': {n:'Charles Leclerc', num:'16'},
+      'baku': {n:'Lando Norris', num:'4'},
+      'marina bay': {n:'Lando Norris', num:'4'},
+      'americas': {n:'Charles Leclerc', num:'16'},
+      'hermanos rodríguez': {n:'Carlos Sainz', num:'55'},
+      'josé carlos pace': {n:'Max Verstappen', num:'1'},
+      'las vegas strip': {n:'George Russell', num:'63'},
+      'lusail': {n:'Max Verstappen', num:'1'},
+      'yas marina': {n:'Lando Norris', num:'4'}
+    };
+
+    var circuitInfo = {
+      'albert park': {firstGP: '1996', corners: 14, drs: 3, lapRec: '1\'20.235 (Pérez, 2023)', type: 'street'},
+      'shanghai': {firstGP: '2004', corners: 16, drs: 3, lapRec: '1\'37.810 (Hamilton, 2019)', type: 'permanent'},
+      'suzuka': {firstGP: '1987', corners: 18, drs: 2, lapRec: '1\'30.983 (Hamilton, 2019)', type: 'permanent'},
+      'miami': {firstGP: '2022', corners: 19, drs: 3, lapRec: '1\'29.708 (Verstappen, 2023)', type: 'street'},
+      'gilles villeneuve': {firstGP: '1978', corners: 14, drs: 2, lapRec: '1\'13.078 (Bottas, 2019)', type: 'street'},
+      'monaco': {firstGP: '1950', corners: 19, drs: 1, lapRec: '1\'12.909 (Hamilton, 2021)', type: 'street'},
+      'barcelona-catalunya': {firstGP: '1991', corners: 14, drs: 2, lapRec: '1\'16.330 (Hamilton, 2020)', type: 'permanent'},
+      'red bull ring': {firstGP: '1970', corners: 10, drs: 3, lapRec: '1\'05.619 (Sainz, 2020)', type: 'permanent'},
+      'silverstone': {firstGP: '1950', corners: 18, drs: 3, lapRec: '1\'27.097 (Verstappen, 2020)', type: 'permanent'},
+      'spa-francorchamps': {firstGP: '1950', corners: 19, drs: 2, lapRec: '1\'46.286 (Hamilton, 2020)', type: 'permanent'},
+      'hungaroring': {firstGP: '1986', corners: 14, drs: 2, lapRec: '1\'16.627 (Hamilton, 2020)', type: 'permanent'},
+      'zandvoort': {firstGP: '1952', corners: 14, drs: 2, lapRec: '1\'11.097 (Hamilton, 2021)', type: 'permanent'},
+      'monza': {firstGP: '1950', corners: 11, drs: 2, lapRec: '1\'21.046 (Hamilton, 2020)', type: 'permanent'},
+      'san sebastián': {firstGP: '2026', corners: 15, drs: 2, lapRec: '—', type: 'permanent'},
+      'baku': {firstGP: '2016', corners: 20, drs: 2, lapRec: '1\'43.009 (Leclerc, 2019)', type: 'street'},
+      'marina bay': {firstGP: '2008', corners: 19, drs: 3, lapRec: '1\'35.867 (Hamilton, 2023)', type: 'street'},
+      'americas': {firstGP: '2012', corners: 20, drs: 3, lapRec: '1\'36.169 (Leclerc, 2019)', type: 'permanent'},
+      'hermanos rodríguez': {firstGP: '1963', corners: 17, drs: 3, lapRec: '1\'17.774 (Sainz, 2021)', type: 'permanent'},
+      'josé carlos pace': {firstGP: '1973', corners: 15, drs: 2, lapRec: '1\'10.540 (Bottas, 2018)', type: 'permanent'},
+      'las vegas strip': {firstGP: '2023', corners: 17, drs: 3, lapRec: '1\'35.490 (Piastri, 2023)', type: 'street'},
+      'lusail': {firstGP: '2021', corners: 16, drs: 2, lapRec: '1\'24.319 (Verstappen, 2021)', type: 'permanent'},
+      'yas marina': {firstGP: '2009', corners: 16, drs: 2, lapRec: '1\'26.103 (Verstappen, 2021)', type: 'permanent'}
+    };
+
+    function circuitKey(circuitName) {
+      var k = circuitName.toLowerCase();
+      for (var ck in circuitInfo) { if (k.indexOf(ck) !== -1) return ck; }
+      return null;
+    }
+    function getWinner(r, year) {
       var key = r.circuit.toLowerCase();
-      for (var k in pastWinners) {
-        if (key.indexOf(k) !== -1) return pastWinners[k];
-      }
+      var pool = year === 2024 ? pastWinners2024 : pastWinners;
+      for (var k in pool) { if (key.indexOf(k) !== -1) return pool[k]; }
       return null;
     }
 
@@ -653,9 +706,30 @@
       }
     }
 
+    var circuitThumbs = {};
+    var circuitDescs = {};
+    function fetchCircuitWiki(i) {
+      var r = f1Schedule[i];
+      if (!r.circuit_wiki) return;
+      if (circuitThumbs[r.circuit_wiki] !== undefined) return;
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://en.wikipedia.org/api/rest_v1/page/summary/' + r.circuit_wiki);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          try {
+            var d = JSON.parse(xhr.responseText);
+            circuitThumbs[r.circuit_wiki] = (d.thumbnail && d.thumbnail.source) || null;
+            circuitDescs[r.circuit_wiki] = d.extract || '';
+            if (expandedRace !== null) renderCalendar();
+          } catch(e) {}
+        }
+      };
+      xhr.send();
+    }
+
     function toggleRace(idx) {
       if (expandedRace === idx) { expandedRace = null; }
-      else { expandedRace = idx; expandedTeam = null; }
+      else { expandedRace = idx; expandedTeam = null; fetchCircuitWiki(idx); }
       renderCalendar();
       renderTeams();
     }
@@ -690,19 +764,36 @@
           }
         }
 
-        var w = getWinner(r);
-        var fontWeight = isNext ? '600' : '400';
+        var w25 = getWinner(r, 2025);
+        var w24 = getWinner(r, 2024);
+        var ck = circuitKey(r.circuit);
+        var ci = ck ? circuitInfo[ck] : null;
         var dateStr = raceDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
         var bg = isExpanded ? 'var(--surface)' : 'transparent';
         var border = isExpanded ? '3px solid var(--primary)' : '3px solid transparent';
+        var animDelay = (i * 10) + 'ms';
+        var thumb = r.circuit_wiki ? circuitThumbs[r.circuit_wiki] : null;
 
-        html += '<div class="cal-row' + (isExpanded ? ' expanded' : '') + '" onclick="toggleRace(' + i + ')" style="cursor:pointer;display:flex;flex-direction:column;padding-left:8px;margin:0 -4px;border-radius:var(--radius-sm);background:' + bg + ';border-left:' + border + ';' + (isPast && !isExpanded ? 'opacity:0.35;' : '') + '">';
-        html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:3px 4px;font-weight:' + fontWeight + ';">';
+        html += '<div class="cal-row' + (isExpanded ? ' expanded' : '') + '" onclick="toggleRace(' + i + ')" style="cursor:pointer;display:flex;flex-direction:column;padding-left:8px;margin:0 -4px;border-radius:var(--radius-sm);background:' + bg + ';border-left:' + border + ';' + (isPast && !isExpanded ? 'opacity:0.55;' : '') + 'transition:background 0.15s ease, border-left 0.15s ease, opacity 0.15s ease;animation:slideDown 0.2s ease both;animation-delay:' + animDelay + '">';
+        html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 4px;font-weight:' + (isNext ? '600' : '400') + ';">';
+        html += '<div style="display:flex;align-items:center;gap:6px;overflow:hidden;">';
+        if (thumb && !isPast) {
+          html += '<div style="width:24px;height:24px;border-radius:4px;overflow:hidden;flex-shrink:0;border:1px solid var(--outline);background:var(--surface-3);"><img src="' + thumb + '" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'" /></div>';
+        }
         html += '<span>' + r.flag + ' ' + r.name + (r.sprint ? ' <span class="sprint-tag">S</span>' : '') + '</span>';
-        html += '<span style="color:var(--text-3);font-size:11px;">' + dateStr + (isExpanded ? ' <span style="color:var(--primary);">▲</span>' : ' <span style="color:var(--text-3);">▼</span>') + '</span>';
+        html += '</div>';
+        html += '<span style="color:var(--text-3);font-size:11px;white-space:nowrap;">' + dateStr + (isExpanded ? ' <span style="color:var(--primary);">▲</span>' : ' <span style="color:var(--text-3);">▼</span>') + '</span>';
         html += '</div>';
 
         if (isExpanded) {
+          html += '<div style="animation:fadeIn 0.2s ease;">';
+
+          // ── Circuit image ──
+          if (thumb) {
+            html += '<div style="margin:4px 4px 8px;border-radius:var(--radius-sm);overflow:hidden;max-height:100px;background:var(--surface-3);border:1px solid var(--outline);"><img src="' + thumb + '" alt="' + r.circuit + '" style="width:100%;height:100px;object-fit:cover;" /></div>';
+          }
+
+          // ── Session times ──
           var groups = getSessionsByDay(r);
           var dayLabels = { fri:'friday', sat:'saturday', sun:'sunday' };
           for (var d in dayLabels) {
@@ -721,38 +812,42 @@
             html += '</div>';
           }
 
-          // Circuit info
+          // ── Circuit details bar ──
           html += '<div style="border-top:1px solid var(--outline);margin:6px 4px 4px;"></div>';
-          html += '<div style="display:flex;justify-content:space-between;font-size:11px;padding:0 4px;">';
-          html += '<span style="color:var(--text-3);font-family:\'Paper Mono\',monospace;">' + r.circuit + '</span>';
-          html += '<span style="color:var(--text-3);font-family:\'Paper Mono\',monospace;">' + r.loc + '</span>';
+          html += '<div style="font-size:11px;padding:0 4px 2px;">';
+          html += '<div style="display:flex;justify-content:space-between;"><span style="color:var(--text-3);font-family:\'Paper Mono\',monospace;">' + r.circuit + '</span><span style="color:var(--text-3);font-family:\'Paper Mono\',monospace;">' + r.loc + '</span></div>';
+          html += '<div style="display:flex;gap:10px;padding:3px 0;">';
+          html += '<span style="font-family:\'Paper Mono\',monospace;color:var(--text-2);">' + r.laps + ' laps</span>';
+          html += '<span style="font-family:\'Paper Mono\',monospace;color:var(--text-2);">' + r.length + '</span>';
+          html += '<span style="font-family:\'Paper Mono\',monospace;color:var(--text-2);">' + r.dist + '</span>';
           html += '</div>';
-
-          // Stats row
-          html += '<div style="display:flex;gap:14px;font-size:11px;color:var(--text-2);padding:2px 4px 4px;">';
-          html += '<span style="font-family:\'Paper Mono\',monospace;">' + r.laps + ' laps</span>';
-          html += '<span style="font-family:\'Paper Mono\',monospace;">' + r.length + '</span>';
-          html += '<span style="font-family:\'Paper Mono\',monospace;">' + r.dist + '</span>';
-          html += '</div>';
-
-          // 2025 winner
-          if (w) {
-            html += '<div style="border-top:1px solid var(--outline);margin:2px 4px 4px;"></div>';
-            html += '<div style="display:flex;align-items:center;gap:6px;font-size:11px;padding:2px 4px 4px;color:var(--text-2);">';
-            html += '<span style="font-size:12px;">🏁</span>';
-            html += '<span style="font-family:\'Paper Mono\',monospace;font-weight:600;">#' + w.num + '</span>';
-            html += '<span>' + w.n + '</span>';
-            html += '<span style="color:var(--text-3);margin-left:auto;">2025 winner</span>';
+          if (ci) {
+            html += '<div style="display:flex;flex-wrap:wrap;gap:4px 12px;padding:3px 0;border-top:1px solid var(--outline);margin-top:2px;padding-top:4px;">';
+            html += '<span style="color:var(--text-3);">🏁 first GP <strong>' + ci.firstGP + '</strong></span>';
+            html += '<span style="color:var(--text-3);">↻ corners <strong>' + ci.corners + '</strong></span>';
+            html += '<span style="color:var(--text-3);">⚡ DRS <strong>' + ci.drs + '</strong></span>';
+            html += '<span style="color:var(--text-3);">⏱ lap record <strong>' + ci.lapRec + '</strong></span>';
+            html += '<span style="color:var(--text-3);">📋 type <strong>' + ci.type + '</strong></span>';
             html += '</div>';
           }
+          html += '</div>';
+
+          // ── Past winners ──
+          html += '<div style="border-top:1px solid var(--outline);margin:2px 4px 4px;"></div>';
+          html += '<div style="font-size:11px;padding:2px 4px;display:flex;gap:12px;">';
+          if (w25) html += '<span style="color:var(--text-2);">🏁 2025: <strong style="font-family:\'Paper Mono\',monospace;">#' + w25.num + '</strong> ' + w25.n + '</span>';
+          if (w24) html += '<span style="color:var(--text-2);">🏁 2024: <strong style="font-family:\'Paper Mono\',monospace;">#' + w24.num + '</strong> ' + w24.n + '</span>';
+          html += '</div>';
+
+          html += '</div>'; // end animation wrapper
         }
         html += '</div>';
       }
-      document.getElementById('f1-calendar').innerHTML = html;
+      byId('f1-calendar').innerHTML = html;
     }
 
     function renderTeams() {
-      var existing = document.getElementById('team-detail');
+      var existing = byId('team-detail');
       if (existing) existing.remove();
 
       if (!expandedTeam) return;
@@ -767,23 +862,23 @@
       for (var d = 0; d < t.drivers.length; d++) {
         var drv = t.drivers[d];
         driverHtml += '<div style="display:flex;align-items:center;gap:8px;padding:4px 0;">'
-          + '<span style="font-family:\'Paper Mono\',monospace;font-size:13px;font-weight:600;color:var(--text-3);width:24px;">#' + drv.num + '</span>'
+          + '<span style="font-family:\'Paper Mono\',monospace;font-size:13px;font-weight:700;color:var(--text-3);width:24px;">#' + drv.num + '</span>'
           + '<span style="font-weight:600;font-size:14px;">' + drv.n + '</span>'
           + '</div>';
       }
 
       div.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">'
-        + '<div style="display:flex;align-items:center;gap:8px;"><span style="width:10px;height:10px;border-radius:50%;background:' + t.color + ';"></span><strong>' + t.full + '</strong></div>'
-        + '<a href="' + t.url + '" target="_blank" class="link-out" style="font-size:11px;">f1 page <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:9px;"></i></a>'
+        + '<div style="display:flex;align-items:center;gap:8px;"><span style="width:10px;height:10px;border-radius:50%;background:' + t.color + ';"></span><strong style="font-size:15px;">' + t.full + '</strong></div>'
+        + (t.url ? '<a href="' + t.url + '" target="_blank" class="link-out" style="font-size:11px;">f1 page <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:9px;"></i></a>' : '')
         + '</div>'
-        + '<div style="margin:6px 0 6px;">'
+        + '<div style="margin:6px 0 0;">'
         + driverHtml
         + '</div>'
-        + '<div style="display:flex;gap:12px;font-family:\'Paper Mono\',monospace;font-size:11px;color:var(--text-3);padding-top:6px;border-top:1px solid var(--outline);">'
-        + '<span>powertrain: ' + t.engine + '</span>'
+        + '<div style="display:flex;gap:14px;font-family:\'Paper Mono\',monospace;font-size:11px;color:var(--text-3);padding-top:6px;margin-top:4px;border-top:1px solid var(--outline);">'
+        + '<span>⚙️ ' + t.engine + '</span>'
         + '</div>';
 
-      var chips = document.getElementById('team-chips');
+      var chips = byId('team-chips');
       chips.parentNode.insertBefore(div, chips.nextSibling);
     }
 
@@ -885,14 +980,26 @@
 
         if (isExpanded) {
           var info = wikiCache[wikiPageTitle(d.Driver.url)];
+          var age = '';
+          if (d.Driver.dateOfBirth) {
+            var bd = new Date(d.Driver.dateOfBirth);
+            var today = new Date();
+            var ageCalc = today.getFullYear() - bd.getFullYear();
+            var m = today.getMonth() - bd.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < bd.getDate())) ageCalc--;
+            age = ageCalc + 'yo';
+          }
           html += '<div style="padding:4px 4px 6px;border-top:1px solid var(--outline);margin:0 4px;font-size:12px;animation:fadeIn 0.15s ease;">';
           html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 16px;margin-bottom:4px;">';
           html += '<span style="color:var(--text-3);">nation <strong>' + (d.Driver.nationality || '—') + '</strong></span>';
           html += '<span style="color:var(--text-3);">no. <strong>#' + d.Driver.permanentNumber + '</strong></span>';
-          html += '<span style="color:var(--text-3);">dob <strong>' + (d.Driver.dateOfBirth || '—') + '</strong></span>';
+          html += '<span style="color:var(--text-3);">' + (age ? age + ' <strong style="color:var(--text-2);font-weight:400;">(' + d.Driver.dateOfBirth + ')</strong>' : 'dob <strong>' + (d.Driver.dateOfBirth || '—') + '</strong>') + '</span>';
           html += '<span style="color:var(--text-3);">team <strong>' + d.Constructors[0].name + '</strong></span>';
           html += '</div>';
-          if (info && info.desc) html += '<div style="color:var(--text-2);margin-bottom:4px;">' + info.desc + '</div>';
+          if (info) {
+            if (info.desc) html += '<div style="color:var(--text-2);margin-bottom:2px;">' + info.desc + '</div>';
+            if (info.extract && !info.desc) html += '<div style="color:var(--text-2);margin-bottom:2px;line-height:1.4;">' + info.extract.slice(0, 200) + (info.extract.length > 200 ? '…' : '') + '</div>';
+          }
           html += '<a href="' + d.Driver.url + '" target="_blank" class="link-out" style="font-size:11px;">wikipedia <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:8px;"></i></a>';
           html += '</div>';
         }
@@ -962,11 +1069,26 @@
 
         if (isExpanded) {
           var info = wikiCache[wikiPageTitle(c.Constructor.url)];
+          var teamCode = Object.keys(f1Teams).find(function(k) {
+            return f1Teams[k].full.toLowerCase().indexOf(c.Constructor.name.toLowerCase()) !== -1 || c.Constructor.name.toLowerCase().indexOf(f1Teams[k].full.toLowerCase().slice(0,6)) !== -1;
+          });
           html += '<div style="padding:4px 4px 6px;border-top:1px solid var(--outline);margin:0 4px;font-size:12px;animation:fadeIn 0.15s ease;">';
           html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 16px;margin-bottom:4px;">';
           html += '<span style="color:var(--text-3);">nation <strong>' + (c.Constructor.nationality || '—') + '</strong></span>';
           html += '<span style="color:var(--text-3);">pos <strong>#' + c.position + '</strong></span>';
           html += '</div>';
+          if (teamCode && f1Teams[teamCode] && f1Teams[teamCode].drivers) {
+            html += '<div style="margin:4px 0;padding:4px 0;border-top:1px solid var(--outline);border-bottom:1px solid var(--outline);">';
+            html += '<div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);margin-bottom:2px;">drivers</div>';
+            var drvs = f1Teams[teamCode].drivers;
+            for (var dx = 0; dx < drvs.length; dx++) {
+              html += '<div style="display:flex;align-items:center;gap:6px;padding:2px 0;">';
+              html += '<span style="font-family:\'Paper Mono\',monospace;font-size:11px;font-weight:700;color:var(--text-3);width:20px;">#' + drvs[dx].num + '</span>';
+              html += '<span style="font-size:12px;font-weight:500;">' + drvs[dx].n + '</span>';
+              html += '</div>';
+            }
+            html += '</div>';
+          }
           if (info && info.desc) html += '<div style="color:var(--text-2);margin-bottom:4px;">' + info.desc + '</div>';
           html += '<a href="' + c.Constructor.url + '" target="_blank" class="link-out" style="font-size:11px;">wikipedia <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:8px;"></i></a>';
           html += '</div>';
@@ -1023,6 +1145,21 @@
     function renderLastRace(results, title) {
       var html = '<div style="margin-bottom:6px;font-size:13px;font-weight:600;">' + title + '</div>';
       html += '<div style="display:flex;flex-direction:column;gap:1px;">';
+
+      // Find fastest lap overall
+      var flDriver = null, flTime = null, flLap = null, bestRank = 999;
+      for (var f = 0; f < results.length; f++) {
+        if (results[f].FastestLap) {
+          var rank = parseInt(results[f].FastestLap.rank) || 999;
+          if (rank < bestRank) {
+            bestRank = rank;
+            flDriver = results[f].Driver.driverId;
+            flTime = results[f].FastestLap.Time.time;
+            flLap = results[f].FastestLap.lap;
+          }
+        }
+      }
+
       for (var i = 0; i < results.length; i++) {
         var r = results[i], pos = parseInt(r.position);
         var isPodium = pos <= 3;
@@ -1041,14 +1178,17 @@
         var gridStr = r.grid ? r.grid : '—';
         var lapsStr = r.laps || '—';
         var driverUrl = r.Driver.url || '';
+        var pts = r.points || '—';
+        var hasFL = r.Driver.driverId === flDriver;
 
-        html += '<div onclick="toggleRaceResult(\'' + r.Driver.driverId + '\')" style="cursor:pointer;display:flex;flex-direction:column;border-radius:var(--radius-sm);background:' + bg + ';border-left:2px solid ' + (isExpanded ? 'var(--primary)' : 'transparent') + ';padding-left:6px;margin:0 -4px;transition:all 0.15s ease;' + (pos > 3 ? 'opacity:0.7;' : '') + '">';
-        html += '<div style="display:grid;grid-template-columns:20px ' + (thumb ? '20px ' : '') + '1fr auto;gap:2px 4px;align-items:center;padding:3px 4px;">';
+        html += '<div onclick="toggleRaceResult(\'' + r.Driver.driverId + '\')" style="cursor:pointer;display:flex;flex-direction:column;border-radius:var(--radius-sm);background:' + bg + ';border-left:2px solid ' + (isExpanded ? 'var(--primary)' : hasFL && !isExpanded ? '#fbbf24' : 'transparent') + ';padding-left:6px;margin:0 -4px;transition:all 0.15s ease;' + (pos > 3 ? 'opacity:0.7;' : '') + '">';
+        html += '<div style="display:grid;grid-template-columns:20px ' + (thumb ? '20px ' : '') + '1fr 30px auto;gap:2px 4px;align-items:center;padding:3px 4px;">';
         html += '<div style="font-weight:' + (isPodium ? '700' : '400') + ';color:' + col + ';' + (pos > 3 ? '' : 'font-size:13px;') + '">' + emoji + '</div>';
         if (thumb) {
-          html += '<div style="width:20px;height:20px;border-radius:50%;overflow:hidden;border:1.5px solid var(--outline);"><img src="' + thumb + '" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'" /></div>';
+          html += '<div style="width:20px;height:20px;border-radius:50%;overflow:hidden;border:1.5px solid ' + (hasFL ? '#fbbf24' : 'var(--outline)') + ';"><img src="' + thumb + '" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'" /></div>';
         }
-        html += '<div style="font-weight:' + (isPodium ? '700' : '500') + ';color:' + col + ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;">' + driverCode + ' ' + r.Driver.familyName + '</div>';
+        html += '<div style="font-weight:' + (isPodium ? '700' : '500') + ';color:' + col + ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;">' + driverCode + ' ' + r.Driver.familyName + (hasFL ? ' <span title="fastest lap" style="display:inline-block;font-size:9px;color:#fbbf24;transform:translateY(-1px);">⚡</span>' : '') + '</div>';
+        html += '<div style="text-align:right;color:' + col + ';font-size:11px;font-weight:600;">' + pts + '</div>';
         var tm = timeStr || '—';
         html += '<div style="text-align:right;color:var(--text-3);font-size:11px;font-family:\'Paper Mono\',monospace;">' + tm + '</div>';
         html += '</div>';
@@ -1060,13 +1200,24 @@
           html += '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px 12px;margin-bottom:4px;">';
           html += '<span style="color:var(--text-3);">grid <strong>P' + gridStr + '</strong></span>';
           html += '<span style="color:var(--text-3);">laps <strong>' + lapsStr + '</strong></span>';
+          html += '<span style="color:var(--text-3);">pts <strong>' + pts + '</strong></span>';
           html += '<span style="color:var(--text-3);">status <strong>' + r.status + '</strong></span>';
+          html += '<span style="color:var(--text-3);">position <strong>P' + r.position + '</strong></span>';
+          html += '<span style="color:var(--text-3);">car <strong>#' + r.number + '</strong></span>';
           html += '</div>';
           if (r.FastestLap) {
             var fl = r.FastestLap;
-            html += '<div style="color:var(--text-2);margin-bottom:4px;">fastest lap: ' + fl.Time.time + ' (lap ' + fl.lap + ')</div>';
+            var isFastest = r.Driver.driverId === flDriver;
+            html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 12px;margin-bottom:4px;padding:4px 6px;background:var(--surface-2);border-radius:var(--radius-sm);">';
+            html += '<span style="color:var(--text-2);">fastest lap <strong>' + fl.Time.time + '</strong></span>';
+            html += '<span style="color:var(--text-2);">lap <strong>' + fl.lap + '/' + lapsStr + '</strong></span>';
+            if (isFastest) html += '<span style="color:#fbbf24;font-size:10px;">⚡ overall fastest</span>';
+            else html += '<span style="color:var(--text-3);font-size:10px;">rank #' + (fl.rank || '—') + '</span>';
+            html += '</div>';
           }
+          html += '<div style="margin-top:4px;">';
           html += '<a href="' + driverUrl + '" target="_blank" class="link-out" style="font-size:11px;">driver wiki <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:8px;"></i></a>';
+          html += '</div>';
           html += '</div>';
         }
         html += '</div>';
