@@ -33,19 +33,6 @@
 
     <!-- ─── Main ─── -->
     <div class="main" id="main-content">
-      <!-- ─── Mobile chip nav ─── -->
-      <div class="mobile-nav">
-        <div class="mobile-nav-inner" id="mobile-nav-inner">
-          <span class="mobile-nav-chip active" data-page="about">about</span>
-          <span class="mobile-nav-chip" data-page="f1">f1</span>
-          <span class="mobile-nav-chip" data-page="music">music</span>
-          <span class="mobile-nav-chip" data-page="projects">projects</span>
-          <span class="mobile-nav-chip" data-page="dashboard">dashboard</span>
-          <span class="mobile-nav-chip" data-page="now">/now</span>
-          <span class="mobile-nav-chip" onclick="toggleTheme()">theme</span>
-        </div>
-      </div>
-
       <!-- ─── ABOUT ─── -->
       <div class="section active" id="section-about">
         <div class="hero">
@@ -391,8 +378,22 @@
         </div>
       </div>
 
+      <!-- ─── Mobile chip nav ─── -->
+      <div class="mobile-nav">
+        <div class="mobile-nav-inner" id="mobile-nav-inner">
+          <span class="mobile-nav-chip active" data-page="about">about</span>
+          <span class="mobile-nav-chip" data-page="f1">f1</span>
+          <span class="mobile-nav-chip" data-page="music">music</span>
+          <span class="mobile-nav-chip" data-page="projects">projects</span>
+          <span class="mobile-nav-chip" data-page="dashboard">dashboard</span>
+          <span class="mobile-nav-chip" data-page="now">/now</span>
+          <span class="mobile-nav-chip" onclick="toggleTheme()">theme</span>
+        </div>
+      </div>
+
     </div>
   </div>
+
 
   <div class="toast" id="toast">copied!</div>
 
@@ -423,11 +424,19 @@
       });
     });
 
-    // ─── Mobile chip nav ───
+    // ─── Mobile chip nav (scroll-guarded) ───
     document.querySelectorAll('.mobile-nav-chip[data-page]').forEach(function(c) {
-      c.addEventListener('click', function() {
+      var moved = false;
+      c.addEventListener('touchmove', function() { moved = true; }, { passive: true });
+      c.addEventListener('touchend', function(e) {
+        if (moved) { e.preventDefault(); moved = false; return; }
         var page = c.getAttribute('data-page');
-        // Trigger the matching sidebar button
+        document.querySelectorAll('.nav-item[data-page="' + page + '"]').forEach(function(b) { b.click(); });
+        moved = false;
+      });
+      c.addEventListener('click', function() {
+        // Fallback for non-touch devices
+        var page = c.getAttribute('data-page');
         document.querySelectorAll('.nav-item[data-page="' + page + '"]').forEach(function(b) { b.click(); });
       });
     });
