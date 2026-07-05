@@ -761,9 +761,9 @@ a.card:active { transform: scale(0.98); }
 /* ── Bottom Nav (mobile) ──────────────────────────── */
 @media (max-width: 900px) {
   body {
-    padding: 0 0 72px;
+    padding: 0 0 80px;
     min-height: 100dvh;
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .shell {
@@ -779,7 +779,7 @@ a.card:active { transform: scale(0.98); }
     right: 0;
     top: auto;
     width: 100%;
-    height: 68px;
+    height: 76px;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
@@ -788,7 +788,7 @@ a.card:active { transform: scale(0.98); }
     background: var(--surface-2);
     border-top: 1px solid var(--outline);
     z-index: 50;
-    padding: 4px 8px;
+    padding: 6px 8px;
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
   }
@@ -798,8 +798,9 @@ a.card:active { transform: scale(0.98); }
   .sidebar .nav-item {
     width: auto;
     flex-shrink: 0;
-    padding: 4px 10px;
-    font-size: 11px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 500;
     gap: 2px;
     flex-direction: column;
     border-radius: var(--radius-sm);
@@ -808,7 +809,7 @@ a.card:active { transform: scale(0.98); }
   }
 
   .sidebar .nav-item i {
-    font-size: 18px;
+    font-size: 20px;
     width: auto;
   }
 
@@ -822,11 +823,11 @@ a.card:active { transform: scale(0.98); }
   }
 
   .main {
-    padding: 20px;
+    padding: 24px;
     border-radius: 0;
     border: none;
     min-height: 100dvh;
-    gap: 14px;
+    gap: 16px;
   }
 
   .card-row {
@@ -837,21 +838,21 @@ a.card:active { transform: scale(0.98); }
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 10px;
+    gap: 12px;
   }
 
   .hero-avatar {
-    width: 52px;
-    height: 52px;
-    font-size: 20px;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
   }
 
   .hero-text h1 {
-    font-size: 20px;
+    font-size: 22px;
   }
 
   .hero-text p {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .neofetch-wrap {
@@ -861,12 +862,12 @@ a.card:active { transform: scale(0.98); }
   }
 
   .neofetch-logo {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .neofetch-data {
-    font-size: 12px;
-    line-height: 1.7;
+    font-size: 13px;
+    line-height: 1.8;
   }
 
   .status-row {
@@ -874,21 +875,29 @@ a.card:active { transform: scale(0.98); }
   }
 
   .status-badge {
-    font-size: 12px;
-    padding: 5px 12px;
+    font-size: 13px;
+    padding: 6px 14px;
   }
 
   .dash-grid-2 {
     grid-template-columns: 1fr;
-    gap: 6px;
+    gap: 8px;
   }
 
   .dash-val {
-    font-size: 14px;
+    font-size: 15px;
+  }
+
+  .dash-label {
+    font-size: 10px;
   }
 
   .countdown-number {
-    font-size: 30px;
+    font-size: 34px;
+  }
+
+  .countdown-meta {
+    font-size: 13px;
   }
 
   .chip-row {
@@ -896,8 +905,8 @@ a.card:active { transform: scale(0.98); }
   }
 
   .chip {
-    font-size: 13px;
-    padding: 6px 16px;
+    font-size: 14px;
+    padding: 8px 18px;
   }
 
   /* F1 standings: scroll horizontally */
@@ -910,24 +919,24 @@ a.card:active { transform: scale(0.98); }
   }
 
   .standings-scroll .standings-grid {
-    min-width: 420px;
+    min-width: 460px;
   }
 
-  /* Calendar expanded: tighter */
+  /* Calendar expanded */
   .section#section-f1 .card {
-    padding: 14px;
+    padding: 16px;
   }
 
   /* Toast above bottom nav */
   .toast {
-    bottom: 84px;
-    font-size: 13px;
-    padding: 10px 20px;
+    bottom: 92px;
+    font-size: 14px;
+    padding: 12px 24px;
   }
 
-  /* Tighter card padding overall */
+  /* Card padding overall */
   .card {
-    padding: 14px 16px;
+    padding: 16px 18px;
   }
 
   .card:hover {
@@ -935,59 +944,68 @@ a.card:active { transform: scale(0.98); }
   }
 
   .section#section-f1 .countdown-card {
-    padding: 18px 16px;
+    padding: 20px 18px;
   }
 
   /* Cal rows bigger */
   .cal-row {
-    font-size: 13px !important;
+    font-size: 14px !important;
   }
 
   /* Section header bigger */
   .section-header {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   /* Nav items more tap-friendly */
   .sidebar .nav-item.active {
     box-shadow: 0 0 16px rgba(123,212,225,0.12);
   }
+
+  /* F1 session times larger */
+  .section#section-f1 [class~="standings-grid"] {
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 500px) {
   body {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .sidebar {
-    height: 62px;
-    padding: 2px 4px;
+    height: 68px;
+    padding: 4px 4px;
   }
 
   .sidebar .nav-item {
     padding: 3px 8px;
-    font-size: 10px;
+    font-size: 11px;
   }
   .sidebar .nav-item i {
-    font-size: 16px;
-  }
-  .main {
-    padding: 14px;
-    gap: 12px;
-  }
-  .card {
-    padding: 12px 14px;
-  }
-  .hero-avatar {
-    width: 44px;
-    height: 44px;
-    font-size: 17px;
-  }
-  .hero-text h1 {
     font-size: 18px;
   }
+  .main {
+    padding: 16px;
+    gap: 14px;
+  }
+  .card {
+    padding: 14px 16px;
+  }
+  .hero-avatar {
+    width: 52px;
+    height: 52px;
+    font-size: 20px;
+  }
+  .hero-text h1 {
+    font-size: 20px;
+  }
   .countdown-number {
-    font-size: 26px;
+    font-size: 28px;
+  }
+  .chip {
+    font-size: 13px;
+    padding: 6px 14px;
   }
 }
 
