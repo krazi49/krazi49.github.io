@@ -788,6 +788,44 @@
     }
 
     // ─── F1 Standings (Jolpica) ───
+    // ─── Wikipedia Image Cache ───
+    var wikiCache = {};
+    function wikiPageTitle(url) {
+      if (!url) return null;
+      var m = url.match(/\/wiki\/(.+)/);
+      return m ? decodeURIComponent(m[1]) : null;
+    }
+    function fetchWikiData(url, callback) {
+      var title = wikiPageTitle(url);
+      if (!title) { if (callback) callback(null); return; }
+      if (wikiCache[title]) { if (callback) callback(wikiCache[title]); return; }
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://en.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(title));
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          try {
+            var data = JSON.parse(xhr.responseText);
+            wikiCache[title] = {
+              thumb: data.thumbnail ? data.thumbnail.source : null,
+              desc: data.description || '',
+              extract: data.extract || ''
+            };
+            if (callback) callback(wikiCache[title]);
+          } catch(e) { if (callback) callback(null); }
+        } else { if (callback) callback(null); }
+      };
+      xhr.onerror = function() { if (callback) callback(null); };
+      xhr.send();
+    }
+    function wikiThumb(url) {
+      var title = wikiPageTitle(url);
+      return title && wikiCache[title] ? wikiCache[title].thumb : null;
+    }
+
+    var expandedDrvIdx = -1;
+    var expandedConIdx = -1;
+    var expandedRaceRIdx = -1;
+
     function fetchDriverStandings() {
       var xhr = new XMLHttpRequest();
       xhr.open('GET', 'https://api.jolpi.ca/ergast/f1/2026/driverstandings/?limit=30');
@@ -797,29 +835,76 @@
           var data = JSON.parse(xhr.responseText);
           var list = data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
           var round = data.MRData.StandingsTable.round;
-          document.getElementById('ds-round').textContent = 'r' + round;
-          var html = '<div style="display:grid;grid-template-columns:28px 1fr auto auto auto;gap:2px 8px;align-items:center;">';
-          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;">#</div>';
-          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;">driver</div>';
-          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;text-align:right;">pts</div>';
-          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;text-align:right;">wins</div>';
-          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;text-align:right;">team</div>';
+          byId('ds-round').textContent = 'r' + round;
+          window._driverData = list;
+          renderDriverStandings(list);
           for (var i = 0; i < list.length; i++) {
-            var d = list[i];
-            var isTop = parseInt(d.position) <= 3;
-            var color = isTop ? 'var(--primary)' : 'var(--text)';
-            html += '<div style="font-weight:' + (isTop ? '700' : '400') + ';color:' + color + ';">' + d.position + '</div>';
-            html += '<div style="font-weight:' + (isTop ? '700' : '400') + ';color:' + color + ';">' + d.Driver.code + ' ' + d.Driver.familyName + '</div>';
-            html += '<div style="font-weight:600;color:' + color + ';text-align:right;">' + d.points + '</div>';
-            html += '<div style="text-align:right;color:' + (isTop ? 'var(--primary)' : 'var(--text-3)') + ';">' + d.wins + '</div>';
-            var teamShort = d.Constructors[0].constructorId.replace('_', ' ').toUpperCase().slice(0, 4);
-            html += '<div style="text-align:right;color:var(--text-3);font-size:11px;">' + teamShort + '</div>';
+            (function(idx) {
+              fetchWikiData(list[idx].Driver.url, function() {
+                renderDriverStandings(list);
+              });
+            })(i);
           }
-          html += '</div>';
-          document.getElementById('driver-standings').innerHTML = html;
         } catch(e) {}
       };
       xhr.send();
+    }
+
+    function renderDriverStandings(list) {
+      var html = '<div style="display:flex;flex-direction:column;gap:1px;">';
+      for (var i = 0; i < list.length; i++) {
+        var d = list[i], pos = parseInt(d.position);
+        var isTop = pos <= 3;
+        var isExpanded = expandedDrvIdx === d.Driver.driverId;
+        var color = isTop ? 'var(--primary)' : 'var(--text)';
+        var thumb = wikiThumb(d.Driver.url);
+        var teamId = d.Constructors[0].constructorId;
+        var constructorColors = {
+          'mercedes': '#00D2BE', 'ferrari': '#E8002D', 'mclaren': '#FF8700',
+          'red_bull': '#CD0068', 'alpine': '#0090FF', 'rb': '#0600EF',
+          'williams': '#005AFF', 'aston_martin': '#006F62', 'haas': '#B6BABD',
+          'kick_sauber': '#52E252'
+        };
+        var teamColor = constructorColors[teamId] || 'var(--text-3)';
+        var teamCode = teamId.replace('_',' ').toUpperCase().slice(0,4);
+        var bg = isExpanded ? 'var(--surface)' : 'transparent';
+        var border = isExpanded ? '2px solid ' + teamColor : '2px solid transparent';
+        var hasThumb = !!thumb;
+
+        html += '<div onclick="toggleDriver(\'' + d.Driver.driverId + '\')" style="cursor:pointer;display:flex;flex-direction:column;border-radius:var(--radius-sm);background:' + bg + ';border-left:' + border + ';padding-left:6px;margin:0 -4px;transition:all 0.15s ease;' + (pos > 10 ? 'opacity:0.55;' : '') + '">';
+        html += '<div style="display:grid;grid-template-columns:' + (hasThumb ? '20px 22px 1fr' : '20px 1fr') + ' 36px 28px auto;gap:2px 4px;align-items:center;padding:3px 4px;">';
+        html += '<div style="font-weight:' + (isTop ? '700' : '400') + ';color:' + color + ';text-align:center;font-size:12px;">' + d.position + '</div>';
+        if (hasThumb) {
+          html += '<div style="width:22px;height:22px;border-radius:50%;overflow:hidden;border:1.5px solid ' + teamColor + ';"><img src="' + thumb + '" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'" /></div>';
+        }
+        html += '<div style="font-weight:' + (isTop ? '700' : '500') + ';color:' + color + ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;">' + d.Driver.code + ' ' + d.Driver.familyName + '</div>';
+        html += '<div style="font-weight:600;color:' + color + ';text-align:right;font-size:13px;">' + d.points + '</div>';
+        html += '<div style="text-align:right;color:' + (isTop ? 'var(--primary)' : 'var(--text-3)') + ';font-size:10px;">' + d.wins + '</div>';
+        html += '<div style="color:var(--text-3);font-size:9px;font-weight:700;text-transform:uppercase;text-align:right;">' + teamCode + '</div>';
+        html += '</div>';
+
+        if (isExpanded) {
+          var info = wikiCache[wikiPageTitle(d.Driver.url)];
+          html += '<div style="padding:4px 4px 6px;border-top:1px solid var(--outline);margin:0 4px;font-size:12px;animation:fadeIn 0.15s ease;">';
+          html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 16px;margin-bottom:4px;">';
+          html += '<span style="color:var(--text-3);">nation <strong>' + (d.Driver.nationality || '—') + '</strong></span>';
+          html += '<span style="color:var(--text-3);">no. <strong>#' + d.Driver.permanentNumber + '</strong></span>';
+          html += '<span style="color:var(--text-3);">dob <strong>' + (d.Driver.dateOfBirth || '—') + '</strong></span>';
+          html += '<span style="color:var(--text-3);">team <strong>' + d.Constructors[0].name + '</strong></span>';
+          html += '</div>';
+          if (info && info.desc) html += '<div style="color:var(--text-2);margin-bottom:4px;">' + info.desc + '</div>';
+          html += '<a href="' + d.Driver.url + '" target="_blank" class="link-out" style="font-size:11px;">wikipedia <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:8px;"></i></a>';
+          html += '</div>';
+        }
+        html += '</div>';
+      }
+      html += '</div>';
+      byId('driver-standings').innerHTML = html;
+    }
+
+    function toggleDriver(id) {
+      expandedDrvIdx = expandedDrvIdx === id ? -1 : id;
+      if (window._driverData) renderDriverStandings(window._driverData);
     }
 
     function fetchConstructorStandings() {
@@ -831,28 +916,73 @@
           var data = JSON.parse(xhr.responseText);
           var list = data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
           var round = data.MRData.StandingsTable.round;
-          document.getElementById('cs-round').textContent = 'r' + round;
-          var html = '<div style="display:grid;grid-template-columns:28px 1fr auto auto;gap:2px 8px;align-items:center;">';
-          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;">#</div>';
-          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;">team</div>';
-          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;text-align:right;">pts</div>';
-          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;text-align:right;">wins</div>';
+          byId('cs-round').textContent = 'r' + round;
+          window._constructorData = list;
+          renderConstructorStandings(list);
           for (var i = 0; i < list.length; i++) {
-            var c = list[i];
-            var isTop = parseInt(c.position) <= 3;
-            var color = isTop ? 'var(--primary)' : 'var(--text)';
-            html += '<div style="font-weight:' + (isTop ? '700' : '400') + ';color:' + color + ';">' + c.position + '</div>';
-            html += '<div style="font-weight:' + (isTop ? '700' : '400') + ';color:' + color + ';">' + c.Constructor.name + '</div>';
-            html += '<div style="font-weight:600;color:' + color + ';text-align:right;">' + c.points + '</div>';
-            html += '<div style="text-align:right;color:' + (isTop ? 'var(--primary)' : 'var(--text-3)') + ';">' + c.wins + '</div>';
+            (function(idx) {
+              fetchWikiData(list[idx].Constructor.url, function() {
+                renderConstructorStandings(list);
+              });
+            })(i);
           }
-          html += '</div>';
-          document.getElementById('constructor-standings').innerHTML = html;
         } catch(e) {}
       };
       xhr.send();
     }
 
+    function renderConstructorStandings(list) {
+      var html = '<div style="display:flex;flex-direction:column;gap:1px;">';
+      var conColors = {
+        'mercedes': '#00D2BE', 'ferrari': '#E8002D', 'mclaren': '#FF8700',
+        'red_bull': '#CD0068', 'alpine': '#0090FF', 'rb': '#0600EF',
+        'williams': '#005AFF', 'aston_martin': '#006F62', 'haas': '#B6BABD',
+        'rb_f1_team': '#6692FF', 'kick_sauber': '#52E252'
+      };
+      for (var i = 0; i < list.length; i++) {
+        var c = list[i], pos = parseInt(c.position);
+        var isTop = pos <= 3;
+        var isExpanded = expandedConIdx === c.Constructor.constructorId;
+        var color = isTop ? 'var(--primary)' : 'var(--text)';
+        var thumb = wikiThumb(c.Constructor.url);
+        var teamColor = conColors[c.Constructor.constructorId] || 'var(--text-3)';
+        var bg = isExpanded ? 'var(--surface)' : 'transparent';
+        var border = isExpanded ? '2px solid ' + teamColor : '2px solid transparent';
+
+        html += '<div onclick="toggleConstructor(\'' + c.Constructor.constructorId + '\')" style="cursor:pointer;display:flex;flex-direction:column;border-radius:var(--radius-sm);background:' + bg + ';border-left:' + border + ';padding-left:6px;margin:0 -4px;transition:all 0.15s ease;' + (pos > 6 ? 'opacity:0.55;' : '') + '">';
+        html += '<div style="display:grid;grid-template-columns:20px ' + (thumb ? '24px ' : '') + '1fr 36px 28px;gap:2px 4px;align-items:center;padding:3px 4px;">';
+        html += '<div style="font-weight:' + (isTop ? '700' : '400') + ';color:' + color + ';text-align:center;font-size:12px;">' + c.position + '</div>';
+        if (thumb) {
+          html += '<div style="width:24px;height:24px;border-radius:4px;overflow:hidden;border:1px solid var(--outline);background:var(--surface-2);display:flex;align-items:center;justify-content:center;"><img src="' + thumb + '" alt="" style="max-width:100%;max-height:100%;object-fit:contain;" onerror="this.parentElement.style.display=\'none\'" /></div>';
+        }
+        html += '<div style="font-weight:' + (isTop ? '700' : '500') + ';color:' + color + ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;">' + c.Constructor.name + '</div>';
+        html += '<div style="font-weight:600;color:' + color + ';text-align:right;font-size:13px;">' + c.points + '</div>';
+        html += '<div style="text-align:right;color:' + (isTop ? 'var(--primary)' : 'var(--text-3)') + ';font-size:10px;">' + c.wins + '</div>';
+        html += '</div>';
+
+        if (isExpanded) {
+          var info = wikiCache[wikiPageTitle(c.Constructor.url)];
+          html += '<div style="padding:4px 4px 6px;border-top:1px solid var(--outline);margin:0 4px;font-size:12px;animation:fadeIn 0.15s ease;">';
+          html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 16px;margin-bottom:4px;">';
+          html += '<span style="color:var(--text-3);">nation <strong>' + (c.Constructor.nationality || '—') + '</strong></span>';
+          html += '<span style="color:var(--text-3);">pos <strong>#' + c.position + '</strong></span>';
+          html += '</div>';
+          if (info && info.desc) html += '<div style="color:var(--text-2);margin-bottom:4px;">' + info.desc + '</div>';
+          html += '<a href="' + c.Constructor.url + '" target="_blank" class="link-out" style="font-size:11px;">wikipedia <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:8px;"></i></a>';
+          html += '</div>';
+        }
+        html += '</div>';
+      }
+      html += '</div>';
+      byId('constructor-standings').innerHTML = html;
+    }
+
+    function toggleConstructor(id) {
+      expandedConIdx = expandedConIdx === id ? -1 : id;
+      if (window._constructorData) renderConstructorStandings(window._constructorData);
+    }
+
+    var _lastRaceTitle = '';
     function fetchLastRace() {
       var xhr = new XMLHttpRequest();
       xhr.open('GET', 'https://api.jolpi.ca/ergast/f1/2026/last/results/');
@@ -862,6 +992,7 @@
           var data = JSON.parse(xhr.responseText);
           var race = data.MRData.RaceTable.Races[0];
           var results = race.Results.slice(0, 10);
+          window._lastRaceData = results;
           var flag = '';
           var nameMap = {
             'red_bull_ring': '🇦🇹', 'silverstone': '🇬🇧', 'albert_park': '🇦🇺',
@@ -875,37 +1006,78 @@
           for (var k in nameMap) {
             if (race.Circuit.circuitId.indexOf(k) >= 0) { flag = nameMap[k]; break; }
           }
-          var html = '<div style="margin-bottom:6px;font-size:13px;font-weight:600;">' + flag + ' ' + race.raceName + '</div>';
-          html += '<div style="display:grid;grid-template-columns:24px 1fr auto;gap:2px 8px;align-items:center;">';
-          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;">#</div>';
-          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;">driver</div>';
-          html += '<div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:2px 0;text-align:right;">time</div>';
+          _lastRaceTitle = flag + ' ' + race.raceName;
+          renderLastRace(results, _lastRaceTitle);
           for (var i = 0; i < results.length; i++) {
-            var r = results[i];
-            var pos = parseInt(r.position);
-            var isPodium = pos <= 3;
-            var emoji = pos === 1 ? '🥇' : pos === 2 ? '🥈' : pos === 3 ? '🥉' : r.position;
-            var timeStr = '';
-            if (r.Time && r.Time.time) {
-              timeStr = r.Time.time;
-            } else if (r.status !== 'Finished') {
-              timeStr = r.status;
-            } else {
-              timeStr = '';
-            }
-            var driverCode = r.Driver.code || r.Driver.familyName.slice(0, 3).toUpperCase();
-            var weight = isPodium ? '700' : '400';
-            var col = isPodium ? 'var(--primary)' : 'var(--text)';
-            html += '<div style="font-weight:' + weight + ';color:' + col + ';' + (pos > 3 ? 'opacity:0.7;' : '') + '">' + emoji + '</div>';
-            html += '<div style="font-weight:' + weight + ';color:' + col + ';' + (pos > 3 ? 'opacity:0.7;' : '') + '">' + driverCode + ' ' + r.Driver.familyName + '</div>';
-            var timeDisplay = timeStr || '—';
-            html += '<div style="text-align:right;color:var(--text-3);font-size:11px;' + (pos > 3 ? 'opacity:0.7;' : '') + '">' + timeDisplay + '</div>';
+            (function(idx) {
+              fetchWikiData(results[idx].Driver.url, function() {
+                renderLastRace(results, _lastRaceTitle);
+              });
+            })(i);
           }
-          html += '</div>';
-          document.getElementById('last-race').innerHTML = html;
         } catch(e) {}
       };
       xhr.send();
+    }
+
+    function renderLastRace(results, title) {
+      var html = '<div style="margin-bottom:6px;font-size:13px;font-weight:600;">' + title + '</div>';
+      html += '<div style="display:flex;flex-direction:column;gap:1px;">';
+      for (var i = 0; i < results.length; i++) {
+        var r = results[i], pos = parseInt(r.position);
+        var isPodium = pos <= 3;
+        var isExpanded = expandedRaceRIdx === r.Driver.driverId;
+        var thumb = wikiThumb(r.Driver.url);
+        var emoji = pos === 1 ? '🥇' : pos === 2 ? '🥈' : pos === 3 ? '🥉' : r.position;
+        var col = isPodium ? 'var(--primary)' : 'var(--text)';
+        var bg = isExpanded ? 'var(--surface)' : 'transparent';
+
+        var timeStr = '';
+        if (r.Time && r.Time.time) timeStr = r.Time.time;
+        else if (r.status !== 'Finished') timeStr = r.status;
+        else timeStr = '';
+        var driverCode = r.Driver.code || r.Driver.familyName.slice(0, 3).toUpperCase();
+
+        var gridStr = r.grid ? r.grid : '—';
+        var lapsStr = r.laps || '—';
+        var driverUrl = r.Driver.url || '';
+
+        html += '<div onclick="toggleRaceResult(\'' + r.Driver.driverId + '\')" style="cursor:pointer;display:flex;flex-direction:column;border-radius:var(--radius-sm);background:' + bg + ';border-left:2px solid ' + (isExpanded ? 'var(--primary)' : 'transparent') + ';padding-left:6px;margin:0 -4px;transition:all 0.15s ease;' + (pos > 3 ? 'opacity:0.7;' : '') + '">';
+        html += '<div style="display:grid;grid-template-columns:20px ' + (thumb ? '20px ' : '') + '1fr auto;gap:2px 4px;align-items:center;padding:3px 4px;">';
+        html += '<div style="font-weight:' + (isPodium ? '700' : '400') + ';color:' + col + ';' + (pos > 3 ? '' : 'font-size:13px;') + '">' + emoji + '</div>';
+        if (thumb) {
+          html += '<div style="width:20px;height:20px;border-radius:50%;overflow:hidden;border:1.5px solid var(--outline);"><img src="' + thumb + '" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'" /></div>';
+        }
+        html += '<div style="font-weight:' + (isPodium ? '700' : '500') + ';color:' + col + ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;">' + driverCode + ' ' + r.Driver.familyName + '</div>';
+        var tm = timeStr || '—';
+        html += '<div style="text-align:right;color:var(--text-3);font-size:11px;font-family:\'Paper Mono\',monospace;">' + tm + '</div>';
+        html += '</div>';
+
+        if (isExpanded) {
+          tm = timeStr || '—';
+          if (r.status === 'Finished' && !r.Time) tm = 'Finished';
+          html += '<div style="padding:4px 4px 6px;border-top:1px solid var(--outline);margin:0 4px;font-size:12px;animation:fadeIn 0.15s ease;">';
+          html += '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px 12px;margin-bottom:4px;">';
+          html += '<span style="color:var(--text-3);">grid <strong>P' + gridStr + '</strong></span>';
+          html += '<span style="color:var(--text-3);">laps <strong>' + lapsStr + '</strong></span>';
+          html += '<span style="color:var(--text-3);">status <strong>' + r.status + '</strong></span>';
+          html += '</div>';
+          if (r.FastestLap) {
+            var fl = r.FastestLap;
+            html += '<div style="color:var(--text-2);margin-bottom:4px;">fastest lap: ' + fl.Time.time + ' (lap ' + fl.lap + ')</div>';
+          }
+          html += '<a href="' + driverUrl + '" target="_blank" class="link-out" style="font-size:11px;">driver wiki <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:8px;"></i></a>';
+          html += '</div>';
+        }
+        html += '</div>';
+      }
+      html += '</div>';
+      byId('last-race').innerHTML = html;
+    }
+
+    function toggleRaceResult(id) {
+      expandedRaceRIdx = expandedRaceRIdx === id ? -1 : id;
+      if (window._lastRaceData) renderLastRace(window._lastRaceData, _lastRaceTitle);
     }
 
     // ─── Dashboard (inline data — no fetch needed) ───
