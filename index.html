@@ -10,6 +10,7 @@
   <meta property="og:type" content="website" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏎️</text></svg>" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
   <link rel="stylesheet" href="style.css" />
 
 </head>
@@ -679,6 +680,7 @@
           if (st <= now) { currentSessKey = k; currentSessTime = st; }
         }
       }
+      _currentSessKey = currentSessKey;
 
       var targetTime = nextSessTime || raceStart;
       var diff = targetTime - now;
@@ -694,14 +696,31 @@
       }
 
       if (sessionActive) {
-        // ── Session in progress: show elapsed time + circuit info ──
+        // ── Session in progress ──
         var elapsed = Math.floor((now - currentSessTime) / 1000);
         var em = Math.floor(elapsed / 60);
         var es = elapsed % 60;
-        label.innerHTML = '<span class="live-pulse"></span>' + sessLabels[currentSessKey];
+        var sessName = sessLabels[currentSessKey];
+        // If live timing connected, show lap info in label
+        if (lt.connected && lt.lap.total) {
+          label.innerHTML = '<span class="live-pulse"></span>' + sessName
+            + ' <span style="font-weight:400;color:var(--text-3);font-size:9px;">LAP ' + Math.max(lt.lap.cur,1) + '/' + lt.lap.total + '</span>';
+        } else {
+          label.innerHTML = '<span class="live-pulse"></span>' + sessName;
+        }
         timer.innerHTML = em + 'm ' + es + 's <span style="font-size:18px;font-weight:400;color:var(--text-3);">elapsed</span>';
-        byId('f1-circuit-info').style.display = '';
-        byId('f1-circuit-info').innerHTML = buildCircuitInfoHTML(nextRace, currentSessKey);
+
+        // Try live timing, fall back to circuit info
+        if (!lt.connected && !lt.connection && (!lt._lastTry || Date.now() - lt._lastTry > 10000)) {
+          lt._lastTry = Date.now();
+          connectLiveTiming();
+        }
+        if (lt.connected) {
+          byId('f1-circuit-info').style.display = '';
+        } else {
+          byId('f1-circuit-info').style.display = '';
+          byId('f1-circuit-info').innerHTML = buildCircuitInfoHTML(nextRace, currentSessKey);
+        }
       } else if (diff > 0) {
         // ── Countdown to next session ──
         var d = Math.floor(diff / 86400000);
@@ -714,9 +733,11 @@
           label.textContent = nextSessKey ? sessLabels[nextSessKey] : 'next race';
         }
         timer.textContent = d + 'd ' + h + 'h ' + m + 'm ' + s + 's';
+        disconnectLiveTiming();
         byId('f1-circuit-info').style.display = 'none';
       } else if (diff > -7200000) {
         // ── In the 2h cooldown after last session ──
+        disconnectLiveTiming();
         byId('f1-circuit-info').style.display = 'none';
         if (currentSessKey) {
           label.innerHTML = '<span class="live-pulse"></span>' + sessLabels[currentSessKey];
@@ -728,6 +749,7 @@
       } else {
         timer.textContent = 'past';
         label.textContent = 'next race';
+        disconnectLiveTiming();
         byId('f1-circuit-info').style.display = 'none';
       }
 
@@ -808,6 +830,126 @@
           byId('dash-race-countdown').textContent = '\u2014';
         }
       }
+    }
+
+    // ── Live F1 Timing (SignalR) ──
+    var lt = { connection:null, connected:false, drivers:{}, timing:{}, positions:[], lap:{cur:0,total:0}, weather:null };
+    var _currentSessKey = null;
+
+    function connectLiveTiming() {
+      if (lt.connected || lt.connection || !window.signalR) return;
+      try {
+        lt.connection = new signalR.HubConnectionBuilder()
+          .withUrl('https://livetiming.formula1.com/signalrcore')
+          .withAutomaticReconnect([0,2000,5000,10000,30000])
+          .configureLogging(signalR.LogLevel.None)
+          .build();
+
+        lt.connection.on('DriverList', function(d) {
+          if (!d || !d.Lines) return;
+          lt.drivers = {};
+          for (var rn in d.Lines) {
+            var dl = d.Lines[rn];
+            lt.drivers[dl.RacingNumber] = { tla:dl.Tla || dl.TLA, name:dl.FullName, team:dl.TeamName, col:dl.TeamColour };
+          }
+        });
+
+        lt.connection.on('TimingData', function(d) {
+          if (!d || !d.Lines) return;
+          lt.positions = [];
+          for (var rn in d.Lines) {
+            var tl = d.Lines[rn];
+            var pos = parseInt(tl.Position) || 0;
+            lt.positions.push({
+              num: rn, pos: pos,
+              gapLeader: tl.DiffToLeader || '',
+              gapAhead: tl.DiffToAhead || '',
+              lapTime: tl.LapTime || '',
+              state: tl.LapState || 0,
+              fast: tl.OverallFastest || false
+            });
+          }
+          lt.positions.sort(function(a,b){ return a.pos - b.pos; });
+          renderLiveTiming();
+        });
+
+        lt.connection.on('LapCount', function(d) {
+          lt.lap.cur = d.CurrentLap || 0;
+          lt.lap.total = d.TotalLaps || 0;
+        });
+
+        lt.connection.on('WeatherData', function(d) {
+          if (!d) return;
+          lt.weather = d;
+        });
+
+        lt.connection.onreconnecting(function() { console.log('LT reconnecting...'); });
+        lt.connection.onreconnected(function() { console.log('LT reconnected'); });
+        lt.connection.onclose(function() { lt.connected = false; lt.connection = null; });
+
+        lt.connection.start().then(function() {
+          lt.connected = true;
+          console.log('Live timing connected');
+        }).catch(function(e) {
+          console.log('Live timing failed:', e.message);
+          lt.connection = null;
+        });
+      } catch(e) {
+        console.log('Live timing error:', e.message);
+        lt.connection = null;
+      }
+    }
+
+    function disconnectLiveTiming() {
+      if (lt.connection) {
+        lt.connection.stop();
+        lt.connection = null;
+      }
+      lt.connected = false;
+      lt.positions = [];
+    }
+
+    function renderLiveTiming() {
+      var ci = byId('f1-circuit-info');
+      if (!ci || !lt.positions.length) return;
+
+      var weatherHtml = '';
+      if (lt.weather) {
+        var parts = [];
+        if (lt.weather.AirTemp) parts.push('\u2601\ufe0f ' + lt.weather.AirTemp + '\u00b0C');
+        if (lt.weather.TrackTemp) parts.push('\ud83d\udedf\ufe0f ' + lt.weather.TrackTemp + '\u00b0C');
+        if (lt.weather.WindSpeed) parts.push('\ud83d\udca8 ' + lt.weather.WindSpeed + 'km/h');
+        if (lt.weather.Rainfall && lt.weather.Rainfall !== '0') parts.push('\ud83c\udf27\ufe0f rain');
+        if (parts.length) weatherHtml = '<div class="circuit-divider"></div><div style="text-align:center;font-size:10px;color:var(--text-3);padding:6px 2px 0;">' + parts.join('  ') + '</div>';
+      }
+
+      var driverMap = lt.drivers;
+      var count = Math.min(lt.positions.length, 8);
+      var html = '<div class="circuit-divider"></div>';
+      html += '<div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:6px 2px 2px;">position</div>';
+
+      for (var i = 0; i < count; i++) {
+        var p = lt.positions[i];
+        var drv = driverMap[p.num];
+        var code = drv ? drv.tla : '#' + p.num;
+        var col = drv && drv.col ? '#' + drv.col : 'var(--text-2)';
+        var gapStr = p.gapLeader;
+        // If race has started, show gap; otherwise show lap time
+        var isRace = _currentSessKey === 'race';
+        var timeStr = (lt.lap.cur > 1 || !isRace) ? gapStr : p.lapTime;
+
+        var rowStyle = i < 3 ? 'font-weight:600;' : '';
+        html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:2px 0;font-size:11px;' + rowStyle + '">';
+        html += '<div style="display:flex;align-items:center;gap:6px;">';
+        html += '<span style="color:var(--text-3);width:16px;text-align:right;font-size:10px;">' + p.pos + '</span>';
+        html += '<span style="color:' + col + ';">' + code + '</span>';
+        html += '</div>';
+        html += '<span style="color:var(--text-3);font-size:10px;font-family:\'Paper Mono\',monospace;">' + (timeStr || '\u2014') + '</span>';
+        html += '</div>';
+      }
+
+      html += weatherHtml;
+      ci.innerHTML = html;
     }
 
     var circuitThumbs = {};
