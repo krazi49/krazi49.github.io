@@ -730,20 +730,17 @@
 
     // ─── Dashboard ───
     function fetchDashboardData() {
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'api/state.json?_t=' + Date.now());
-      xhr.onload = function() {
-        if (xhr.status === 200) {
-          try {
-            var data = JSON.parse(xhr.responseText);
-            renderDashboard(data);
-          } catch(e) { renderDashboardFallback(); }
-        } else {
+      var url = window.location.origin + '/api/state.json?_t=' + Date.now();
+      fetch(url)
+        .then(function(r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.json();
+        })
+        .then(function(data) { renderDashboard(data); })
+        .catch(function(e) {
+          console.warn('[dashboard] fetch failed:', e);
           renderDashboardFallback();
-        }
-      };
-      xhr.onerror = renderDashboardFallback;
-      xhr.send();
+        });
     }
 
     function calcUptime(bootTime) {
