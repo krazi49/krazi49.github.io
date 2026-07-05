@@ -90,6 +90,12 @@ body {
   gap: 2px;
 }
 
+.nav-primary {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .sidebar-header {
   font-size: 10px;
   font-weight: 900;
