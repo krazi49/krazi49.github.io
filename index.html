@@ -78,6 +78,7 @@
           <div class="countdown-session" id="f1-label">next race</div>
           <div class="countdown-number" id="f1-countdown">--d --h --m --s</div>
           <div class="countdown-meta" id="f1-race-name"></div>
+          <div class="countdown-circuit" id="f1-circuit-info" style="display:none;"></div>
         </div>
 
         <div class="section-header" style="margin-top:4px;">teams to watch</div>
@@ -587,6 +588,55 @@
       return groups;
     }
 
+    function buildCircuitInfoHTML(race, sessionKey) {
+      var ck = circuitKey(race.circuit);
+      var ci = ck ? circuitInfo[ck] : null;
+      if (!ci) return '';
+      var laps = race.laps ? race.laps + ' laps' : '';
+      var w25 = getWinner(race, 2025);
+      var w24 = getWinner(race, 2024);
+      var typeLabel = ci.type === 'street' ? 'street circuit' : 'permanent circuit';
+      var html = '<div class="circuit-divider"></div>';
+      html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;padding:8px 2px 0;font-size:11px;">';
+
+      if (ci.lapRec && ci.lapRec !== '—') {
+        html += '<div><span style="color:var(--text-3);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">lap record</span><br><span style="color:var(--primary);font-weight:600;">' + ci.lapRec + '</span></div>';
+      } else {
+        html += '<div></div>';
+      }
+
+      html += '<div style="text-align:right;"><span style="color:var(--text-3);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">track</span><br><span>' + typeLabel + '</span></div>';
+
+      html += '<div><span style="color:var(--text-3);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">corners</span><br><span>' + ci.corners + '</span></div>';
+      html += '<div style="text-align:right;"><span style="color:var(--text-3);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">first gp</span><br><span>' + ci.firstGP + '</span></div>';
+
+      if (laps) {
+        html += '<div><span style="color:var(--text-3);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">distance</span><br><span>' + laps + '</span></div>';
+      }
+
+      if (ci.om) {
+        html += '<div style="text-align:right;"><span style="color:var(--text-3);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">om zones</span><br><span>' + ci.om + '</span></div>';
+      }
+
+      html += '</div>';
+
+      // Past winners
+      var pastHtml = '';
+      if (w25) {
+        var winner2025 = '<span style="font-weight:600;">' + w25.n + '</span>';
+        if (w25.num) winner2025 += ' <span style="color:var(--text-3);">#' + w25.num + '</span>';
+        pastHtml += '<div style="padding:6px 2px 0;"><span style="color:var(--text-3);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">' + (sessionKey === 'race' ? 'last year\'s winner' : '2025 winner') + '</span><br><span style="font-size:12px;">' + winner2025 + '</span></div>';
+      }
+      if (w24 && !(w25 && w25.n === w24.n)) {
+        pastHtml += '<div style="padding:4px 2px 0;"><span style="color:var(--text-3);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">2024 winner</span><br><span style="font-size:12px;"><span style="font-weight:600;">' + w24.n + '</span> <span style="color:var(--text-3);">#' + w24.num + '</span></span></div>';
+      }
+      if (pastHtml) {
+        html += '<div class="circuit-divider"></div>' + pastHtml;
+      }
+
+      return html;
+    }
+
     function updateF1() {
       var now = Date.now();
       var nextRace = null;
@@ -644,12 +694,14 @@
       }
 
       if (sessionActive) {
-        // ── Session in progress: show elapsed time ──
+        // ── Session in progress: show elapsed time + circuit info ──
         var elapsed = Math.floor((now - currentSessTime) / 1000);
         var em = Math.floor(elapsed / 60);
         var es = elapsed % 60;
         label.innerHTML = '<span class="live-pulse"></span>' + sessLabels[currentSessKey];
         timer.innerHTML = em + 'm ' + es + 's <span style="font-size:18px;font-weight:400;color:var(--text-3);">elapsed</span>';
+        byId('f1-circuit-info').style.display = '';
+        byId('f1-circuit-info').innerHTML = buildCircuitInfoHTML(nextRace, currentSessKey);
       } else if (diff > 0) {
         // ── Countdown to next session ──
         var d = Math.floor(diff / 86400000);
@@ -662,8 +714,10 @@
           label.textContent = nextSessKey ? sessLabels[nextSessKey] : 'next race';
         }
         timer.textContent = d + 'd ' + h + 'h ' + m + 'm ' + s + 's';
+        byId('f1-circuit-info').style.display = 'none';
       } else if (diff > -7200000) {
         // ── In the 2h cooldown after last session ──
+        byId('f1-circuit-info').style.display = 'none';
         if (currentSessKey) {
           label.innerHTML = '<span class="live-pulse"></span>' + sessLabels[currentSessKey];
           timer.innerHTML = 'done <span style="font-size:18px;font-weight:400;color:var(--text-3);">' + sessLabels[currentSessKey] + ' over</span>';
@@ -674,6 +728,7 @@
       } else {
         timer.textContent = 'past';
         label.textContent = 'next race';
+        byId('f1-circuit-info').style.display = 'none';
       }
 
       var rd = new Date(nextRace.date);

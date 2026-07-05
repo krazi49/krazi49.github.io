@@ -373,6 +373,12 @@ a.card:active { transform: scale(0.98); }
   text-overflow: ellipsis;
 }
 
+.circuit-divider {
+  height: 1px;
+  background: var(--outline);
+  margin: 10px 0 6px;
+}
+
 /* ── Teams chips ────────────────────────────────────── */
 .chip-row {
   display: flex;
