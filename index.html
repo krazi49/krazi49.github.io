@@ -971,11 +971,9 @@
         var hasThumb = !!thumb;
 
         html += '<div onclick="toggleDriver(\'' + d.Driver.driverId + '\')" style="cursor:pointer;display:flex;flex-direction:column;border-radius:var(--radius-sm);background:' + bg + ';border-left:' + border + ';padding-left:6px;margin:0 -4px;transition:all 0.15s ease;' + (pos > 10 ? 'opacity:0.55;' : '') + '">';
-        html += '<div style="display:grid;grid-template-columns:' + (hasThumb ? '20px 22px 1fr' : '20px 1fr') + ' 36px 28px auto;gap:2px 4px;align-items:center;padding:3px 4px;">';
+        html += '<div style="display:grid;grid-template-columns:20px 22px 1fr 36px 28px auto;gap:2px 4px;align-items:center;padding:3px 4px;">';
         html += '<div style="font-weight:' + (isTop ? '700' : '400') + ';color:' + color + ';text-align:center;font-size:12px;">' + d.position + '</div>';
-        if (hasThumb) {
-          html += '<div style="width:22px;height:22px;border-radius:50%;overflow:hidden;border:1.5px solid ' + teamColor + ';"><img src="' + thumb + '" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'" /></div>';
-        }
+        html += '<div style="width:22px;height:22px;border-radius:50%;overflow:hidden;border:1.5px solid ' + teamColor + ';' + (hasThumb ? '' : 'visibility:hidden;') + '">' + (hasThumb ? '<img src="' + thumb + '" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'" />' : '') + '</div>'
         html += '<div style="font-weight:' + (isTop ? '700' : '500') + ';color:' + color + ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;">' + d.Driver.code + ' ' + d.Driver.familyName + '</div>';
         html += '<div style="font-weight:600;color:' + color + ';text-align:right;font-size:13px;">' + d.points + '</div>';
         html += '<div style="text-align:right;color:' + (isTop ? 'var(--primary)' : 'var(--text-3)') + ';font-size:10px;">' + d.wins + '</div>';
@@ -1061,11 +1059,9 @@
         var border = isExpanded ? '2px solid ' + teamColor : '2px solid transparent';
 
         html += '<div onclick="toggleConstructor(\'' + c.Constructor.constructorId + '\')" style="cursor:pointer;display:flex;flex-direction:column;border-radius:var(--radius-sm);background:' + bg + ';border-left:' + border + ';padding-left:6px;margin:0 -4px;transition:all 0.15s ease;' + (pos > 6 ? 'opacity:0.55;' : '') + '">';
-        html += '<div style="display:grid;grid-template-columns:20px ' + (thumb ? '24px ' : '') + '1fr 36px 28px;gap:2px 4px;align-items:center;padding:3px 4px;">';
+        html += '<div style="display:grid;grid-template-columns:20px 24px 1fr 36px 28px;gap:2px 4px;align-items:center;padding:3px 4px;">';
         html += '<div style="font-weight:' + (isTop ? '700' : '400') + ';color:' + color + ';text-align:center;font-size:12px;">' + c.position + '</div>';
-        if (thumb) {
-          html += '<div style="width:24px;height:24px;border-radius:4px;overflow:hidden;border:1px solid var(--outline);background:var(--surface-2);display:flex;align-items:center;justify-content:center;"><img src="' + thumb + '" alt="" style="max-width:100%;max-height:100%;object-fit:contain;" onerror="this.parentElement.style.display=\'none\'" /></div>';
-        }
+        html += '<div style="width:24px;height:24px;border-radius:4px;overflow:hidden;border:1px solid var(--outline);background:var(--surface-2);display:flex;align-items:center;justify-content:center;' + (thumb ? '' : 'background:transparent;border:none;') + '">' + (thumb ? '<img src="' + thumb + '" alt="" style="max-width:100%;max-height:100%;object-fit:contain;" onerror="this.parentElement.style.display=\'none\'" />' : '') + '</div>'
         html += '<div style="font-weight:' + (isTop ? '700' : '500') + ';color:' + color + ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;">' + c.Constructor.name + '</div>';
         html += '<div style="font-weight:600;color:' + color + ';text-align:right;font-size:13px;">' + c.points + '</div>';
         html += '<div style="text-align:right;color:' + (isTop ? 'var(--primary)' : 'var(--text-3)') + ';font-size:10px;">' + c.wins + '</div>';
@@ -1186,11 +1182,9 @@
         var hasFL = r.Driver.driverId === flDriver;
 
         html += '<div onclick="toggleRaceResult(\'' + r.Driver.driverId + '\')" style="cursor:pointer;display:flex;flex-direction:column;border-radius:var(--radius-sm);background:' + bg + ';border-left:2px solid ' + (isExpanded ? 'var(--primary)' : hasFL && !isExpanded ? '#fbbf24' : 'transparent') + ';padding-left:6px;margin:0 -4px;transition:all 0.15s ease;' + (pos > 3 ? 'opacity:0.7;' : '') + '">';
-        html += '<div style="display:grid;grid-template-columns:20px ' + (thumb ? '20px ' : '') + '1fr 30px auto;gap:2px 4px;align-items:center;padding:3px 4px;">';
+        html += '<div style="display:grid;grid-template-columns:20px 20px 1fr 30px auto;gap:2px 4px;align-items:center;padding:3px 4px;">';
         html += '<div style="font-weight:' + (isPodium ? '700' : '400') + ';color:' + col + ';' + (pos > 3 ? '' : 'font-size:13px;') + '">' + emoji + '</div>';
-        if (thumb) {
-          html += '<div style="width:20px;height:20px;border-radius:50%;overflow:hidden;border:1.5px solid ' + (hasFL ? '#fbbf24' : 'var(--outline)') + ';"><img src="' + thumb + '" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'" /></div>';
-        }
+        html += '<div style="width:20px;height:20px;border-radius:50%;overflow:hidden;border:1.5px solid ' + (hasFL ? '#fbbf24' : 'var(--outline)') + ';' + (thumb ? '' : 'visibility:hidden;') + '">' + (thumb ? '<img src="' + thumb + '" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'" />' : '') + '</div>'
         html += '<div style="font-weight:' + (isPodium ? '700' : '500') + ';color:' + col + ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;">' + driverCode + ' ' + r.Driver.familyName + (hasFL ? ' <span title="fastest lap" style="display:inline-block;font-size:9px;color:#fbbf24;transform:translateY(-1px);">⚡</span>' : '') + '</div>';
         html += '<div style="text-align:right;color:' + col + ';font-size:11px;font-weight:600;">' + pts + '</div>';
         var tm = timeStr || '—';
