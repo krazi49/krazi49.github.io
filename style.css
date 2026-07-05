@@ -688,6 +688,13 @@ a.card:active { transform: scale(0.98); }
   color: var(--primary);
 }
 
+@media (max-width: 500px) {
+  .dash-grid-2 {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
 /* ── F1 Standings ──────────────────────────────────── */
 .standings-grid {
   display: grid;
@@ -758,293 +765,25 @@ a.card:active { transform: scale(0.98); }
   font-size: 11px;
 }
 
-/* ── Mobile chip nav ──────────────────────────────── */
-.mobile-nav {
-  display: none;
-}
-
-@media (max-width: 900px) {
-  .mobile-nav {
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    margin: -4px -8px 4px;
-    padding: 0 8px 8px;
-    gap: 6px;
-    -webkit-mask-image: linear-gradient(to right, transparent, black 12px, black 88%, transparent);
-    mask-image: linear-gradient(to right, transparent, black 12px, black 88%, transparent);
-  }
-  .mobile-nav::-webkit-scrollbar { display: none; }
-  .mobile-nav-inner {
-    display: flex;
-    gap: 6px;
-    padding: 2px 0;
-
-  }
-  .mobile-nav-chip {
-    display: inline-flex;
-    align-items: center;
-    white-space: nowrap;
-    padding: 8px 18px;
-    font-size: 14px;
-    font-weight: 500;
-    border-radius: var(--radius-full);
-    background: var(--surface-2);
-    border: 1px solid var(--outline);
-    color: var(--text-2);
-    cursor: pointer;
-    transition: all 0.2s var(--ease);
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: pan-y;
-  }
-  .mobile-nav-chip:active {
-    transform: scale(0.96);
-  }
-  .mobile-nav-chip.active {
-    background: var(--primary);
-    color: var(--on-primary);
-    border-color: var(--primary);
-    box-shadow: 0 0 16px rgba(123,212,225,0.15);
-  }
-
-  body {
-    padding: 0;
-    min-height: 100dvh;
-    font-size: 16px;
-  }
-
-  .shell {
-    flex-direction: column;
-    gap: 0;
-    max-width: 100%;
-    padding: 0;
-  }
-
-  .sidebar { display: none; }
-
-  .main {
-    padding: 24px;
-    border-radius: 0;
-    border: none;
-    min-height: 100dvh;
-    gap: 16px;
-  }
-
-  .card-row {
-    grid-template-columns: 1fr;
-  }
-
-  .hero {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 12px;
-  }
-
-  .hero-avatar {
-    width: 60px;
-    height: 60px;
-    font-size: 24px;
-  }
-
-  .hero-text h1 {
-    font-size: 22px;
-  }
-
-  .hero-text p {
-    font-size: 15px;
-  }
-
-  .neofetch-wrap {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: center;
-  }
-
-  .neofetch-logo {
-    font-size: 13px;
-  }
-
-  .neofetch-data {
-    font-size: 13px;
-    line-height: 1.8;
-  }
-
-  .status-row {
-    justify-content: center;
-  }
-
-  .status-badge {
-    font-size: 13px;
-    padding: 6px 14px;
-  }
-
-  .dash-grid-2 {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  .dash-val {
-    font-size: 15px;
-  }
-
-  .dash-label {
-    font-size: 10px;
-  }
-
-  .countdown-number {
-    font-size: 34px;
-  }
-
-  .countdown-meta {
-    font-size: 13px;
-  }
-
-  .chip-row {
-    justify-content: center;
-  }
-
-  .chip {
-    font-size: 14px;
-    padding: 8px 18px;
-  }
-
-  /* F1 standings: scroll horizontally */
-  .standings-scroll {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    margin: 0 -8px;
-    padding: 0 8px;
-  }
-
-  .standings-scroll .standings-grid {
-    min-width: 460px;
-  }
-
-  /* Calendar expanded */
-  .section#section-f1 .card {
-    padding: 16px;
-  }
-
-  /* Toast above bottom nav */
-  .toast {
-    bottom: 92px;
-    font-size: 14px;
-    padding: 12px 24px;
-  }
-
-  /* Card padding overall */
-  .card {
-    padding: 16px 18px;
-  }
-
-  .card:hover {
-    transform: none;
-  }
-
-  .section#section-f1 .countdown-card {
-    padding: 20px 18px;
-  }
-
-  /* Cal rows bigger */
-  .cal-row {
-    font-size: 14px !important;
-  }
-
-  /* Section header bigger */
-  .section-header {
-    font-size: 12px;
-  }
-
-  /* Nav items more tap-friendly */
-  .sidebar .nav-item.active {
-    box-shadow: 0 0 16px rgba(123,212,225,0.12);
-  }
-
-  /* F1 session times larger */
-  .section#section-f1 [class~="standings-grid"] {
-    font-size: 13px;
-  }
-}
-
+/* ── Mobile ─────────────────────────────────────────── */
 @media (max-width: 600px) {
-  body {
-    font-size: 16px;
-    padding: 0 0 80px;
-  }
-
+  body { padding: 12px; }
+  .shell { flex-direction: column; }
   .sidebar {
-    height: 72px;
-    padding: 4px 4px;
+    width: 100%;
+    flex-direction: row;
+    position: static;
+    gap: 4px;
+    overflow-x: auto;
+    padding-bottom: 4px;
   }
-
+  .sidebar-header { display: none; }
   .sidebar .nav-item {
-    padding: 4px 8px;
-    font-size: 11px;
-  }
-  .sidebar .nav-item i {
-    font-size: 20px;
-  }
-  .main {
-    padding: 20px;
-    gap: 16px;
-  }
-  .card {
-    padding: 16px 18px;
-  }
-  .hero-avatar {
-    width: 56px;
-    height: 56px;
-    font-size: 22px;
-  }
-  .hero-text h1 {
-    font-size: 22px;
-  }
-  .hero-text p {
-    font-size: 15px;
-  }
-  .countdown-number {
-    font-size: 30px;
-  }
-  .countdown-meta {
-    font-size: 13px;
-  }
-  .chip {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-  .dash-val {
-    font-size: 15px;
-  }
-  .dash-label {
-    font-size: 10px;
-  }
-  .status-badge {
-    font-size: 13px;
-    padding: 6px 14px;
-  }
-  .section-header {
+    width: auto;
+    flex-shrink: 0;
+    padding: 7px 14px;
     font-size: 12px;
   }
-  .neofetch-data, .neofetch-logo {
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 500px) {
-  .sidebar .nav-item {
-    padding: 4px 8px;
-    font-size: 9px;
-  }
-  .sidebar .nav-item i {
-    font-size: 14px;
-  }
-  .main {
-    padding: 12px;
-    gap: 10px;
-  }
+  .main { padding: 20px; }
+  .card-row { grid-template-columns: 1fr; }
 }

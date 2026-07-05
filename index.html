@@ -18,7 +18,7 @@
 
   <div class="shell">
     <!-- ─── Sidebar ─── -->
-    <aside class="sidebar" id="sidebar">
+    <aside class="sidebar">
       <div class="sidebar-header">krazierthanu</div>
       <button class="nav-item active" data-page="about"><i class="fa-solid fa-user"></i> about</button>
       <button class="nav-item" data-page="f1"><i class="fa-solid fa-car"></i> f1</button>
@@ -32,21 +32,7 @@
     </aside>
 
     <!-- ─── Main ─── -->
-    <div class="main" id="main-content">
-
-<!-- ─── Mobile chip nav ─── -->
-      <div class="mobile-nav">
-        <div class="mobile-nav-inner" id="mobile-nav-inner">
-          <span class="mobile-nav-chip active" data-page="about">about</span>
-          <span class="mobile-nav-chip" data-page="f1">f1</span>
-          <span class="mobile-nav-chip" data-page="music">music</span>
-          <span class="mobile-nav-chip" data-page="projects">projects</span>
-          <span class="mobile-nav-chip" data-page="dashboard">dashboard</span>
-          <span class="mobile-nav-chip" data-page="now">/now</span>
-          <span class="mobile-nav-chip" onclick="toggleTheme()">theme</span>
-        </div>
-      </div>
-
+    <div class="main">
 
       <!-- ─── ABOUT ─── -->
       <div class="section active" id="section-about">
@@ -112,17 +98,17 @@
         </div>
 
         <div class="section-header" style="margin-top:4px;">driver standings <span id="ds-round" style="font-weight:400;font-size:9px;color:var(--text-3);"></span></div>
-        <div class="card standings-scroll" id="driver-standings" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+        <div class="card" id="driver-standings" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
           <div style="padding:8px;color:var(--text-3);">loading...</div>
         </div>
 
         <div class="section-header" style="margin-top:4px;">constructor standings <span id="cs-round" style="font-weight:400;font-size:9px;color:var(--text-3);"></span></div>
-        <div class="card standings-scroll" id="constructor-standings" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+        <div class="card" id="constructor-standings" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
           <div style="padding:8px;color:var(--text-3);">loading...</div>
         </div>
 
         <div class="section-header" style="margin-top:4px;">last race</div>
-        <div class="card standings-scroll" id="last-race" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+        <div class="card" id="last-race" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
           <div style="padding:8px;color:var(--text-3);">loading...</div>
         </div>
       </div>
@@ -393,9 +379,8 @@
         </div>
       </div>
 
-          </div>
+    </div>
   </div>
-
 
   <div class="toast" id="toast">copied!</div>
 
@@ -419,56 +404,8 @@
         Object.keys(sections).forEach(function(k) { sections[k].classList.remove('active'); });
         b.classList.add('active');
         sections[page].classList.add('active');
-        // Sync mobile chips
-        document.querySelectorAll('.mobile-nav-chip').forEach(function(c) {
-          c.classList.toggle('active', c.getAttribute('data-page') === page);
-        });
       });
     });
-
-    // ─── Mobile chip nav (scroll-guarded) ───
-    document.querySelectorAll('.mobile-nav-chip[data-page]').forEach(function(c) {
-      var touchStart = null;
-      c.addEventListener('touchstart', function(e) {
-        touchStart = { x: e.changedTouches[0].screenX, y: e.changedTouches[0].screenY };
-      }, { passive: true });
-      c.addEventListener('touchend', function(e) {
-        if (!touchStart) return;
-        var dx = Math.abs(e.changedTouches[0].screenX - touchStart.x);
-        var dy = Math.abs(e.changedTouches[0].screenY - touchStart.y);
-        touchStart = null;
-        if (dx > 8 || dy > 8) return; // was a scroll, not a tap
-        var page = c.getAttribute('data-page');
-        document.querySelectorAll('.nav-item[data-page="' + page + '"]').forEach(function(b) { b.click(); });
-      });
-      c.addEventListener('click', function() {
-        var page = c.getAttribute('data-page');
-        document.querySelectorAll('.nav-item[data-page="' + page + '"]').forEach(function(b) { b.click(); });
-      });
-    });
-
-    // ─── Swipe detection ───
-    var touchStartX = 0;
-    var mainEl = document.getElementById('main-content');
-    var pageOrder = ['about','f1','music','projects','dashboard','now'];
-    mainEl.addEventListener('touchstart', function(e) {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-    mainEl.addEventListener('touchend', function(e) {
-      var dx = e.changedTouches[0].screenX - touchStartX;
-      if (Math.abs(dx) < 60) return;
-      var dir = dx > 0 ? -1 : 1; // swipe right=prev, left=next
-      var currentIdx = -1;
-      for (var i = 0; i < pageOrder.length; i++) {
-        var s = document.getElementById('section-' + pageOrder[i]);
-        if (s && s.classList.contains('active')) { currentIdx = i; break; }
-      }
-      if (currentIdx === -1) return;
-      var nextIdx = currentIdx + dir;
-      if (nextIdx < 0 || nextIdx >= pageOrder.length) return;
-      var targetBtn = document.querySelector('.nav-item[data-page="' + pageOrder[nextIdx] + '"]');
-      if (targetBtn) targetBtn.click();
-    }, { passive: true });
 
     // ─── Theme ───
     function toggleTheme() {
