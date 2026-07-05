@@ -761,8 +761,9 @@ a.card:active { transform: scale(0.98); }
 /* ── Bottom Nav (mobile) ──────────────────────────── */
 @media (max-width: 900px) {
   body {
-    padding: 0 0 64px;
+    padding: 0 0 72px;
     min-height: 100dvh;
+    font-size: 15px;
   }
 
   .shell {
@@ -778,7 +779,7 @@ a.card:active { transform: scale(0.98); }
     right: 0;
     top: auto;
     width: 100%;
-    height: 60px;
+    height: 68px;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
@@ -787,7 +788,7 @@ a.card:active { transform: scale(0.98); }
     background: var(--surface-2);
     border-top: 1px solid var(--outline);
     z-index: 50;
-    padding: 0 4px;
+    padding: 4px 8px;
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
   }
@@ -797,16 +798,17 @@ a.card:active { transform: scale(0.98); }
   .sidebar .nav-item {
     width: auto;
     flex-shrink: 0;
-    padding: 6px 10px;
-    font-size: 10px;
-    gap: 4px;
+    padding: 4px 10px;
+    font-size: 11px;
+    gap: 2px;
     flex-direction: column;
     border-radius: var(--radius-sm);
     min-width: 0;
+    white-space: nowrap;
   }
 
   .sidebar .nav-item i {
-    font-size: 16px;
+    font-size: 18px;
     width: auto;
   }
 
@@ -820,11 +822,11 @@ a.card:active { transform: scale(0.98); }
   }
 
   .main {
-    padding: 16px;
+    padding: 20px;
     border-radius: 0;
     border: none;
     min-height: 100dvh;
-    gap: 12px;
+    gap: 14px;
   }
 
   .card-row {
@@ -839,13 +841,17 @@ a.card:active { transform: scale(0.98); }
   }
 
   .hero-avatar {
-    width: 48px;
-    height: 48px;
-    font-size: 18px;
+    width: 52px;
+    height: 52px;
+    font-size: 20px;
   }
 
   .hero-text h1 {
-    font-size: 18px;
+    font-size: 20px;
+  }
+
+  .hero-text p {
+    font-size: 14px;
   }
 
   .neofetch-wrap {
@@ -855,29 +861,43 @@ a.card:active { transform: scale(0.98); }
   }
 
   .neofetch-logo {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .neofetch-data {
-    font-size: 11px;
-    line-height: 1.6;
+    font-size: 12px;
+    line-height: 1.7;
   }
 
   .status-row {
     justify-content: center;
   }
 
+  .status-badge {
+    font-size: 12px;
+    padding: 5px 12px;
+  }
+
   .dash-grid-2 {
     grid-template-columns: 1fr;
-    gap: 4px;
+    gap: 6px;
+  }
+
+  .dash-val {
+    font-size: 14px;
   }
 
   .countdown-number {
-    font-size: 28px;
+    font-size: 30px;
   }
 
   .chip-row {
     justify-content: center;
+  }
+
+  .chip {
+    font-size: 13px;
+    padding: 6px 16px;
   }
 
   /* F1 standings: scroll horizontally */
@@ -895,17 +915,19 @@ a.card:active { transform: scale(0.98); }
 
   /* Calendar expanded: tighter */
   .section#section-f1 .card {
-    padding: 12px;
+    padding: 14px;
   }
 
   /* Toast above bottom nav */
   .toast {
-    bottom: 76px;
+    bottom: 84px;
+    font-size: 13px;
+    padding: 10px 20px;
   }
 
   /* Tighter card padding overall */
   .card {
-    padding: 12px 14px;
+    padding: 14px 16px;
   }
 
   .card:hover {
@@ -913,7 +935,59 @@ a.card:active { transform: scale(0.98); }
   }
 
   .section#section-f1 .countdown-card {
-    padding: 16px 14px;
+    padding: 18px 16px;
+  }
+
+  /* Cal rows bigger */
+  .cal-row {
+    font-size: 13px !important;
+  }
+
+  /* Section header bigger */
+  .section-header {
+    font-size: 11px;
+  }
+
+  /* Nav items more tap-friendly */
+  .sidebar .nav-item.active {
+    box-shadow: 0 0 16px rgba(123,212,225,0.12);
+  }
+}
+
+@media (max-width: 500px) {
+  body {
+    font-size: 14px;
+  }
+
+  .sidebar {
+    height: 62px;
+    padding: 2px 4px;
+  }
+
+  .sidebar .nav-item {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+  .sidebar .nav-item i {
+    font-size: 16px;
+  }
+  .main {
+    padding: 14px;
+    gap: 12px;
+  }
+  .card {
+    padding: 12px 14px;
+  }
+  .hero-avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 17px;
+  }
+  .hero-text h1 {
+    font-size: 18px;
+  }
+  .countdown-number {
+    font-size: 26px;
   }
 }
 
