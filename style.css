@@ -97,6 +97,10 @@ body {
   padding: 8px 14px 6px;
 }
 
+.nav-theme {
+  margin-top: auto;
+}
+
 .sidebar .nav-item {
   display: flex;
   align-items: center;
