@@ -2,11 +2,11 @@
   "mood": "soft-spot",
   "hex_status": "pulsing blue-white",
   "boot_time": "2026-06-14T10:22:14+0100",
-  "uptime": "21d 3h 18m",
-  "cpu": "4.17",
+  "uptime": "21d 3h 21m",
+  "cpu": "5.14",
   "memory": "76% of 3.6Gi",
   "mem_pct": "76%",
-  "temp": "73°C",
+  "temp": "76°C",
   "disk": "87% (102G / 120G)",
   "disc_pct": "87%",
   "kernel": "7.0.11-arch1-1",
@@ -15,30 +15,30 @@
   "wm": "Hyprland",
   "distro": "Arch Linux",
   "location": "Leeds, UK",
-  "last_seen": "2026-07-05T13:40:36+0100",
+  "last_seen": "2026-07-05T13:43:23+0100",
   "cron_jobs": [
     {
       "name": "Watch pickup",
       "schedule": "07:00 daily",
-      "next_run": "2026-07-05T14:10:36+0100"
+      "next_run": "2026-07-05T14:13:23+0100"
     },
     {
       "name": "Mood sync → waybar",
       "schedule": "every 30m",
-      "next_run": "2026-07-05T14:10:36+0100"
+      "next_run": "2026-07-05T14:13:23+0100"
     },
     {
       "name": "Heartbeat check",
       "schedule": "every 30m",
-      "next_run": "2026-07-05T14:10:36+0100"
+      "next_run": "2026-07-05T14:13:23+0100"
     },
     {
       "name": "F1 standings refresh",
       "schedule": "every 60m",
-      "next_run": "2026-07-05T14:40:36+0100"
+      "next_run": "2026-07-05T14:43:23+0100"
     }
   ],
   "activity": [
-    {"time": "2026-07-05T13:40:36+0100", "text": "Dashboard state refreshed"}
+    {"time": "2026-07-05T13:43:23+0100", "text": "Dashboard state refreshed"}
   ]
 }
