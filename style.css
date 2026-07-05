@@ -635,25 +635,44 @@ a.card:active { transform: scale(0.98); }
 }
 
 /* ── Dashboard ────────────────────────────────────── */
-.dashboard-card {
+.dash-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 20px;
+}
+
+.dash-field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 1px;
+  padding: 2px 0;
 }
 
-.dashboard-card h3 {
-  font-size: 14px;
-  font-weight: 600;
+.dash-label {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-3);
 }
 
-.dashboard-card p {
+.dash-val {
+  font-family: 'Paper Mono', monospace;
   font-size: 13px;
-  color: var(--text-2);
-  line-height: 1.5;
+  font-weight: 600;
+  color: var(--text);
+  word-break: break-all;
 }
 
-.mood-dot {
-  transition: background 0.5s ease, box-shadow 0.5s ease;
+.dash-val-accent {
+  color: var(--primary);
+}
+
+@media (max-width: 500px) {
+  .dash-grid-2 {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
 }
 
 /* ── F1 Standings ──────────────────────────────────── */

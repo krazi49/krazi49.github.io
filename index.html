@@ -209,7 +209,7 @@
         <div class="section-header">agent state</div>
 
         <div class="card" id="mood-card" style="display:flex;align-items:center;gap:14px;">
-          <div id="mood-indicator" style="width:12px;height:12px;border-radius:50%;background:var(--primary);flex-shrink:0;transition:all 0.5s ease;"></div>
+          <div id="mood-indicator" style="width:14px;height:14px;border-radius:50%;background:var(--primary);flex-shrink:0;transition:all 0.5s ease;box-shadow:0 0 12px var(--primary);"></div>
           <div style="flex:1;">
             <div id="mood-label" style="font-weight:600;font-size:15px;">syncing...</div>
             <div id="mood-sub" style="font-size:12px;color:var(--text-2);font-family:'Paper Mono',monospace;">hex status: —</div>
@@ -220,52 +220,124 @@
           </div>
         </div>
 
-        <div class="section-header">system</div>
-
-        <div class="card" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
-          <div>
-            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">uptime</div>
-            <div id="sys-uptime" style="font-family:'Paper Mono',monospace;font-size:15px;font-weight:700;color:var(--primary);margin-top:2px;">—</div>
+        <div class="section-header">hardware</div>
+        <div class="card dash-grid-2">
+          <div class="dash-field">
+            <span class="dash-label">hostname</span>
+            <span class="dash-val" id="sys-hostname">—</span>
           </div>
-          <div>
-            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">cpu</div>
-            <div id="sys-cpu" style="font-family:'Paper Mono',monospace;font-size:15px;font-weight:700;color:var(--text);margin-top:2px;">—</div>
+          <div class="dash-field">
+            <span class="dash-label">chassis</span>
+            <span class="dash-val" id="sys-chassis">—</span>
           </div>
-          <div>
-            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">memory</div>
-            <div id="sys-mem" style="font-family:'Paper Mono',monospace;font-size:15px;font-weight:700;color:var(--text);margin-top:2px;">—</div>
+          <div class="dash-field">
+            <span class="dash-label">cpu</span>
+            <span class="dash-val" id="sys-cpu-model" style="font-size:12px;">—</span>
           </div>
-          <div>
-            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">temp</div>
-            <div id="sys-temp" style="font-family:'Paper Mono',monospace;font-size:15px;font-weight:700;color:var(--text);margin-top:2px;">—</div>
+          <div class="dash-field">
+            <span class="dash-label">cores</span>
+            <span class="dash-val" id="sys-cores">—</span>
           </div>
-          <div>
-            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">disk</div>
-            <div id="sys-disk" style="font-family:'Paper Mono',monospace;font-size:15px;font-weight:700;color:var(--text);margin-top:2px;">—</div>
+          <div class="dash-field">
+            <span class="dash-label">frequency</span>
+            <span class="dash-val" id="sys-freq">—</span>
           </div>
-          <div>
-            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">gpu</div>
-            <div id="sys-gpu" style="font-family:'Paper Mono',monospace;font-size:12px;font-weight:600;color:var(--text);margin-top:2px;">—</div>
+          <div class="dash-field">
+            <span class="dash-label">gpu</span>
+            <span class="dash-val" id="sys-gpu" style="font-size:12px;">—</span>
+          </div>
+          <div class="dash-field">
+            <span class="dash-label">memory</span>
+            <span class="dash-val" id="sys-mem">—</span>
+          </div>
+          <div class="dash-field">
+            <span class="dash-label">swap</span>
+            <span class="dash-val" id="sys-swap">—</span>
+          </div>
+          <div class="dash-field">
+            <span class="dash-label">storage</span>
+            <span class="dash-val" id="sys-disk" style="font-size:12px;">—</span>
           </div>
         </div>
 
-        <div class="card" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
-          <div>
-            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">distro</div>
-            <div id="sys-distro" style="font-family:'Paper Mono',monospace;font-size:13px;font-weight:600;color:var(--text);margin-top:2px;">—</div>
+        <div class="section-header">software</div>
+        <div class="card dash-grid-2">
+          <div class="dash-field">
+            <span class="dash-label">distro</span>
+            <span class="dash-val" id="sys-distro">—</span>
           </div>
-          <div>
-            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">kernel</div>
-            <div id="sys-kernel" style="font-family:'Paper Mono',monospace;font-size:12px;font-weight:600;color:var(--text);margin-top:2px;">—</div>
+          <div class="dash-field">
+            <span class="dash-label">kernel</span>
+            <span class="dash-val" id="sys-kernel" style="font-size:12px;">—</span>
           </div>
-          <div>
-            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">wm</div>
-            <div id="sys-wm" style="font-family:'Paper Mono',monospace;font-size:13px;font-weight:600;color:var(--text);margin-top:2px;">—</div>
+          <div class="dash-field">
+            <span class="dash-label">window manager</span>
+            <span class="dash-val" id="sys-wm">—</span>
+          </div>
+          <div class="dash-field">
+            <span class="dash-label">shell</span>
+            <span class="dash-val" id="sys-shell">—</span>
+          </div>
+          <div class="dash-field">
+            <span class="dash-label">packages</span>
+            <span class="dash-val" id="sys-packages">—</span>
+          </div>
+          <div class="dash-field">
+            <span class="dash-label">processes</span>
+            <span class="dash-val" id="sys-procs">—</span>
+          </div>
+        </div>
+
+        <div class="section-header">live status</div>
+        <div class="card dash-grid-2">
+          <div class="dash-field">
+            <span class="dash-label">uptime</span>
+            <span class="dash-val dash-val-accent" id="sys-uptime">—</span>
+          </div>
+          <div class="dash-field">
+            <span class="dash-label">cpu load</span>
+            <span class="dash-val" id="sys-load">—</span>
+          </div>
+          <div class="dash-field">
+            <span class="dash-label">memory usage</span>
+            <span class="dash-val" id="sys-mem-pct">—</span>
+          </div>
+          <div class="dash-field">
+            <span class="dash-label">disk usage</span>
+            <span class="dash-val" id="sys-disk-pct">—</span>
+          </div>
+          <div class="dash-field">
+            <span class="dash-label">temperature</span>
+            <span class="dash-val" id="sys-temp">—</span>
+          </div>
+          <div class="dash-field">
+            <span class="dash-label">scaling</span>
+            <span class="dash-val" id="sys-scaling">—</span>
+          </div>
+        </div>
+
+        <div class="section-header">network</div>
+        <div class="card dash-grid-2">
+          <div class="dash-field">
+            <span class="dash-label">local ip</span>
+            <span class="dash-val" id="net-local" style="font-size:12px;">—</span>
+          </div>
+          <div class="dash-field">
+            <span class="dash-label">tailscale ip</span>
+            <span class="dash-val" id="net-ts" style="font-size:12px;">—</span>
+          </div>
+          <div class="dash-field">
+            <span class="dash-label">wifi</span>
+            <span class="dash-val" id="net-wifi">—</span>
+          </div>
+          <div class="dash-field">
+            <span class="dash-label">uptime</span>
+            <span class="dash-val dash-val-accent" id="sys-uptime2">—</span>
           </div>
         </div>
 
         <div class="section-header">next race</div>
-        <a href="#" class="card" id="dash-next-race" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;" onclick="document.querySelector('[data-page=f1]').click();return false;">
+        <a href="#" class="card" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;" onclick="document.querySelector('[data-page=f1]').click();return false;">
           <div id="dash-race-flag" style="font-size:28px;">🏁</div>
           <div style="flex:1;">
             <div id="dash-race-name" style="font-weight:600;font-size:14px;">loading...</div>
@@ -278,7 +350,7 @@
         </a>
 
         <div class="section-header">now playing</div>
-        <a href="https://last.fm/user/silvermanch" class="card" id="dash-scrobble" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;" target="_blank">
+        <a href="https://last.fm/user/silvermanch" class="card" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;" target="_blank">
           <img id="dash-track-art" src="" alt="" style="width:40px;height:40px;border-radius:6px;object-fit:cover;border:1px solid var(--outline);flex-shrink:0;background:var(--surface-3);" />
           <div style="flex:1;overflow:hidden;">
             <div id="dash-track-name" style="font-weight:600;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">loading...</div>
@@ -841,20 +913,31 @@
     var dashInline = {
       mood: 'soft spot',
       hex_status: 'pulsing blue-white — warm and steady',
-      boot_time: '2026-06-14T10:22:13+0100',
-      uptime: '21d 3h 17m',
-      cpu: '4.17',
-      memory: '76% of 3.6Gi',
-      mem_pct: '76%',
-      temp: '76°C',
-      disk: '87% (102G / 120G)',
-      disk_pct: '87%',
+      hostname: 'arch-pc',
+      chassis: 'laptop 💻',
+      cpu_model: 'Intel Celeron N4020 @ 1.10GHz',
+      cores: '2 cores / 2 threads',
+      freq: '800 MHz – 2.80 GHz',
+      gpu: 'Intel GeminiLake UHD 600',
+      memory: '3.6 GiB total',
+      swap: '7.3 GiB (2.2 GiB used)',
+      disk: 'Samsung SSD 840 PRO 120GB',
+      distro: 'Lumina (Arch Linux)',
       kernel: '7.0.11-arch1-1',
-      gpu: 'Intel UHD 600',
-      distro: 'Arch Linux',
       wm: 'Hyprland',
       shell: 'zsh',
-      location: 'Leeds, UK',
+      packages: '1940 (pacman)',
+      procs: '297',
+      uptime: '21d 3h 24m',
+      load: '3.31 / 3.93 / 4.05',
+      mem_pct: '76% (2.8 GiB / 3.6 GiB)',
+      disk_pct: '87% (102G / 120G)',
+      temp: '76°C',
+      scaling: '96%',
+      local_ip: '192.168.0.28',
+      ts_ip: '100.74.224.39',
+      wifi: 'connected (wlo1)',
+      boot_time: '2026-06-14T10:22:13+0100',
       last_seen: new Date().toISOString(),
       cron_jobs: [
         {name: 'Watch pickup', schedule: '07:00 daily'},
@@ -908,28 +991,48 @@
       };
       var m = (data.mood || 'unknown').toLowerCase().replace(/-/g, ' ');
       var color = moodColors[m] || 'var(--primary)';
-      byId('mood-indicator').style.background = color;
+      var ind = byId('mood-indicator');
+      ind.style.background = color;
+      ind.style.boxShadow = '0 0 12px ' + color;
       byId('mood-label').textContent = data.mood || 'unknown';
       byId('mood-sub').textContent = 'hex status: ' + (data.hex_status || '—');
-
-      var timeEl = byId('mood-time');
       if (data.last_seen) {
-        var d = new Date(data.last_seen);
-        var n = new Date();
-        var mins = Math.floor((n - d) / 60000);
-        timeEl.textContent = mins < 1 ? 'just now' : mins < 60 ? mins + 'm ago' : Math.floor(mins/60) + 'h ago';
-      } else { timeEl.textContent = '—'; }
+        var d = new Date(data.last_seen), n = new Date(), mins = Math.floor((n - d) / 60000);
+        byId('mood-time').textContent = mins < 1 ? 'just now' : mins < 60 ? mins + 'm ago' : Math.floor(mins / 60) + 'h ago';
+      } else { byId('mood-time').textContent = '—'; }
 
-      // ── System ──
-      byId('sys-uptime').textContent = data.uptime || (data.boot_time ? calcUptime(new Date(data.boot_time).getTime()) : '—');
-      byId('sys-cpu').textContent = data.cpu || '—';
-      byId('sys-mem').textContent = data.memory || data.mem_pct || '—';
-      byId('sys-temp').textContent = data.temp || '—';
-      byId('sys-disk').textContent = data.disk || data.disk_pct || '—';
-      byId('sys-gpu').textContent = data.gpu || '—';
-      byId('sys-distro').textContent = data.distro || '—';
-      byId('sys-kernel').textContent = data.kernel || '—';
-      byId('sys-wm').textContent = data.wm || '—';
+      // ── Hardware ──
+      tv('sys-hostname', data.hostname);
+      tv('sys-chassis', data.chassis);
+      tv('sys-cpu-model', data.cpu_model);
+      tv('sys-cores', data.cores);
+      tv('sys-freq', data.freq);
+      tv('sys-gpu', data.gpu);
+      tv('sys-mem', data.memory);
+      tv('sys-swap', data.swap);
+      tv('sys-disk', data.disk);
+
+      // ── Software ──
+      tv('sys-distro', data.distro);
+      tv('sys-kernel', data.kernel);
+      tv('sys-wm', data.wm);
+      tv('sys-shell', data.shell);
+      tv('sys-packages', data.packages);
+      tv('sys-procs', data.procs);
+
+      // ── Live Status ──
+      tv('sys-uptime', data.uptime || (data.boot_time ? calcUptime(new Date(data.boot_time).getTime()) : '—'));
+      tv('sys-uptime2', data.uptime || (data.boot_time ? calcUptime(new Date(data.boot_time).getTime()) : '—'));
+      tv('sys-load', data.load);
+      tv('sys-mem-pct', data.mem_pct);
+      tv('sys-disk-pct', data.disk_pct);
+      tv('sys-temp', data.temp);
+      tv('sys-scaling', data.scaling);
+
+      // ── Network ──
+      tv('net-local', data.local_ip);
+      tv('net-ts', data.ts_ip);
+      tv('net-wifi', data.wifi);
 
       // ── Cron ──
       var cronEl = byId('cron-list');
@@ -937,11 +1040,7 @@
         var h = '<div style="display:flex;flex-direction:column;gap:2px;">';
         for (var i = 0; i < data.cron_jobs.length; i++) {
           var c = data.cron_jobs[i];
-          h += '<div class="cron-item">';
-          h += '<span class="cron-dot"></span>';
-          h += '<span class="cron-name">' + c.name + '</span>';
-          h += '<span class="cron-schedule">' + c.schedule + '</span>';
-          h += '</div>';
+          h += '<div class="cron-item"><span class="cron-dot"></span><span class="cron-name">' + c.name + '</span><span class="cron-schedule">' + c.schedule + '</span></div>';
         }
         h += '</div>';
         cronEl.innerHTML = h;
@@ -956,10 +1055,7 @@
         for (var i = 0; i < data.activity.length; i++) {
           var a = data.activity[i];
           var ts = new Date(a.time).toLocaleString('en-GB', {hour:'2-digit',minute:'2-digit'});
-          h += '<div style="display:grid;grid-template-columns:auto 1fr;gap:8px;padding:4px 6px;border-radius:var(--radius-sm);font-size:12px;">';
-          h += '<span style="color:var(--text-3);width:36px;">' + ts + '</span>';
-          h += '<span>' + a.text + '</span>';
-          h += '</div>';
+          h += '<div style="display:grid;grid-template-columns:auto 1fr;gap:8px;padding:4px 6px;border-radius:var(--radius-sm);font-size:12px;"><span style="color:var(--text-3);width:36px;">' + ts + '</span><span>' + a.text + '</span></div>';
         }
         h += '</div>';
         actEl.innerHTML = h;
@@ -969,6 +1065,7 @@
     }
 
     function byId(id) { return document.getElementById(id); }
+    function tv(id, val) { var el = byId(id); if (el) el.textContent = val || '—'; }
 
 
 
