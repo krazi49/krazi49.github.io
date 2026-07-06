@@ -8,32 +8,32 @@
   "freq": "800 MHz – ",
   "gpu": "Intel Corporation GeminiLake [UHD Graphics 600] (rev 06)",
   "memory": "75% (2.7Gi / 3.6Gi)",
-  "swap": "7.3Gi (1.9Gi used)",
+  "swap": "7.3Gi (2.0Gi used)",
   "disk": "Series 119.2G",
   "distro": "Lumina",
   "kernel": "7.0.11-arch1-1",
   "wm": "Hyprland",
   "shell": "zsh",
   "packages": "1948 (pacman)",
-  "procs": "288",
-  "uptime": "22d 9h 12m",
-  "load": "2.07 / 2.01 / 2.09",
+  "procs": "289",
+  "uptime": "22d 9h 27m",
+  "load": "2.58 / 2.29 / 2.12",
   "mem_pct": "75% (2.7Gi / 3.6Gi)",
   "disk_pct": "87% (101G / 120G)",
-  "temp": "65°C",
+  "temp": "66°C",
   "scaling": "96%%",
   "local_ip": "192.168.0.28",
   "ts_ip": "100.74.224.39",
   "wifi": "connected (wlo1)",
   "boot_time": "2026-06-14T10:22:14+0100",
-  "last_seen": "2026-07-06T19:34:43+0100",
+  "last_seen": "2026-07-06T19:49:31+0100",
   "cron_jobs": [
-    {"name": "Watch pickup", "schedule": "07:00 daily", "next_run": "2026-07-06T20:04:43+0100"},
-    {"name": "Mood sync → waybar", "schedule": "every 30m", "next_run": "2026-07-06T20:04:43+0100"},
-    {"name": "Heartbeat check", "schedule": "every 30m", "next_run": "2026-07-06T20:04:43+0100"},
-    {"name": "F1 standings refresh", "schedule": "every 60m", "next_run": "2026-07-06T20:34:43+0100"}
+    {"name": "Watch pickup", "schedule": "07:00 daily", "next_run": "2026-07-06T20:19:31+0100"},
+    {"name": "Mood sync → waybar", "schedule": "every 30m", "next_run": "2026-07-06T20:19:31+0100"},
+    {"name": "Heartbeat check", "schedule": "every 30m", "next_run": "2026-07-06T20:19:31+0100"},
+    {"name": "F1 standings refresh", "schedule": "every 60m", "next_run": "2026-07-06T20:49:31+0100"}
   ],
   "activity": [
-    {"time": "2026-07-06T19:34:43+0100", "text": "Dashboard state refreshed"}
+    {"time": "2026-07-06T19:49:31+0100", "text": "Dashboard state refreshed"}
   ]
 }
