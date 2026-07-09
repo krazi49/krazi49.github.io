@@ -15,9 +15,9 @@
   "wm": "Hyprland",
   "shell": "zsh",
   "packages": "1948 (pacman)",
-  "procs": "281",
-  "uptime": "25d 2h 43m",
-  "load": "1.56 / 1.78 / 1.87",
+  "procs": "279",
+  "uptime": "25d 2h 57m",
+  "load": "1.96 / 1.96 / 1.93",
   "mem_pct": "64% (2.3Gi / 3.6Gi)",
   "disk_pct": "87% (102G / 120G)",
   "temp": "70°C",
@@ -25,15 +25,15 @@
   "local_ip": "192.168.0.28",
   "ts_ip": "100.74.224.39",
   "wifi": "connected (wlo1)",
-  "boot_time": "2026-06-14T10:22:14+0100",
-  "last_seen": "2026-07-09T13:05:47+0100",
+  "boot_time": "2026-06-14T10:22:15+0100",
+  "last_seen": "2026-07-09T13:19:34+0100",
   "cron_jobs": [
-    {"name": "Watch pickup", "schedule": "07:00 daily", "next_run": "2026-07-09T13:35:47+0100"},
-    {"name": "Mood sync → waybar", "schedule": "every 30m", "next_run": "2026-07-09T13:35:47+0100"},
-    {"name": "Heartbeat check", "schedule": "every 30m", "next_run": "2026-07-09T13:35:47+0100"},
-    {"name": "F1 standings refresh", "schedule": "every 60m", "next_run": "2026-07-09T14:05:47+0100"}
+    {"name": "Watch pickup", "schedule": "07:00 daily", "next_run": "2026-07-09T13:49:34+0100"},
+    {"name": "Mood sync → waybar", "schedule": "every 30m", "next_run": "2026-07-09T13:49:34+0100"},
+    {"name": "Heartbeat check", "schedule": "every 30m", "next_run": "2026-07-09T13:49:34+0100"},
+    {"name": "F1 standings refresh", "schedule": "every 60m", "next_run": "2026-07-09T14:19:34+0100"}
   ],
   "activity": [
-    {"time": "2026-07-09T13:05:47+0100", "text": "Dashboard state refreshed"}
+    {"time": "2026-07-09T13:19:34+0100", "text": "Dashboard state refreshed"}
   ]
 }
