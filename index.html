@@ -4,9 +4,9 @@
   <title>krazierthanu</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="krazierthanu — about, f1, music, projects" />
+  <meta name="description" content="krazierthanu — about, f1, music" />
   <meta property="og:title" content="krazierthanu" />
-  <meta property="og:description" content="personal site — f1, music, projects" />
+  <meta property="og:description" content="personal site — f1, music" />
   <meta property="og:type" content="website" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏎️</text></svg>" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -23,9 +23,7 @@
       <button class="nav-item active" data-page="about"><i class="fa-solid fa-user"></i> about</button>
       <button class="nav-item" data-page="f1"><i class="fa-solid fa-car"></i> f1</button>
       <button class="nav-item" data-page="music"><i class="fa-solid fa-headphones"></i> music</button>
-      <button class="nav-item" data-page="projects"><i class="fa-solid fa-cube"></i> projects</button>
       <button class="nav-item" data-page="dashboard"><i class="fa-solid fa-gauge-high"></i> dashboard</button>
-      <button class="nav-item" data-page="now"><i class="fa-solid fa-clock"></i> /now</button>
       <button class="nav-item nav-theme" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i> theme</button>
     </aside>
 
@@ -66,6 +64,36 @@
           <span class="status-badge"><i class="fa-solid fa-clock"></i> gmt+1</span>
           <span class="status-badge"><i class="fa-solid fa-car"></i> alpine</span>
           <span class="status-badge"><i class="fa-solid fa-keyboard"></i> ortho</span>
+        </div>
+
+        <div class="section-header" style="margin-top:12px;">stuff i'm building</div>
+
+        <div class="card project">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <h3>lumina</h3>
+            <span class="project-tag">in progress</span>
+          </div>
+          <p>broadcast graphics design system targeting sports broadcasters. real-time compositing, data-driven overlays, everything in the browser.</p>
+          <div class="status-row">
+            <span class="status-badge"><i class="fa-brands fa-js"></i> webgpu</span>
+            <span class="status-badge"><i class="fa-solid fa-tv"></i> srt/ndi</span>
+          </div>
+        </div>
+
+        <div class="card project">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <h3>krazierthanu</h3>
+            <span class="project-tag">live</span>
+          </div>
+          <p>this site. personal homepage with f1 countdown, last.fm scrobbler, and a terminal-inspired aesthetic.</p>
+        </div>
+
+        <div class="section-header" style="margin-top:4px;">elsewhere</div>
+        <div class="card-row">
+          <a href="https://github.com/krazi49" class="card" target="_blank"><i class="fa-brands fa-github"></i> github</a>
+          <a href="https://last.fm/user/silvermanch" class="card" target="_blank"><i class="fa-brands fa-lastfm"></i> last.fm</a>
+          <a href="https://music.youtube.com/watch?v=u1hyLQOr6no" class="card" target="_blank"><i class="fa-brands fa-youtube"></i> music</a>
+          <a href="https://pitwall.me" class="card" target="_blank"><i class="fa-solid fa-tower-broadcast"></i> timing</a>
         </div>
       </div>
 
@@ -146,63 +174,7 @@
         </p>
       </div>
 
-      <!-- ─── PROJECTS ─── -->
-      <div class="section" id="section-projects">
-        <div class="section-header">stuff i'm building</div>
-
-        <div class="card project">
-          <div style="display:flex;align-items:center;justify-content:space-between;">
-            <h3>lumina</h3>
-            <span class="project-tag">in progress</span>
-          </div>
-          <p>broadcast graphics design system targeting sports broadcasters. real-time compositing, data-driven overlays, everything in the browser.</p>
-          <div class="status-row">
-            <span class="status-badge"><i class="fa-brands fa-js"></i> webgpu</span>
-            <span class="status-badge"><i class="fa-solid fa-tv"></i> srt/ndi</span>
-          </div>
-        </div>
-
-        <div class="card project">
-          <div style="display:flex;align-items:center;justify-content:space-between;">
-            <h3>krazierthanu</h3>
-            <span class="project-tag">live</span>
-          </div>
-          <p>this site. personal homepage with f1 countdown, last.fm scrobbler, and a terminal-inspired aesthetic.</p>
-        </div>
-
-        <div class="section-header" style="margin-top:4px;">elsewhere</div>
-        <div class="card-row">
-          <a href="https://github.com/krazi49" class="card" target="_blank"><i class="fa-brands fa-github"></i> github</a>
-          <a href="https://last.fm/user/silvermanch" class="card" target="_blank"><i class="fa-brands fa-lastfm"></i> last.fm</a>
-          <a href="https://music.youtube.com/watch?v=u1hyLQOr6no" class="card" target="_blank"><i class="fa-brands fa-youtube"></i> music</a>
-          <a href="https://pitwall.me" class="card" target="_blank"><i class="fa-solid fa-tower-broadcast"></i> timing</a>
-        </div>
-      </div>
-
-      <!-- ─── /NOW ─── -->
-      <div class="section" id="section-now">
-        <div class="section-header">/now — july 2026</div>
-
-        <div class="card project">
-          <h3 style="margin-bottom:1px;">🎵 music</h3>
-          <p>deep in a hardstyle/speed house kick. producing on the side, figuring out serum presets and failing at sound design.</p>
-        </div>
-
-        <div class="card project">
-          <h3 style="margin-bottom:1px;">🏎️ f1</h3>
-          <p>british gp weekend. alpine is showing signs of life. gasly p11 in fp1/2, colapinto had moments. cautiously optimistic.</p>
-        </div>
-
-        <div class="card project">
-          <h3 style="margin-bottom:1px;">🖥️ building</h3>
-          <p>lumina broadcast graphics. the hyprland ricing is never done (waybar on its 47th iteration). personal site relaunch.</p>
-        </div>
-
-        <div class="card project">
-          <h3 style="margin-bottom:1px;">🎯 goals</h3>
-          <p>sub-40 at karting. ship lumina mvp before spa. stop starting new projects.</p>
-        </div>
-      </div>
+      <!-- Projects and /now moved/removed per user request -->
 
       <!-- ─── DASHBOARD ─── -->
       <div class="section" id="section-dashboard">
