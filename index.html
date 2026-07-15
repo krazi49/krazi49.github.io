@@ -143,8 +143,6 @@
       <div class="section" id="section-music">
         <div class="music-split">
           <a href="https://last.fm/user/silvermanch" class="music-now-playing" id="scrobbler-card" target="_blank">
-            <img id="track-art-bg" class="music-bg-art" src="" alt="" />
-            <img id="track-art" class="music-fg-art" src="" alt="album art" />
             <div class="scrobble-counter" id="scrobble-counter">—</div>
             <div class="music-info">
               <span id="track-name" class="music-track-name">loading...</span>
@@ -1657,8 +1655,6 @@
             document.getElementById('track-album').textContent = nowPlaying.album['#text'] || 'single';
             document.getElementById('scrobbler-card').href = scrobbleUrl;
             if (art && art['#text']) {
-              document.getElementById('track-art').src = art['#text'];
-              document.getElementById('track-art-bg').src = art['#text'];
             }
             recentCache = tracks.slice(1, 6);
             bars.forEach(function(b) { b.classList.remove('paused'); });
@@ -1672,8 +1668,6 @@
             document.getElementById('track-album').textContent = nowPlaying.album['#text'] || 'single';
             document.getElementById('scrobbler-card').href = scrobbleUrl;
             if (art && art['#text']) {
-              document.getElementById('track-art').src = art['#text'];
-              document.getElementById('track-art-bg').src = art['#text'];
             }
             recentCache = tracks.slice(0, 5);
             bars.forEach(function(b) { b.classList.add('paused'); });
