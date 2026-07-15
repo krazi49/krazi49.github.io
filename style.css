@@ -873,6 +873,22 @@ a.card:active { transform: scale(0.98); }
   z-index: 3;
 }
 
+.scrobble-counter {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 3;
+  font-family: 'Paper Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--on-primary);
+  background: var(--primary);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
 .music-recent {
   display: flex;
   flex-direction: column;

@@ -145,6 +145,7 @@
           <a href="https://last.fm/user/silvermanch" class="music-now-playing" id="scrobbler-card" target="_blank">
             <img id="track-art-bg" class="music-bg-art" src="" alt="" />
             <img id="track-art" class="music-fg-art" src="" alt="album art" />
+            <div class="scrobble-counter" id="scrobble-counter">—</div>
             <div class="music-info">
               <span id="track-name" class="music-track-name">loading...</span>
               <span id="track-artist" class="music-track-artist"></span>
@@ -1751,8 +1752,26 @@
       if (deq) deq.querySelectorAll('.eq-bar').forEach(function(b) { b.classList.add('paused'); });
     }
 
+    function fetchTotalScrobbles() {
+      var xhr = new XMLHttpRequest();
+      var apiKey = '4f08815f48f04e98c8ec8f294b21d080';
+      xhr.open('GET', 'https://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=silvermanch&api_key=' + apiKey + '&format=json');
+      xhr.onload = function() {
+        if (xhr.status !== 200) return;
+        try {
+          var data = JSON.parse(xhr.responseText);
+          var total = parseInt(data.user.playcount) || 0;
+          var el = document.getElementById('scrobble-counter');
+          if (el) el.textContent = total.toLocaleString() + ' scrobbles';
+        } catch(e) {}
+      };
+      xhr.send();
+    }
+
     setInterval(updateScrobbler, 30000);
     updateScrobbler();
+    fetchTotalScrobbles();
+    setInterval(fetchTotalScrobbles, 300000);
   </script>
 </body>
 </html>
