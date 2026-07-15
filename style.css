@@ -780,7 +780,7 @@ a.card:active { transform: scale(0.98); }
   position: relative;
   border-radius: var(--radius);
   overflow: hidden;
-  min-height: 280px;
+  min-height: 320px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -823,8 +823,8 @@ a.card:active { transform: scale(0.98); }
   top: 50%;
   left: 50%;
   transform: translate(-50%, -55%);
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   border-radius: var(--radius-sm);
   object-fit: cover;
   border: 2px solid rgba(255,255,255,0.1);
@@ -1006,8 +1006,8 @@ a.card:active { transform: scale(0.98); }
     min-height: 200px;
   }
   .music-fg-art {
-    width: 90px;
-    height: 90px;
+    width: 140px;
+    height: 140px;
   }
 }
 
