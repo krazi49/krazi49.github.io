@@ -141,31 +141,30 @@
 
       <!-- ─── MUSIC ─── -->
       <div class="section" id="section-music">
-        <div class="section-header">now playing</div>
-
-        <a href="https://last.fm/user/silvermanch" class="card scrobbler" id="scrobbler-card" target="_blank">
-          <img id="track-art" src="" alt="album art" />
-          <div class="scrobbler-text">
-            <div class="scrobbler-top-row">
-              <span id="track-name">loading...</span>
-              <span class="equaliser" id="eq">
-                <span class="eq-bar"></span>
-                <span class="eq-bar"></span>
-                <span class="eq-bar"></span>
-                <span class="eq-bar"></span>
-                <span class="eq-bar"></span>
-                <span class="eq-bar"></span>
-              </span>
+        <div class="music-split">
+          <a href="https://last.fm/user/silvermanch" class="music-now-playing" id="scrobbler-card" target="_blank">
+            <img id="track-art-bg" class="music-bg-art" src="" alt="" />
+            <img id="track-art" class="music-fg-art" src="" alt="album art" />
+            <div class="music-info">
+              <span id="track-name" class="music-track-name">loading...</span>
+              <span id="track-artist" class="music-track-artist"></span>
+              <span id="track-album" class="music-track-album"></span>
             </div>
-            <span id="track-artist"></span>
-            <span id="track-album"></span>
-          </div>
-        </a>
+            <span class="equaliser" id="eq">
+              <span class="eq-bar"></span>
+              <span class="eq-bar"></span>
+              <span class="eq-bar"></span>
+              <span class="eq-bar"></span>
+              <span class="eq-bar"></span>
+              <span class="eq-bar"></span>
+            </span>
+          </a>
 
-        <div class="section-header" style="margin-top:4px;">recent tracks</div>
-        <div class="card" id="recent-list" style="padding:8px 12px;">
-          <div class="recent-list" id="recent-tracks">
-            <div style="padding:6px 8px;font-size:12px;color:var(--text-3);font-family:'Paper Mono',monospace;">loading...</div>
+          <div class="music-recent">
+            <div class="section-header">recent</div>
+            <div class="music-grid" id="recent-tracks">
+              <div class="music-tile-empty">loading...</div>
+            </div>
           </div>
         </div>
 
@@ -1646,18 +1645,19 @@
           var bars = eq.querySelectorAll('.eq-bar');
 
           var scrobbleUrl = 'https://www.last.fm/music/' + encodeURIComponent(nowPlaying.artist['#text'] || '') + '/_/' + encodeURIComponent(nowPlaying.name || '');
+          var art = null;
+          for (var j = 0; j < nowPlaying.image.length; j++) {
+            if (nowPlaying.image[j].size === 'extralarge') { art = nowPlaying.image[j]; break; }
+          }
 
           if (isNowPlaying) {
             document.getElementById('track-name').textContent = nowPlaying.name || 'unknown';
             document.getElementById('track-artist').textContent = nowPlaying.artist['#text'] || 'unknown';
             document.getElementById('track-album').textContent = nowPlaying.album['#text'] || 'single';
             document.getElementById('scrobbler-card').href = scrobbleUrl;
-            var art = null;
-            for (var j = 0; j < nowPlaying.image.length; j++) {
-              if (nowPlaying.image[j].size === 'extralarge') { art = nowPlaying.image[j]; break; }
-            }
             if (art && art['#text']) {
               document.getElementById('track-art').src = art['#text'];
+              document.getElementById('track-art-bg').src = art['#text'];
             }
             recentCache = tracks.slice(1, 6);
             bars.forEach(function(b) { b.classList.remove('paused'); });
@@ -1670,6 +1670,10 @@
             document.getElementById('track-artist').textContent = nowPlaying.artist['#text'] || 'unknown';
             document.getElementById('track-album').textContent = nowPlaying.album['#text'] || 'single';
             document.getElementById('scrobbler-card').href = scrobbleUrl;
+            if (art && art['#text']) {
+              document.getElementById('track-art').src = art['#text'];
+              document.getElementById('track-art-bg').src = art['#text'];
+            }
             recentCache = tracks.slice(0, 5);
             bars.forEach(function(b) { b.classList.add('paused'); });
 
@@ -1697,7 +1701,7 @@
     function renderRecent() {
       var el = document.getElementById('recent-tracks');
       if (!recentCache.length) {
-        el.innerHTML = '<div style="padding:6px 8px;font-size:12px;color:var(--text-3);font-family:\'Paper Mono\',monospace;">no recent tracks</div>';
+        el.innerHTML = '<div class="music-tile-empty">no recent tracks</div>';
         return;
       }
       var html = '';
@@ -1707,24 +1711,25 @@
         var artist = t.artist['#text'] || 'unknown';
         var thumb = '';
         for (var j = 0; j < t.image.length; j++) {
-          if (t.image[j].size === 'small') { thumb = t.image[j]['#text']; break; }
+          if (t.image[j].size === 'extralarge') { thumb = t.image[j]['#text']; break; }
         }
-        var imgHtml = thumb
-          ? '<img class="recent-thumb" src="' + thumb + '" alt="" />'
-          : '<div class="recent-thumb" style="background:var(--surface-3)"></div>';
-        var timeStr = '';
-        if (t.date && t.date['#text']) {
-          var d = new Date(t.date['#text']);
-          var mins = Math.floor((Date.now() - d.getTime()) / 60000);
-          if (mins < 60) timeStr = mins + 'm ago';
-          else timeStr = Math.floor(mins / 60) + 'h ago';
+        if (!thumb) {
+          for (var j = 0; j < t.image.length; j++) {
+            if (t.image[j].size === 'large') { thumb = t.image[j]['#text']; break; }
+          }
         }
         var trackUrl = 'https://www.last.fm/music/' + encodeURIComponent(artist) + '/_/' + encodeURIComponent(name);
-        html += '<a href="' + trackUrl + '" class="recent-item" target="_blank">';
-        html += imgHtml;
-        html += '<div class="recent-meta"><div class="r-name">' + name + '</div><div class="r-artist">' + artist + '</div></div>';
-        html += '<span class="recent-time">' + timeStr + '</span>';
-        html += '</a>';
+        if (thumb) {
+          html += '<a href="' + trackUrl + '" class="music-tile" target="_blank">';
+          html += '<img src="' + thumb + '" alt="" loading="lazy" />';
+          html += '<div class="music-tile-info"><span class="music-tile-name">' + name + '</span><span class="music-tile-artist">' + artist + '</span></div>';
+          html += '</a>';
+        } else {
+          html += '<a href="' + trackUrl + '" class="music-tile" target="_blank">';
+          html += '<div class="music-tile-placeholder"><span>' + name + '</span></div>';
+          html += '<div class="music-tile-info"><span class="music-tile-name">' + name + '</span><span class="music-tile-artist">' + artist + '</span></div>';
+          html += '</a>';
+        }
       }
       el.innerHTML = html;
     }
