@@ -796,10 +796,38 @@ a.card:active { transform: scale(0.98); }
   border-color: var(--primary);
 }
 
+.music-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  border-radius: var(--radius);
+  transition: transform 6s var(--ease);
+}
+.music-now-playing:hover .music-art {
+  transform: scale(1.04);
+}
+
+.music-art-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 40%, transparent 70%);
+  z-index: 1;
+  border-radius: var(--radius);
+  pointer-events: none;
+}
+
 
 
 
 .music-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -828,8 +856,8 @@ a.card:active { transform: scale(0.98); }
 
 .music-now-playing .equaliser {
   position: absolute;
-  top: 14px;
-  right: 14px;
+  bottom: 16px;
+  right: 16px;
   z-index: 3;
 }
 
@@ -837,7 +865,7 @@ a.card:active { transform: scale(0.98); }
   position: absolute;
   top: 14px;
   left: 14px;
-  z-index: 3;
+  z-index: 4;
   font-family: 'Paper Mono', monospace;
   font-size: 10px;
   font-weight: 700;
