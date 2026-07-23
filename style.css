@@ -65,96 +65,121 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  padding: 20px;
 }
 
-/* ── Layout ─────────────────────────────────────────── */
-.shell {
-  display: flex;
-  gap: 16px;
-  width: 100%;
-  max-width: 720px;
-}
-
-/* ── Sidebar ────────────────────────────────────────── */
-.sidebar {
-  width: 160px;
-  flex-shrink: 0;
+/* ── Top Bar ───────────────────────────────────────── */
+.top-bar {
   position: sticky;
-  top: 20px;
-  height: fit-content;
+  top: 0;
+  z-index: 50;
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--outline);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-.sidebar-header {
+.top-bar-brand {
   font-size: 10px;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   color: var(--text-3);
-  padding: 8px 14px 6px;
 }
 
-.nav-theme {
-  margin-top: auto;
+.top-bar-theme {
+  background: none;
+  border: 1px solid var(--outline);
+  color: var(--text-2);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: var(--radius-full);
+  transition: all 0.25s var(--ease);
 }
 
-.sidebar .nav-item {
+.top-bar-theme:hover {
+  background: var(--surface-2);
+  color: var(--primary);
+}
+
+/* ── Shell ──────────────────────────────────────────── */
+.shell {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  width: 100%;
+  max-width: 800px;
+  min-height: calc(100vh - 42px);
+}
+
+/* ── Icon Rail (Sidebar) ───────────────────────────── */
+.icon-rail {
+  position: sticky;
+  top: 42px;
+  height: calc(100vh - 42px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 0;
+  border-right: 1px solid var(--outline);
+}
+
+.icon-rail .nav-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 9px 14px;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
   border: none;
   background: transparent;
   color: var(--text-2);
   font-family: inherit;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 16px;
   cursor: pointer;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius);
   transition: all 0.25s var(--ease);
-  text-align: left;
-  width: 100%;
 }
 
-.nav-item i { width: 16px; text-align: center; font-size: 13px; }
-
-.nav-item:hover {
+.icon-rail .nav-item:hover {
   background: var(--surface-2);
   color: var(--text);
 }
 
-.nav-item.active {
+.icon-rail .nav-item.active {
   background: var(--primary);
   color: var(--on-primary);
-  font-weight: 600;
   box-shadow: 0 0 20px rgba(123,212,225,0.15);
 }
 
-.nav-item.active:hover {
-  box-shadow: 0 0 30px rgba(123,212,225,0.25);
-  transform: scale(1.02);
+.icon-rail .nav-item i { width: 16px; text-align: center; }
+
+.nav-tooltip {
+  display: none;
 }
 
-.nav-item.soon {
-  opacity: 0.4;
-  cursor: not-allowed;
-  font-style: italic;
+.icon-rail .nav-item:hover .nav-tooltip {
+  display: block;
+  position: absolute;
+  left: 60px;
+  background: var(--surface-3);
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 60;
 }
 
 /* ── Main ────────────────────────────────────────────── */
 .main {
-  flex: 1;
   min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  background: var(--surface);
-  border-radius: var(--radius);
-  border: 1px solid var(--outline);
-  padding: 28px;
+  padding: 16px 20px 40px;
 }
 
 .section {
@@ -272,7 +297,6 @@ a.card:active { transform: scale(0.98); }
 
 /* ── F1 Timer ───────────────────────────────────────── */
 
-
 .cal-row {
   transition: all 0.25s var(--ease);
   border-radius: var(--radius-sm);
@@ -340,8 +364,6 @@ a.card:active { transform: scale(0.98); }
   0%, 100% { opacity: 1; }
   50% { opacity: 0.3; }
 }
-
-
 
 /* ── Countdown Card ───────────────────────────────────── */
 .countdown-card {
@@ -658,7 +680,7 @@ a.card:active { transform: scale(0.98); }
   z-index: 100;
 }
 
-/* ── Dashboard ────────────────────────────────────── */
+/* ── Dashboard (slim) ──────────────────────────────── */
 .dash-grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -690,13 +712,6 @@ a.card:active { transform: scale(0.98); }
 
 .dash-val-accent {
   color: var(--primary);
-}
-
-@media (max-width: 500px) {
-  .dash-grid-2 {
-    grid-template-columns: 1fr;
-    gap: 4px;
-  }
 }
 
 /* ── F1 Standings ──────────────────────────────────── */
@@ -818,9 +833,6 @@ a.card:active { transform: scale(0.98); }
   border-radius: var(--radius);
   pointer-events: none;
 }
-
-
-
 
 .music-info {
   position: absolute;
@@ -986,35 +998,65 @@ a.card:active { transform: scale(0.98); }
   color: var(--text-3);
 }
 
+/* ── Mobile ─────────────────────────────────────────── */
 @media (max-width: 600px) {
+  body { padding: 0; }
+
+  .shell {
+    grid-template-columns: 1fr;
+  }
+
+  .icon-rail {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    height: 56px;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    border-right: none;
+    border-top: 1px solid var(--outline);
+    background: var(--bg);
+    z-index: 50;
+    padding: 0;
+    gap: 0;
+  }
+
+  .icon-rail .nav-item {
+    width: auto;
+    height: auto;
+    padding: 8px 12px;
+    font-size: 18px;
+  }
+
+  .icon-rail .nav-item:hover .nav-tooltip {
+    display: none;
+  }
+
+  .main {
+    padding: 16px 16px 80px;
+  }
+
+  .card-row {
+    grid-template-columns: 1fr;
+  }
+
   .music-split {
     grid-template-columns: 1fr;
   }
+
   .music-now-playing {
     min-height: 280px;
   }
 
-}
-
-/* ── Mobile ─────────────────────────────────────────── */
-@media (max-width: 600px) {
-  body { padding: 12px; }
-  .shell { flex-direction: column; }
-  .sidebar {
-    width: 100%;
-    flex-direction: row;
-    position: static;
+  .dash-grid-2 {
+    grid-template-columns: 1fr;
     gap: 4px;
-    overflow-x: auto;
-    padding-bottom: 4px;
   }
-  .sidebar-header { display: none; }
-  .sidebar .nav-item {
-    width: auto;
-    flex-shrink: 0;
-    padding: 7px 14px;
-    font-size: 12px;
+
+  .top-bar {
+    padding: 8px 16px;
   }
-  .main { padding: 20px; }
-  .card-row { grid-template-columns: 1fr; }
 }

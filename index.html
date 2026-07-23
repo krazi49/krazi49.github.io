@@ -16,15 +16,19 @@
 </head>
 <body data-theme="dark">
 
+  <!-- ─── Top Bar ─── -->
+  <div class="top-bar">
+    <span class="top-bar-brand">krazierthanu</span>
+    <button class="top-bar-theme" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i></button>
+  </div>
+
   <div class="shell">
-    <!-- ─── Sidebar ─── -->
-    <aside class="sidebar">
-      <div class="sidebar-header">krazierthanu</div>
-      <button class="nav-item active" data-page="about"><i class="fa-solid fa-user"></i> about</button>
-      <button class="nav-item" data-page="f1"><i class="fa-solid fa-car"></i> f1</button>
-      <button class="nav-item" data-page="music"><i class="fa-solid fa-headphones"></i> music</button>
-      <button class="nav-item" data-page="dashboard"><i class="fa-solid fa-gauge-high"></i> dashboard</button>
-      <button class="nav-item nav-theme" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i> theme</button>
+    <!-- ─── Icon Rail ─── -->
+    <aside class="icon-rail">
+      <button class="nav-item active" data-page="about" style="position:relative;"><i class="fa-solid fa-user"></i><span class="nav-tooltip">about</span></button>
+      <button class="nav-item" data-page="f1" style="position:relative;"><i class="fa-solid fa-car"></i><span class="nav-tooltip">f1</span></button>
+      <button class="nav-item" data-page="music" style="position:relative;"><i class="fa-solid fa-headphones"></i><span class="nav-tooltip">music</span></button>
+      <button class="nav-item" data-page="dashboard" style="position:relative;"><i class="fa-solid fa-gauge-high"></i><span class="nav-tooltip">dashboard</span></button>
     </aside>
 
     <!-- ─── Main ─── -->
