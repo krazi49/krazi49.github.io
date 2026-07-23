@@ -12,43 +12,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
   <link rel="stylesheet" href="style.css" />
-  <script>
-    // ── Dynamic time-of-day theme ────────────────────────
-    (function() {
-      var h = new Date().getHours();
-      var m = new Date().getMinutes();
-      var t = h + m / 60;
-      var p;
-      if (t < 5.5)       p = 'night';
-      else if (t < 7)    p = 'dawn';
-      else if (t < 10)   p = 'morning';
-      else if (t < 16)   p = 'day';
-      else if (t < 18.5) p = 'afternoon';
-      else if (t < 20.5) p = 'sunset';
-      else               p = 'night';
-      var themes = {
-        night:     { bg:'#090b0d', surface:'#111416', surface2:'#191d1f', surface3:'#222729', primary:'#7bd4e1', onPrimary:'#00363c', text:'#d0d8da', text2:'#96a3a6', text3:'#5a696c', outline:'rgba(255,255,255,0.06)' },
-        dawn:      { bg:'#121014', surface:'#1e1a20', surface2:'#28232c', surface3:'#332d38', primary:'#e8a0b4', onPrimary:'#3c1525', text:'#e4dce0', text2:'#b0a3aa', text3:'#7a6d75', outline:'rgba(232,160,180,0.08)' },
-        morning:   { bg:'#f6f2ef', surface:'#ede8e3', surface2:'#e2dbd4', surface3:'#d6cec5', primary:'#d4764e', onPrimary:'#fff', text:'#2e2520', text2:'#6e625a', text3:'#a89e95', outline:'rgba(0,0,0,0.07)' },
-        day:       { bg:'#f0ede9', surface:'#e6e2dc', surface2:'#dbd6ce', surface3:'#cdc7bc', primary:'#0078d4', onPrimary:'#fff', text:'#1e1b18', text2:'#5a554f', text3:'#928c85', outline:'rgba(0,0,0,0.08)' },
-        afternoon: { bg:'#f4efe8', surface:'#eae4db', surface2:'#ddd6cb', surface3:'#d0c8bb', primary:'#c46030', onPrimary:'#fff', text:'#2a2420', text2:'#685e56', text3:'#a09588', outline:'rgba(0,0,0,0.07)' },
-        sunset:    { bg:'#161018', surface:'#221a26', surface2:'#2e2434', surface3:'#3a2e42', primary:'#e07050', onPrimary:'#fff', text:'#e4d8dc', text2:'#b0a0a8', text3:'#7a6c76', outline:'rgba(224,112,80,0.1)' }
-      };
-      var s = themes[p] || themes.night;
-      var r = document.documentElement.style;
-      r.setProperty('--bg', s.bg);
-      r.setProperty('--surface', s.surface);
-      r.setProperty('--surface-2', s.surface2);
-      r.setProperty('--surface-3', s.surface3);
-      r.setProperty('--primary', s.primary);
-      r.setProperty('--on-primary', s.onPrimary);
-      r.setProperty('--text', s.text);
-      r.setProperty('--text-2', s.text2);
-      r.setProperty('--text-3', s.text3);
-      r.setProperty('--outline', s.outline);
-      document.body.setAttribute('data-theme', t >= 5.5 && t < 20.5 ? 'light' : 'dark');
-    })();
-  </script>
 
 </head>
 <body data-theme="dark">
@@ -392,7 +355,6 @@
     </div>
   </div>
 
-  <div class="deck-dots" id="deck-dots"></div>
   <div class="deck-hint" id="deck-hint">drag sideways to cycle · up to pin · long-press to fan out</div>
 
   <div class="toast" id="toast">copied!</div>
@@ -409,7 +371,29 @@
     var pageOrder = ['about', 'f1', 'music', 'dashboard'];
     var navBtns = document.querySelectorAll('.nav-item[data-page]');
     var sections = {};
-    pageOrder.forEach(function(p) { sections[p] = document.getElementById('section-' + p); });
+    var deckMeta = {
+      about: { title: 'about', icon: 'fa-user' },
+      f1: { title: 'f1', icon: 'fa-car' },
+      music: { title: 'music', icon: 'fa-headphones' },
+      dashboard: { title: 'dashboard', icon: 'fa-gauge-high' }
+    };
+    var titleBars = {};
+    pageOrder.forEach(function(p) {
+      sections[p] = document.getElementById('section-' + p);
+      var bar = document.createElement('div');
+      bar.className = 'card-titlebar';
+      bar.innerHTML = '<span class="card-titlebar-name"><i class="fa-solid ' + deckMeta[p].icon + '"></i>' + deckMeta[p].title + '</span>' +
+        '<button class="card-titlebar-pin" aria-label="pin ' + p + '"><i class="fa-solid fa-thumbtack"></i></button>';
+      sections[p].insertBefore(bar, sections[p].firstChild);
+      titleBars[p] = bar;
+      bar.querySelector('.card-titlebar-pin').addEventListener('click', function(e) {
+        e.stopPropagation();
+        pinnedPage = (pinnedPage === p) ? null : p;
+        if (pinnedPage) localStorage.setItem('deck-pinned-page', pinnedPage);
+        else localStorage.removeItem('deck-pinned-page');
+        renderStack();
+      });
+    });
 
     var order = pageOrder.slice();
     var pinnedPage = localStorage.getItem('deck-pinned-page');
@@ -417,27 +401,25 @@
       order = [pinnedPage].concat(order.filter(function(p) { return p !== pinnedPage; }));
     }
     var fanned = false;
-    var dotsWrap = document.getElementById('deck-dots');
     var hint = document.getElementById('deck-hint');
+    var isTouch = window.matchMedia('(pointer: coarse)').matches;
+    var PIN_THRESH = isTouch ? -110 : -70;
 
-    function renderDots() {
-      dotsWrap.innerHTML = '';
-      order.forEach(function(page, pos) {
-        var d = document.createElement('div');
-        d.className = 'deck-dot' + (pos === 0 ? ' active' : '');
-        dotsWrap.appendChild(d);
+    function updateTitleBars() {
+      Object.keys(titleBars).forEach(function(p) {
+        titleBars[p].querySelector('.card-titlebar-pin').classList.toggle('pinned', p === pinnedPage);
       });
     }
 
     function renderStack() {
-      renderDots();
+      updateTitleBars();
       Object.keys(sections).forEach(function(k) { sections[k].classList.remove('active'); });
       navBtns.forEach(function(n) { n.classList.remove('active'); });
 
       if (fanned) {
         hint.textContent = 'tap a card to open it · tap the gap or press esc to close';
         var stageWidth = document.getElementById('main-stage') ? document.getElementById('main-stage').clientWidth : window.innerWidth;
-        var maxSpread = Math.min(90, (stageWidth - 220) / Math.max(order.length - 1, 1));
+        var maxSpread = Math.min(80, (stageWidth - 180) / Math.max(order.length - 1, 1));
         order.forEach(function(page, pos) {
           var el = sections[page];
           el.classList.remove('dragging', 'snap-back');
@@ -459,7 +441,7 @@
         return;
       }
 
-      hint.textContent = 'drag sideways to cycle · up to pin';
+      hint.textContent = 'drag sideways to cycle · up to pin · long-press to fan out';
       order.forEach(function(page, pos) {
         var el = sections[page];
         el.classList.add('active');
@@ -469,7 +451,7 @@
         el.style.transition = 'transform 0.35s cubic-bezier(.25,.6,.35,1), opacity 0.25s ease';
         el.style.zIndex = 100 - pos;
         el.style.opacity = pos > 3 ? 0 : 1;
-        el.style.transform = 'translateY(' + (pos * 10) + 'px) scale(' + (1 - pos * 0.04) + ')';
+        el.style.transform = 'translateY(' + (pos * -16) + 'px) scale(' + (1 - pos * 0.04) + ')';
       });
       var topBtn2 = document.querySelector('.nav-item[data-page="' + order[0] + '"]');
       if (topBtn2) topBtn2.classList.add('active');
@@ -525,7 +507,7 @@
         if (now > lastT) vel = (x - lastX) / (now - lastT);
         lastX = x; lastT = now;
 
-        var pinThresh = -70;
+        var pinThresh = PIN_THRESH;
         var ody = dy;
         if (dy < pinThresh) {
           var over = dy - pinThresh;
@@ -542,7 +524,7 @@
         if (!dragging) return;
         dragging = false;
 
-        if (dy < -70 && Math.abs(dy) > Math.abs(dx)) {
+        if (dy < PIN_THRESH && Math.abs(dy) > Math.abs(dx)) {
           el.classList.add('snap-back');
           el.style.cursor = 'grab';
           pinnedPage = (pinnedPage === page) ? null : page;
@@ -602,10 +584,33 @@
     renderStack();
 
     // ─── Theme ───
-    function toggleTheme() {
-      var body = document.body;
-      body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    var themes = ['dark', 'morning', 'afternoon', 'evening', 'night'];
+    var currentThemeIndex = 0;
+
+    function getSystemTheme() {
+      var h = new Date().getHours();
+      if (h >= 6 && h < 12) return 'morning';
+      if (h >= 12 && h < 18) return 'afternoon';
+      if (h >= 18 && h < 22) return 'evening';
+      return 'night';
     }
+
+    function applyTheme(theme) {
+      document.body.setAttribute('data-theme', theme);
+      currentThemeIndex = themes.indexOf(theme);
+      localStorage.setItem('kth-theme', theme);
+    }
+
+    function toggleTheme() {
+      currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+      applyTheme(themes[currentThemeIndex]);
+    }
+
+    // Auto-detect on load, respect manual override from localStorage
+    (function() {
+      var saved = localStorage.getItem('kth-theme');
+      applyTheme(saved || getSystemTheme());
+    })();
 
     // ─── Toast ───
     function showToast(msg) {

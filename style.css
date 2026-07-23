@@ -54,6 +54,46 @@
   --outline: rgba(0,0,0,0.08);
 }
 
+/* ── Time-of-day themes ── */
+[data-theme="morning"] {
+  --bg: #0d0f0e;
+  --surface: #151918;
+  --surface-2: #1d2321;
+  --surface-3: #262c29;
+  --primary: #7bc8b4;
+  --on-primary: #00362e;
+  --text: #dce3df;
+  --text-2: #a8b5b0;
+  --text-3: #6d7d76;
+  --outline: rgba(123,200,180,0.08);
+}
+
+[data-theme="evening"] {
+  --bg: #100d0c;
+  --surface: #191413;
+  --surface-2: #221c1a;
+  --surface-3: #2b2422;
+  --primary: #d4a07b;
+  --on-primary: #3c2200;
+  --text: #e3ddd9;
+  --text-2: #b5a9a2;
+  --text-3: #7d6f66;
+  --outline: rgba(212,160,123,0.08);
+}
+
+[data-theme="night"] {
+  --bg: #0c0b10;
+  --surface: #13121a;
+  --surface-2: #1b1924;
+  --surface-3: #242130;
+  --primary: #8b8bd4;
+  --on-primary: #100066;
+  --text: #dcdce4;
+  --text-2: #a8a8b8;
+  --text-3: #6d6d80;
+  --outline: rgba(139,139,212,0.08);
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -223,15 +263,38 @@ body {
 .section.active { display: flex; }
 .section.pinned { border: 2px solid var(--primary); }
 
-.deck-dots {
+.card-titlebar {
   display: flex;
-  gap: 6px;
-  justify-content: center;
-  margin: 4px 0 0;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--outline);
+  background: var(--surface-2);
 }
-.deck-dot { height: 6px; border-radius: 3px; background: var(--outline); transition: all 0.2s ease; }
-.deck-dot.active { width: 16px; background: var(--primary); }
-.deck-dot:not(.active) { width: 6px; }
+
+.card-titlebar-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-1, var(--text));
+}
+
+.card-titlebar-pin {
+  background: transparent;
+  border: none;
+  color: var(--text-3);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px;
+  opacity: 0.6;
+}
+.card-titlebar-pin:hover { opacity: 1; }
+.card-titlebar-pin.pinned { color: var(--primary); opacity: 1; }
 
 .deck-hint {
   text-align: center;
@@ -1054,6 +1117,10 @@ a.card:active { transform: scale(0.98); }
 @media (max-width: 600px) {
   body { padding: 0; }
 
+  .top-bar {
+    padding: 10px 16px;
+  }
+
   .shell {
     grid-template-columns: 1fr;
   }
@@ -1064,7 +1131,8 @@ a.card:active { transform: scale(0.98); }
     left: 0;
     right: 0;
     top: auto;
-    height: 56px;
+    height: calc(56px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
     width: 100%;
     flex-direction: row;
     justify-content: space-around;
@@ -1072,7 +1140,8 @@ a.card:active { transform: scale(0.98); }
     border-top: 1px solid var(--outline);
     background: var(--bg);
     z-index: 50;
-    padding: 0;
+    padding-left: 0;
+    padding-right: 0;
     gap: 0;
   }
 
@@ -1080,7 +1149,7 @@ a.card:active { transform: scale(0.98); }
     width: auto;
     height: auto;
     padding: 8px 12px;
-    font-size: 18px;
+    font-size: 17px;
   }
 
   .icon-rail .nav-item:hover .nav-tooltip {
@@ -1088,21 +1157,25 @@ a.card:active { transform: scale(0.98); }
   }
 
   .main {
-    padding: 16px 16px 80px;
+    padding: 14px 12px calc(72px + env(safe-area-inset-bottom, 0px));
   }
 
   .section {
-    inset: 24px 12px 96px;
-    padding: 20px 18px;
+    inset: 20px 4px calc(88px + env(safe-area-inset-bottom, 0px));
+    padding: 18px 16px;
+    border-radius: 14px;
   }
 
   .icon-rail .nav-item[onclick] {
     margin-top: 0;
   }
 
+  .card-titlebar-name { font-size: 12px; }
+
   .deck-hint {
-    font-size: 12px;
-    padding: 0 12px;
+    font-size: 11.5px;
+    padding: 0 20px;
+    margin: 8px 0 10px;
   }
 
   .card-row {
@@ -1182,10 +1255,6 @@ a.card:active { transform: scale(0.98); }
 .deck-card-sub { font-size: 12px; color: var(--text-3); }
 .deck-card-count { font-size: 11px; color: var(--text-3); }
 
-.deck-dots { display: flex; gap: 6px; margin-top: 14px; }
-.deck-dot { height: 6px; border-radius: 3px; background: var(--outline); transition: all 0.2s ease; }
-.deck-dot.active { width: 16px; background: var(--primary); }
-.deck-dot:not(.active) { width: 6px; }
 
 .deck-hint { font-size: 11px; color: var(--text-3); margin-top: 12px; text-align: center; }
 .deck-close {
