@@ -18,8 +18,6 @@
 
   <!-- ─── Top Bar ─── -->
   <div class="top-bar">
-    <span class="top-bar-brand">krazierthanu</span>
-    <button class="top-bar-theme" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i></button>
   </div>
 
   <div class="shell">
@@ -29,10 +27,11 @@
       <button class="nav-item" data-page="f1" style="position:relative;"><i class="fa-solid fa-car"></i><span class="nav-tooltip">f1</span></button>
       <button class="nav-item" data-page="music" style="position:relative;"><i class="fa-solid fa-headphones"></i><span class="nav-tooltip">music</span></button>
       <button class="nav-item" data-page="dashboard" style="position:relative;"><i class="fa-solid fa-gauge-high"></i><span class="nav-tooltip">dashboard</span></button>
+      <button class="nav-item" onclick="toggleTheme()" style="position:relative; margin-top:auto;"><i class="fa-solid fa-circle-half-stroke"></i><span class="nav-tooltip">theme</span></button>
     </aside>
 
     <!-- ─── Main ─── -->
-    <div class="main">
+    <div class="main" id="main-stage">
 
       <!-- ─── ABOUT ─── -->
       <div class="section active" id="section-about">
@@ -356,6 +355,9 @@
     </div>
   </div>
 
+  <div class="deck-dots" id="deck-dots"></div>
+  <div class="deck-hint" id="deck-hint">drag sideways to cycle · up to pin · long-press to fan out</div>
+
   <div class="toast" id="toast">copied!</div>
 
   <script>
@@ -366,20 +368,201 @@
       document.getElementById('greeting').textContent = 'good ' + g + '!';
     })();
 
-    // ─── Navigation ───
+    // ─── Navigation: page IS the card stack ───
+    var pageOrder = ['about', 'f1', 'music', 'dashboard'];
     var navBtns = document.querySelectorAll('.nav-item[data-page]');
     var sections = {};
+    pageOrder.forEach(function(p) { sections[p] = document.getElementById('section-' + p); });
+
+    var order = pageOrder.slice();
+    var pinnedPage = localStorage.getItem('deck-pinned-page');
+    if (pinnedPage && pageOrder.indexOf(pinnedPage) > -1) {
+      order = [pinnedPage].concat(order.filter(function(p) { return p !== pinnedPage; }));
+    }
+    var fanned = false;
+    var dotsWrap = document.getElementById('deck-dots');
+    var hint = document.getElementById('deck-hint');
+
+    function renderDots() {
+      dotsWrap.innerHTML = '';
+      order.forEach(function(page, pos) {
+        var d = document.createElement('div');
+        d.className = 'deck-dot' + (pos === 0 ? ' active' : '');
+        dotsWrap.appendChild(d);
+      });
+    }
+
+    function renderStack() {
+      renderDots();
+      Object.keys(sections).forEach(function(k) { sections[k].classList.remove('active'); });
+      navBtns.forEach(function(n) { n.classList.remove('active'); });
+
+      if (fanned) {
+        hint.textContent = 'tap a card to open it · tap the gap or press esc to close';
+        var stageWidth = document.getElementById('main-stage') ? document.getElementById('main-stage').clientWidth : window.innerWidth;
+        var maxSpread = Math.min(90, (stageWidth - 220) / Math.max(order.length - 1, 1));
+        order.forEach(function(page, pos) {
+          var el = sections[page];
+          el.classList.remove('dragging', 'snap-back');
+          el.classList.add('active');
+          var spread = (pos - (order.length - 1) / 2) * maxSpread;
+          el.style.zIndex = 100 - pos;
+          el.style.opacity = 1;
+          el.style.transition = 'transform 0.3s cubic-bezier(.25,.6,.35,1)';
+          el.style.transform = 'translateX(' + spread + 'px) translateY(' + (Math.abs(spread) * 0.12) + 'px) rotate(' + (spread / 14) + 'deg) scale(0.9)';
+          el.onclick = (function(p) {
+            return function(e) {
+              fanned = false;
+              jumpTo(p);
+            };
+          })(page);
+        });
+        var topBtn = document.querySelector('.nav-item[data-page="' + order[0] + '"]');
+        if (topBtn) topBtn.classList.add('active');
+        return;
+      }
+
+      hint.textContent = 'drag sideways to cycle · up to pin';
+      order.forEach(function(page, pos) {
+        var el = sections[page];
+        el.classList.add('active');
+        el.classList.toggle('pinned', page === pinnedPage);
+        el.classList.remove('dragging', 'snap-back');
+        el.onclick = null;
+        el.style.transition = 'transform 0.35s cubic-bezier(.25,.6,.35,1), opacity 0.25s ease';
+        el.style.zIndex = 100 - pos;
+        el.style.opacity = pos > 3 ? 0 : 1;
+        el.style.transform = 'translateY(' + (pos * 10) + 'px) scale(' + (1 - pos * 0.04) + ')';
+      });
+      var topBtn2 = document.querySelector('.nav-item[data-page="' + order[0] + '"]');
+      if (topBtn2) topBtn2.classList.add('active');
+      location.hash = order[0];
+      attachDrag(sections[order[0]], order[0]);
+    }
+
+    function cycle(dir) {
+      if (dir === 1) order.push(order.shift());
+      else order.unshift(order.pop());
+      renderStack();
+    }
+
+    function jumpTo(page) {
+      if (order[0] === page) return;
+      order = [page].concat(order.filter(function(p) { return p !== page; }));
+      renderStack();
+    }
+
+    function attachDrag(el, page) {
+      var startX = 0, startY = 0, dx = 0, dy = 0, dragging = false;
+      var lastX = 0, lastT = 0, vel = 0;
+      var pressTimer = null, longPressed = false;
+
+      function onDown(e) {
+        if (e.target.closest('a, button, [onclick]')) return;
+        if (e.type === 'mousedown') e.preventDefault();
+        dragging = true;
+        longPressed = false;
+        startX = (e.touches ? e.touches[0].clientX : e.clientX);
+        startY = (e.touches ? e.touches[0].clientY : e.clientY);
+        lastX = startX; lastT = Date.now();
+        el.style.transition = 'none';
+        el.style.cursor = 'grabbing';
+        el.classList.add('dragging');
+        document.body.style.userSelect = 'none';
+        pressTimer = setTimeout(function() {
+          longPressed = true;
+          dragging = false;
+          fanned = true;
+          renderStack();
+        }, 320);
+      }
+
+      function onMove(e) {
+        if (!dragging) return;
+        if (e.type === 'mousemove') e.preventDefault();
+        var x = (e.touches ? e.touches[0].clientX : e.clientX);
+        var y = (e.touches ? e.touches[0].clientY : e.clientY);
+        dx = x - startX; dy = y - startY;
+        if (Math.abs(dx) > 14 || Math.abs(dy) > 14) clearTimeout(pressTimer);
+        var now = Date.now();
+        if (now > lastT) vel = (x - lastX) / (now - lastT);
+        lastX = x; lastT = now;
+
+        var pinThresh = -70;
+        var ody = dy;
+        if (dy < pinThresh) {
+          var over = dy - pinThresh;
+          ody = pinThresh + over * 0.35;
+        }
+        el.style.transform = 'translate(' + dx + 'px, ' + ody + 'px) rotate(' + (dx / 36) + 'deg)';
+      }
+
+      function onUp() {
+        clearTimeout(pressTimer);
+        el.classList.remove('dragging');
+        document.body.style.userSelect = '';
+        if (longPressed) return;
+        if (!dragging) return;
+        dragging = false;
+
+        if (dy < -70 && Math.abs(dy) > Math.abs(dx)) {
+          el.classList.add('snap-back');
+          el.style.cursor = 'grab';
+          pinnedPage = (pinnedPage === page) ? null : page;
+          if (pinnedPage) localStorage.setItem('deck-pinned-page', pinnedPage);
+          else localStorage.removeItem('deck-pinned-page');
+          renderStack();
+        } else if (Math.abs(dx) > 90 || Math.abs(vel) > 0.5) {
+          // fly the card fully off across the whole page before cycling
+          var dir = (dx > 0 || vel > 0) ? 1 : -1;
+          el.classList.remove('dragging');
+          el.style.transition = 'transform 0.32s cubic-bezier(.3,.5,.4,1), opacity 0.32s ease';
+          el.style.transform = 'translate(' + (dir * (window.innerWidth * 0.6)) + 'px, ' + (dy * 0.6) + 'px) rotate(' + (dir * 10) + 'deg)';
+          el.style.opacity = '0';
+          setTimeout(function() { cycle(dir); }, 240);
+        } else {
+          el.classList.add('snap-back');
+          el.style.cursor = 'grab';
+          el.style.transform = 'translate(0,0) rotate(0)';
+        }
+        dx = 0; dy = 0; vel = 0;
+      }
+
+      el.addEventListener('mousedown', onDown);
+      window.addEventListener('mousemove', onMove);
+      window.addEventListener('mouseup', onUp);
+      el.addEventListener('touchstart', onDown, { passive: true });
+      el.addEventListener('touchmove', onMove, { passive: true });
+      el.addEventListener('touchend', onUp);
+    }
 
     navBtns.forEach(function(b) {
-      var page = b.getAttribute('data-page');
-      sections[page] = document.getElementById('section-' + page);
       b.addEventListener('click', function() {
-        navBtns.forEach(function(n) { n.classList.remove('active'); });
-        Object.keys(sections).forEach(function(k) { sections[k].classList.remove('active'); });
-        b.classList.add('active');
-        sections[page].classList.add('active');
+        if (fanned) fanned = false;
+        jumpTo(b.getAttribute('data-page'));
       });
     });
+
+    document.getElementById('main-stage').addEventListener('click', function(e) {
+      if (fanned && e.target === this) { fanned = false; renderStack(); }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowRight') cycle(1);
+      if (e.key === 'ArrowLeft') cycle(-1);
+      if (e.key === 'Escape' && fanned) { fanned = false; renderStack(); }
+    });
+
+    window.addEventListener('hashchange', function() {
+      var page = location.hash.replace('#', '');
+      if (pageOrder.indexOf(page) > -1) jumpTo(page);
+    });
+
+    if (location.hash && pageOrder.indexOf(location.hash.replace('#', '')) > -1) {
+      order = [location.hash.replace('#', '')].concat(order.filter(function(p) { return p !== location.hash.replace('#', ''); }));
+    }
+    renderStack();
 
     // ─── Theme ───
     function toggleTheme() {
@@ -1775,5 +1958,5 @@
     fetchTotalScrobbles();
     setInterval(fetchTotalScrobbles, 300000);
   </script>
-</body>
-</html>
+
+

@@ -62,6 +62,7 @@ body {
   color: var(--text);
   font-size: 14px;
   line-height: 1.6;
+  overflow-x: hidden;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -179,16 +180,67 @@ body {
 /* ── Main ────────────────────────────────────────────── */
 .main {
   min-width: 0;
-  padding: 16px 20px 40px;
+  padding: 0 28px 0;
+  position: relative;
+  min-height: calc(100vh - 200px);
+  overflow: visible;
 }
 
 .section {
   display: none;
   flex-direction: column;
   gap: 14px;
+  position: absolute;
+  inset: 40px 48px 40px;
+  background: var(--surface-2);
+  border: 1px solid var(--outline);
+  border-radius: var(--radius);
+  padding: 26px 28px;
+  overflow-y: auto;
+  cursor: grab;
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(.25,.6,.35,1), opacity 0.25s ease;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.section.snap-back {
+  transition: transform 0.4s cubic-bezier(.3,1.15,.5,1);
+}
+
+.section.dragging {
+  transition: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.section a, .section button, .section input, .section p, .section span, .section div {
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .section.active { display: flex; }
+.section.pinned { border: 2px solid var(--primary); }
+
+.deck-dots {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin: 4px 0 0;
+}
+.deck-dot { height: 6px; border-radius: 3px; background: var(--outline); transition: all 0.2s ease; }
+.deck-dot.active { width: 16px; background: var(--primary); }
+.deck-dot:not(.active) { width: 6px; }
+
+.deck-hint {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 10px 0 14px;
+  letter-spacing: 0.2px;
+}
 
 .section-header {
   font-size: 10px;
@@ -1039,6 +1091,20 @@ a.card:active { transform: scale(0.98); }
     padding: 16px 16px 80px;
   }
 
+  .section {
+    inset: 24px 12px 96px;
+    padding: 20px 18px;
+  }
+
+  .icon-rail .nav-item[onclick] {
+    margin-top: 0;
+  }
+
+  .deck-hint {
+    font-size: 12px;
+    padding: 0 12px;
+  }
+
   .card-row {
     grid-template-columns: 1fr;
   }
@@ -1059,4 +1125,81 @@ a.card:active { transform: scale(0.98); }
   .top-bar {
     padding: 8px 16px;
   }
+}
+
+/* ─── Card Deck Nav ─── */
+.deck-toggle {
+  background: transparent;
+  border: 1px solid var(--outline);
+  color: var(--text-2);
+  border-radius: var(--radius-full);
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+}
+.deck-toggle:hover { background: var(--surface-2); color: var(--primary); }
+
+.deck-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.deck-overlay.open { display: flex; }
+
+.deck-stage {
+  position: relative;
+  width: 300px;
+  height: 380px;
+}
+
+.deck-card {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--outline);
+  background: var(--surface-2);
+  color: var(--text-1, #fff);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: grab;
+  will-change: transform;
+}
+.deck-card.pinned { border: 2px solid var(--primary); }
+.deck-card-top { display: flex; align-items: center; justify-content: space-between; }
+.deck-card-icon { font-size: 22px; color: var(--primary); }
+.deck-card-title { font-size: 18px; font-weight: 700; margin-left: 8px; }
+.deck-card-sub { font-size: 12px; color: var(--text-3); }
+.deck-card-count { font-size: 11px; color: var(--text-3); }
+
+.deck-dots { display: flex; gap: 6px; margin-top: 14px; }
+.deck-dot { height: 6px; border-radius: 3px; background: var(--outline); transition: all 0.2s ease; }
+.deck-dot.active { width: 16px; background: var(--primary); }
+.deck-dot:not(.active) { width: 6px; }
+
+.deck-hint { font-size: 11px; color: var(--text-3); margin-top: 12px; text-align: center; }
+.deck-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: transparent;
+  border: none;
+  color: var(--text-2);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* fan-out mode */
+.deck-stage.fanned .deck-card {
+  cursor: pointer;
 }
