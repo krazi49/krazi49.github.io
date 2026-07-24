@@ -29,8 +29,8 @@
   --surface: #141819;
   --surface-2: #1c2122;
   --surface-3: #252a2b;
-  --primary: #7bd4e1;
-  --on-primary: #00363c;
+  --primary: #e1a37b;
+  --on-primary: #3c2400;
   --text: #dce1e2;
   --text-2: #a8b3b5;
   --text-3: #6d7b7d;
@@ -1114,7 +1114,7 @@ a.card:active { transform: scale(0.98); }
     border-right: none;
     border-top: 1px solid var(--outline);
     background: var(--bg);
-    z-index: 50;
+    z-index: 300;
     padding-left: 0;
     padding-right: 0;
     gap: 0;
@@ -1137,14 +1137,15 @@ a.card:active { transform: scale(0.98); }
   }
 
   .main {
-    padding: 12px 10px calc(72px + env(safe-area-inset-bottom, 0px));
+    padding: 12px 10px calc(96px + env(safe-area-inset-bottom, 0px));
   }
 
   .section {
-    inset: 18px 2px calc(88px + env(safe-area-inset-bottom, 0px));
+    inset: 18px 2px calc(112px + env(safe-area-inset-bottom, 0px));
     padding: 16px 14px;
     border-radius: 14px;
     gap: 12px;
+    z-index: 10 !important;
   }
 
   .card-titlebar {
@@ -1156,9 +1157,16 @@ a.card:active { transform: scale(0.98); }
   .card-titlebar-pin { font-size: 15px; padding: 6px; }
 
   .deck-hint {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+    background: var(--bg);
+    border-top: 1px solid var(--outline);
     font-size: 11px;
-    padding: 0 16px;
-    margin: 6px 0 8px;
+    padding: 6px 16px;
+    margin: 0;
+    z-index: 200;
   }
 
   /* hero */
