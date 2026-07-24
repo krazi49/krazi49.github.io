@@ -447,7 +447,9 @@
         return;
       }
 
-      hint.textContent = 'drag sideways to cycle · up to pin · long-press to fan out';
+      hint.textContent = isTouch
+        ? 'drag sideways to cycle · long-press to fan out · tap pin to save'
+        : 'drag sideways to cycle · up to pin · long-press to fan out';
       order.forEach(function(page, pos) {
         var el = sections[page];
         el.classList.add('active');
@@ -514,7 +516,7 @@
 
         // decide gesture intent once enough movement has happened
         if (committed === null) {
-          if (dy < -10 && Math.abs(dy) > Math.abs(dx) && startScrollTop <= 0) {
+          if (!isTouch && dy < -10 && Math.abs(dy) > Math.abs(dx) && startScrollTop <= 0) {
             committed = 'pin'; // swiping up from the very top of the card's content
           } else if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
             committed = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
@@ -560,7 +562,7 @@
           return;
         }
 
-        if (dy < PIN_THRESH && Math.abs(dy) > Math.abs(dx)) {
+        if (!isTouch && dy < PIN_THRESH && Math.abs(dy) > Math.abs(dx)) {
           el.classList.add('snap-back');
           el.style.cursor = 'grab';
           pinnedPage = (pinnedPage === page) ? null : page;
