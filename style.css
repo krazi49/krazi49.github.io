@@ -29,8 +29,8 @@
   --surface: #141819;
   --surface-2: #1c2122;
   --surface-3: #252a2b;
-  --primary: #a37be1;
-  --on-primary: #180036;
+  --primary: #7be1a3;
+  --on-primary: #003618;
   --text: #dce1e2;
   --text-2: #a8b3b5;
   --text-3: #6d7b7d;
@@ -1146,11 +1146,11 @@ a.card:active { transform: scale(0.98); }
   }
 
   .main {
-    padding: 12px 10px calc(96px + env(safe-area-inset-bottom, 0px));
+    padding: 12px 12px calc(112px + env(safe-area-inset-bottom, 0px));
   }
 
   .section {
-    inset: 18px 2px calc(112px + env(safe-area-inset-bottom, 0px));
+    inset: 18px 12px calc(128px + env(safe-area-inset-bottom, 0px)) 12px;
     padding: 16px 14px;
     border-radius: 14px;
     gap: 12px;

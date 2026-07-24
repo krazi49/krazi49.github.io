@@ -418,8 +418,13 @@
 
       if (fanned) {
         hint.textContent = 'tap a card to open it · tap the gap or press esc to close';
-        var stageWidth = document.getElementById('main-stage') ? document.getElementById('main-stage').clientWidth : window.innerWidth;
-        var maxSpread = Math.min(80, (stageWidth - 180) / Math.max(order.length - 1, 1));
+        var stage = document.getElementById('main-stage');
+        var stageWidth = stage ? stage.clientWidth : window.innerWidth;
+        var cardWidth = sections[order[0]].offsetWidth || stageWidth;
+        var fanScale = stageWidth < 480 ? 0.6 : 0.9;
+        var half = order.length > 1 ? (order.length - 1) / 2 : 1;
+        var maxOuterSpread = Math.max(16, (stageWidth / 2) - (cardWidth * fanScale) / 2 - 8);
+        var maxSpread = Math.min(80, maxOuterSpread / half);
         order.forEach(function(page, pos) {
           var el = sections[page];
           el.classList.remove('dragging', 'snap-back');
@@ -429,7 +434,7 @@
           el.style.opacity = 1;
           el.style.pointerEvents = 'auto';
           el.style.transition = 'transform 0.3s cubic-bezier(.25,.6,.35,1)';
-          el.style.transform = 'translateX(' + spread + 'px) translateY(' + (Math.abs(spread) * 0.12) + 'px) rotate(' + (spread / 14) + 'deg) scale(0.9)';
+          el.style.transform = 'translateX(' + spread + 'px) translateY(' + (Math.abs(spread) * 0.12) + 'px) rotate(' + (spread / 14) + 'deg) scale(' + fanScale + ')';
           el.onclick = (function(p) {
             return function(e) {
               fanned = false;
@@ -477,12 +482,15 @@
       var startX = 0, startY = 0, dx = 0, dy = 0, dragging = false;
       var lastX = 0, lastT = 0, vel = 0;
       var pressTimer = null, longPressed = false;
+      var committed = null, startScrollTop = 0;
 
       function onDown(e) {
         if (e.target.closest('a, button, [onclick]')) return;
         if (e.type === 'mousedown') e.preventDefault();
         dragging = true;
         longPressed = false;
+        committed = e.type === 'mousedown' ? 'x' : null; // mouse always commits immediately
+        startScrollTop = el.scrollTop;
         startX = (e.touches ? e.touches[0].clientX : e.clientX);
         startY = (e.touches ? e.touches[0].clientY : e.clientY);
         lastX = startX; lastT = Date.now();
@@ -500,10 +508,31 @@
 
       function onMove(e) {
         if (!dragging) return;
-        if (e.type === 'mousemove') e.preventDefault();
         var x = (e.touches ? e.touches[0].clientX : e.clientX);
         var y = (e.touches ? e.touches[0].clientY : e.clientY);
         dx = x - startX; dy = y - startY;
+
+        // decide gesture intent once enough movement has happened
+        if (committed === null) {
+          if (dy < -10 && Math.abs(dy) > Math.abs(dx) && startScrollTop <= 0) {
+            committed = 'pin'; // swiping up from the very top of the card's content
+          } else if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
+            committed = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
+            if (committed === 'y') {
+              // vertical scroll intent — hand control back to the browser
+              dragging = false;
+              clearTimeout(pressTimer);
+              el.classList.remove('dragging');
+              el.style.transform = '';
+              document.body.style.userSelect = '';
+              return;
+            }
+          } else {
+            return; // not enough movement yet to decide
+          }
+        }
+
+        if (e.type === 'touchmove' && e.cancelable) e.preventDefault();
         if (Math.abs(dx) > 14 || Math.abs(dy) > 14) clearTimeout(pressTimer);
         var now = Date.now();
         if (now > lastT) vel = (x - lastX) / (now - lastT);
@@ -525,6 +554,11 @@
         if (longPressed) return;
         if (!dragging) return;
         dragging = false;
+
+        if (committed === null) {
+          dx = 0; dy = 0; vel = 0;
+          return;
+        }
 
         if (dy < PIN_THRESH && Math.abs(dy) > Math.abs(dx)) {
           el.classList.add('snap-back');
@@ -553,7 +587,7 @@
       window.addEventListener('mousemove', onMove);
       window.addEventListener('mouseup', onUp);
       el.addEventListener('touchstart', onDown, { passive: true });
-      el.addEventListener('touchmove', onMove, { passive: true });
+      el.addEventListener('touchmove', onMove, { passive: false });
       el.addEventListener('touchend', onUp);
     }
 
