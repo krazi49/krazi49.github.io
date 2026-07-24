@@ -54,46 +54,6 @@
   --outline: rgba(0,0,0,0.08);
 }
 
-/* ── Time-of-day themes ── */
-[data-theme="morning"] {
-  --bg: #0d0f0e;
-  --surface: #151918;
-  --surface-2: #1d2321;
-  --surface-3: #262c29;
-  --primary: #7bc8b4;
-  --on-primary: #00362e;
-  --text: #dce3df;
-  --text-2: #a8b5b0;
-  --text-3: #6d7d76;
-  --outline: rgba(123,200,180,0.08);
-}
-
-[data-theme="evening"] {
-  --bg: #100d0c;
-  --surface: #191413;
-  --surface-2: #221c1a;
-  --surface-3: #2b2422;
-  --primary: #d4a07b;
-  --on-primary: #3c2200;
-  --text: #e3ddd9;
-  --text-2: #b5a9a2;
-  --text-3: #7d6f66;
-  --outline: rgba(212,160,123,0.08);
-}
-
-[data-theme="night"] {
-  --bg: #0c0b10;
-  --surface: #13121a;
-  --surface-2: #1b1924;
-  --surface-3: #242130;
-  --primary: #8b8bd4;
-  --on-primary: #100066;
-  --text: #dcdce4;
-  --text-2: #a8a8b8;
-  --text-3: #6d6d80;
-  --outline: rgba(139,139,212,0.08);
-}
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -1113,9 +1073,23 @@ a.card:active { transform: scale(0.98); }
   color: var(--text-3);
 }
 
+/* ── Tablet ─────────────────────────────────────────── */
+@media (min-width: 601px) and (max-width: 900px) {
+  .shell {
+    max-width: 100%;
+    padding: 0 12px;
+  }
+  .music-split {
+    grid-template-columns: 1fr;
+  }
+  .dash-grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 /* ── Mobile ─────────────────────────────────────────── */
 @media (max-width: 600px) {
-  body { padding: 0; }
+  body { padding: 0; font-size: 13px; }
 
   .top-bar {
     padding: 10px 16px;
@@ -1123,6 +1097,7 @@ a.card:active { transform: scale(0.98); }
 
   .shell {
     grid-template-columns: 1fr;
+    max-width: 100%;
   }
 
   .icon-rail {
@@ -1148,46 +1123,77 @@ a.card:active { transform: scale(0.98); }
   .icon-rail .nav-item {
     width: auto;
     height: auto;
-    padding: 8px 12px;
-    font-size: 17px;
+    padding: 8px 14px;
+    font-size: 18px;
   }
 
-  .icon-rail .nav-item:hover .nav-tooltip {
+  .icon-rail .nav-item:hover .nav-tooltip,
+  .icon-rail .nav-item .nav-tooltip {
     display: none;
-  }
-
-  .main {
-    padding: 14px 12px calc(72px + env(safe-area-inset-bottom, 0px));
-  }
-
-  .section {
-    inset: 20px 4px calc(88px + env(safe-area-inset-bottom, 0px));
-    padding: 18px 16px;
-    border-radius: 14px;
   }
 
   .icon-rail .nav-item[onclick] {
     margin-top: 0;
   }
 
-  .card-titlebar-name { font-size: 12px; }
-
-  .deck-hint {
-    font-size: 11.5px;
-    padding: 0 20px;
-    margin: 8px 0 10px;
+  .main {
+    padding: 12px 10px calc(72px + env(safe-area-inset-bottom, 0px));
   }
 
+  .section {
+    inset: 18px 2px calc(88px + env(safe-area-inset-bottom, 0px));
+    padding: 16px 14px;
+    border-radius: 14px;
+    gap: 12px;
+  }
+
+  .card-titlebar {
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+  }
+
+  .card-titlebar-name { font-size: 11.5px; letter-spacing: 0.4px; }
+  .card-titlebar-pin { font-size: 15px; padding: 6px; }
+
+  .deck-hint {
+    font-size: 11px;
+    padding: 0 16px;
+    margin: 6px 0 8px;
+  }
+
+  /* hero */
+  .hero {
+    gap: 12px;
+  }
+  .hero-avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+  .hero-text h1 { font-size: 17px; }
+  .hero-text p { font-size: 11.5px; }
+
+  .section-header {
+    font-size: 11px;
+  }
+
+  /* link/card grids stay 2-up but tighter, so it doesn't feel like one long scroll */
   .card-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .card-row .card {
+    padding: 10px 8px;
+    font-size: 12px;
   }
 
   .music-split {
     grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   .music-now-playing {
-    min-height: 280px;
+    min-height: 220px;
   }
 
   .dash-grid-2 {
@@ -1195,10 +1201,16 @@ a.card:active { transform: scale(0.98); }
     gap: 4px;
   }
 
-  .top-bar {
-    padding: 8px 16px;
+  /* generic cards: reduce padding, larger tap targets on any interactive rows */
+  .card {
+    padding: 10px 12px;
+  }
+
+  a.card, button.card, [onclick].card {
+    min-height: 44px;
   }
 }
+
 
 /* ─── Card Deck Nav ─── */
 .deck-toggle {

@@ -584,33 +584,10 @@
     renderStack();
 
     // ─── Theme ───
-    var themes = ['dark', 'morning', 'afternoon', 'evening', 'night'];
-    var currentThemeIndex = 0;
-
-    function getSystemTheme() {
-      var h = new Date().getHours();
-      if (h >= 6 && h < 12) return 'morning';
-      if (h >= 12 && h < 18) return 'afternoon';
-      if (h >= 18 && h < 22) return 'evening';
-      return 'night';
-    }
-
-    function applyTheme(theme) {
-      document.body.setAttribute('data-theme', theme);
-      currentThemeIndex = themes.indexOf(theme);
-      localStorage.setItem('kth-theme', theme);
-    }
-
     function toggleTheme() {
-      currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-      applyTheme(themes[currentThemeIndex]);
+      var body = document.body;
+      body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     }
-
-    // Auto-detect on load, respect manual override from localStorage
-    (function() {
-      var saved = localStorage.getItem('kth-theme');
-      applyTheme(saved || getSystemTheme());
-    })();
 
     // ─── Toast ───
     function showToast(msg) {
