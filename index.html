@@ -106,7 +106,8 @@
 
         <div class="card countdown-card">
           <div class="countdown-session" id="f1-label">next race</div>
-          <div class="countdown-number" id="f1-countdown">--d --h --m --s</div>
+          <div class="countdown-number" id="f1-countdown">--:--:--:--</div>
+          <div class="countdown-units">days&nbsp;&nbsp;&nbsp;&nbsp;hrs&nbsp;&nbsp;&nbsp;&nbsp;min&nbsp;&nbsp;&nbsp;&nbsp;sec</div>
           <div class="countdown-meta" id="f1-race-name"></div>
           <div class="countdown-circuit" id="f1-circuit-info" style="display:none;"></div>
         </div>
@@ -867,11 +868,22 @@
 
       var label = document.getElementById('f1-label');
       var timer = document.getElementById('f1-countdown');
+      var unitsRow = document.querySelector('.countdown-units');
       var nameEl = document.getElementById('f1-race-name');
+      var pad2 = function(n) { return String(n).padStart(2, '0'); };
+      var setCountdownDigits = function(d, h, m, s) {
+        unitsRow.style.display = 'block';
+        timer.innerHTML = pad2(d) + '<span class="countdown-colon">:</span>' + pad2(h) +
+          '<span class="countdown-colon">:</span>' + pad2(m) + '<span class="countdown-colon">:</span>' + pad2(s);
+      };
+      var setCountdownText = function(html) {
+        unitsRow.style.display = 'none';
+        timer.innerHTML = html;
+      };
 
       if (!nextRace) {
         label.innerHTML = 'season over';
-        timer.textContent = '---';
+        setCountdownText('---');
         nameEl.textContent = 'see you in 2027';
         return;
       }
@@ -923,7 +935,7 @@
         } else {
           label.innerHTML = '<span class="live-pulse"></span>' + sessName;
         }
-        timer.innerHTML = em + 'm ' + es + 's <span style="font-size:18px;font-weight:400;color:var(--text-3);">elapsed</span>';
+        setCountdownText(em + 'm ' + es + 's <span style="font-size:18px;font-weight:400;color:var(--text-3);">elapsed</span>');
 
         // Try live timing, fall back to circuit info
         if (!lt.connected && !lt.connection && (!lt._lastTry || Date.now() - lt._lastTry > 10000)) {
@@ -947,7 +959,7 @@
         } else {
           label.textContent = nextSessKey ? sessLabels[nextSessKey] : 'next race';
         }
-        timer.textContent = d + 'd ' + h + 'h ' + m + 'm ' + s + 's';
+        setCountdownDigits(d, h, m, s);
         disconnectLiveTiming();
         byId('f1-circuit-info').style.display = 'none';
       } else if (diff > -7200000) {
@@ -956,13 +968,13 @@
         byId('f1-circuit-info').style.display = 'none';
         if (currentSessKey) {
           label.innerHTML = '<span class="live-pulse"></span>' + sessLabels[currentSessKey];
-          timer.innerHTML = 'done <span style="font-size:18px;font-weight:400;color:var(--text-3);">' + sessLabels[currentSessKey] + ' over</span>';
+          setCountdownText('done <span style="font-size:18px;font-weight:400;color:var(--text-3);">' + sessLabels[currentSessKey] + ' over</span>');
         } else {
           label.textContent = 'race weekend';
-          timer.textContent = 'done';
+          setCountdownText('done');
         }
       } else {
-        timer.textContent = 'past';
+        setCountdownText('past');
         label.textContent = 'next race';
         disconnectLiveTiming();
         byId('f1-circuit-info').style.display = 'none';
