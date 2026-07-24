@@ -29,8 +29,8 @@
   --surface: #141819;
   --surface-2: #1c2122;
   --surface-3: #252a2b;
-  --primary: #e1a37b;
-  --on-primary: #3c2400;
+  --primary: #a37be1;
+  --on-primary: #180036;
   --text: #dce1e2;
   --text-2: #a8b3b5;
   --text-3: #6d7b7d;
@@ -157,6 +157,10 @@ body {
 }
 
 .icon-rail .nav-item i { width: 16px; text-align: center; }
+
+.icon-rail .nav-item-theme {
+  margin-top: auto;
+}
 
 .nav-tooltip {
   display: none;
@@ -1136,6 +1140,11 @@ a.card:active { transform: scale(0.98); }
     margin-top: 0;
   }
 
+  .icon-rail .nav-item-theme {
+    margin-top: 0;
+    align-self: center;
+  }
+
   .main {
     padding: 12px 10px calc(96px + env(safe-area-inset-bottom, 0px));
   }
@@ -1145,7 +1154,6 @@ a.card:active { transform: scale(0.98); }
     padding: 16px 14px;
     border-radius: 14px;
     gap: 12px;
-    z-index: 10 !important;
   }
 
   .card-titlebar {
