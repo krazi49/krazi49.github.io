@@ -146,7 +146,8 @@
       <div class="section" id="section-music">
         <div class="music-split">
           <a href="https://last.fm/user/silvermanch" class="music-now-playing" id="scrobbler-card" target="_blank">
-            <img id="track-art" class="music-art" src="" alt="album art" />
+            <img id="track-art" class="music-art hidden" src="" alt="album art" />
+            <div class="music-art-fallback"><i class="fa-solid fa-record-vinyl"></i></div>
             <div class="music-art-overlay"></div>
             <div class="scrobble-counter" id="scrobble-counter">—</div>
             <div class="music-info">
@@ -1873,6 +1874,31 @@
     var scrobblerFailed = false;
     var recentCache = [];
 
+    // last.fm returns a known generic grey placeholder hash when it has no
+    // real art for a track — treat that (and empty urls) as "no art" instead
+    // of rendering a tiny, wrong-looking thumbnail.
+    var LASTFM_PLACEHOLDER_HASHES = ['2a96cbd8b46e442fc41c2b86b821562f', 'c6f59c1e5e7240a4c0d427abd71f3dbb'];
+    function setTrackArt(url) {
+      var img = document.getElementById('track-art');
+      var card = document.getElementById('scrobbler-card');
+      var isPlaceholder = !url || LASTFM_PLACEHOLDER_HASHES.some(function(h) { return url.indexOf(h) > -1; });
+      if (isPlaceholder) {
+        img.classList.add('hidden');
+        img.removeAttribute('src');
+        card.classList.add('no-art');
+        return;
+      }
+      img.onload = function() {
+        img.classList.remove('hidden');
+        card.classList.remove('no-art');
+      };
+      img.onerror = function() {
+        img.classList.add('hidden');
+        card.classList.add('no-art');
+      };
+      img.src = url;
+    }
+
     function updateScrobbler() {
       var xhr = new XMLHttpRequest();
       var apiKey = '4f08815f48f04e98c8ec8f294b21d080';
@@ -1900,9 +1926,7 @@
             document.getElementById('track-artist').textContent = nowPlaying.artist['#text'] || 'unknown';
             document.getElementById('track-album').textContent = nowPlaying.album['#text'] || 'single';
             document.getElementById('scrobbler-card').href = scrobbleUrl;
-            if (art && art['#text']) {
-              document.getElementById('track-art').src = art['#text'];
-            }
+            setTrackArt(art && art['#text']);
             recentCache = tracks.slice(1, 6);
             bars.forEach(function(b) { b.classList.remove('paused'); });
 
@@ -1914,9 +1938,7 @@
             document.getElementById('track-artist').textContent = nowPlaying.artist['#text'] || 'unknown';
             document.getElementById('track-album').textContent = nowPlaying.album['#text'] || 'single';
             document.getElementById('scrobbler-card').href = scrobbleUrl;
-            if (art && art['#text']) {
-              document.getElementById('track-art').src = art['#text'];
-            }
+            setTrackArt(art && art['#text']);
             recentCache = tracks.slice(0, 5);
             bars.forEach(function(b) { b.classList.add('paused'); });
 
