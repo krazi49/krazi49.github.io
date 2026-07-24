@@ -29,8 +29,8 @@
   --surface: #141819;
   --surface-2: #1c2122;
   --surface-3: #252a2b;
-  --primary: #7be1a3;
-  --on-primary: #003618;
+  --primary: #7b9be1;
+  --on-primary: #001336;
   --text: #dce1e2;
   --text-2: #a8b3b5;
   --text-3: #6d7b7d;
@@ -65,7 +65,8 @@ body {
   overflow-x: hidden;
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ── Top Bar ───────────────────────────────────────── */
@@ -73,6 +74,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 50;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1146,11 +1148,11 @@ a.card:active { transform: scale(0.98); }
   }
 
   .main {
-    padding: 12px 12px calc(112px + env(safe-area-inset-bottom, 0px));
+    padding: 12px 12px calc(96px + env(safe-area-inset-bottom, 0px));
   }
 
   .section {
-    inset: 18px 12px calc(128px + env(safe-area-inset-bottom, 0px)) 12px;
+    inset: 18px 12px calc(112px + env(safe-area-inset-bottom, 0px)) 12px;
     padding: 16px 14px;
     border-radius: 14px;
     gap: 12px;
