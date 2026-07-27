@@ -16,17 +16,17 @@
   "shell": "zsh",
   "packages": "1954 (pacman)",
   "procs": "234",
-  "uptime": "4d 14h 51m",
-  "load": "2.68 / 2.12 / 2.03",
+  "uptime": "4d 15h 7m",
+  "load": "2.05 / 1.91 / 1.95",
   "mem_pct": "58%",
   "disk_pct": "88%",
   "temp": "65.0",
-  "scaling": "96%%",
+  "scaling": "97%%",
   "local_ip": "192.168.0.28",
   "ts_ip": "100.74.224.39",
   "wifi": "connected (SKY2CXMP)",
   "boot_time": "2026-07-22 14:07",
-  "last_seen": "2026-07-27T03:59:07Z",
+  "last_seen": "2026-07-27T04:14:14Z",
   "cron_jobs": [],
-  "activity": [{ "text": "Dashboard state refreshed", "time": "2026-07-27T03:59:07Z" }]
+  "activity": [{ "text": "Dashboard state refreshed", "time": "2026-07-27T04:14:14Z" }]
 }
