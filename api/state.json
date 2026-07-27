@@ -16,8 +16,8 @@
   "shell": "zsh",
   "packages": "1954 (pacman)",
   "procs": "250",
-  "uptime": "5d 10h 36m",
-  "load": "2.31 / 2.08 / 2.03",
+  "uptime": "5d 10h 51m",
+  "load": "2.50 / 2.13 / 2.05",
   "mem_pct": "71%",
   "disk_pct": "88%",
   "temp": "66.0",
@@ -26,7 +26,7 @@
   "ts_ip": "100.74.224.39",
   "wifi": "connected (SKY2CXMP)",
   "boot_time": "2026-07-22 14:07",
-  "last_seen": "2026-07-27T23:44:09Z",
+  "last_seen": "2026-07-27T23:59:11Z",
   "cron_jobs": [],
-  "activity": [{ "text": "Dashboard state refreshed", "time": "2026-07-27T23:44:09Z" }]
+  "activity": [{ "text": "Dashboard state refreshed", "time": "2026-07-27T23:59:11Z" }]
 }
