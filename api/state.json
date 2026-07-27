@@ -15,9 +15,9 @@
   "wm": "Hyprland",
   "shell": "zsh",
   "packages": "1954 (pacman)",
-  "procs": "249",
-  "uptime": "5d 5h 7m",
-  "load": "1.95 / 1.98 / 2.00",
+  "procs": "251",
+  "uptime": "5d 5h 21m",
+  "load": "2.46 / 2.62 / 2.31",
   "mem_pct": "68%",
   "disk_pct": "88%",
   "temp": "65.0",
@@ -26,7 +26,7 @@
   "ts_ip": "100.74.224.39",
   "wifi": "connected (SKY2CXMP)",
   "boot_time": "2026-07-22 14:07",
-  "last_seen": "2026-07-27T18:14:40Z",
+  "last_seen": "2026-07-27T18:29:10Z",
   "cron_jobs": [],
-  "activity": [{ "text": "Dashboard state refreshed", "time": "2026-07-27T18:14:40Z" }]
+  "activity": [{ "text": "Dashboard state refreshed", "time": "2026-07-27T18:29:10Z" }]
 }
