@@ -148,9 +148,12 @@ body {
 .discord-card {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  overflow: hidden;
+  gap: 12px;
+  overflow: visible; /* allow activity items to expand */
   padding: 0;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
 }
 
 .discord-card-header {
