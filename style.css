@@ -110,6 +110,8 @@ body {
 }
 
 /* ── Discord Presence ──────────────────────────────── */
+
+/* Top-bar pill */
 .top-bar-discord {
   display: flex;
   align-items: center;
@@ -124,6 +126,81 @@ body {
   max-width: 280px;
   overflow: hidden;
   white-space: nowrap;
+  cursor: default;
+}
+
+.discord-pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background 0.3s var(--ease);
+}
+.discord-pill-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* Full profile card */
+.discord-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+}
+
+.discord-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+}
+
+.discord-card-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+  background: var(--surface-2);
+}
+
+.discord-card-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.discord-card-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.discord-card-user {
+  font-size: 12px;
+  color: var(--text-3);
+  font-family: 'Paper Mono', monospace;
+}
+
+.discord-card-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-2);
+  text-transform: capitalize;
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--outline);
+  background: var(--surface);
 }
 
 .discord-dot {
@@ -138,12 +215,86 @@ body {
 .discord-dnd     { background: #f04747; }
 .discord-offline { background: #747f8d; }
 
-.discord-text {
+/* Activity section */
+.discord-card-activity {
+  border-top: 1px solid var(--outline);
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.discord-activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.discord-activity-art {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  object-fit: cover;
+  background: var(--surface-2);
+}
+
+.discord-activity-art-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-3);
+  font-size: 16px;
+}
+
+.discord-activity-meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 2px;
+}
+
+.discord-activity-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.3;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.discord-activity-name .fa-spotify {
+  color: #1db954;
+  margin-right: 4px;
+}
+
+.discord-activity-detail {
   font-size: 11px;
-  font-weight: 500;
+  color: var(--text-3);
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.discord-activity-empty {
+  font-size: 12px;
+  color: var(--text-3);
+  font-style: italic;
+  text-align: center;
+  padding: 6px 0;
+}
+
+.discord-custom-status {
+  font-size: 12px;
+  color: var(--text-2);
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  text-align: center;
 }
 
 /* ── Shell ──────────────────────────────────────────── */

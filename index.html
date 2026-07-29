@@ -19,9 +19,9 @@
   <!-- ─── Top Bar ─── -->
   <div class="top-bar">
     <span class="top-bar-brand">krazierthanu</span>
-    <div class="top-bar-discord" id="discord-status">
-      <span class="discord-dot discord-offline"></span>
-      <span class="discord-text">loading...</span>
+    <div class="top-bar-discord" id="discord-pill">
+      <span class="discord-pill-dot discord-offline"></span>
+      <span class="discord-pill-text">loading...</span>
     </div>
   </div>
 
@@ -45,6 +45,23 @@
           <div class="hero-text">
             <h1 id="greeting">hey.</h1>
             <p>krazierthanu // silvermanch</p>
+          </div>
+        </div>
+
+        <div class="card discord-card" id="discord-card">
+          <div class="discord-card-header">
+            <img class="discord-card-avatar" id="dc-avatar" src="" alt="" />
+            <div class="discord-card-info">
+              <span class="discord-card-name" id="dc-name">—</span>
+              <span class="discord-card-user" id="dc-user">—</span>
+            </div>
+            <span class="discord-card-status" id="dc-status-label">
+              <span class="discord-dot discord-offline"></span>
+              <span>offline</span>
+            </span>
+          </div>
+          <div class="discord-card-activity" id="dc-activity">
+            <div class="discord-activity-empty">no activity right now</div>
           </div>
         </div>
 
@@ -2052,9 +2069,15 @@
       offline: { dot: 'discord-offline', label: 'offline' }
     };
 
+    function avatarUrl(hash, id, size) {
+      if (!hash || !id) return '';
+      var ext = hash.indexOf('a_') === 0 ? 'gif' : 'webp';
+      return 'https://cdn.discordapp.com/avatars/' + id + '/' + hash + '.' + ext + '?size=' + (size || 128);
+    }
+
     function updateDiscord() {
-      var el = document.getElementById('discord-status');
-      if (!el) return;
+      var pill = document.getElementById('discord-pill');
+      if (!pill) return;
 
       fetch('https://api.lanyard.rest/v1/users/' + DISCORD_ID, { cache: 'no-store' })
         .then(function(r) { return r.json(); })
@@ -2063,40 +2086,150 @@
           var d = res.data;
           var statusInfo = STATUS_MAP[d.discord_status] || STATUS_MAP.offline;
 
+          // ── activity text for pill ──
           var activityText = '';
           if (d.activities && d.activities.length) {
-            var act = d.activities[0];
-            if (act.type === 2 && d.spotify) {
-              // listening to spotify
+            var topAct = d.activities[0];
+            if (topAct.type === 2 && d.spotify) {
               activityText = d.spotify.song + ' — ' + d.spotify.artist;
-            } else if (act.type === 0) {
-              // playing a game or in an app
-              activityText = act.name + (act.state ? ': ' + act.state : '');
-            } else if (act.emoji && act.state) {
-              // custom status
-              activityText = (act.emoji.name || '') + ' ' + act.state;
-            } else if (act.state) {
-              activityText = act.state;
-            } else if (act.details) {
-              activityText = act.details;
+            } else if (topAct.type === 0) {
+              activityText = topAct.name + (topAct.state ? ': ' + topAct.state : '');
+            } else if (topAct.type === 4 && topAct.state) {
+              activityText = topAct.state;
+            } else if (topAct.state) {
+              activityText = topAct.state;
+            } else if (topAct.details) {
+              activityText = topAct.details;
             }
           }
-
           var truncated = activityText.length > 40
             ? activityText.substring(0, 38) + '..'
             : activityText;
 
-          el.querySelector('.discord-dot').className = 'discord-dot ' + statusInfo.dot;
-          el.querySelector('.discord-text').textContent = truncated || statusInfo.label;
+          // ── update pill ──
+          pill.querySelector('.discord-pill-dot').className = 'discord-pill-dot ' + statusInfo.dot;
+          pill.querySelector('.discord-pill-text').textContent = truncated || statusInfo.label;
+
+          // ── update full card ──
+          var card = document.getElementById('discord-card');
+          if (card) {
+            // avatar
+            var avatarEl = document.getElementById('dc-avatar');
+            if (avatarEl && d.discord_user && d.discord_user.avatar) {
+              avatarEl.src = avatarUrl(d.discord_user.avatar, d.discord_user.id, 128);
+            }
+
+            // name
+            var nameEl = document.getElementById('dc-name');
+            if (nameEl) {
+              nameEl.textContent = d.discord_user.display_name || d.discord_user.global_name || d.discord_user.username;
+            }
+
+            // username
+            var userEl = document.getElementById('dc-user');
+            if (userEl) {
+              userEl.textContent = d.discord_user.discriminator && d.discord_user.discriminator !== '0'
+                ? d.discord_user.username + '#' + d.discord_user.discriminator
+                : '@' + d.discord_user.username;
+            }
+
+            // status label
+            var statusLabel = document.getElementById('dc-status-label');
+            if (statusLabel) {
+              statusLabel.querySelector('.discord-dot').className = 'discord-dot ' + statusInfo.dot;
+              statusLabel.querySelector('span:last-child').textContent = statusInfo.label;
+            }
+
+            // activity
+            var activityEl = document.getElementById('dc-activity');
+            if (activityEl) {
+              activityEl.innerHTML = '';
+
+              // spotify first (most interesting)
+              if (d.spotify && d.listening_to_spotify) {
+                var spotDiv = document.createElement('div');
+                spotDiv.className = 'discord-activity-item';
+                spotDiv.innerHTML = '';
+                var spotImg = document.createElement('img');
+                spotImg.className = 'discord-activity-art';
+                spotImg.src = d.spotify.album_art_url || '';
+                spotImg.alt = '';
+                spotDiv.appendChild(spotImg);
+                var spotMeta = document.createElement('div');
+                spotMeta.className = 'discord-activity-meta';
+                spotMeta.innerHTML = '<div class="discord-activity-name"><i class="fa-brands fa-spotify"></i> ' + escHtml(d.spotify.song) + '</div>'
+                  + '<div class="discord-activity-detail">' + escHtml(d.spotify.artist) + ' · ' + escHtml(d.spotify.album) + '</div>';
+                spotDiv.appendChild(spotMeta);
+                activityEl.appendChild(spotDiv);
+              }
+
+              // other activities (skip custom status, skip spotify since it's handled)
+              var shownSpotify = d.spotify && d.listening_to_spotify;
+              if (d.activities && d.activities.length) {
+                for (var i = 0; i < d.activities.length; i++) {
+                  var act = d.activities[i];
+                  if (act.type === 4) continue; // skip custom status
+                  if (act.type === 2 && shownSpotify) continue; // already shown spotify
+
+                  var actDiv = document.createElement('div');
+                  actDiv.className = 'discord-activity-item';
+
+                  var actImg = '';
+                  if (act.assets && act.assets.large_image) {
+                    var imgUrl = act.assets.large_image.indexOf('spotify:') === 0
+                      ? 'https://i.scdn.co/image/' + act.assets.large_image.replace('spotify:', '')
+                      : 'https://cdn.discordapp.com/app-assets/' + act.application_id + '/' + act.assets.large_image + '.webp?size=128';
+                    actImg = '<img class="discord-activity-art" src="' + imgUrl + '" alt="" />';
+                  } else {
+                    actImg = '<div class="discord-activity-art discord-activity-art-placeholder"><i class="fa-solid fa-gamepad"></i></div>';
+                  }
+
+                  var actDetails = '';
+                  if (act.details) actDetails += '<div class="discord-activity-name">' + escHtml(act.details) + '</div>';
+                  if (act.state) actDetails += '<div class="discord-activity-detail">' + escHtml(act.state) + '</div>';
+
+                  if (!actDetails) actDetails = '<div class="discord-activity-name">' + escHtml(act.name || 'unknown activity') + '</div>';
+
+                  actDiv.innerHTML = actImg + '<div class="discord-activity-meta">' + actDetails + '</div>';
+                  activityEl.appendChild(actDiv);
+                }
+              }
+
+              if (!activityEl.children.length) {
+                activityEl.innerHTML = '<div class="discord-activity-empty">no activity right now</div>';
+              }
+
+              // custom status as a tag if present
+              if (d.activities) {
+                for (var j = 0; j < d.activities.length; j++) {
+                  if (d.activities[j].type === 4 && d.activities[j].state) {
+                    var cs = d.activities[j];
+                    var csEl = document.createElement('div');
+                    csEl.className = 'discord-custom-status';
+                    csEl.innerHTML = (cs.emoji && cs.emoji.name ? cs.emoji.name + ' ' : '') + escHtml(cs.state);
+                    activityEl.insertBefore(csEl, activityEl.firstChild);
+                  }
+                }
+              }
+            }
+          }
         })
         .catch(function() {
-          el.querySelector('.discord-dot').className = 'discord-dot discord-offline';
-          el.querySelector('.discord-text').textContent = 'offline';
+          pill.querySelector('.discord-pill-dot').className = 'discord-pill-dot discord-offline';
+          pill.querySelector('.discord-pill-text').textContent = 'offline';
         });
+    }
+
+    function escHtml(str) {
+      if (!str) return '';
+      var d = document.createElement('div');
+      d.textContent = str;
+      return d.innerHTML;
     }
 
     updateDiscord();
     setInterval(updateDiscord, 15000);
   </script>
-
+</body>
+</html>
 
