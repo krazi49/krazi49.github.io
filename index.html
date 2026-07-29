@@ -18,6 +18,11 @@
 
   <!-- ─── Top Bar ─── -->
   <div class="top-bar">
+    <span class="top-bar-brand">krazierthanu</span>
+    <div class="top-bar-discord" id="discord-status">
+      <span class="discord-dot discord-offline"></span>
+      <span class="discord-text">loading...</span>
+    </div>
   </div>
 
   <div class="shell">
@@ -2037,6 +2042,61 @@
     updateScrobbler();
     fetchTotalScrobbles();
     setInterval(fetchTotalScrobbles, 300000);
+
+    // ─── Discord Presence (Lanyard) ───
+    var DISCORD_ID = '1144983905317949512';
+    var STATUS_MAP = {
+      online: { dot: 'discord-online', label: 'online' },
+      idle: { dot: 'discord-idle', label: 'idle' },
+      dnd: { dot: 'discord-dnd', label: 'do not disturb' },
+      offline: { dot: 'discord-offline', label: 'offline' }
+    };
+
+    function updateDiscord() {
+      var el = document.getElementById('discord-status');
+      if (!el) return;
+
+      fetch('https://api.lanyard.rest/v1/users/' + DISCORD_ID, { cache: 'no-store' })
+        .then(function(r) { return r.json(); })
+        .then(function(res) {
+          if (!res.success || !res.data) throw new Error('no data');
+          var d = res.data;
+          var statusInfo = STATUS_MAP[d.discord_status] || STATUS_MAP.offline;
+
+          var activityText = '';
+          if (d.activities && d.activities.length) {
+            var act = d.activities[0];
+            if (act.type === 2 && d.spotify) {
+              // listening to spotify
+              activityText = d.spotify.song + ' — ' + d.spotify.artist;
+            } else if (act.type === 0) {
+              // playing a game or in an app
+              activityText = act.name + (act.state ? ': ' + act.state : '');
+            } else if (act.emoji && act.state) {
+              // custom status
+              activityText = (act.emoji.name || '') + ' ' + act.state;
+            } else if (act.state) {
+              activityText = act.state;
+            } else if (act.details) {
+              activityText = act.details;
+            }
+          }
+
+          var truncated = activityText.length > 40
+            ? activityText.substring(0, 38) + '..'
+            : activityText;
+
+          el.querySelector('.discord-dot').className = 'discord-dot ' + statusInfo.dot;
+          el.querySelector('.discord-text').textContent = truncated || statusInfo.label;
+        })
+        .catch(function() {
+          el.querySelector('.discord-dot').className = 'discord-dot discord-offline';
+          el.querySelector('.discord-text').textContent = 'offline';
+        });
+    }
+
+    updateDiscord();
+    setInterval(updateDiscord, 15000);
   </script>
 
 
