@@ -152,7 +152,7 @@ body {
   overflow: visible; /* allow activity items to expand */
   padding: 0;
   width: 100%;
-  max-width: 340px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
