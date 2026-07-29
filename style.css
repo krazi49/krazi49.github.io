@@ -150,6 +150,7 @@ body {
   flex-direction: column;
   gap: 0;
   overflow: hidden;
+  padding: 0;
 }
 
 .discord-card-header {
