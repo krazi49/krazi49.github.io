@@ -488,6 +488,12 @@ body {
 
 a.card:active { transform: scale(0.98); }
 
+.profile-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
 .card-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
