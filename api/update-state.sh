@@ -65,8 +65,8 @@ WIFI=$(ip link show wlo1 2>/dev/null | grep -o "state UP" >/dev/null && echo "co
 
 # === MOOD ===
 MOOD="hyped"
-if [ -f /home/em/.config/waybar/current_mood ]; then
-  READ_MOOD=$(head -1 /home/em/.config/waybar/current_mood 2>/dev/null)
+if [ -f /home/stocki/.config/waybar/current_mood ]; then
+  READ_MOOD=$(head -1 /home/stocki/.config/waybar/current_mood 2>/dev/null)
   [ -n "$READ_MOOD" ] && MOOD="$READ_MOOD"
 elif [ -f /tmp/bex_mood.json ]; then
   READ_MOOD=$(python3 -c "import json; print(json.load(open('/tmp/bex_mood.json')).get('mood','$MOOD'))" 2>/dev/null)
