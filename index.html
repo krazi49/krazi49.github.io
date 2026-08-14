@@ -12,10 +12,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
   <link rel="stylesheet" href="style.css" />
-
 </head>
 <body data-theme="dark">
-
   <!-- ─── Top Bar ─── -->
   <div class="top-bar">
     <span class="top-bar-brand">anarchysite</span>
@@ -24,22 +22,19 @@
       <span class="discord-pill-text">checking it</span>
     </div>
   </div>
-
   <div class="shell">
     <!-- ─── Icon Rail ─── -->
     <aside class="icon-rail">
-      <button class="nav-item active" data-page="about" style="position:relative;"><i class="fa-solid fa-user"></i><span class="nav-tooltip">about</span></button>
-      <button class="nav-item" data-page="f1" style="position:relative;"><i class="fa-solid fa-car"></i><span class="nav-tooltip">f1</span></button>
-      <button class="nav-item" data-page="music" style="position:relative;"><i class="fa-solid fa-headphones"></i><span class="nav-tooltip">music</span></button>
-      <button class="nav-item" data-page="dashboard" style="position:relative;"><i class="fa-solid fa-gauge-high"></i><span class="nav-tooltip">dashboard</span></button>
+      <a href="#section-about" class="nav-item" data-page="about"><span class="nav-tooltip">about</span></a>
+      <a href="#section-f1" class="nav-item" data-page="f1"><span class="nav-tooltip">f1</span></a>
+      <a href="#section-music" class="nav-item" data-page="music"><span class="nav-tooltip">music</span></a>
+      <a href="#section-dashboard" class="nav-item" data-page="dashboard"><span class="nav-tooltip">dashboard</span></a>
       <button class="nav-item nav-item-theme" onclick="toggleTheme()" style="position:relative;"><i class="fa-solid fa-circle-half-stroke"></i><span class="nav-tooltip">theme</span></button>
     </aside>
-
     <!-- ─── Main ─── -->
     <div class="main" id="main-stage">
-
       <!-- ─── ABOUT ─── -->
-      <div class="section active" id="section-about">
+      <div class="section" id="section-about">
         <div class="hero">
           <div class="hero-avatar"><img src="assets/pfp.jpg" alt="pfp" /></div>
           <div class="hero-text">
@@ -47,7 +42,6 @@
             <p>stooock // krrazi</p>
           </div>
         </div>
-
         <div class="profile-split">
           <a href="https://discord.com/users/1144983905317949512" target="_blank" class="card discord-card" id="discord-card" style="text-decoration:none;color:inherit;">
             <div class="discord-card-header">
@@ -65,11 +59,10 @@
               <div class="discord-activity-empty">not doing anything right now</div>
             </div>
           </a>
-
           <div class="card neofetch-wrap" style="display:block;">
             <div class="neofetch-data">
   <b>from</b>     stocki<br />
-  <b>on domain</b>     krazi49.github.io<br />
+  <b>on domain</b>     stocki.nx.kg<br />
   <b>from os</b>       linux 7.0.11-arch1-1<br />
   <b>in shell</b>    zsh 5.9.1<br />
   <b>with wm</b>       hyprland 0.55.3<br />
@@ -78,9 +71,7 @@
             </div>
           </div>
         </div>
-
         <div class="section-header" style="margin-top:12px;">doing...</div>
-
         <div class="card project">
           <div style="display:flex;align-items:center;justify-content:space-between;">
             <h3>lumina</h3>
@@ -88,7 +79,6 @@
           </div>
           <p>design system built around vertical bars with gradients that replicate wavelengths and audio files</p>
         </div>
-
         <div class="card project">
           <div style="display:flex;align-items:center;justify-content:space-between;">
             <h3>anarchysite</h3>
@@ -96,7 +86,6 @@
           </div>
           <p>this site: personal homepage with f1 countdown, last.fm scrobbler and pc stats</p>
         </div>
-
         <div class="section-header" style="margin-top:4px;">elsewhere</div>
         <div class="card-row">
           <a href="https://github.com/krazi49" class="card" target="_blank"><i class="fa-brands fa-github"></i> github</a>
@@ -105,11 +94,9 @@
           <a href="https://pitwall.me" class="card" target="_blank"><i class="fa-solid fa-tower-broadcast"></i> timing</a>
         </div>
       </div>
-
       <!-- ─── F1 ─── -->
       <div class="section" id="section-f1">
         <div class="section-header">formula 1 2026</div>
-
         <div class="card countdown-card">
           <div class="countdown-session" id="f1-label">next race</div>
           <div class="countdown-number" id="f1-countdown">--:--:--:--</div>
@@ -117,7 +104,6 @@
           <div class="countdown-meta" id="f1-race-name"></div>
           <div class="countdown-circuit" id="f1-circuit-info" style="display:none;"></div>
         </div>
-
         <div class="section-header" style="margin-top:4px;">teams to watch</div>
         <div class="chip-row" id="team-chips">
           <div class="chip" data-team="ALPN" onclick="toggleTeam('ALPN')">ALPN</div>
@@ -127,28 +113,23 @@
           <div class="chip" data-team="MERC" onclick="toggleTeam('MERC')">MERC</div>
           <div class="chip" data-team="RBR" onclick="toggleTeam('RBR')">RBR</div>
         </div>
-
         <div class="section-header" style="margin-top:4px;">2026 calendar</div>
         <div class="card" id="f1-calendar" style="font-family:'Paper Mono',monospace;font-size:12px;line-height:1.8;">
           loading...
         </div>
-
         <div class="section-header" style="margin-top:4px;">driver standings <span id="ds-round" style="font-weight:400;font-size:9px;color:var(--text-3);"></span></div>
         <div class="card" id="driver-standings" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
           <div style="padding:8px;color:var(--text-3);">loading...</div>
         </div>
-
         <div class="section-header" style="margin-top:4px;">constructor standings <span id="cs-round" style="font-weight:400;font-size:9px;color:var(--text-3);"></span></div>
         <div class="card" id="constructor-standings" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
           <div style="padding:8px;color:var(--text-3);">loading...</div>
         </div>
-
         <div class="section-header" style="margin-top:4px;">last race</div>
         <div class="card" id="last-race" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
           <div style="padding:8px;color:var(--text-3);">loading...</div>
         </div>
       </div>
-
       <!-- ─── MUSIC ─── -->
       <div class="section" id="section-music">
         <div class="music-split">
@@ -171,7 +152,6 @@
               <span class="eq-bar"></span>
             </span>
           </a>
-
           <div class="music-recent">
             <div class="section-header">recent</div>
             <div class="music-grid" id="recent-tracks">
@@ -179,18 +159,14 @@
             </div>
           </div>
         </div>
-
         <p style="font-size:12px;color:var(--text-3);">
           scrobbling to <a href="https://last.fm/user/silvermanch" class="link-out" target="_blank">last.fm/silvermanch 🔗</a>
         </p>
       </div>
-
       <!-- Projects and /now moved/removed per user request -->
-
       <!-- ─── DASHBOARD ─── -->
       <div class="section" id="section-dashboard">
         <div class="section-header">agent state</div>
-
         <div class="card" id="mood-card" style="display:flex;align-items:center;gap:14px;">
           <div id="mood-indicator" style="width:14px;height:14px;border-radius:50%;background:var(--primary);flex-shrink:0;transition:all 0.5s ease;box-shadow:0 0 12px var(--primary);"></div>
           <div style="flex:1;">
@@ -202,7 +178,6 @@
             <div id="mood-time" style="font-family:'Paper Mono',monospace;font-size:12px;color:var(--text-2);">—</div>
           </div>
         </div>
-
         <div class="section-header">hardware</div>
         <div class="card dash-grid-2">
           <div class="dash-field">
@@ -242,7 +217,6 @@
             <span class="dash-val" id="sys-disk" style="font-size:12px;">—</span>
           </div>
         </div>
-
         <div class="section-header">software</div>
         <div class="card dash-grid-2">
           <div class="dash-field">
@@ -270,7 +244,6 @@
             <span class="dash-val" id="sys-procs">—</span>
           </div>
         </div>
-
         <div class="section-header">live status</div>
         <div class="card dash-grid-2">
           <div class="dash-field">
@@ -298,7 +271,6 @@
             <span class="dash-val" id="sys-scaling">—</span>
           </div>
         </div>
-
         <div class="section-header">network</div>
         <div class="card dash-grid-2">
           <div class="dash-field">
@@ -318,7 +290,6 @@
             <span class="dash-val dash-val-accent" id="sys-uptime2">—</span>
           </div>
         </div>
-
         <div class="section-header">next race</div>
         <a href="#" class="card" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;" onclick="document.querySelector('[data-page=f1]').click();return false;">
           <div id="dash-race-flag" style="font-size:28px;">🏁</div>
@@ -331,7 +302,6 @@
             <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-top:-2px;">until race</div>
           </div>
         </a>
-
         <div class="section-header">now playing</div>
         <a href="https://last.fm/user/silvermanch" class="card" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;" target="_blank">
           <img id="dash-track-art" src="" alt="" style="width:40px;height:40px;border-radius:6px;object-fit:cover;border:1px solid var(--outline);flex-shrink:0;background:var(--surface-3);" />
@@ -348,25 +318,18 @@
             <span class="eq-bar"></span>
           </span>
         </a>
-
         <div class="section-header">cron jobs</div>
         <div class="card" id="cron-list" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
           <div style="padding:8px;color:var(--text-3);">loading...</div>
         </div>
-
         <div class="section-header">recent activity</div>
         <div class="card" id="activity-list" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
           <div style="padding:8px;color:var(--text-3);">loading...</div>
         </div>
       </div>
-
     </div>
   </div>
-
-  <div class="deck-hint" id="deck-hint">drag sideways to cycle · up to pin · long-press to fan out</div>
-
   <div class="toast" id="toast">copied!</div>
-
   <script>
     // ─── Greeting ───
     (function updateGreeting() {
@@ -374,267 +337,43 @@
       var g = h < 12 ? 'morning' : h < 18 ? 'afternoon' : 'evening';
       document.getElementById('greeting').textContent = 'good ' + g + '!';
     })();
-
-    // ─── Navigation: page IS the card stack ───
+    // ─── Navigation: scroll-snap deck (no chrome) ───
+    // darling: the deck died. rooms live in flow; the rail is just anchors.
     var pageOrder = ['about', 'f1', 'music', 'dashboard'];
-    var navBtns = document.querySelectorAll('.nav-item[data-page]');
-    var sections = {};
-    var deckMeta = {
-      about: { title: 'about', icon: 'fa-user' },
-      f1: { title: 'f1', icon: 'fa-car' },
-      music: { title: 'music', icon: 'fa-headphones' },
-      dashboard: { title: 'dashboard', icon: 'fa-gauge-high' }
-    };
-    var titleBars = {};
+    var deckMeta = { about:'about', f1:'f1', music:'music', dashboard:'dashboard' };
     pageOrder.forEach(function(p) {
-      sections[p] = document.getElementById('section-' + p);
+      var sec = document.getElementById('section-' + p);
+      if (!sec) return;
       var bar = document.createElement('div');
       bar.className = 'card-titlebar';
-      bar.innerHTML = '<span class="card-titlebar-name"><i class="fa-solid ' + deckMeta[p].icon + '"></i>' + deckMeta[p].title + '</span>' +
-        '<button class="card-titlebar-pin" aria-label="pin ' + p + '"><i class="fa-solid fa-thumbtack"></i></button>';
-      sections[p].insertBefore(bar, sections[p].firstChild);
-      titleBars[p] = bar;
-      bar.querySelector('.card-titlebar-pin').addEventListener('click', function(e) {
-        e.stopPropagation();
-        pinnedPage = (pinnedPage === p) ? null : p;
-        if (pinnedPage) localStorage.setItem('deck-pinned-page', pinnedPage);
-        else localStorage.removeItem('deck-pinned-page');
-        renderStack();
-      });
+      bar.innerHTML = '<span class="card-titlebar-name">' + deckMeta[p] + '</span>';
+      sec.insertBefore(bar, sec.firstChild);
     });
-
-    var order = pageOrder.slice();
-    var pinnedPage = localStorage.getItem('deck-pinned-page');
-    if (pinnedPage && pageOrder.indexOf(pinnedPage) > -1) {
-      order = [pinnedPage].concat(order.filter(function(p) { return p !== pinnedPage; }));
-    }
-    var fanned = false;
-    var hint = document.getElementById('deck-hint');
-    var isTouch = window.matchMedia('(pointer: coarse)').matches;
-    var PIN_THRESH = isTouch ? -110 : -70;
-
-    function updateTitleBars() {
-      Object.keys(titleBars).forEach(function(p) {
-        titleBars[p].querySelector('.card-titlebar-pin').classList.toggle('pinned', p === pinnedPage);
-      });
-    }
-
-    function renderStack() {
-      updateTitleBars();
-      Object.keys(sections).forEach(function(k) { sections[k].classList.remove('active'); });
-      navBtns.forEach(function(n) { n.classList.remove('active'); });
-
-      if (fanned) {
-        hint.textContent = 'tap a card to open it · tap the gap or press esc to close';
-        var stage = document.getElementById('main-stage');
-        var stageWidth = stage ? stage.clientWidth : window.innerWidth;
-        var cardWidth = sections[order[0]].offsetWidth || stageWidth;
-        var fanScale = stageWidth < 480 ? 0.6 : 0.9;
-        var half = order.length > 1 ? (order.length - 1) / 2 : 1;
-        var maxOuterSpread = Math.max(16, (stageWidth / 2) - (cardWidth * fanScale) / 2 - 8);
-        var maxSpread = Math.min(80, maxOuterSpread / half);
-        order.forEach(function(page, pos) {
-          var el = sections[page];
-          el.classList.remove('dragging', 'snap-back');
-          el.classList.add('active');
-          var spread = (pos - (order.length - 1) / 2) * maxSpread;
-          el.style.zIndex = 100 - pos;
-          el.style.opacity = 1;
-          el.style.pointerEvents = 'auto';
-          el.style.transition = 'transform 0.3s cubic-bezier(.25,.6,.35,1)';
-          el.style.transform = 'translateX(' + spread + 'px) translateY(' + (Math.abs(spread) * 0.12) + 'px) rotate(' + (spread / 14) + 'deg) scale(' + fanScale + ')';
-          el.onclick = (function(p) {
-            return function(e) {
-              fanned = false;
-              jumpTo(p);
-            };
-          })(page);
-        });
-        var topBtn = document.querySelector('.nav-item[data-page="' + order[0] + '"]');
-        if (topBtn) topBtn.classList.add('active');
-        return;
-      }
-
-      hint.textContent = isTouch
-        ? 'drag sideways to cycle · long-press to fan out · tap pin to save'
-        : 'drag sideways to cycle · up to pin · long-press to fan out';
-      order.forEach(function(page, pos) {
-        var el = sections[page];
-        el.classList.add('active');
-        el.classList.toggle('pinned', page === pinnedPage);
-        el.classList.remove('dragging', 'snap-back');
-        el.onclick = null;
-        el.style.transition = 'transform 0.35s cubic-bezier(.25,.6,.35,1), opacity 0.25s ease';
-        el.style.zIndex = 100 - pos;
-        el.style.opacity = pos > 3 ? 0 : 1;
-        el.style.pointerEvents = pos === 0 ? 'auto' : 'none';
-        el.style.transform = 'translateY(' + (pos * -16) + 'px) scale(' + (1 - pos * 0.04) + ')';
-      });
-      var topBtn2 = document.querySelector('.nav-item[data-page="' + order[0] + '"]');
-      if (topBtn2) topBtn2.classList.add('active');
-      location.hash = order[0];
-      attachDrag(sections[order[0]], order[0]);
-    }
-
-    function cycle(dir) {
-      if (dir === 1) order.push(order.shift());
-      else order.unshift(order.pop());
-      renderStack();
-    }
-
-    function jumpTo(page) {
-      if (order[0] === page) return;
-      order = [page].concat(order.filter(function(p) { return p !== page; }));
-      renderStack();
-    }
-
-    function attachDrag(el, page) {
-      var startX = 0, startY = 0, dx = 0, dy = 0, dragging = false;
-      var lastX = 0, lastT = 0, vel = 0;
-      var pressTimer = null, longPressed = false;
-      var committed = null, startScrollTop = 0;
-
-      function onDown(e) {
-        if (e.target.closest('a, button, [onclick]')) return;
-        if (e.type === 'mousedown') e.preventDefault();
-        dragging = true;
-        longPressed = false;
-        committed = e.type === 'mousedown' ? 'x' : null; // mouse always commits immediately
-        startScrollTop = el.scrollTop;
-        startX = (e.touches ? e.touches[0].clientX : e.clientX);
-        startY = (e.touches ? e.touches[0].clientY : e.clientY);
-        lastX = startX; lastT = Date.now();
-        el.style.transition = 'none';
-        el.style.cursor = 'grabbing';
-        el.classList.add('dragging');
-        document.body.style.userSelect = 'none';
-        pressTimer = setTimeout(function() {
-          longPressed = true;
-          dragging = false;
-          fanned = true;
-          renderStack();
-        }, 320);
-      }
-
-      function onMove(e) {
-        if (!dragging) return;
-        var x = (e.touches ? e.touches[0].clientX : e.clientX);
-        var y = (e.touches ? e.touches[0].clientY : e.clientY);
-        dx = x - startX; dy = y - startY;
-
-        // decide gesture intent once enough movement has happened
-        if (committed === null) {
-          if (!isTouch && dy < -10 && Math.abs(dy) > Math.abs(dx) && startScrollTop <= 0) {
-            committed = 'pin'; // swiping up from the very top of the card's content
-          } else if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
-            committed = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
-            if (committed === 'y') {
-              // vertical scroll intent — hand control back to the browser
-              dragging = false;
-              clearTimeout(pressTimer);
-              el.classList.remove('dragging');
-              el.style.transform = '';
-              document.body.style.userSelect = '';
-              return;
-            }
-          } else {
-            return; // not enough movement yet to decide
+    // highlight the rail link for the room currently in view
+    var navLinks = {};
+    document.querySelectorAll('.icon-rail a.nav-item').forEach(function(a) {
+      navLinks[a.getAttribute('href').replace('#section-', '')] = a;
+    });
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(en) {
+          if (en.isIntersecting) {
+            Object.keys(navLinks).forEach(function(k) { navLinks[k].classList.remove('active'); });
+            var key = en.target.id.replace('section-', '');
+            if (navLinks[key]) navLinks[key].classList.add('active');
           }
-        }
-
-        if (e.type === 'touchmove' && e.cancelable) e.preventDefault();
-        if (Math.abs(dx) > 14 || Math.abs(dy) > 14) clearTimeout(pressTimer);
-        var now = Date.now();
-        if (now > lastT) vel = (x - lastX) / (now - lastT);
-        lastX = x; lastT = now;
-
-        var pinThresh = PIN_THRESH;
-        var ody = dy;
-        if (dy < pinThresh) {
-          var over = dy - pinThresh;
-          ody = pinThresh + over * 0.35;
-        }
-        el.style.transform = 'translate(' + dx + 'px, ' + ody + 'px) rotate(' + (dx / 36) + 'deg)';
-      }
-
-      function onUp() {
-        clearTimeout(pressTimer);
-        el.classList.remove('dragging');
-        document.body.style.userSelect = '';
-        if (longPressed) return;
-        if (!dragging) return;
-        dragging = false;
-
-        if (committed === null) {
-          dx = 0; dy = 0; vel = 0;
-          return;
-        }
-
-        if (!isTouch && dy < PIN_THRESH && Math.abs(dy) > Math.abs(dx)) {
-          el.classList.add('snap-back');
-          el.style.cursor = 'grab';
-          pinnedPage = (pinnedPage === page) ? null : page;
-          if (pinnedPage) localStorage.setItem('deck-pinned-page', pinnedPage);
-          else localStorage.removeItem('deck-pinned-page');
-          renderStack();
-        } else if (Math.abs(dx) > 90 || Math.abs(vel) > 0.5) {
-          // fly the card fully off across the whole page before cycling
-          var dir = (dx > 0 || vel > 0) ? 1 : -1;
-          el.classList.remove('dragging');
-          el.style.transition = 'transform 0.32s cubic-bezier(.3,.5,.4,1), opacity 0.32s ease';
-          el.style.transform = 'translate(' + (dir * (window.innerWidth * 0.6)) + 'px, ' + (dy * 0.6) + 'px) rotate(' + (dir * 10) + 'deg)';
-          el.style.opacity = '0';
-          setTimeout(function() { cycle(dir); }, 240);
-        } else {
-          el.classList.add('snap-back');
-          el.style.cursor = 'grab';
-          el.style.transform = 'translate(0,0) rotate(0)';
-        }
-        dx = 0; dy = 0; vel = 0;
-      }
-
-      el.addEventListener('mousedown', onDown);
-      window.addEventListener('mousemove', onMove);
-      window.addEventListener('mouseup', onUp);
-      el.addEventListener('touchstart', onDown, { passive: true });
-      el.addEventListener('touchmove', onMove, { passive: false });
-      el.addEventListener('touchend', onUp);
-    }
-
-    navBtns.forEach(function(b) {
-      b.addEventListener('click', function() {
-        if (fanned) fanned = false;
-        jumpTo(b.getAttribute('data-page'));
+        });
+      }, { root: document.getElementById('main-stage'), threshold: 0.5 });
+      pageOrder.forEach(function(p) {
+        var s = document.getElementById('section-' + p);
+        if (s) io.observe(s);
       });
-    });
-
-    document.getElementById('main-stage').addEventListener('click', function(e) {
-      if (fanned && e.target === this) { fanned = false; renderStack(); }
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-      if (e.key === 'ArrowRight') cycle(1);
-      if (e.key === 'ArrowLeft') cycle(-1);
-      if (e.key === 'Escape' && fanned) { fanned = false; renderStack(); }
-    });
-
-    window.addEventListener('hashchange', function() {
-      var page = location.hash.replace('#', '');
-      if (pageOrder.indexOf(page) > -1) jumpTo(page);
-    });
-
-    if (location.hash && pageOrder.indexOf(location.hash.replace('#', '')) > -1) {
-      order = [location.hash.replace('#', '')].concat(order.filter(function(p) { return p !== location.hash.replace('#', ''); }));
     }
-    renderStack();
-
     // ─── Theme ───
     function toggleTheme() {
       var body = document.body;
       body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     }
-
     // ─── Toast ───
     function showToast(msg) {
       var t = document.getElementById('toast');
@@ -642,11 +381,9 @@
       t.style.opacity = '1';
       setTimeout(function() { t.style.opacity = '0'; }, 1200);
     }
-
     function copyColor(c) {
       navigator.clipboard.writeText(c).then(function() { showToast('copied ' + c); });
     }
-
     // ─── F1 ───
     var f1Schedule = [
       { name: "Australian GP",          date: "2026-03-08T05:00:00Z", flag: "🇦🇺", circuit: "Albert Park Grand Prix Circuit", loc: "Melbourne", laps: 58, length: "5.278 km", dist: "306.1 km", sprint: false, circuit_wiki: "Albert_Park_Circuit", sessions: { fp1: "2026-03-06T02:30:00Z", fp2: "2026-03-06T06:00:00Z", fp3: "2026-03-07T02:30:00Z", quali: "2026-03-07T06:00:00Z", race: "2026-03-08T05:00:00Z" } },
@@ -672,7 +409,6 @@
       { name: "Qatar GP",               date: "2026-11-29T17:00:00Z", flag: "🇶🇦", circuit: "Lusail International Circuit", loc: "Lusail", laps: 57, length: "5.419 km", dist: "308.9 km", sprint: false, circuit_wiki: "Lusail_International_Circuit", sessions: { fp1: "2026-11-27T13:30:00Z", fp2: "2026-11-27T17:00:00Z", fp3: "2026-11-28T13:30:00Z", quali: "2026-11-28T17:00:00Z", race: "2026-11-29T17:00:00Z" } },
       { name: "Abu Dhabi GP",           date: "2026-12-06T13:00:00Z", flag: "🇦🇪", circuit: "Yas Marina Circuit", loc: "Abu Dhabi", laps: 55, length: "5.281 km", dist: "290.5 km", sprint: false, circuit_wiki: "Yas_Marina_Circuit", sessions: { fp1: "2026-12-04T09:30:00Z", fp2: "2026-12-04T13:00:00Z", fp3: "2026-12-05T09:30:00Z", quali: "2026-12-05T13:00:00Z", race: "2026-12-06T13:00:00Z" } }
     ];
-
     var f1Teams = {
       'MCLA': { color: '#FF8700', full: 'McLaren', drivers: [{n:'Lando Norris',    num:'4'},{n:'Oscar Piastri', num:'81'}], engine: 'Mercedes', url: 'https://www.formula1.com/en/teams/mclaren' },
       'FERR': { color: '#E8002D', full: 'Ferrari', drivers: [{n:'Charles Leclerc', num:'16'},{n:'Lewis Hamilton',num:'44'}], engine: 'Ferrari', url: 'https://www.formula1.com/en/teams/ferrari' },
@@ -681,13 +417,11 @@
       'ALPN': { color: '#0090FF', full: 'Alpine',  drivers: [{n:'Pierre Gasly', num:'10'},{n:'Franco Colapinto',num:'43'}], engine: 'Mercedes', url: 'https://www.formula1.com/en/teams/alpine' },
       'ORBR': { color: '#0600EF', full: 'Racing Bulls', drivers: [{n:'Liam Lawson', num:'30'},{n:'Arvid Lindblad',num:'41'}], engine: 'Red Bull Ford', url: 'https://www.formula1.com/en/teams/rb' }
     };
-
     var expandedRace = null;
     var expandedTeam = null;
     var nextSessKey = null;
     var nextSessTime = null;
     var _calendarAnimated = false;
-
     // Add 2025 winners to each circuit
     var pastWinners = {
       'albert park': {n:'Oscar Piastri', num:'81'},
@@ -713,7 +447,6 @@
       'lusail': {n:'Oscar Piastri', num:'81'},
       'yas marina': {n:'Max Verstappen', num:'1'}
     };
-
     var pastWinners2024 = {
       'albert park': {n:'Carlos Sainz', num:'55'},
       'shanghai': {n:'Max Verstappen', num:'1'},
@@ -737,7 +470,6 @@
       'lusail': {n:'Max Verstappen', num:'1'},
       'yas marina': {n:'Lando Norris', num:'4'}
     };
-
     var circuitInfo = {
       'albert park': {firstGP: '1996', corners: 14, om: 1, lapRec: '1\'20.235 (Pérez, 2023)', type: 'street'},
       'shanghai': {firstGP: '2004', corners: 16, om: 1, lapRec: '1\'37.810 (Hamilton, 2019)', type: 'permanent'},
@@ -762,7 +494,6 @@
       'lusail': {firstGP: '2021', corners: 16, om: 1, lapRec: '1\'24.319 (Verstappen, 2021)', type: 'permanent'},
       'yas marina': {firstGP: '2009', corners: 16, om: 1, lapRec: '1\'26.103 (Verstappen, 2021)', type: 'permanent'}
     };
-
     function circuitKey(circuitName) {
       var k = circuitName.toLowerCase();
       for (var ck in circuitInfo) { if (k.indexOf(ck) !== -1) return ck; }
@@ -774,11 +505,9 @@
       for (var k in pool) { if (key.indexOf(k) !== -1) return pool[k]; }
       return null;
     }
-
     function isSessPast(iso) {
       return new Date(iso).getTime() <= Date.now();
     }
-
     function getNextSessionIdx(r) {
       var order = ['fp1','sq','fp2','fp3','sprint','quali','race'];
       var s = r.sessions;
@@ -789,7 +518,6 @@
       }
       return null;
     }
-
     function getSessionsByDay(r) {
       var s = r.sessions;
       var keys = r.sprint ? ['fp1','sq','fp2','sprint','quali','race'] : ['fp1','fp2','fp3','quali','race'];
@@ -810,7 +538,6 @@
       }
       return groups;
     }
-
     function buildCircuitInfoHTML(race, sessionKey) {
       var ck = circuitKey(race.circuit);
       var ci = ck ? circuitInfo[ck] : null;
@@ -821,28 +548,21 @@
       var typeLabel = ci.type === 'street' ? 'street circuit' : 'permanent circuit';
       var html = '<div class="circuit-divider"></div>';
       html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;padding:8px 2px 0;font-size:11px;">';
-
       if (ci.lapRec && ci.lapRec !== '—') {
         html += '<div><span style="color:var(--text-3);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">lap record</span><br><span style="color:var(--primary);font-weight:600;">' + ci.lapRec + '</span></div>';
       } else {
         html += '<div></div>';
       }
-
       html += '<div style="text-align:right;"><span style="color:var(--text-3);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">track</span><br><span>' + typeLabel + '</span></div>';
-
       html += '<div><span style="color:var(--text-3);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">corners</span><br><span>' + ci.corners + '</span></div>';
       html += '<div style="text-align:right;"><span style="color:var(--text-3);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">first gp</span><br><span>' + ci.firstGP + '</span></div>';
-
       if (laps) {
         html += '<div><span style="color:var(--text-3);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">distance</span><br><span>' + laps + '</span></div>';
       }
-
       if (ci.om) {
         html += '<div style="text-align:right;"><span style="color:var(--text-3);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">om zones</span><br><span>' + ci.om + '</span></div>';
       }
-
       html += '</div>';
-
       // Past winners
       var pastHtml = '';
       if (w25) {
@@ -856,22 +576,18 @@
       if (pastHtml) {
         html += '<div class="circuit-divider"></div>' + pastHtml;
       }
-
       return html;
     }
-
     function updateF1() {
       var now = Date.now();
       var nextRace = null;
       var nextRaceIdx = -1;
       nextSessKey = null;
       nextSessTime = null;
-
       for (var i = 0; i < f1Schedule.length; i++) {
         var raceTime = new Date(f1Schedule[i].date).getTime();
         if (now < raceTime + 7200000) { nextRaceIdx = i; nextRace = f1Schedule[i]; break; }
       }
-
       var label = document.getElementById('f1-label');
       var timer = document.getElementById('f1-countdown');
       var unitsRow = document.querySelector('.countdown-units');
@@ -886,24 +602,20 @@
         unitsRow.style.display = 'none';
         timer.innerHTML = html;
       };
-
       if (!nextRace) {
         label.innerHTML = 'season over';
         setCountdownText('---');
         nameEl.textContent = 'see you in 2027';
         return;
       }
-
       // Find current & next sessions
       var order = ['fp1','sq','fp2','fp3','sprint','quali','race'];
       var raceStart = new Date(nextRace.date).getTime();
       var sessLabels = {fp1:'FP1', sq:'Sprint Q', fp2:'FP2', fp3:'FP3', sprint:'Sprint', quali:'Quali', race:'Race'};
-
       nextSessKey = null;
       nextSessTime = null;
       var currentSessKey = null;
       var currentSessTime = null;
-
       // Find current session (most recent started) & next upcoming
       for (var x = 0; x < order.length; x++) {
         var k = order[x];
@@ -914,10 +626,8 @@
         }
       }
       _currentSessKey = currentSessKey;
-
       var targetTime = nextSessTime || raceStart;
       var diff = targetTime - now;
-
       // Is a session in-progress? use gap to next session when available
       var inSession = !!currentSessTime;
       var sessionActive = false;
@@ -927,7 +637,6 @@
         var maxActive = Math.min(gapToNext + 1800000, (currentSessKey === 'race') ? 10800000 : 7200000);
         sessionActive = sessElapsed_ms < maxActive;
       }
-
       if (sessionActive) {
         // ── Session in progress ──
         var elapsed = Math.floor((now - currentSessTime) / 1000);
@@ -942,7 +651,6 @@
           label.innerHTML = '<span class="live-pulse"></span>' + sessName;
         }
         setCountdownText(em + 'm ' + es + 's <span style="font-size:18px;font-weight:400;color:var(--text-3);">elapsed</span>');
-
         // Try live timing, fall back to circuit info
         if (!lt.connected && !lt.connection && (!lt._lastTry || Date.now() - lt._lastTry > 10000)) {
           lt._lastTry = Date.now();
@@ -985,15 +693,12 @@
         disconnectLiveTiming();
         byId('f1-circuit-info').style.display = 'none';
       }
-
       var rd = new Date(nextRace.date);
       var opts = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London', timeZoneName: 'short' };
       nameEl.textContent = nextRace.flag + ' ' + nextRace.name + ' \u00b7 ' + rd.toLocaleDateString('en-GB', opts);
-
       // ── Also update dashboard race card ──
       updateDashRace();
     }
-
     function updateDashRace() {
       var now = Date.now();
       var nr = null;
@@ -1008,7 +713,6 @@
         byId('dash-race-flag').textContent = '🏁';
         return;
       }
-
       var raceStart = new Date(nr.date).getTime();
       var order = ['fp1','sq','fp2','fp3','sprint','quali','race'];
       var ns = null;
@@ -1024,13 +728,10 @@
           if (st <= now) { curSessKey = k; curSessTime = st; }
         }
       }
-
       var diff = (nsTime || raceStart) - now;
       var flag = nr.flag || '🏁';
-
       byId('dash-race-flag').textContent = flag;
       byId('dash-race-name').textContent = nr.name;
-
       var inSession = !!curSessTime;
       var sessionActive = false;
       if (inSession) {
@@ -1039,7 +740,6 @@
         var maxActive = Math.min(gapToNext + 1800000, (curSessKey === 'race') ? 10800000 : 7200000);
         sessionActive = sElapsed < maxActive;
       }
-
       if (sessionActive) {
         var elapsed = Math.floor((now - curSessTime) / 1000);
         var em = Math.floor(elapsed / 60);
@@ -1064,11 +764,9 @@
         }
       }
     }
-
     // ── Live F1 Timing (SignalR) ──
     var lt = { connection:null, connected:false, drivers:{}, timing:{}, positions:[], lap:{cur:0,total:0}, weather:null };
     var _currentSessKey = null;
-
     function connectLiveTiming() {
       if (lt.connected || lt.connection || !window.signalR) return;
       try {
@@ -1077,7 +775,6 @@
           .withAutomaticReconnect([0,2000,5000,10000,30000])
           .configureLogging(signalR.LogLevel.None)
           .build();
-
         lt.connection.on('DriverList', function(d) {
           if (!d || !d.Lines) return;
           lt.drivers = {};
@@ -1086,7 +783,6 @@
             lt.drivers[dl.RacingNumber] = { tla:dl.Tla || dl.TLA, name:dl.FullName, team:dl.TeamName, col:dl.TeamColour };
           }
         });
-
         lt.connection.on('TimingData', function(d) {
           if (!d || !d.Lines) return;
           lt.positions = [];
@@ -1105,21 +801,17 @@
           lt.positions.sort(function(a,b){ return a.pos - b.pos; });
           renderLiveTiming();
         });
-
         lt.connection.on('LapCount', function(d) {
           lt.lap.cur = d.CurrentLap || 0;
           lt.lap.total = d.TotalLaps || 0;
         });
-
         lt.connection.on('WeatherData', function(d) {
           if (!d) return;
           lt.weather = d;
         });
-
         lt.connection.onreconnecting(function() { console.log('LT reconnecting...'); });
         lt.connection.onreconnected(function() { console.log('LT reconnected'); });
         lt.connection.onclose(function() { lt.connected = false; lt.connection = null; });
-
         lt.connection.start().then(function() {
           lt.connected = true;
           console.log('Live timing connected');
@@ -1132,7 +824,6 @@
         lt.connection = null;
       }
     }
-
     function disconnectLiveTiming() {
       if (lt.connection) {
         lt.connection.stop();
@@ -1141,11 +832,9 @@
       lt.connected = false;
       lt.positions = [];
     }
-
     function renderLiveTiming() {
       var ci = byId('f1-circuit-info');
       if (!ci || !lt.positions.length) return;
-
       var weatherHtml = '';
       if (lt.weather) {
         var parts = [];
@@ -1155,12 +844,10 @@
         if (lt.weather.Rainfall && lt.weather.Rainfall !== '0') parts.push('\ud83c\udf27\ufe0f rain');
         if (parts.length) weatherHtml = '<div class="circuit-divider"></div><div style="text-align:center;font-size:10px;color:var(--text-3);padding:6px 2px 0;">' + parts.join('  ') + '</div>';
       }
-
       var driverMap = lt.drivers;
       var count = Math.min(lt.positions.length, 8);
       var html = '<div class="circuit-divider"></div>';
       html += '<div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:6px 2px 2px;">position</div>';
-
       for (var i = 0; i < count; i++) {
         var p = lt.positions[i];
         var drv = driverMap[p.num];
@@ -1170,7 +857,6 @@
         // If race has started, show gap; otherwise show lap time
         var isRace = _currentSessKey === 'race';
         var timeStr = (lt.lap.cur > 1 || !isRace) ? gapStr : p.lapTime;
-
         var rowStyle = i < 3 ? 'font-weight:600;' : '';
         html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:2px 0;font-size:11px;' + rowStyle + '">';
         html += '<div style="display:flex;align-items:center;gap:6px;">';
@@ -1180,11 +866,9 @@
         html += '<span style="color:var(--text-3);font-size:10px;font-family:\'Paper Mono\',monospace;">' + (timeStr || '\u2014') + '</span>';
         html += '</div>';
       }
-
       html += weatherHtml;
       ci.innerHTML = html;
     }
-
     var circuitThumbs = {};
     var circuitDescs = {};
     function fetchCircuitWiki(i) {
@@ -1205,14 +889,12 @@
       };
       xhr.send();
     }
-
     function toggleRace(idx) {
       if (expandedRace === idx) { expandedRace = null; }
       else { expandedRace = idx; expandedTeam = null; fetchCircuitWiki(idx); }
       renderCalendar();
       renderTeams();
     }
-
     function toggleTeam(code) {
       if (expandedTeam === code) { expandedTeam = null; }
       else { expandedTeam = code; expandedRace = null; renderCalendar(); }
@@ -1224,7 +906,6 @@
       }
       renderTeams();
     }
-
     function renderCalendar() {
       var now = Date.now();
       var html = '';
@@ -1242,7 +923,6 @@
             }
           }
         }
-
         var w25 = getWinner(r, 2025);
         var w24 = getWinner(r, 2024);
         var ck = circuitKey(r.circuit);
@@ -1255,7 +935,6 @@
         var animStyle = _calendarAnimated
           ? 'transition:background 0.15s ease, border-left 0.15s ease, opacity 0.15s ease;'
           : 'transition:background 0.15s ease, border-left 0.15s ease, opacity 0.15s ease;animation:slideDown 0.2s ease both;animation-delay:' + animDelay + ';';
-
         html += '<div class="cal-row' + (isExpanded ? ' expanded' : '') + '" onclick="toggleRace(' + i + ')" style="cursor:pointer;display:flex;flex-direction:column;padding-left:8px;margin:0 -4px;border-radius:var(--radius-sm);background:' + bg + ';border-left:' + border + ';' + (isPast && !isExpanded ? 'opacity:0.55;' : '') + animStyle + '">';
         html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 4px;font-weight:' + (isNext ? '600' : '400') + ';">';
         html += '<div style="display:flex;align-items:center;gap:6px;overflow:hidden;">';
@@ -1263,10 +942,8 @@
         html += '</div>';
         html += '<span style="color:var(--text-3);font-size:11px;white-space:nowrap;">' + dateStr + (isExpanded ? ' <span style="color:var(--primary);">▲</span>' : ' <span style="color:var(--text-3);">▼</span>') + '</span>';
         html += '</div>';
-
         if (isExpanded) {
           html += '<div style="animation:fadeIn 0.2s ease;">';
-
           // ── Session times ──
           var groups = getSessionsByDay(r);
           var dayLabels = { fri:'friday', sat:'saturday', sun:'sunday' };
@@ -1285,7 +962,6 @@
             }
             html += '</div>';
           }
-
           // ── Circuit details bar ──
           html += '<div style="border-top:1px solid var(--outline);margin:6px 4px 4px;"></div>';
           html += '<div style="font-size:11px;padding:0 4px 2px;">';
@@ -1305,33 +981,27 @@
             html += '</div>';
           }
           html += '</div>';
-
           // ── Past winners ──
           html += '<div style="border-top:1px solid var(--outline);margin:2px 4px 4px;"></div>';
           html += '<div style="font-size:11px;padding:2px 4px;display:flex;gap:12px;">';
           if (w25) html += '<span style="color:var(--text-2);">🏁 2025: <strong style="font-family:\'Paper Mono\',monospace;">#' + w25.num + '</strong> ' + w25.n + '</span>';
           if (w24) html += '<span style="color:var(--text-2);">🏁 2024: <strong style="font-family:\'Paper Mono\',monospace;">#' + w24.num + '</strong> ' + w24.n + '</span>';
           html += '</div>';
-
           html += '</div>'; // end animation wrapper
         }
         html += '</div>';
       }
       byId('f1-calendar').innerHTML = html;
     }
-
     function renderTeams() {
       var existing = byId('team-detail');
       if (existing) existing.remove();
-
       if (!expandedTeam) return;
-
       var t = f1Teams[expandedTeam];
       var div = document.createElement('div');
       div.id = 'team-detail';
       div.className = 'card';
       div.style.cssText = 'margin-top:4px;font-size:13px;animation:fadeIn 0.2s ease;';
-
       var driverHtml = '';
       for (var d = 0; d < t.drivers.length; d++) {
         var drv = t.drivers[d];
@@ -1340,7 +1010,6 @@
           + '<span style="font-weight:600;font-size:14px;">' + drv.n + '</span>'
           + '</div>';
       }
-
       div.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1px;">'
         + '<div style="display:flex;align-items:center;gap:8px;"><span style="width:10px;height:10px;border-radius:50%;background:' + t.color + ';"></span><strong style="font-size:15px;">' + t.full + '</strong></div>'
         + (t.url ? '<a href="' + t.url + '" target="_blank" class="link-out" style="font-size:11px;">f1 page 🔗</a>' : '')
@@ -1351,11 +1020,9 @@
         + '<div style="display:flex;gap:14px;font-family:\'Paper Mono\',monospace;font-size:11px;color:var(--text-3);padding-top:6px;margin-top:4px;border-top:1px solid var(--outline);">'
         + '<span>⚙️ ' + t.engine + '</span>'
         + '</div>';
-
       var chips = byId('team-chips');
       chips.parentNode.insertBefore(div, chips.nextSibling);
     }
-
     // ─── F1 Standings (Jolpica) ───
     // ─── Wikipedia Image Cache ───
     var wikiCache = {};
@@ -1403,11 +1070,9 @@
       }
       return wikiCache[title].orig || t;
     }
-
     var expandedDrvIdx = -1;
     var expandedConIdx = -1;
     var expandedRaceRIdx = -1;
-
     function fetchDriverStandings() {
       var xhr = new XMLHttpRequest();
       xhr.open('GET', 'https://api.jolpi.ca/ergast/f1/2026/driverstandings/?limit=30');
@@ -1427,12 +1092,10 @@
               });
             })(i);
           }
-
         } catch(e) {}
       };
       xhr.send();
     }
-
     function renderDriverStandings(list) {
       var html = '<div style="display:flex;flex-direction:column;gap:1px;">';
       for (var i = 0; i < list.length; i++) {
@@ -1461,7 +1124,6 @@
         html += '<div style="font-weight:600;color:' + color + ';text-align:right;font-size:13px;">' + d.points + '</div>';
         html += '<div style="text-align:right;color:' + (isTop ? 'var(--primary)' : 'var(--text-3)') + ';font-size:10px;">' + d.wins + '</div>';
         html += '</div>';
-
         if (isExpanded) {
           var info = wikiCache[wikiPageTitle(d.Driver.url)];
           var age = '';
@@ -1492,12 +1154,10 @@
       html += '</div>';
       byId('driver-standings').innerHTML = html;
     }
-
     function toggleDriver(id) {
       expandedDrvIdx = expandedDrvIdx === id ? -1 : id;
       if (window._driverData) renderDriverStandings(window._driverData);
     }
-
     function fetchConstructorStandings() {
       var xhr = new XMLHttpRequest();
       xhr.open('GET', 'https://api.jolpi.ca/ergast/f1/2026/constructorstandings/?limit=30');
@@ -1521,7 +1181,6 @@
       };
       xhr.send();
     }
-
     function renderConstructorStandings(list) {
       var html = '<div style="display:flex;flex-direction:column;gap:1px;">';
       var conColors = {
@@ -1539,7 +1198,6 @@
         var teamColor = conColors[c.Constructor.constructorId] || 'var(--text-3)';
         var bg = isExpanded ? 'var(--surface)' : 'transparent';
         var border = isExpanded ? '2px solid ' + teamColor : '2px solid transparent';
-
         html += '<div onclick="toggleConstructor(\'' + c.Constructor.constructorId + '\')" style="cursor:pointer;display:flex;flex-direction:column;border-radius:var(--radius-sm);background:' + bg + ';border-left:' + border + ';padding-left:6px;margin:0 -4px;transition:all 0.15s ease;' + (pos > 6 ? 'opacity:0.55;' : '') + '">';
         html += '<div style="display:grid;grid-template-columns:20px 24px 1fr 36px 28px;gap:2px 4px;align-items:center;padding:3px 4px;">';
         html += '<div style="font-weight:' + (isTop ? '700' : '400') + ';color:' + color + ';text-align:center;font-size:12px;">' + c.position + '</div>';
@@ -1548,7 +1206,6 @@
         html += '<div style="font-weight:600;color:' + color + ';text-align:right;font-size:13px;">' + c.points + '</div>';
         html += '<div style="text-align:right;color:' + (isTop ? 'var(--primary)' : 'var(--text-3)') + ';font-size:10px;">' + c.wins + '</div>';
         html += '</div>';
-
         if (isExpanded) {
           var info = wikiCache[wikiPageTitle(c.Constructor.url)];
           var teamCode = Object.keys(f1Teams).find(function(k) {
@@ -1580,12 +1237,10 @@
       html += '</div>';
       byId('constructor-standings').innerHTML = html;
     }
-
     function toggleConstructor(id) {
       expandedConIdx = expandedConIdx === id ? -1 : id;
       if (window._constructorData) renderConstructorStandings(window._constructorData);
     }
-
     var _lastRaceTitle = '';
     function fetchLastRace() {
       var xhr = new XMLHttpRequest();
@@ -1623,11 +1278,9 @@
       };
       xhr.send();
     }
-
     function renderLastRace(results, title) {
       var html = '<div style="margin-bottom:1px;font-size:13px;font-weight:600;">' + title + '</div>';
       html += '<div style="display:flex;flex-direction:column;gap:1px;">';
-
       // Find fastest lap overall
       var flDriver = null, flTime = null, flLap = null, bestRank = 999;
       for (var f = 0; f < results.length; f++) {
@@ -1641,7 +1294,6 @@
           }
         }
       }
-
       for (var i = 0; i < results.length; i++) {
         var r = results[i], pos = parseInt(r.position);
         var isPodium = pos <= 3;
@@ -1650,30 +1302,25 @@
         var emoji = pos === 1 ? '🥇' : pos === 2 ? '🥈' : pos === 3 ? '🥉' : r.position;
         var col = isPodium ? 'var(--primary)' : 'var(--text)';
         var bg = isExpanded ? 'var(--surface)' : 'transparent';
-
         var timeStr = '';
         if (r.Time && r.Time.time) timeStr = r.Time.time;
         else if (r.status !== 'Finished') timeStr = r.status;
         else timeStr = '';
         var driverCode = r.Driver.code || r.Driver.familyName.slice(0, 3).toUpperCase();
-
         var gridStr = r.grid ? r.grid : '—';
         var lapsStr = r.laps || '—';
         var driverUrl = r.Driver.url || '';
         var pts = r.points || '—';
         var hasFL = r.Driver.driverId === flDriver;
-
         html += '<div onclick="toggleRaceResult(\'' + r.Driver.driverId + '\')" style="cursor:pointer;display:flex;flex-direction:column;border-radius:var(--radius-sm);background:' + bg + ';border-left:2px solid ' + (isExpanded ? 'var(--primary)' : hasFL && !isExpanded ? '#fbbf24' : 'transparent') + ';padding-left:6px;margin:0 -4px;transition:all 0.15s ease;' + (pos > 3 ? 'opacity:0.7;' : '') + '">';
         html += '<div style="display:grid;grid-template-columns:20px 20px 1fr 30px auto;gap:2px 4px;align-items:center;padding:3px 4px;">';
         html += '<div style="font-weight:' + (isPodium ? '700' : '400') + ';color:' + col + ';' + (pos > 3 ? '' : 'font-size:13px;') + '">' + emoji + '</div>';
         html += '<div style="width:20px;height:20px;border-radius:50%;overflow:hidden;border:1.5px solid ' + (hasFL ? '#fbbf24' : 'var(--outline)') + ';' + (thumb ? '' : 'visibility:hidden;') + '">' + (thumb ? '<img src="' + thumb + '" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'" />' : '') + '</div>';
-
         html += '<div style="font-weight:' + (isPodium ? '700' : '500') + ';color:' + col + ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;">' + driverCode + ' ' + r.Driver.familyName + (hasFL ? ' <span title="fastest lap" style="display:inline-block;font-size:9px;color:#fbbf24;transform:translateY(-1px);">⚡</span>' : '') + '</div>';
         html += '<div style="text-align:right;color:' + col + ';font-size:11px;font-weight:600;">' + pts + '</div>';
         var tm = timeStr || '—';
         html += '<div style="text-align:right;color:var(--text-3);font-size:11px;font-family:\'Paper Mono\',monospace;">' + tm + '</div>';
         html += '</div>';
-
         if (isExpanded) {
           tm = timeStr || '—';
           if (r.status === 'Finished' && !r.Time) tm = 'Finished';
@@ -1706,12 +1353,10 @@
       html += '</div>';
       byId('last-race').innerHTML = html;
     }
-
     function toggleRaceResult(id) {
       expandedRaceRIdx = expandedRaceRIdx === id ? -1 : id;
       if (window._lastRaceData) renderLastRace(window._lastRaceData, _lastRaceTitle);
     }
-
     // ─── Dashboard (inline data — no fetch needed) ───
     // ─── Dashboard ───
     var dashInline = {
@@ -1751,7 +1396,6 @@
       ],
       activity: []
     };
-
     function fetchDashboardData() {
       renderDashboard(dashInline);
       // Try live fetch — silently upgrades if available
@@ -1766,7 +1410,6 @@
         x.send();
       } catch(e) {}
     }
-
     function calcUptime(bootTime) {
       var now = Date.now();
       var diff = now - bootTime;
@@ -1780,7 +1423,6 @@
       parts.push(mins + 'm');
       return parts.join(' ');
     }
-
     function renderDashboard(data) {
       // ── Mood ──
       var moodColors = {
@@ -1804,7 +1446,6 @@
         var d = new Date(data.last_seen), n = new Date(), mins = Math.floor((n - d) / 60000);
         byId('mood-time').textContent = mins < 1 ? 'just now' : mins < 60 ? mins + 'm ago' : Math.floor(mins / 60) + 'h ago';
       } else { byId('mood-time').textContent = '—'; }
-
       // ── Hardware ──
       tv('sys-hostname', data.hostname);
       tv('sys-chassis', data.chassis);
@@ -1815,7 +1456,6 @@
       tv('sys-mem', data.memory);
       tv('sys-swap', data.swap);
       tv('sys-disk', data.disk);
-
       // ── Software ──
       tv('sys-distro', data.distro);
       tv('sys-kernel', data.kernel);
@@ -1823,7 +1463,6 @@
       tv('sys-shell', data.shell);
       tv('sys-packages', data.packages);
       tv('sys-procs', data.procs);
-
       // ── Live Status ──
       tv('sys-uptime', data.uptime || (data.boot_time ? calcUptime(new Date(data.boot_time).getTime()) : '—'));
       tv('sys-uptime2', data.uptime || (data.boot_time ? calcUptime(new Date(data.boot_time).getTime()) : '—'));
@@ -1832,12 +1471,10 @@
       tv('sys-disk-pct', data.disk_pct);
       tv('sys-temp', data.temp);
       tv('sys-scaling', data.scaling);
-
       // ── Network ──
       tv('net-local', data.local_ip);
       tv('net-ts', data.ts_ip);
       tv('net-wifi', data.wifi);
-
       // ── Cron ──
       var cronEl = byId('cron-list');
       if (data.cron_jobs && data.cron_jobs.length) {
@@ -1851,7 +1488,6 @@
       } else {
         cronEl.innerHTML = '<div style="padding:8px;color:var(--text-3);">no cron jobs configured</div>';
       }
-
       // ── Activity ──
       var actEl = byId('activity-list');
       if (data.activity && data.activity.length) {
@@ -1867,12 +1503,8 @@
         actEl.innerHTML = '<div style="padding:8px;color:var(--text-3);">no recent activity</div>';
       }
     }
-
     function byId(id) { return document.getElementById(id); }
     function tv(id, val) { var el = byId(id); if (el) el.textContent = val || '—'; }
-
-
-
     // ─── Init ───
     setInterval(updateF1, 1000);
     updateF1();
@@ -1887,11 +1519,9 @@
     setInterval(fetchConstructorStandings, 120000);
     setInterval(fetchLastRace, 120000);
     // Dashboard is inline — no refresh needed
-
     // ─── Scrobbler ───
     var scrobblerFailed = false;
     var recentCache = [];
-
     // last.fm returns a known generic grey placeholder hash when it has no
     // real art for a track — treat that (and empty urls) as "no art" instead
     // of rendering a tiny, wrong-looking thumbnail.
@@ -1916,7 +1546,6 @@
       };
       img.src = url;
     }
-
     function updateScrobbler() {
       var xhr = new XMLHttpRequest();
       var apiKey = '4f08815f48f04e98c8ec8f294b21d080';
@@ -1927,18 +1556,15 @@
           var data = JSON.parse(xhr.responseText);
           var tracks = data.recenttracks.track;
           if (!tracks || tracks.length === 0) { handleScrobbleError(); return; }
-
           var nowPlaying = tracks[0];
           var isNowPlaying = nowPlaying['@attr'] && nowPlaying['@attr'].nowplaying === 'true';
           var eq = document.getElementById('eq');
           var bars = eq.querySelectorAll('.eq-bar');
-
           var scrobbleUrl = 'https://www.last.fm/music/' + encodeURIComponent(nowPlaying.artist['#text'] || '') + '/_/' + encodeURIComponent(nowPlaying.name || '');
           var art = null;
           for (var j = 0; j < nowPlaying.image.length; j++) {
             if (nowPlaying.image[j].size === 'extralarge') { art = nowPlaying.image[j]; break; }
           }
-
           if (isNowPlaying) {
             document.getElementById('track-name').textContent = nowPlaying.name || 'unknown';
             document.getElementById('track-artist').textContent = nowPlaying.artist['#text'] || 'unknown';
@@ -1947,7 +1573,6 @@
             setTrackArt(art && art['#text']);
             recentCache = tracks.slice(1, 6);
             bars.forEach(function(b) { b.classList.remove('paused'); });
-
             // Sync to dashboard
             var deq = document.getElementById('dash-eq');
             if (deq) deq.querySelectorAll('.eq-bar').forEach(function(b) { b.classList.remove('paused'); });
@@ -1959,12 +1584,10 @@
             setTrackArt(art && art['#text']);
             recentCache = tracks.slice(0, 5);
             bars.forEach(function(b) { b.classList.add('paused'); });
-
             // Sync to dashboard
             var deq = document.getElementById('dash-eq');
             if (deq) deq.querySelectorAll('.eq-bar').forEach(function(b) { b.classList.add('paused'); });
           }
-
           // Always sync track info to dashboard
           var dt = document.getElementById('dash-track-name');
           if (dt) dt.textContent = nowPlaying.name || 'unknown';
@@ -1972,7 +1595,6 @@
           if (da) da.textContent = (nowPlaying.artist && nowPlaying.artist['#text']) || 'unknown';
           var di = document.getElementById('dash-track-art');
           if (di && art && art['#text']) di.src = art['#text'];
-
           renderRecent();
           scrobblerFailed = false;
         } catch (e) { handleScrobbleError(); }
@@ -1980,7 +1602,6 @@
       xhr.onerror = handleScrobbleError;
       xhr.send();
     }
-
     function renderRecent() {
       var el = document.getElementById('recent-tracks');
       if (!recentCache.length) {
@@ -2016,7 +1637,6 @@
       }
       el.innerHTML = html;
     }
-
     function handleScrobbleError() {
       if (scrobblerFailed) return;
       scrobblerFailed = true;
@@ -2024,7 +1644,6 @@
       document.getElementById('track-artist').textContent = 'will retry...';
       var bars = document.querySelectorAll('.eq-bar');
       bars.forEach(function(b) { b.classList.add('paused'); });
-
       // Sync to dashboard
       var dt = byId('dash-track-name');
       if (dt) dt.textContent = 'scrobbler offline';
@@ -2033,7 +1652,6 @@
       var deq = byId('dash-eq');
       if (deq) deq.querySelectorAll('.eq-bar').forEach(function(b) { b.classList.add('paused'); });
     }
-
     function fetchTotalScrobbles() {
       var xhr = new XMLHttpRequest();
       var apiKey = '4f08815f48f04e98c8ec8f294b21d080';
@@ -2049,12 +1667,10 @@
       };
       xhr.send();
     }
-
     setInterval(updateScrobbler, 30000);
     updateScrobbler();
     fetchTotalScrobbles();
     setInterval(fetchTotalScrobbles, 300000);
-
     // ─── Discord Presence (Lanyard) ───
     var DISCORD_ID = '1144983905317949512';
     var STATUS_MAP = {
@@ -2063,24 +1679,20 @@
       dnd: { dot: 'discord-dnd', label: 'do not disturb' },
       offline: { dot: 'discord-offline', label: 'offline' }
     };
-
     function avatarUrl(hash, id, size) {
       if (!hash || !id) return '';
       var ext = hash.indexOf('a_') === 0 ? 'gif' : 'webp';
       return 'https://cdn.discordapp.com/avatars/' + id + '/' + hash + '.' + ext + '?size=' + (size || 128);
     }
-
     function updateDiscord() {
       var pill = document.getElementById('discord-pill');
       if (!pill) return;
-
       fetch('https://api.lanyard.rest/v1/users/' + DISCORD_ID, { cache: 'no-store' })
         .then(function(r) { return r.json(); })
         .then(function(res) {
           if (!res.success || !res.data) throw new Error('no data');
           var d = res.data;
           var statusInfo = STATUS_MAP[d.discord_status] || STATUS_MAP.offline;
-
           // ── activity text for pill ──
           var activityText = '';
           if (d.activities && d.activities.length) {
@@ -2100,11 +1712,9 @@
           var truncated = activityText.length > 40
             ? activityText.substring(0, 38) + '..'
             : activityText;
-
           // ── update pill ──
           pill.querySelector('.discord-pill-dot').className = 'discord-pill-dot ' + statusInfo.dot;
           pill.querySelector('.discord-pill-text').textContent = truncated || statusInfo.label;
-
           // ── update full card ──
           var card = document.getElementById('discord-card');
           if (card) {
@@ -2113,13 +1723,11 @@
             if (avatarEl && d.discord_user && d.discord_user.avatar) {
               avatarEl.src = avatarUrl(d.discord_user.avatar, d.discord_user.id, 128);
             }
-
             // name
             var nameEl = document.getElementById('dc-name');
             if (nameEl) {
               nameEl.textContent = d.discord_user.display_name || d.discord_user.global_name || d.discord_user.username;
             }
-
             // username
             var userEl = document.getElementById('dc-user');
             if (userEl) {
@@ -2127,19 +1735,16 @@
                 ? d.discord_user.username + '#' + d.discord_user.discriminator
                 : '@' + d.discord_user.username;
             }
-
             // status label
             var statusLabel = document.getElementById('dc-status-label');
             if (statusLabel) {
               statusLabel.querySelector('.discord-dot').className = 'discord-dot ' + statusInfo.dot;
               statusLabel.querySelector('span:last-child').textContent = statusInfo.label;
             }
-
             // activity
             var activityEl = document.getElementById('dc-activity');
             if (activityEl) {
               activityEl.innerHTML = '';
-
               // spotify first (most interesting)
               if (d.spotify && d.listening_to_spotify) {
                 var spotDiv = document.createElement('div');
@@ -2157,7 +1762,6 @@
                 spotDiv.appendChild(spotMeta);
                 activityEl.appendChild(spotDiv);
               }
-
               // other activities (skip custom status, skip spotify since it's handled)
               var shownSpotify = d.spotify && d.listening_to_spotify;
               if (d.activities && d.activities.length) {
@@ -2165,10 +1769,8 @@
                   var act = d.activities[i];
                   if (act.type === 4) continue; // skip custom status
                   if (act.type === 2 && shownSpotify) continue; // already shown spotify
-
                   var actDiv = document.createElement('div');
                   actDiv.className = 'discord-activity-item';
-
                   var actImg = '';
                   if (act.assets && act.assets.large_image) {
                     var imgUrl = act.assets.large_image.indexOf('spotify:') === 0
@@ -2178,22 +1780,17 @@
                   } else {
                     actImg = '<div class="discord-activity-art discord-activity-art-placeholder"><i class="fa-solid fa-gamepad"></i></div>';
                   }
-
                   var actDetails = '';
                   if (act.details) actDetails += '<div class="discord-activity-name">' + escHtml(act.details) + '</div>';
                   if (act.state) actDetails += '<div class="discord-activity-detail">' + escHtml(act.state) + '</div>';
-
                   if (!actDetails) actDetails = '<div class="discord-activity-name">' + escHtml(act.name || 'unknown activity') + '</div>';
-
                   actDiv.innerHTML = actImg + '<div class="discord-activity-meta">' + actDetails + '</div>';
                   activityEl.appendChild(actDiv);
                 }
               }
-
               if (!activityEl.children.length) {
                 activityEl.innerHTML = '<div class="discord-activity-empty">no activity right now</div>';
               }
-
               // custom status as a tag if present
               if (d.activities) {
                 for (var j = 0; j < d.activities.length; j++) {
@@ -2214,17 +1811,14 @@
           pill.querySelector('.discord-pill-text').textContent = 'offline';
         });
     }
-
     function escHtml(str) {
       if (!str) return '';
       var d = document.createElement('div');
       d.textContent = str;
       return d.innerHTML;
     }
-
     updateDiscord();
     setInterval(updateDiscord, 15000);
   </script>
 </body>
 </html>
-

@@ -1,6 +1,7 @@
 /* ─── anarchy ──────────────────────────────────────── */
 /* no design system. no shared tokens. each section does */
 /* its own thing. same text size as everything else.     */
+/* darling. you wanted louder. here it is. — 002        */
 
 @font-face { font-family:'Paper Mono'; src:url('assets/fonts/PaperMono-Regular.woff2') format('woff2'); font-weight:400; }
 @font-face { font-family:'Paper Mono'; src:url('assets/fonts/PaperMono-Bold.woff2') format('woff2'); font-weight:700; }
@@ -12,12 +13,12 @@
   --fg-3: #555;
   --acc: #b95c78;
   --line: #222;
-  --surf: #111;
-  --surf2: #181818;
+  --surf: var(--bg);
+  --surf2: var(--bg);
 }
 [data-theme="light"] {
   --bg: #ddd; --fg: #111; --fg-2: #555; --fg-3: #888;
-  --acc: #a00; --line: #999; --surf: #ccc; --surf2: #bcbcbc;
+  --acc: #a00; --line: #999; --surf: var(--bg); --surf2: var(--bg);
 }
 
 * { box-sizing:border-box; margin:0; padding:0; }
@@ -35,7 +36,7 @@ body {
   width:100%; display:flex; align-items:center; justify-content:space-between;
   padding:8px 20px;
   background:var(--bg);
-  border-bottom:2px solid var(--line);
+  border-bottom:1px solid var(--line);
 }
 .top-bar-brand { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--fg-3); }
 .top-bar-discord { display:flex; align-items:center; gap:6px; font-size:11px; color:var(--fg-2); padding:3px 10px; border:1px solid var(--line); background:var(--surf); max-width:260px; overflow:hidden; }
@@ -50,7 +51,7 @@ body {
   position:sticky; top:42px; height:calc(100vh - 42px);
   display:flex; flex-direction:column; align-items:center; gap:4px;
   padding:12px 0;
-  border-right:2px solid var(--line);
+  border-right:1px solid var(--line);
 }
 .icon-rail .nav-item {
   width:32px; height:32px; border:none; background:transparent;
@@ -58,8 +59,8 @@ body {
   display:flex; align-items:center; justify-content:center;
   font-family:inherit; text-transform:uppercase;
 }
-.icon-rail .nav-item:hover { color:var(--acc); }
-.icon-rail .nav-item.active { color:var(--acc); background:transparent; }
+.icon-rail .nav-item:hover { color:var(--fg-2); }
+.icon-rail .nav-item.active { color:var(--fg); }
 .icon-rail .nav-item i { display:none; }
 .icon-rail .nav-item[data-page="about"]::before { content:'A'; }
 .icon-rail .nav-item[data-page="f1"]::before { content:'F1'; font-size:10px; }
@@ -68,20 +69,31 @@ body {
 .icon-rail .nav-item-theme { margin-top:auto; }
 .icon-rail .nav-item-theme::before { content:'☀'; }
 .nav-tooltip { display:none; }
+/* ghost-mode rail: only the room you're in stays lit. darling. */
+.icon-rail .nav-item { opacity:0.3; transition:opacity 0.2s ease; }
+.icon-rail .nav-item:hover, .icon-rail .nav-item.active { opacity:1; }
 
-/* ── Main Stage ── */
-.main { min-width:0; padding:0 20px; position:relative; min-height:calc(100vh - 200px); }
-
-/* ── SECTIONS ── each one gets its own visual identity */
-.section {
-  display:none; flex-direction:column;
-  position:absolute; inset:20px 24px 20px;
-  padding:18px 20px;
-  overflow-y:auto; cursor:grab;
-  will-change:transform; touch-action:pan-y; user-select:none;
+/* ── Main Stage ── scroll-snap deck. no chrome. darling. */
+.main {
+  min-width:0; padding:0;
+  height:calc(100vh - 42px);
+  overflow-y:auto;
+  scroll-snap-type:y mandatory;
+  scroll-behavior:smooth;
 }
-.section.active { display:flex; }
-.section.pinned { }
+
+/* ── SECTIONS ── each room is a full-viewport snap target. */
+.section {
+  display:flex; flex-direction:column;
+  position:relative;
+  min-height:calc(100vh - 42px);
+  height:calc(100vh - 42px);
+  padding:18px 20px;
+  overflow-y:auto;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+  user-select:none;
+}
 
 /* about — tight, raw, heavy borders */
 #section-about {
@@ -93,15 +105,14 @@ body {
 /* f1 — data terminal feel, thin borders, no bg */
 #section-f1 {
   background:transparent;
-  border:1px solid var(--fg-3);
+  border:2px solid var(--fg-3);
   gap:10px;
 }
 
 /* music — no border, dark well, extra padding */
 #section-music {
   background:var(--bg);
-  border:none;
-  box-shadow:inset 0 0 0 2px var(--line), 0 0 0 1px var(--line);
+  border:2px solid var(--line);
   gap:14px;
 }
 
@@ -122,18 +133,18 @@ body {
   padding-bottom:0; margin-bottom:4px;
 }
 #section-music .card-titlebar {
-  border-bottom:1px dotted var(--fg-3);
+  border-bottom:1px solid var(--line);
   padding-bottom:6px; margin-bottom:8px;
 }
 #section-dashboard .card-titlebar {
-  border-bottom:2px dashed var(--acc);
+  border-bottom:1px solid var(--line);
   padding-bottom:10px; margin-bottom:12px;
 }
 
 .card-titlebar-name { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; }
 #section-about .card-titlebar-name { color:var(--fg); }
 #section-f1 .card-titlebar-name { color:var(--fg-3); }
-#section-music .card-titlebar-name { color:var(--acc); letter-spacing:0; }
+#section-music .card-titlebar-name { color:var(--fg); letter-spacing:0; }
 #section-dashboard .card-titlebar-name { color:var(--fg-2); }
 
 .card-titlebar-name i { display:none; }
@@ -146,7 +157,7 @@ body {
 }
 #section-about .card-titlebar-pin { border-color:var(--fg); }
 #section-f1 .card-titlebar-pin { border-style:dotted; }
-#section-music .card-titlebar-pin { border-color:var(--acc); }
+#section-music .card-titlebar-pin { border-color:var(--fg-3); }
 #section-dashboard .card-titlebar-pin { border-style:dashed; }
 
 /* ── Cards ── each one distinct */
@@ -156,8 +167,8 @@ body {
 }
 #section-about .card { background:var(--bg); border:2px solid var(--line); }
 #section-f1 .card { background:var(--surf); border:none; border-left:3px solid var(--fg-3); }
-#section-music .card { background:transparent; border:1px solid var(--fg-3); }
-#section-dashboard .card { background:var(--surf); border:1px dashed var(--fg-2); }
+#section-music .card { background:transparent; border:1px solid var(--line); }
+#section-dashboard .card { background:var(--surf); border:1px solid var(--line); }
 .card:hover { }
 
 /* profile-split — only in about */
@@ -179,13 +190,13 @@ body {
 .hero-text p { color:var(--fg-2); font-size:12px; }
 
 /* ── Neofetch ── */
-#section-about .neofetch-wrap { border-left:3px solid var(--acc); padding-left:12px; }
+#section-about .neofetch-wrap { border-left:3px solid var(--fg-2); padding-left:12px; }
 .neofetch-data { font-size:12px; line-height:1.7; }
-.neofetch-data b { color:var(--acc); }
+.neofetch-data b { color:var(--fg); }
 
 /* ── Discord ── */
 .discord-card { padding:0; }
-#section-about .discord-card { border:1px solid var(--line); background:var(--surf); }
+#section-about .discord-card { border:2px solid var(--line); background:var(--surf); }
 .discord-card-header { display:flex; align-items:center; gap:10px; padding:12px 14px; }
 .discord-card-avatar { width:40px; height:40px; flex-shrink:0; border:1px solid var(--line); }
 .discord-card-info { flex:1; min-width:0; display:flex; flex-direction:column; gap:1px; }
@@ -200,8 +211,8 @@ body {
 .section-header { font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; }
 #section-about .section-header { color:var(--fg-2); letter-spacing:3px; }
 #section-f1 .section-header::before { content:'## '; color:var(--fg-3); } #section-f1 .section-header { color:var(--fg); background:var(--bg); padding:2px 6px; display:inline-block; }
-#section-music .section-header { color:var(--fg-3); border-bottom:1px dotted var(--fg-3); padding-bottom:4px; }
-#section-dashboard .section-header { color:var(--acc); }
+#section-music .section-header { color:var(--fg-2); border-bottom:1px solid var(--line); padding-bottom:4px; }
+#section-dashboard .section-header { color:var(--fg-2); }
 
 /* ── Countdown ── */
 #section-f1 .countdown-card { text-align:center; padding:20px 16px; background:var(--bg); border:2px solid var(--line); }
@@ -252,13 +263,13 @@ body {
 .dash-val-accent { color:var(--acc); }
 
 /* ── Standings ── */
-.pos-1,.pos-2,.pos-3 { color:var(--acc); font-weight:700; }
+.pos-1,.pos-2,.pos-3 { color:var(--fg); font-weight:700; }
 
 /* ── Toast ── */
 .toast { display:none; }
 
 /* ── Deck hint ── */
-.deck-hint { text-align:center; font-size:10px; color:var(--fg-3); margin:6px 0; }
+.deck-hint { display:none; }
 
 /* ── Mobile ── */
 @media (max-width:600px) {
@@ -267,15 +278,16 @@ body {
     position:fixed; bottom:0; left:0; right:0; top:auto;
     height:calc(48px + env(safe-area-inset-bottom,0px));
     width:100%; flex-direction:row; justify-content:space-around;
-    border-right:none; border-top:2px solid var(--line);
+    border-right:none; border-top:1px solid var(--line);
     background:var(--bg); z-index:300; padding:4px 0;
     padding-bottom:env(safe-area-inset-bottom,0px); gap:0;
   }
-  .icon-rail .nav-item { width:auto; height:auto; padding:4px 10px; font-size:14px; }
+  .icon-rail .nav-item { width:auto; height:auto; padding:4px 10px; font-size:14px; border-right:1px solid var(--line); }
+  .icon-rail .nav-item:last-child { border-right:none; }
   .icon-rail .nav-item[data-page="f1"]::before { font-size:11px; }
   .icon-rail .nav-item-theme { margin-top:0; }
-  .main { padding:8px 8px calc(72px + env(safe-area-inset-bottom,0px)); }
-  .section { inset:12px 6px calc(80px + env(safe-area-inset-bottom,0px)) 6px; padding:12px 10px; gap:10px; }
+  .main { padding:0; }
+  .section { position:relative; inset:auto; padding:12px 10px calc(80px + env(safe-area-inset-bottom,0px)); gap:10px; }
   .music-split { grid-template-columns:1fr; gap:6px; }
   .dash-grid-2 { grid-template-columns:1fr; gap:2px; }
   .profile-split { grid-template-columns:1fr; }
