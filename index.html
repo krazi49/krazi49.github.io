@@ -24,11 +24,11 @@
   <div class="shell">
     <!-- ─── Icon Rail ─── -->
     <aside class="icon-rail">
-      <a href="#section-about" class="nav-item" data-page="about"><span class="nav-tooltip">about</span></a>
-      <a href="#section-f1" class="nav-item" data-page="f1"><span class="nav-tooltip">f1</span></a>
-      <a href="#section-music" class="nav-item" data-page="music"><span class="nav-tooltip">music</span></a>
-      <a href="#section-dashboard" class="nav-item" data-page="dashboard"><span class="nav-tooltip">dashboard</span></a>
-      <button class="nav-item nav-item-theme" onclick="toggleTheme()" style="position:relative;"><i class="fa-solid fa-circle-half-stroke"></i><span class="nav-tooltip">theme</span></button>
+      <a href="#section-about" class="nav-item lm-tooltip lm-tooltip-left" data-page="about"><span class="lm-tooltip-content">about</span></a>
+      <a href="#section-f1" class="nav-item lm-tooltip lm-tooltip-left" data-page="f1"><span class="lm-tooltip-content">f1</span></a>
+      <a href="#section-music" class="nav-item lm-tooltip lm-tooltip-left" data-page="music"><span class="lm-tooltip-content">music</span></a>
+      <a href="#section-dashboard" class="nav-item lm-tooltip lm-tooltip-left" data-page="dashboard"><span class="lm-tooltip-content">dashboard</span></a>
+      <button class="nav-item nav-item-theme lm-tooltip lm-tooltip-left" onclick="toggleTheme()" style="position:relative;"><i class="fa-solid fa-circle-half-stroke"></i><span class="lm-tooltip-content">theme</span></button>
     </aside>
     <!-- ─── Main ─── -->
     <div class="main" id="main-stage">
@@ -49,10 +49,7 @@
                 <span class="discord-card-name" id="dc-name">—</span>
                 <span class="discord-card-user" id="dc-user">—</span>
               </div>
-              <span class="discord-card-status" id="dc-status-label">
-                <span class="discord-dot discord-offline"></span>
-                <span>offline</span>
-              </span>
+              <span class="discord-card-status" id="dc-status-label"><span class="lm-badge lm-badge-muted lm-badge-dot">offline</span></span>
             </div>
             <div class="discord-card-activity" id="dc-activity">
               <div class="discord-activity-empty">not doing anything right now, that's serious</div>
@@ -114,19 +111,21 @@
         </div>
         <div class="section-header" style="margin-top:4px;">2026 calendar</div>
         <div class="lm-card" id="f1-calendar" style="font-family:'Paper Mono',monospace;font-size:12px;line-height:1.8;">
-          loading...
+          <div class="lm-skeleton lm-skeleton-sm" style="margin:4px 0;"></div>
+          <div class="lm-skeleton lm-skeleton-sm lm-skeleton-w-75" style="margin:4px 0;"></div>
+          <div class="lm-skeleton lm-skeleton-sm lm-skeleton-w-50" style="margin:4px 0;"></div>
         </div>
         <div class="section-header" style="margin-top:4px;">driver standings <span id="ds-round" style="font-weight:400;font-size:9px;color:var(--text-3);"></span></div>
         <div class="lm-card" id="driver-standings" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
-          <div style="padding:8px;color:var(--text-3);">loading...</div>
+          <div class="lm-skeleton-row" style="padding:8px 0;"><span class="lm-skeleton lm-skeleton-circle"></span><span class="lm-skeleton lm-skeleton-sm"></span></div>
         </div>
         <div class="section-header" style="margin-top:4px;">constructor standings <span id="cs-round" style="font-weight:400;font-size:9px;color:var(--text-3);"></span></div>
         <div class="lm-card" id="constructor-standings" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
-          <div style="padding:8px;color:var(--text-3);">loading...</div>
+          <div class="lm-skeleton-row" style="padding:8px 0;"><span class="lm-skeleton lm-skeleton-circle"></span><span class="lm-skeleton lm-skeleton-sm"></span></div>
         </div>
         <div class="section-header" style="margin-top:4px;">last race</div>
         <div class="lm-card" id="last-race" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
-          <div style="padding:8px;color:var(--text-3);">loading...</div>
+          <div class="lm-skeleton-row" style="padding:8px 0;"><span class="lm-skeleton lm-skeleton-circle"></span><span class="lm-skeleton lm-skeleton-sm"></span></div>
         </div>
       </div>
       <!-- ─── MUSIC ─── -->
@@ -138,7 +137,7 @@
             <div class="music-art-overlay"></div>
             <div class="scrobble-counter" id="scrobble-counter">—</div>
             <div class="music-info">
-              <span id="track-name" class="music-track-name">loading...</span>
+              <span id="track-name" class="music-track-name"><span class="lm-spinner lm-spinner-sm" style="vertical-align:middle;"></span></span>
               <span id="track-artist" class="music-track-artist"></span>
               <span id="track-album" class="music-track-album"></span>
             </div>
@@ -154,7 +153,7 @@
           <div class="music-recent">
             <div class="section-header">recent</div>
             <div class="music-grid" id="recent-tracks">
-              <div class="music-tile-empty">loading...</div>
+              <div class="lm-skeleton-card" style="height:120px;"><span class="lm-skeleton lm-skeleton-lg"></span><span class="lm-skeleton lm-skeleton-md lm-skeleton-w-75"></span></div>
             </div>
           </div>
         </div>
@@ -169,7 +168,7 @@
         <div class="lm-card" id="mood-card" style="display:flex;align-items:center;gap:14px;">
           <div id="mood-indicator" style="width:14px;height:14px;border-radius:50%;background:var(--primary);flex-shrink:0;transition:all 0.5s ease;box-shadow:0 0 12px var(--primary);"></div>
           <div style="flex:1;">
-            <div id="mood-label" style="font-weight:600;font-size:15px;">syncing...</div>
+            <div id="mood-label" style="font-weight:600;font-size:15px;display:flex;align-items:center;gap:8px;"><span class="lm-spinner lm-spinner-sm"></span> syncing...</div>
             <div id="mood-sub" style="font-size:12px;color:var(--text-2);font-family:'Paper Mono',monospace;">hex status: —</div>
           </div>
           <div style="text-align:right;">
@@ -295,7 +294,7 @@
         <a href="#" class="lm-card" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;" onclick="document.querySelector('[data-page=f1]').click();return false;">
           <div id="dash-race-flag" style="font-size:28px;"><i class="fa-solid fa-flag-checkered"></i></div>
           <div style="flex:1;">
-            <div id="dash-race-name" style="font-weight:600;font-size:14px;">loading...</div>
+            <div id="dash-race-name" style="font-weight:600;font-size:14px;"><span class="lm-spinner lm-spinner-sm"></span></div>
             <div id="dash-race-session" style="font-size:12px;color:var(--text-2);font-family:'Paper Mono',monospace;">—</div>
           </div>
           <div style="text-align:right;">
@@ -307,7 +306,7 @@
         <a href="https://last.fm/user/silvermanch" class="lm-card" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;" target="_blank">
           <img id="dash-track-art" src="" alt="" style="width:40px;height:40px;border-radius:6px;object-fit:cover;border:1px solid var(--outline);flex-shrink:0;background:var(--surface-3);" />
           <div style="flex:1;overflow:hidden;">
-            <div id="dash-track-name" style="font-weight:600;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">loading...</div>
+            <div id="dash-track-name" style="font-weight:600;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><span class="lm-spinner lm-spinner-sm"></span></div>
             <div id="dash-track-artist" style="font-size:11px;color:var(--text-2);font-family:'Paper Mono',monospace;"></div>
           </div>
           <span class="equaliser" id="dash-eq">
@@ -321,11 +320,11 @@
         </a>
         <div class="section-header">cron jobs</div>
         <div class="lm-card" id="cron-list" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
-          <div style="padding:8px;color:var(--text-3);">loading...</div>
+          <div class="lm-skeleton-row" style="padding:8px 0;"><span class="lm-skeleton lm-skeleton-circle"></span><span class="lm-skeleton lm-skeleton-sm"></span></div>
         </div>
         <div class="section-header">recent activity</div>
         <div class="lm-card" id="activity-list" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
-          <div style="padding:8px;color:var(--text-3);">loading...</div>
+          <div class="lm-skeleton-row" style="padding:8px 0;"><span class="lm-skeleton lm-skeleton-circle"></span><span class="lm-skeleton lm-skeleton-sm"></span></div>
         </div>
       </div>
     </div>
@@ -1735,8 +1734,11 @@
             // status label
             var statusLabel = document.getElementById('dc-status-label');
             if (statusLabel) {
-              statusLabel.querySelector('.discord-dot').className = 'discord-dot ' + statusInfo.dot;
-              statusLabel.querySelector('span:last-child').textContent = statusInfo.label;
+              var badge = statusLabel.querySelector('.lm-badge');
+              if (badge) {
+                badge.className = 'lm-badge lm-badge-dot ' + (statusInfo.dot === 'discord-online' ? 'lm-badge-success' : statusInfo.dot === 'discord-idle' ? 'lm-badge-warning' : statusInfo.dot === 'discord-dnd' ? 'lm-badge-error' : 'lm-badge-muted');
+                badge.lastChild.textContent = statusInfo.label;
+              }
             }
             // activity
             var activityEl = document.getElementById('dc-activity');
