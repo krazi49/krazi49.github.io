@@ -95,10 +95,10 @@ body {
 .icon-rail .nav-item i { display:none; }
 .icon-rail .nav-item[data-page="about"]::before { content:'A'; }
 .icon-rail .nav-item[data-page="f1"]::before { content:'F1'; font-size:10px; }
-.icon-rail .nav-item[data-page="music"]::before { content:'♪'; }
+.icon-rail .nav-item[data-page="music"]::before { content:'\f001'; font-family:'Font Awesome 6 Free'; font-weight:900; }
 .icon-rail .nav-item[data-page="dashboard"]::before { content:'▦'; }
 .icon-rail .nav-item-theme { margin-top:auto; }
-.icon-rail .nav-item-theme::before { content:'☀'; }
+.icon-rail .nav-item-theme::before { content:'\f042'; font-family:'Font Awesome 6 Free'; font-weight:900; }
 .nav-tooltip { display:none; }
 
 /* ── Main / Sections ── */
