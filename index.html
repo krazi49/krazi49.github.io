@@ -110,23 +110,35 @@
           <div class="chip" data-team="MERC" onclick="toggleTeam('MERC')">MERC</div>
           <div class="chip" data-team="RBR" onclick="toggleTeam('RBR')">RBR</div>
         </div>
-        <div class="section-header" style="margin-top:4px;">2026 calendar</div>
-        <div class="lm-card" id="f1-calendar" style="font-family:'Paper Mono',monospace;font-size:12px;line-height:1.8;">
-          <div class="lm-skeleton lm-skeleton-sm" style="margin:4px 0;"></div>
-          <div class="lm-skeleton lm-skeleton-sm lm-skeleton-w-75" style="margin:4px 0;"></div>
-          <div class="lm-skeleton lm-skeleton-sm lm-skeleton-w-50" style="margin:4px 0;"></div>
-        </div>
-        <div class="section-header" style="margin-top:4px;">driver standings <span id="ds-round" style="font-weight:400;font-size:9px;color:var(--text-3);"></span></div>
-        <div class="lm-card" id="driver-standings" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
-          <div class="lm-skeleton-row" style="padding:8px 0;"><span class="lm-skeleton lm-skeleton-circle"></span><span class="lm-skeleton lm-skeleton-sm"></span></div>
-        </div>
-        <div class="section-header" style="margin-top:4px;">constructor standings <span id="cs-round" style="font-weight:400;font-size:9px;color:var(--text-3);"></span></div>
-        <div class="lm-card" id="constructor-standings" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
-          <div class="lm-skeleton-row" style="padding:8px 0;"><span class="lm-skeleton lm-skeleton-circle"></span><span class="lm-skeleton lm-skeleton-sm"></span></div>
-        </div>
-        <div class="section-header" style="margin-top:4px;">last race</div>
-        <div class="lm-card" id="last-race" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
-          <div class="lm-skeleton-row" style="padding:8px 0;"><span class="lm-skeleton lm-skeleton-circle"></span><span class="lm-skeleton lm-skeleton-sm"></span></div>
+        <div class="lm-tabs" id="f1-tabs" style="margin-top:4px;">
+          <div class="lm-tabs-list" role="tablist">
+            <button class="lm-tab" role="tab" data-tab="f1-calendar" aria-selected="true">calendar</button>
+            <button class="lm-tab" role="tab" data-tab="driver-standings" aria-selected="false">drivers <span id="ds-round" style="font-weight:400;font-size:9px;color:var(--text-3);"></span></button>
+            <button class="lm-tab" role="tab" data-tab="constructor-standings" aria-selected="false">constructors <span id="cs-round" style="font-weight:400;font-size:9px;color:var(--text-3);"></span></button>
+            <button class="lm-tab" role="tab" data-tab="last-race" aria-selected="false">last race</button>
+          </div>
+          <div class="lm-tab-panel" id="panel-f1-calendar" aria-hidden="false">
+            <div class="lm-card" id="f1-calendar" style="font-family:'Paper Mono',monospace;font-size:12px;line-height:1.8;">
+              <div class="lm-skeleton lm-skeleton-sm" style="margin:4px 0;"></div>
+              <div class="lm-skeleton lm-skeleton-sm lm-skeleton-w-75" style="margin:4px 0;"></div>
+              <div class="lm-skeleton lm-skeleton-sm lm-skeleton-w-50" style="margin:4px 0;"></div>
+            </div>
+          </div>
+          <div class="lm-tab-panel" id="panel-driver-standings" aria-hidden="true">
+            <div class="lm-card" id="driver-standings" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+              <div class="lm-skeleton-row" style="padding:8px 0;"><span class="lm-skeleton lm-skeleton-circle"></span><span class="lm-skeleton lm-skeleton-sm"></span></div>
+            </div>
+          </div>
+          <div class="lm-tab-panel" id="panel-constructor-standings" aria-hidden="true">
+            <div class="lm-card" id="constructor-standings" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+              <div class="lm-skeleton-row" style="padding:8px 0;"><span class="lm-skeleton lm-skeleton-circle"></span><span class="lm-skeleton lm-skeleton-sm"></span></div>
+            </div>
+          </div>
+          <div class="lm-tab-panel" id="panel-last-race" aria-hidden="true">
+            <div class="lm-card" id="last-race" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+              <div class="lm-skeleton-row" style="padding:8px 0;"><span class="lm-skeleton lm-skeleton-circle"></span><span class="lm-skeleton lm-skeleton-sm"></span></div>
+            </div>
+          </div>
         </div>
       </div>
       <!-- ─── MUSIC ─── -->
@@ -1537,6 +1549,26 @@
     function byId(id) { return document.getElementById(id); }
     function tv(id, val) { var el = byId(id); if (el) el.textContent = val || '—'; }
     // ─── Init ───
+    // ─── Lumina tabs ───
+    function initTabs(rootId) {
+      var root = document.getElementById(rootId);
+      if (!root) return;
+      var tabs = root.querySelectorAll('.lm-tab');
+      var panels = {};
+      tabs.forEach(function(t) {
+        var id = t.getAttribute('data-tab');
+        var panel = document.getElementById('panel-' + id);
+        if (panel) panels[id] = panel;
+        t.addEventListener('click', function() {
+          tabs.forEach(function(x) { x.setAttribute('aria-selected', 'false'); });
+          t.setAttribute('aria-selected', 'true');
+          Object.keys(panels).forEach(function(k) {
+            panels[k].setAttribute('aria-hidden', panels[k] === panels[id] ? 'false' : 'true');
+          });
+        });
+      });
+    }
+    initTabs('f1-tabs');
     setInterval(updateF1, 1000);
     updateF1();
     renderCalendar();
