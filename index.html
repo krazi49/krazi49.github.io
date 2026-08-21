@@ -99,6 +99,7 @@
           <div class="countdown-units">days&nbsp;&nbsp;&nbsp;&nbsp;hrs&nbsp;&nbsp;&nbsp;&nbsp;min&nbsp;&nbsp;&nbsp;&nbsp;sec</div>
           <div class="countdown-meta" id="f1-race-name"></div>
           <div class="countdown-circuit" id="f1-circuit-info" style="display:none;"></div>
+          <div class="lm-stepper" id="f1-stepper" style="margin-top:10px;"></div>
         </div>
         <div class="section-header" style="margin-top:4px;">teams to watch</div>
         <div class="chip-row" id="team-chips">
@@ -578,6 +579,39 @@
       }
       return html;
     }
+    function renderStepper(race, currentKey, nextKey) {
+      var el = byId('f1-stepper');
+      if (!el) return;
+      if (!race) { el.innerHTML = ''; return; }
+      var order = ['fp1','sq','fp2','fp3','sprint','quali','race'];
+      var sLabel = {fp1:'FP1', sq:'SQ', fp2:'FP2', fp3:'FP3', sprint:'SPR', quali:'QUALI', race:'RACE'};
+      var keys = [];
+      for (var i = 0; i < order.length; i++) { if (race.sessions[order[i]]) keys.push(order[i]); }
+      if (!keys.length) { el.innerHTML = ''; return; }
+      var activeKey = currentKey || nextKey;
+      var activeIdx = activeKey ? keys.indexOf(activeKey) : -1;
+      var html = '';
+      for (var j = 0; j < keys.length; j++) {
+        var k = keys[j];
+        var cls = 'lm-step';
+        var marker = '';
+        if (activeIdx >= 0 && j < activeIdx) {
+          cls += ' lm-step-complete';
+          marker = '<i class="fa-solid fa-check" style="font-size:11px;"></i>';
+        } else if (j === activeIdx) {
+          cls += ' lm-step-active';
+          marker = '<i class="fa-solid fa-bolt" style="font-size:11px;"></i>';
+        } else {
+          marker = String(j + 1);
+        }
+        html += '<div class="' + cls + '">'
+          + '<div class="lm-step-marker">' + marker + '</div>'
+          + '<div class="lm-step-label">' + sLabel[k] + '</div>'
+          + '<div class="lm-step-connector"></div>'
+          + '</div>';
+      }
+      el.innerHTML = html;
+    }
     function updateF1() {
       var now = Date.now();
       var nextRace = null;
@@ -626,6 +660,7 @@
         }
       }
       _currentSessKey = currentSessKey;
+      renderStepper(nextRace, currentSessKey, nextSessKey);
       var targetTime = nextSessTime || raceStart;
       var diff = targetTime - now;
       // Is a session in-progress? use gap to next session when available
