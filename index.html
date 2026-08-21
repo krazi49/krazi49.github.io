@@ -256,10 +256,12 @@
           <div class="dash-field">
             <span class="dash-label">memory usage</span>
             <span class="dash-val" id="sys-mem-pct">—</span>
+            <div class="lm-progress lm-progress-sm lm-progress-striped" style="margin-top:6px;"><div class="lm-progress-bar" id="mem-bar" style="width:0%;"></div></div>
           </div>
           <div class="dash-field">
             <span class="dash-label">disk usage</span>
             <span class="dash-val" id="sys-disk-pct">—</span>
+            <div class="lm-progress lm-progress-sm lm-progress-striped" style="margin-top:6px;"><div class="lm-progress-bar" id="disk-bar" style="width:0%;"></div></div>
           </div>
           <div class="dash-field">
             <span class="dash-label">temperature</span>
@@ -1459,7 +1461,11 @@
       tv('sys-uptime2', data.uptime || (data.boot_time ? calcUptime(new Date(data.boot_time).getTime()) : '—'));
       tv('sys-load', data.load);
       tv('sys-mem-pct', data.mem_pct);
+      var _mp = parseFloat(data.mem_pct) || 0;
+      var _mb = byId('mem-bar'); if (_mb) { _mb.style.width = Math.min(_mp,100)+'%'; _mb.parentElement.className = 'lm-progress lm-progress-sm lm-progress-striped' + (_mp > 85 ? ' lm-progress-error' : _mp > 70 ? ' lm-progress-warning' : ''); }
       tv('sys-disk-pct', data.disk_pct);
+      var _dp = parseFloat(data.disk_pct) || 0;
+      var _db = byId('disk-bar'); if (_db) { _db.style.width = Math.min(_dp,100)+'%'; _db.parentElement.className = 'lm-progress lm-progress-sm lm-progress-striped' + (_dp > 85 ? ' lm-progress-error' : _dp > 70 ? ' lm-progress-warning' : ''); }
       tv('sys-temp', data.temp);
       tv('sys-scaling', data.scaling);
       // ── Network ──
@@ -1477,7 +1483,7 @@
         h += '</div>';
         cronEl.innerHTML = h;
       } else {
-        cronEl.innerHTML = '<div style="padding:8px;color:var(--text-3);">no cron jobs configured</div>';
+        cronEl.innerHTML = '<div class="lm-alert lm-alert-info"><div class="lm-alert-icon"><i class="fa-solid fa-circle-info"></i></div><div class="lm-alert-content"><div class="lm-alert-description">no cron jobs configured</div></div></div>';
       }
       // ── Activity ──
       var actEl = byId('activity-list');
@@ -1491,7 +1497,7 @@
         h += '</div>';
         actEl.innerHTML = h;
       } else {
-        actEl.innerHTML = '<div style="padding:8px;color:var(--text-3);">no recent activity</div>';
+        actEl.innerHTML = '<div class="lm-alert lm-alert-info"><div class="lm-alert-icon"><i class="fa-solid fa-circle-info"></i></div><div class="lm-alert-content"><div class="lm-alert-description">no recent activity</div></div></div>';
       }
     }
     function byId(id) { return document.getElementById(id); }
