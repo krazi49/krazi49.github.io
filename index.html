@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>anarchysite</title>
+  <title>stocki.nx.kg</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="a short view back to the past," />
-  <meta property="og:title" content="stock site" />
-  <meta property="og:description" content="git commit -m "tester v1, will 100% work trust me"" />
+  <meta name="description" content="personal homepage — f1 countdown, last.fm scrobbler, pc stats" />
+  <meta property="og:title" content="stocki.nx.kg" />
+  <meta property="og:description" content="f1, music, and system stats — brutalist." />
   <meta property="og:type" content="website" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩸</text></svg>" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
-  <link rel="stylesheet" href="fluent-tokens.css" />
-  <link rel="stylesheet" href="fluent-components.css" />
+  <link rel="stylesheet" href="lumina.css" />
   <link rel="stylesheet" href="style.css" />
   <!-- ─── Top Bar ─── -->
   <div class="top-bar">
@@ -36,16 +35,16 @@
       <!-- ─── ABOUT ─── -->
       <div class="section" id="section-about">
         <div class="hero">
-          <div class="hero-avatar"><img src="assets/pfp.jpg" alt="pfp" /></div>
+          <div class="lm-avatar lm-avatar-lg"><img src="assets/pfp.jpg" alt="pfp" /></div>
           <div class="hero-text">
             <h1 id="greeting">yawn</h1>
             <p>nazu // stocki</p>
           </div>
         </div>
         <div class="profile-split">
-          <a href="https://discord.com/users/1144983905317949512" target="_blank" class="card discord-card" id="discord-card" style="text-decoration:none;color:inherit;">
+          <a href="https://discord.com/users/1144983905317949512" target="_blank" class="lm-card discord-card" id="discord-card" style="text-decoration:none;color:inherit;">
             <div class="discord-card-header">
-              <img class="discord-card-avatar" id="dc-avatar" src="" alt="" />
+              <img class="lm-avatar lm-avatar-md" id="dc-avatar" src="" alt="" />
               <div class="discord-card-info">
                 <span class="discord-card-name" id="dc-name">—</span>
                 <span class="discord-card-user" id="dc-user">—</span>
@@ -59,45 +58,45 @@
               <div class="discord-activity-empty">not doing anything right now, that's serious</div>
             </div>
           </a>
-          <div class="card neofetch-wrap" style="display:block;">
+          <div class="lm-card neofetch-wrap" style="display:block;">
             <div class="neofetch-data">
   <b>from</b>     nazu<br />
   <b>on domain</b>     stocki.nx.kg<br />
   <b>from os</b>       linux 7.0.11-arch1-1<br />
   <b>in shell</b>    zsh 5.9.1<br />
   <b>with wm</b>       hyprland 0.55.3<br />
-  <b>in karting...</b>  41.1 @ ts leeds<br />
-  <b>oof,</b>  you dropped your halo
+  <b>using brand system</b>  lumina<br />
+  <b>in karting...</b>  41.1 @ ts leeds
             </div>
           </div>
         </div>
         <div class="section-header" style="margin-top:12px;">doing...</div>
-        <div class="card project">
+        <div class="lm-card project">
           <div style="display:flex;align-items:center;justify-content:space-between;">
             <h3>lumina</h3>
-            <span class="project-tag">making it</span>
+            <span class="lm-badge lm-badge-muted">nearly finished / looking at it</span>
           </div>
-          <p>design system built around vertical bars with gradients that replicate wavelengths and audio files</p>
+          <p>design system built around brutalist-minimalism. whatever that means</p>
         </div>
-        <div class="card project">
+        <div class="lm-card project">
           <div style="display:flex;align-items:center;justify-content:space-between;">
             <h3>anarchysite</h3>
-            <span class="project-tag">looking at it</span>
+            <span class="lm-badge lm-badge-muted">looking at it</span>
           </div>
           <p>this site: personal homepage with f1 countdown, last.fm scrobbler and pc stats</p>
         </div>
         <div class="section-header" style="margin-top:4px;">elsewhere</div>
         <div class="card-row">
-          <a href="https://github.com/krazi49" class="card" target="_blank"><i class="fa-brands fa-github"></i> github</a>
-          <a href="https://last.fm/user/silvermanch" class="card" target="_blank"><i class="fa-brands fa-lastfm"></i> last.fm</a>
-          <a href="https://passportdex.com/krrazi" class="card" target="_blank"><i class="fa-solid fa-passport"></i> passport</a>
-          <a href="https://pitwall.me" class="card" target="_blank"><i class="fa-solid fa-tower-broadcast"></i> timing</a>
+          <a href="https://github.com/krazi49" class="lm-card" target="_blank"><i class="fa-brands fa-github"></i> github</a>
+          <a href="https://last.fm/user/silvermanch" class="lm-card" target="_blank"><i class="fa-brands fa-lastfm"></i> last.fm</a>
+          <a href="https://passportdex.com/krrazi" class="lm-card" target="_blank"><i class="fa-solid fa-passport"></i> passport</a>
+          <a href="https://pitwall.me" class="lm-card" target="_blank"><i class="fa-solid fa-tower-broadcast"></i> timing</a>
         </div>
       </div>
       <!-- ─── F1 ─── -->
       <div class="section" id="section-f1">
         <div class="section-header">formula 1 2026</div>
-        <div class="card countdown-card">
+        <div class="lm-card countdown-card">
           <div class="countdown-session" id="f1-label">next race</div>
           <div class="countdown-number" id="f1-countdown">--:--:--:--</div>
           <div class="countdown-units">days&nbsp;&nbsp;&nbsp;&nbsp;hrs&nbsp;&nbsp;&nbsp;&nbsp;min&nbsp;&nbsp;&nbsp;&nbsp;sec</div>
@@ -114,19 +113,19 @@
           <div class="chip" data-team="RBR" onclick="toggleTeam('RBR')">RBR</div>
         </div>
         <div class="section-header" style="margin-top:4px;">2026 calendar</div>
-        <div class="card" id="f1-calendar" style="font-family:'Paper Mono',monospace;font-size:12px;line-height:1.8;">
+        <div class="lm-card" id="f1-calendar" style="font-family:'Paper Mono',monospace;font-size:12px;line-height:1.8;">
           loading...
         </div>
         <div class="section-header" style="margin-top:4px;">driver standings <span id="ds-round" style="font-weight:400;font-size:9px;color:var(--text-3);"></span></div>
-        <div class="card" id="driver-standings" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+        <div class="lm-card" id="driver-standings" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
           <div style="padding:8px;color:var(--text-3);">loading...</div>
         </div>
         <div class="section-header" style="margin-top:4px;">constructor standings <span id="cs-round" style="font-weight:400;font-size:9px;color:var(--text-3);"></span></div>
-        <div class="card" id="constructor-standings" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+        <div class="lm-card" id="constructor-standings" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
           <div style="padding:8px;color:var(--text-3);">loading...</div>
         </div>
         <div class="section-header" style="margin-top:4px;">last race</div>
-        <div class="card" id="last-race" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+        <div class="lm-card" id="last-race" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
           <div style="padding:8px;color:var(--text-3);">loading...</div>
         </div>
       </div>
@@ -167,7 +166,7 @@
       <!-- ─── DASHBOARD ─── -->
       <div class="section" id="section-dashboard">
         <div class="section-header">agent state</div>
-        <div class="card" id="mood-card" style="display:flex;align-items:center;gap:14px;">
+        <div class="lm-card" id="mood-card" style="display:flex;align-items:center;gap:14px;">
           <div id="mood-indicator" style="width:14px;height:14px;border-radius:50%;background:var(--primary);flex-shrink:0;transition:all 0.5s ease;box-shadow:0 0 12px var(--primary);"></div>
           <div style="flex:1;">
             <div id="mood-label" style="font-weight:600;font-size:15px;">syncing...</div>
@@ -179,7 +178,7 @@
           </div>
         </div>
         <div class="section-header">hardware</div>
-        <div class="card dash-grid-2">
+        <div class="lm-card dash-grid-2">
           <div class="dash-field">
             <span class="dash-label">hostname</span>
             <span class="dash-val" id="sys-hostname">—</span>
@@ -218,7 +217,7 @@
           </div>
         </div>
         <div class="section-header">software</div>
-        <div class="card dash-grid-2">
+        <div class="lm-card dash-grid-2">
           <div class="dash-field">
             <span class="dash-label">distro</span>
             <span class="dash-val" id="sys-distro">—</span>
@@ -245,7 +244,7 @@
           </div>
         </div>
         <div class="section-header">live status</div>
-        <div class="card dash-grid-2">
+        <div class="lm-card dash-grid-2">
           <div class="dash-field">
             <span class="dash-label">uptime</span>
             <span class="dash-val dash-val-accent" id="sys-uptime">—</span>
@@ -272,7 +271,7 @@
           </div>
         </div>
         <div class="section-header">network</div>
-        <div class="card dash-grid-2">
+        <div class="lm-card dash-grid-2">
           <div class="dash-field">
             <span class="dash-label">local ip</span>
             <span class="dash-val" id="net-local" style="font-size:12px;">—</span>
@@ -291,7 +290,7 @@
           </div>
         </div>
         <div class="section-header">next race</div>
-        <a href="#" class="card" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;" onclick="document.querySelector('[data-page=f1]').click();return false;">
+        <a href="#" class="lm-card" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;" onclick="document.querySelector('[data-page=f1]').click();return false;">
           <div id="dash-race-flag" style="font-size:28px;">🏁</div>
           <div style="flex:1;">
             <div id="dash-race-name" style="font-weight:600;font-size:14px;">loading...</div>
@@ -303,7 +302,7 @@
           </div>
         </a>
         <div class="section-header">now playing</div>
-        <a href="https://last.fm/user/silvermanch" class="card" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;" target="_blank">
+        <a href="https://last.fm/user/silvermanch" class="lm-card" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;" target="_blank">
           <img id="dash-track-art" src="" alt="" style="width:40px;height:40px;border-radius:6px;object-fit:cover;border:1px solid var(--outline);flex-shrink:0;background:var(--surface-3);" />
           <div style="flex:1;overflow:hidden;">
             <div id="dash-track-name" style="font-weight:600;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">loading...</div>
@@ -319,11 +318,11 @@
           </span>
         </a>
         <div class="section-header">cron jobs</div>
-        <div class="card" id="cron-list" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+        <div class="lm-card" id="cron-list" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
           <div style="padding:8px;color:var(--text-3);">loading...</div>
         </div>
         <div class="section-header">recent activity</div>
-        <div class="card" id="activity-list" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+        <div class="lm-card" id="activity-list" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
           <div style="padding:8px;color:var(--text-3);">loading...</div>
         </div>
       </div>
@@ -546,7 +545,7 @@
       var w25 = getWinner(race, 2025);
       var w24 = getWinner(race, 2024);
       var typeLabel = ci.type === 'street' ? 'street circuit' : 'permanent circuit';
-      var html = '<div class="circuit-divider"></div>';
+      var html = '<div class="lm-divider lm-divider-thin lm-divider-muted"></div>';
       html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;padding:8px 2px 0;font-size:11px;">';
       if (ci.lapRec && ci.lapRec !== '—') {
         html += '<div><span style="color:var(--text-3);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">lap record</span><br><span style="color:var(--primary);font-weight:600;">' + ci.lapRec + '</span></div>';
@@ -574,7 +573,7 @@
         pastHtml += '<div style="padding:4px 2px 0;"><span style="color:var(--text-3);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">2024 winner</span><br><span style="font-size:12px;"><span style="font-weight:600;">' + w24.n + '</span> <span style="color:var(--text-3);">#' + w24.num + '</span></span></div>';
       }
       if (pastHtml) {
-        html += '<div class="circuit-divider"></div>' + pastHtml;
+        html += '<div class="lm-divider lm-divider-thin lm-divider-muted"></div>' + pastHtml;
       }
       return html;
     }
@@ -842,11 +841,11 @@
         if (lt.weather.TrackTemp) parts.push('\ud83d\udedf\ufe0f ' + lt.weather.TrackTemp + '\u00b0C');
         if (lt.weather.WindSpeed) parts.push('\ud83d\udca8 ' + lt.weather.WindSpeed + 'km/h');
         if (lt.weather.Rainfall && lt.weather.Rainfall !== '0') parts.push('\ud83c\udf27\ufe0f rain');
-        if (parts.length) weatherHtml = '<div class="circuit-divider"></div><div style="text-align:center;font-size:10px;color:var(--text-3);padding:6px 2px 0;">' + parts.join('  ') + '</div>';
+        if (parts.length) weatherHtml = '<div class="lm-divider lm-divider-thin lm-divider-muted"></div><div style="text-align:center;font-size:10px;color:var(--text-3);padding:6px 2px 0;">' + parts.join('  ') + '</div>';
       }
       var driverMap = lt.drivers;
       var count = Math.min(lt.positions.length, 8);
-      var html = '<div class="circuit-divider"></div>';
+      var html = '<div class="lm-divider lm-divider-thin lm-divider-muted"></div>';
       html += '<div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);padding:6px 2px 2px;">position</div>';
       for (var i = 0; i < count; i++) {
         var p = lt.positions[i];
@@ -938,7 +937,7 @@
         html += '<div class="cal-row' + (isExpanded ? ' expanded' : '') + '" onclick="toggleRace(' + i + ')" style="cursor:pointer;display:flex;flex-direction:column;padding-left:8px;margin:0 -4px;border-radius:var(--radius-sm);background:' + bg + ';border-left:' + border + ';' + (isPast && !isExpanded ? 'opacity:0.55;' : '') + animStyle + '">';
         html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 4px;font-weight:' + (isNext ? '600' : '400') + ';">';
         html += '<div style="display:flex;align-items:center;gap:6px;overflow:hidden;">';
-        html += '<span>' + r.flag + ' ' + r.name + (r.sprint ? ' <span class="sprint-tag">S</span>' : '') + '</span>';
+        html += '<span>' + r.flag + ' ' + r.name + (r.sprint ? ' <span class="lm-badge lm-badge-warning">S</span>' : '') + '</span>';
         html += '</div>';
         html += '<span style="color:var(--text-3);font-size:11px;white-space:nowrap;">' + dateStr + (isExpanded ? ' <span style="color:var(--primary);">▲</span>' : ' <span style="color:var(--text-3);">▼</span>') + '</span>';
         html += '</div>';
@@ -1097,7 +1096,8 @@
       xhr.send();
     }
     function renderDriverStandings(list) {
-      var html = '<div style="display:flex;flex-direction:column;gap:1px;">';
+      var html = '<table class="lm-table lm-table-compact lm-table-striped">';
+      html += '<thead><tr><th>pos</th><th></th><th>driver</th><th style="text-align:right;">pts</th><th style="text-align:right;">wins</th></tr></thead><tbody>';
       for (var i = 0; i < list.length; i++) {
         var d = list[i], pos = parseInt(d.position);
         var isTop = pos <= 3;
@@ -1113,17 +1113,14 @@
         };
         var teamColor = constructorColors[teamId] || 'var(--text-3)';
         var teamCode = teamId.replace('_',' ').toUpperCase().slice(0,4);
-        var bg = isExpanded ? 'var(--surface)' : 'transparent';
-        var border = isExpanded ? '2px solid ' + teamColor : '2px solid transparent';
         var hasThumb = !!thumb;
-        html += '<div onclick="toggleDriver(\'' + d.Driver.driverId + '\')" style="cursor:pointer;display:flex;flex-direction:column;border-radius:var(--radius-sm);background:' + bg + ';border-left:' + border + ';padding-left:6px;margin:0 -4px;transition:all 0.15s ease;' + (pos > 10 ? 'opacity:0.55;' : '') + '">';
-        html += '<div style="display:grid;grid-template-columns:20px 22px 1fr 36px 28px;gap:2px 4px;align-items:center;padding:3px 4px;">';
-        html += '<div style="font-weight:' + (isTop ? '700' : '400') + ';color:' + color + ';text-align:center;font-size:12px;">' + d.position + '</div>';
-        html += '<div style="width:22px;height:22px;border-radius:50%;overflow:hidden;border:1.5px solid ' + teamColor + ';' + (hasThumb ? '' : 'visibility:hidden;') + '">' + (hasThumb ? '<img src="' + thumb + '" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'" />' : '') + '</div>'
-        html += '<div style="font-weight:' + (isTop ? '700' : '500') + ';color:' + color + ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;">' + d.Driver.code + ' ' + d.Driver.familyName + ' <span style="font-weight:400;color:' + teamColor + ';font-size:9px;">' + teamCode + '</span></div>';
-        html += '<div style="font-weight:600;color:' + color + ';text-align:right;font-size:13px;">' + d.points + '</div>';
-        html += '<div style="text-align:right;color:' + (isTop ? 'var(--primary)' : 'var(--text-3)') + ';font-size:10px;">' + d.wins + '</div>';
-        html += '</div>';
+        html += '<tr onclick="toggleDriver(\'' + d.Driver.driverId + '\')" style="cursor:pointer;' + (pos > 10 ? 'opacity:0.55;' : '') + '">';
+        html += '<td style="text-align:center;font-weight:' + (isTop ? '700' : '400') + ';color:' + color + ';">' + d.position + '</td>';
+        html += '<td style="width:30px;">' + (hasThumb ? '<div style="width:22px;height:22px;border-radius:50%;overflow:hidden;border:1.5px solid ' + teamColor + ';"><img src="' + thumb + '" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'" /></div>' : '') + '</td>';
+        html += '<td style="font-weight:' + (isTop ? '700' : '500') + ';color:' + color + ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + d.Driver.code + ' ' + d.Driver.familyName + ' <span style="font-weight:400;color:' + teamColor + ';font-size:9px;">' + teamCode + '</span></td>';
+        html += '<td style="text-align:right;font-weight:600;color:' + color + ';">' + d.points + '</td>';
+        html += '<td style="text-align:right;color:' + (isTop ? 'var(--primary)' : 'var(--text-3)') + ';font-size:10px;">' + d.wins + '</td>';
+        html += '</tr>';
         if (isExpanded) {
           var info = wikiCache[wikiPageTitle(d.Driver.url)];
           var age = '';
@@ -1135,7 +1132,7 @@
             if (m < 0 || (m === 0 && today.getDate() < bd.getDate())) ageCalc--;
             age = ageCalc + 'yo';
           }
-          html += '<div style="padding:4px 4px 6px;border-top:1px solid var(--outline);margin:0 4px;font-size:12px;animation:fadeIn 0.15s ease;">';
+          html += '<tr><td colspan="5" style="padding:4px 6px;font-size:12px;animation:fadeIn 0.15s ease;border-top:1px solid var(--outline);">';
           html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 16px;margin-bottom:1px;">';
           html += '<span style="color:var(--text-3);">nation <strong>' + (d.Driver.nationality || '—') + '</strong></span>';
           html += '<span style="color:var(--text-3);">no. <strong>#' + d.Driver.permanentNumber + '</strong></span>';
@@ -1147,13 +1144,13 @@
             if (info.extract && !info.desc) html += '<div style="color:var(--text-2);margin-bottom:1px;line-height:1.4;">' + info.extract.slice(0, 200) + (info.extract.length > 200 ? '…' : '') + '</div>';
           }
           html += '<a href="' + d.Driver.url + '" target="_blank" class="link-out" style="font-size:11px;">wikipedia 🔗</a>';
-          html += '</div>';
+          html += '</td></tr>';
         }
-        html += '</div>';
       }
-      html += '</div>';
+      html += '</tbody></table>';
       byId('driver-standings').innerHTML = html;
     }
+
     function toggleDriver(id) {
       expandedDrvIdx = expandedDrvIdx === id ? -1 : id;
       if (window._driverData) renderDriverStandings(window._driverData);
@@ -1182,7 +1179,8 @@
       xhr.send();
     }
     function renderConstructorStandings(list) {
-      var html = '<div style="display:flex;flex-direction:column;gap:1px;">';
+      var html = '<table class="lm-table lm-table-compact lm-table-striped">';
+      html += '<thead><tr><th>pos</th><th></th><th>team</th><th style="text-align:right;">pts</th><th style="text-align:right;">wins</th></tr></thead><tbody>';
       var conColors = {
         'mercedes': '#00D2BE', 'ferrari': '#E8002D', 'mclaren': '#FF8700',
         'red_bull': '#CD0068', 'alpine': '#0090FF', 'rb': '#0600EF',
@@ -1196,22 +1194,19 @@
         var color = isTop ? 'var(--primary)' : 'var(--text)';
         var thumb = wikiThumb(c.Constructor.url);
         var teamColor = conColors[c.Constructor.constructorId] || 'var(--text-3)';
-        var bg = isExpanded ? 'var(--surface)' : 'transparent';
-        var border = isExpanded ? '2px solid ' + teamColor : '2px solid transparent';
-        html += '<div onclick="toggleConstructor(\'' + c.Constructor.constructorId + '\')" style="cursor:pointer;display:flex;flex-direction:column;border-radius:var(--radius-sm);background:' + bg + ';border-left:' + border + ';padding-left:6px;margin:0 -4px;transition:all 0.15s ease;' + (pos > 6 ? 'opacity:0.55;' : '') + '">';
-        html += '<div style="display:grid;grid-template-columns:20px 24px 1fr 36px 28px;gap:2px 4px;align-items:center;padding:3px 4px;">';
-        html += '<div style="font-weight:' + (isTop ? '700' : '400') + ';color:' + color + ';text-align:center;font-size:12px;">' + c.position + '</div>';
-        html += '<div style="width:24px;height:24px;border-radius:4px;overflow:hidden;border:1px solid var(--outline);background:var(--surface-2);display:flex;align-items:center;justify-content:center;' + (thumb ? '' : 'background:transparent;border:none;') + '">' + (thumb ? '<img src="' + thumb + '" alt="" style="max-width:100%;max-height:100%;object-fit:contain;" onerror="this.parentElement.style.display=\'none\'" />' : '') + '</div>'
-        html += '<div style="font-weight:' + (isTop ? '700' : '500') + ';color:' + color + ';font-size:13px;">' + c.Constructor.name + '</div>';
-        html += '<div style="font-weight:600;color:' + color + ';text-align:right;font-size:13px;">' + c.points + '</div>';
-        html += '<div style="text-align:right;color:' + (isTop ? 'var(--primary)' : 'var(--text-3)') + ';font-size:10px;">' + c.wins + '</div>';
-        html += '</div>';
+        html += '<tr onclick="toggleConstructor(\'' + c.Constructor.constructorId + '\')" style="cursor:pointer;' + (pos > 6 ? 'opacity:0.55;' : '') + '">';
+        html += '<td style="text-align:center;font-weight:' + (isTop ? '700' : '400') + ';color:' + color + ';">' + c.position + '</td>';
+        html += '<td style="width:32px;">' + (thumb ? '<div style="width:24px;height:24px;border-radius:4px;overflow:hidden;border:1px solid var(--outline);background:var(--surface-2);display:flex;align-items:center;justify-content:center;"><img src="' + thumb + '" alt="" style="max-width:100%;max-height:100%;object-fit:contain;" onerror="this.parentElement.style.display=\'none\'" /></div>' : '') + '</td>';
+        html += '<td style="font-weight:' + (isTop ? '700' : '500') + ';color:' + color + ';">' + c.Constructor.name + '</td>';
+        html += '<td style="text-align:right;font-weight:600;color:' + color + ';">' + c.points + '</td>';
+        html += '<td style="text-align:right;color:' + (isTop ? 'var(--primary)' : 'var(--text-3)') + ';font-size:10px;">' + c.wins + '</td>';
+        html += '</tr>';
         if (isExpanded) {
           var info = wikiCache[wikiPageTitle(c.Constructor.url)];
           var teamCode = Object.keys(f1Teams).find(function(k) {
             return f1Teams[k].full.toLowerCase().indexOf(c.Constructor.name.toLowerCase()) !== -1 || c.Constructor.name.toLowerCase().indexOf(f1Teams[k].full.toLowerCase().slice(0,6)) !== -1;
           });
-          html += '<div style="padding:4px 4px 6px;border-top:1px solid var(--outline);margin:0 4px;font-size:12px;animation:fadeIn 0.15s ease;">';
+          html += '<tr><td colspan="5" style="padding:4px 6px;font-size:12px;animation:fadeIn 0.15s ease;border-top:1px solid var(--outline);">';
           html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 16px;margin-bottom:1px;">';
           html += '<span style="color:var(--text-3);">nation <strong>' + (c.Constructor.nationality || '—') + '</strong></span>';
           html += '<span style="color:var(--text-3);">pos <strong>#' + c.position + '</strong></span>';
@@ -1230,13 +1225,13 @@
           }
           if (info && info.desc) html += '<div style="color:var(--text-2);margin-bottom:1px;">' + info.desc + '</div>';
           html += '<a href="' + c.Constructor.url + '" target="_blank" class="link-out" style="font-size:11px;">wikipedia 🔗</a>';
-          html += '</div>';
+          html += '</td></tr>';
         }
-        html += '</div>';
       }
-      html += '</div>';
+      html += '</tbody></table>';
       byId('constructor-standings').innerHTML = html;
     }
+
     function toggleConstructor(id) {
       expandedConIdx = expandedConIdx === id ? -1 : id;
       if (window._constructorData) renderConstructorStandings(window._constructorData);
@@ -1280,8 +1275,8 @@
     }
     function renderLastRace(results, title) {
       var html = '<div style="margin-bottom:1px;font-size:13px;font-weight:600;">' + title + '</div>';
-      html += '<div style="display:flex;flex-direction:column;gap:1px;">';
-      // Find fastest lap overall
+      html += '<table class="lm-table lm-table-compact lm-table-striped">';
+      html += '<thead><tr><th>pos</th><th></th><th>driver</th><th style="text-align:right;">pts</th><th style="text-align:right;">time</th></tr></thead><tbody>';
       var flDriver = null, flTime = null, flLap = null, bestRank = 999;
       for (var f = 0; f < results.length; f++) {
         if (results[f].FastestLap) {
@@ -1301,7 +1296,6 @@
         var thumb = wikiThumb(r.Driver.url);
         var emoji = pos === 1 ? '🥇' : pos === 2 ? '🥈' : pos === 3 ? '🥉' : r.position;
         var col = isPodium ? 'var(--primary)' : 'var(--text)';
-        var bg = isExpanded ? 'var(--surface)' : 'transparent';
         var timeStr = '';
         if (r.Time && r.Time.time) timeStr = r.Time.time;
         else if (r.status !== 'Finished') timeStr = r.status;
@@ -1312,19 +1306,16 @@
         var driverUrl = r.Driver.url || '';
         var pts = r.points || '—';
         var hasFL = r.Driver.driverId === flDriver;
-        html += '<div onclick="toggleRaceResult(\'' + r.Driver.driverId + '\')" style="cursor:pointer;display:flex;flex-direction:column;border-radius:var(--radius-sm);background:' + bg + ';border-left:2px solid ' + (isExpanded ? 'var(--primary)' : hasFL && !isExpanded ? '#fbbf24' : 'transparent') + ';padding-left:6px;margin:0 -4px;transition:all 0.15s ease;' + (pos > 3 ? 'opacity:0.7;' : '') + '">';
-        html += '<div style="display:grid;grid-template-columns:20px 20px 1fr 30px auto;gap:2px 4px;align-items:center;padding:3px 4px;">';
-        html += '<div style="font-weight:' + (isPodium ? '700' : '400') + ';color:' + col + ';' + (pos > 3 ? '' : 'font-size:13px;') + '">' + emoji + '</div>';
-        html += '<div style="width:20px;height:20px;border-radius:50%;overflow:hidden;border:1.5px solid ' + (hasFL ? '#fbbf24' : 'var(--outline)') + ';' + (thumb ? '' : 'visibility:hidden;') + '">' + (thumb ? '<img src="' + thumb + '" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'" />' : '') + '</div>';
-        html += '<div style="font-weight:' + (isPodium ? '700' : '500') + ';color:' + col + ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;">' + driverCode + ' ' + r.Driver.familyName + (hasFL ? ' <span title="fastest lap" style="display:inline-block;font-size:9px;color:#fbbf24;transform:translateY(-1px);">⚡</span>' : '') + '</div>';
-        html += '<div style="text-align:right;color:' + col + ';font-size:11px;font-weight:600;">' + pts + '</div>';
+        html += '<tr onclick="toggleRaceResult(\'' + r.Driver.driverId + '\')" style="cursor:pointer;' + (isExpanded ? 'border-left:2px solid var(--primary);' : (hasFL ? 'border-left:2px solid #fbbf24;' : '')) + (pos > 3 ? 'opacity:0.7;' : '') + '">';
+        html += '<td style="text-align:center;font-weight:' + (isPodium ? '700' : '400') + ';color:' + col + ';' + (pos > 3 ? '' : 'font-size:13px;') + '">' + emoji + '</td>';
+        html += '<td style="width:28px;">' + (thumb ? '<div style="width:20px;height:20px;border-radius:50%;overflow:hidden;border:1.5px solid ' + (hasFL ? '#fbbf24' : 'var(--outline)') + ';"><img src="' + thumb + '" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'" /></div>' : '') + '</td>';
+        html += '<td style="font-weight:' + (isPodium ? '700' : '500') + ';color:' + col + ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + driverCode + ' ' + r.Driver.familyName + (hasFL ? ' <span title="fastest lap" style="display:inline-block;font-size:9px;color:#fbbf24;transform:translateY(-1px);">⚡</span>' : '') + '</td>';
+        html += '<td style="text-align:right;color:' + col + ';font-size:11px;font-weight:600;">' + pts + '</td>';
         var tm = timeStr || '—';
-        html += '<div style="text-align:right;color:var(--text-3);font-size:11px;font-family:\'Paper Mono\',monospace;">' + tm + '</div>';
-        html += '</div>';
+        html += '<td style="text-align:right;color:var(--text-3);font-size:11px;font-family:\'Paper Mono\',monospace;">' + tm + '</td>';
+        html += '</tr>';
         if (isExpanded) {
-          tm = timeStr || '—';
-          if (r.status === 'Finished' && !r.Time) tm = 'Finished';
-          html += '<div style="padding:4px 4px 6px;border-top:1px solid var(--outline);margin:0 4px;font-size:12px;animation:fadeIn 0.15s ease;">';
+          html += '<tr><td colspan="5" style="padding:4px 6px;font-size:12px;animation:fadeIn 0.15s ease;border-top:1px solid var(--outline);">';
           html += '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px 12px;margin-bottom:1px;">';
           html += '<span style="color:var(--text-3);">grid <strong>P' + gridStr + '</strong></span>';
           html += '<span style="color:var(--text-3);">laps <strong>' + lapsStr + '</strong></span>';
@@ -1336,7 +1327,7 @@
           if (r.FastestLap) {
             var fl = r.FastestLap;
             var isFastest = r.Driver.driverId === flDriver;
-            html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 12px;margin-bottom:1px;padding:4px 6px;background:var(--surface-2);border-radius:var(--radius-sm);">';
+            html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 12px;margin-bottom:1px;padding:4px 6px;background:var(--surface-2);">';
             html += '<span style="color:var(--text-2);">fastest lap <strong>' + fl.Time.time + '</strong></span>';
             html += '<span style="color:var(--text-2);">lap <strong>' + fl.lap + '/' + lapsStr + '</strong></span>';
             if (isFastest) html += '<span style="color:#fbbf24;font-size:10px;">⚡ overall fastest</span>';
@@ -1346,13 +1337,13 @@
           html += '<div style="margin-top:4px;">';
           html += '<a href="' + driverUrl + '" target="_blank" class="link-out" style="font-size:11px;">driver wiki 🔗</a>';
           html += '</div>';
-          html += '</div>';
+          html += '</td></tr>';
         }
-        html += '</div>';
       }
-      html += '</div>';
+      html += '</tbody></table>';
       byId('last-race').innerHTML = html;
     }
+
     function toggleRaceResult(id) {
       expandedRaceRIdx = expandedRaceRIdx === id ? -1 : id;
       if (window._lastRaceData) renderLastRace(window._lastRaceData, _lastRaceTitle);
