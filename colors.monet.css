@@ -1,0 +1,85 @@
+/* Monet Color Scheme — Dark */
+:root {
+  --color-primary: #FF8765;
+  --color-on-primary: #FFFFFF;
+  --color-primary-container: #A50000;
+  --color-on-primary-container: #FADCD5;
+  --color-secondary: #F2917C;
+  --color-on-secondary: #FFFFFF;
+  --color-secondary-container: #611208;
+  --color-on-secondary-container: #CEC4C2;
+  --color-tertiary: #9C9152;
+  --color-on-tertiary: #FFFFFF;
+  --color-tertiary-container: #423C00;
+  --color-on-tertiary-container: #DDD2D0;
+  --color-error: #FF7E89;
+  --color-on-error: #FFFFFF;
+  --color-error-container: #AB0016;
+  --color-on-error-container: #EBE0DE;
+  --color-background: #160C09;
+  --color-on-background: #EBE0DE;
+  --color-surface: #19120F;
+  --color-on-surface: #EBE0DE;
+  --color-surface-variant: #4D4543;
+  --color-on-surface-variant: #CEC4C2;
+  --color-outline: #988F8C;
+  --color-outline-variant: #52443D;
+  --color-inverse-surface: #EBE0DE;
+  --color-inverse-on-surface: #362F2D;
+  --color-inverse-primary: #655C5A;
+  --color-shadow: #000000;
+  --color-surface-container-low: #231C1A;
+  --color-surface-container: #302826;
+  --color-surface-container-high: #3B3331;
+  --color-surface-container-highest: #4D4543;
+}
+
+/* Monet Color Scheme — Light */
+[data-theme="light"] {
+  --color-primary: #C50002;
+  --color-on-primary: #211A18;
+  --color-primary-container: #FADCD5;
+  --color-on-primary-container: #2A1611;
+  --color-secondary: #7D2C1E;
+  --color-on-secondary: #211A18;
+  --color-secondary-container: #FFAC96;
+  --color-on-secondary-container: #362F2D;
+  --color-tertiary: #675F23;
+  --color-on-tertiary: #211A18;
+  --color-tertiary-container: #C6B978;
+  --color-on-tertiary-container: #2C2422;
+  --color-error: #CB002A;
+  --color-on-error: #211A18;
+  --color-error-container: #FBDBD9;
+  --color-on-error-container: #211A18;
+  --color-background: #FEF8F6;
+  --color-on-background: #211A18;
+  --color-surface: #FCF1EF;
+  --color-on-surface: #211A18;
+  --color-surface-variant: #EBE0DE;
+  --color-on-surface-variant: #4D4543;
+  --color-outline: #7E7573;
+  --color-outline-variant: #D5C3BB;
+  --color-inverse-surface: #362F2D;
+  --color-inverse-on-surface: #F9EEEC;
+  --color-inverse-primary: #CEC4C2;
+  --color-shadow: #000000;
+  --color-surface-container-low: #EEE3E1;
+  --color-surface-container: #E2D8D5;
+  --color-surface-container-high: #D4CAC7;
+  --color-surface-container-highest: #B3A9A7;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: more) {
+  :root {
+    --color-outline: var(--color-on-background);
+    --color-outline-variant: var(--color-on-background);
+    --color-on-surface-variant: var(--color-on-surface);
+  }
+  [data-theme="light"] {
+    --color-outline: var(--color-on-background);
+    --color-outline-variant: var(--color-on-background);
+    --color-on-surface-variant: var(--color-on-surface);
+  }
+}

@@ -3,8 +3,6 @@
 /* no acrylic. no blur. no rounding. — power              */
 
 /* ── Fonts ── */
-@font-face { font-family:'Paper Mono'; src:url('assets/fonts/PaperMono-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
-@font-face { font-family:'Paper Mono'; src:url('assets/fonts/PaperMono-Bold.woff2') format('woff2'); font-weight:700; font-display:swap; }
 
 /* ── Alias old site tokens → lumina tokens ── */
 :root {
@@ -35,7 +33,7 @@
 html { background:var(--color-base); }
 
 body {
-  font-family:'Archivo Variable','Archivo',sans-serif;
+  font-family:var(--font);
   background:var(--color-base); color:var(--color-text);
   font-size:14px; line-height:1.45;
   min-height:100vh;
@@ -57,7 +55,7 @@ body {
   border-bottom:var(--border-thick);
 }
 .top-bar-brand {
-  font-family:'Archivo Variable','Archivo',sans-serif;
+  font-family:var(--font-display);
   font-variation-settings:'wght'900,'wdth'125;
   font-size:12px; text-transform:uppercase; letter-spacing:2px;
   color:var(--color-text);
@@ -134,7 +132,7 @@ body {
 
 /* ── Section headers ── */
 .section-header {
-  font-family:'Archivo Variable','Archivo',sans-serif;
+  font-family:var(--font-display);
   font-variation-settings:'wght'900,'wdth'125;
   font-size:11px; text-transform:uppercase; letter-spacing:1px;
   display:inline-block; padding:3px 8px; background:var(--color-accent); color:var(--color-base);
@@ -161,7 +159,7 @@ body {
 #section-dashboard .card-titlebar { border-bottom:var(--border-thin); padding-bottom:10px; margin-bottom:12px; }
 
 .card-titlebar-name {
-  font-family:'Archivo Variable','Archivo',sans-serif;
+  font-family:var(--font-display);
   font-variation-settings:'wght'900,'wdth'125;
   font-size:11px; text-transform:uppercase; letter-spacing:1px;
 }
@@ -186,7 +184,7 @@ body {
 .hero { display:flex; align-items:flex-start; gap:14px; }
 #section-about .hero { border-bottom:var(--border-thick); padding-bottom:12px; }
 .hero-text h1 {
-  font-family:'Archivo Variable','Archivo',sans-serif;
+  font-family:var(--font-display);
   font-variation-settings:'wght'900,'wdth'125;
   font-size:clamp(26px,5vw,42px); line-height:1.0; letter-spacing:-1.5px; text-transform:uppercase;
 }
@@ -194,14 +192,14 @@ body {
 
 /* ── Neofetch ── */
 #section-about .neofetch-wrap { border-left:var(--border-thick); padding-left:12px; }
-.neofetch-data { font-family:'Paper Mono','SF Mono',monospace; font-size:11px; line-height:1.8; }
+.neofetch-data { font-family:var(--font-mono); font-size:11px; line-height:1.8; }
 .neofetch-data b { color:var(--color-accent); font-weight:700; }
 
 /* ── Countdown ── */
 #section-f1 .countdown-card { text-align:center; padding:20px 16px; background:var(--color-base); border:var(--border-thin); box-shadow:var(--shadow-hard); }
 #section-f1 .countdown-session { font-size:9px; font-weight:900; text-transform:uppercase; letter-spacing:2px; color:var(--color-text-muted); margin-bottom:10px; }
 #section-f1 .countdown-number {
-  font-family:'Archivo Variable','Archivo',sans-serif;
+  font-family:var(--font-display);
   font-variation-settings:'wght'900,'wdth'125;
   font-size:32px; line-height:1.0;
   color:var(--color-accent); display:inline-block; background:var(--color-base);
@@ -217,10 +215,81 @@ body {
 .chip-row { display:flex; gap:4px; flex-wrap:wrap; }
 .chip {
   background:var(--color-base); border:var(--border-thin); padding:3px 8px;
-  font-family:'Archivo Variable','Archivo',sans-serif; font-variation-settings:'wght'700,'wdth'75;
+  font-family:var(--font-display); font-variation-settings:'wght'700,'wdth'75;
   font-size:11px; cursor:pointer; color:var(--color-text-secondary);
 }
 .chip:hover, .chip.active { background:var(--color-accent); color:var(--color-base); border-color:var(--color-accent); box-shadow:var(--shadow-accent-sm); }
+
+/* ── Button semantics — lumina button language ── */
+.chip,
+.card-row .lm-card,
+.icon-rail .nav-item {
+  font-family: var(--font);
+  font-variation-settings: 'wght' 700, 'wdth' 100, 'slnt' 0;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  transition: var(--transition-transform), var(--transition-shadow), font-variation-settings 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+.link-out {
+  font-family: var(--font);
+  font-variation-settings: 'wght' 700, 'wdth' 100, 'slnt' 0;
+  transition: var(--transition-colors), font-variation-settings 0.15s ease;
+}
+.chip:hover:not(:disabled),
+.card-row .lm-card:hover,
+.link-out:hover,
+.icon-rail .nav-item:hover {
+  font-variation-settings: 'wght' 800, 'wdth' 105, 'slnt' 4;
+}
+.chip:active:not(:disabled),
+.card-row .lm-card:active,
+.link-out:active,
+.icon-rail .nav-item:active {
+  font-variation-settings: 'wght' 900, 'wdth' 110, 'slnt' 8;
+}
+.chip:focus-visible,
+.card-row .lm-card:focus-visible,
+.link-out:focus-visible,
+.icon-rail .nav-item:focus-visible,
+button.lm-card:focus-visible,
+button.music-tile:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* ── Button semantics — lumina colour roles ── */
+/* secondary: base fill, thin border, hard shadow */
+.card-row .lm-card {
+  background: var(--color-base);
+  box-shadow: var(--shadow-hard-sm);
+  color: var(--color-text-secondary);
+}
+.card-row .lm-card:hover {
+  background: var(--color-raised);
+  color: var(--color-text);
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-accent-sm);
+}
+/* ghost: bare text-action */
+.link-out {
+  background: transparent;
+  border: none;
+}
+.link-out:hover {
+  background: transparent;
+  color: var(--color-text);
+}
+/* interactive cards keep card look but behave like buttons */
+button.lm-card,
+button.music-now-playing,
+button.music-tile {
+  cursor: pointer;
+}
+button.lm-card:hover,
+button.music-now-playing:hover,
+button.music-tile:hover {
+  transform: translate(-2px, -2px);
+}
 
 /* ── Music ── */
 .music-split { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
@@ -235,7 +304,7 @@ body {
 .music-now-playing.no-art .music-art-fallback { display:flex; }
 .music-art-overlay { position:absolute; inset:0; z-index:1; background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,transparent 55%); }
 .music-info { position:absolute; bottom:0; left:0; right:0; z-index:2; padding:14px; }
-.music-track-name { font-family:'Archivo Variable','Archivo',sans-serif; font-variation-settings:'wght'900,'wdth'125; font-size:15px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.music-track-name { font-family:var(--font-display); font-variation-settings:'wght'900,'wdth'125; font-size:15px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .music-track-artist { font-size:11px; color:var(--color-text-secondary); }
 .music-track-album { font-size:10px; color:var(--color-text-muted); }
 .scrobble-counter {
@@ -258,19 +327,28 @@ body {
 /* ── Dashboard ── */
 .dash-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:4px 12px; }
 .dash-field { display:flex; flex-direction:column; gap:1px; padding:3px 0; }
-.dash-label { font-family:'Archivo Variable','Archivo',sans-serif; font-variation-settings:'wght'700,'wdth'75; font-size:8px; text-transform:uppercase; letter-spacing:1.5px; color:var(--color-text-muted); }
-.dash-val { font-family:'Archivo Variable','Archivo',sans-serif; font-variation-settings:'wght'500,'wdth'75; font-size:12px; word-break:break-all; }
+.dash-label { font-family:var(--font-display); font-variation-settings:'wght'700,'wdth'75; font-size:8px; text-transform:uppercase; letter-spacing:1.5px; color:var(--color-text-muted); }
+.dash-val { font-family:var(--font-display); font-variation-settings:'wght'500,'wdth'75; font-size:12px; word-break:break-all; }
 .dash-val-accent { color:var(--color-accent); }
 
 /* ── Standings ── */
-.pos-1,.pos-2,.pos-3 { color:var(--color-text); font-family:'Archivo Variable','Archivo',sans-serif; font-variation-settings:'wght'900,'wdth'75; }
+.pos-1,.pos-2,.pos-3 { color:var(--color-text); font-family:var(--font-display); font-variation-settings:'wght'900,'wdth'75; }
 
 /* ── Discord card ── */
 .discord-card { text-decoration:none; color:inherit; }
 .discord-card-header { display:flex; gap:10px; align-items:center; }
+/* anchors → buttons: restore what the old a{} rule carried */
+button.lm-card, button.music-now-playing, button.music-tile { text-align:left; }
+button.music-now-playing, button.music-tile { padding:0; }
+.link-out {
+  background:none; border:none; padding:0; margin:0; cursor:pointer;
+  color:var(--color-accent); font:inherit; text-decoration:none;
+  transition:var(--transition-colors);
+}
+.link-out:hover { color:var(--color-text); }
 .discord-card-avatar { width:44px; height:44px; border:var(--border-thin); overflow:hidden; flex-shrink:0; }
 .discord-card-avatar img { width:100%; height:100%; object-fit:cover; }
-.discord-card-name { font-family:'Archivo Variable','Archivo',sans-serif; font-variation-settings:'wght'900,'wdth'125; }
+.discord-card-name { font-family:var(--font-display); font-variation-settings:'wght'900,'wdth'125; }
 .discord-card-status { font-size:11px; color:var(--color-text-secondary); }
 .discord-card-activity { margin-top:10px; border-top:var(--border-thin); padding-top:10px; display:flex; gap:10px; align-items:center; }
 .discord-activity-name { font-weight:800; font-size:12px; }

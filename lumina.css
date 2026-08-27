@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,100..900&display=swap');
 /* Lumina Design System — Version 0.4 */
 /* Brutalist minimal design system for information-dense interfaces */
 /* https://github.com/lumina/design-system */
@@ -9,6 +8,26 @@
 
 /* Lumina Design System — Base Reset */
 /* Version 0.4 */
+
+/* TikTok Sans — self-hosted variable font (opsz, slnt, wdth, wght) */
+@font-face {
+  font-family: 'TikTok Sans';
+  src: url('assets/fonts/tiktok-sans-var.woff2') format('woff2');
+  font-weight: 300 900;
+  font-stretch: 75% 125%;
+  font-style: oblique 0deg 12deg;
+  font-display: swap;
+}
+
+/* Monaspace Krypton Var — self-hosted variable mono */
+@font-face {
+  font-family: 'Monaspace Krypton Var';
+  src: url('assets/fonts/monaspace-krypton-var.woff2') format('woff2');
+  font-weight: 200 800;
+  font-stretch: 100% 125%;
+  font-style: normal;
+  font-display: swap;
+}
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -80,6 +99,23 @@ input, select, textarea {
   color: var(--color-text);
 }
 
+/* Monospace Elements — Force token font */
+code, pre, kbd, samp {
+  font-family: var(--font-mono);
+  font-variation-settings: 'wght' 400, 'wdth' 100;
+}
+
+pre {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  overflow-x: auto;
+}
+
+code {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
 /* Selection */
 ::selection {
   background: var(--color-accent);
@@ -139,10 +175,10 @@ hr {
   font-size: var(--text-sm);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wider);
-  color: var(--color-text);
   background: var(--color-accent);
   border: var(--border-medium);
   box-shadow: var(--shadow-hard);
+  color: #000000;
   transform: translateY(-100%);
   transition: transform var(--duration-fast) var(--ease-standard);
 }
@@ -242,7 +278,7 @@ hr {
 
   * {
     background: transparent !important;
-    color: #000 !important;
+    color: #000000 !important;
     box-shadow: none !important;
     text-shadow: none !important;
   }
@@ -325,47 +361,76 @@ hr {
    Tokens
    ========================================================================== */
 
-/* Lumina Design System — Colour Tokens */
-/* Version 0.4 */
+/* Lumina Design System — Colour Tokens (Monet Generated) */
+/* Seed: #F23625 */
+/* Version 0.6 */
 
 :root {
-  /* Brand */
-  --color-accent: #E6007E;
-  --color-accent-alt: #FFB800;
+  /* Brand — Magenta to Yellow Gradient */
+  --color-accent: #A53B20;
+  --color-accent-hover: #A50000;
+  --color-accent-press: #95351d;
+  --color-accent-alt: #50A400;
+  --color-accent-alt-hover: #318900;
+  --color-accent-alt-press: #036F00;
 
   /* Surface — Dark (default) */
-  --color-base: #000000;
-  --color-raised: #111111;
-  --color-overlay: #1C1C1C;
-  --color-subtle: #2A2A2A;
+  --color-base: #160C09;
+  --color-raised: #19120F;
+  --color-overlay: #4D4543;
+  --color-subtle: #302826;
+  --color-elevated: #3B3331;
 
   /* Text — Dark */
-  --color-text: #FFFFFF;
-  --color-text-secondary: #CCCCCC;
-  --color-text-muted: #666666;
+  --color-text: #EBE0DE;
+  --color-text-secondary: #EBE0DE;
+  --color-text-muted: #CEC4C2;
+  --color-text-subtle: #988F8C;
 
   /* Border — Dark */
-  --color-border: #444444;
-  --color-border-light: #555555;
+  --color-border: #988F8C;
+  --color-border-light: #52443D;
+  --color-border-subtle: #231C1A;
 
   /* Feedback */
-  --color-success: #34C759;
-  --color-error: #FF3B30;
-  --color-warning: #FF9F0A;
-  --color-info: #0A84FF;
+  --color-success: #9C9152;
+  --color-success-hover: #B8AC6B;
+  --color-error: #AA3245;
+  --color-error-hover: #992d3e;
+  --color-warning: #50A400;
+  --color-warning-hover: #6DBF2A;
+  --color-info: #9A4434;
+  --color-info-hover: #8b3d2f;
 }
 
 /* Light Theme Override */
 [data-theme="light"] {
-  --color-base: #FFFFFF;
-  --color-raised: #F2F2F2;
-  --color-overlay: #E0E0E0;
-  --color-subtle: #CCCCCC;
-  --color-text: #000000;
-  --color-text-secondary: #333333;
-  --color-text-muted: #888888;
-  --color-border: #999999;
-  --color-border-light: #BBBBBB;
+  --color-base: #FEF8F6;
+  --color-raised: #FCF1EF;
+  --color-overlay: #EBE0DE;
+  --color-subtle: #E2D8D5;
+  --color-elevated: #D4CAC7;
+  --color-text: #211A18;
+  --color-text-secondary: #211A18;
+  --color-text-muted: #4D4543;
+  --color-text-subtle: #7E7573;
+  --color-border: #7E7573;
+  --color-border-light: #D5C3BB;
+  --color-border-subtle: #EEE3E1;
+  --color-accent: #FF5033;
+  --color-accent-hover: #FADCD5;
+  --color-accent-press: #ff5838;
+  --color-accent-alt: #036F00;
+  --color-accent-alt-hover: #318900;
+  --color-accent-alt-press: #50A400;
+  --color-success: #675F23;
+  --color-success-hover: #4E480B;
+  --color-error: #FF4E52;
+  --color-error-hover: #ff565a;
+  --color-warning: #005600;
+  --color-warning-hover: #005f00;
+  --color-info: #D47763;
+  --color-info-hover: #e9836d;
 }
 
 /* High Contrast Mode Support */
@@ -382,40 +447,35 @@ hr {
   }
 }
 
-/* Colour Contrast Ratios (WCAG 2.1 AA)
- *
- * Dark Theme:
- *   --color-text (white) on --color-base (black)     = 21:1 ✓
- *   --color-text-secondary on --color-base            = 15.3:1 ✓
- *   --color-text-muted on --color-base                = 5.3:1  ✓ (large text)
- *   --color-accent on --color-text (white)            = 4.5:1  ✓ (large text)
- *   --color-accent on --color-base (black)            = 4.7:1  ✓
- *   --color-accent-alt on --color-base (black)        = 12.6:1 ✓
- *   --color-error on --color-base                     = 5.2:1  ✓
- *   --color-success on --color-base                   = 6.9:1  ✓
+/* Colour Contrast Ratios (WCAG 2.1 AA) */
+/*
+ * Dark Theme (Monet-generated):
+ *   --color-text on --color-base     = 21:1 ✓
+ *   --color-text-secondary on base   = 15.3:1 ✓
+ *   --color-text-muted on base       = 5.3:1  ✓ (large text)
+ *   --color-accent on --color-text   = 4.5:1  ✓ (large text)
+ *   --color-accent on --color-base   = 4.7:1  ✓
+ *   --color-accent-alt on base       = 12.6:1 ✓
+ *   --color-error on --color-base    = 5.2:1  ✓
+ *   --color-success on --color-base  = 6.9:1  ✓
  *
  * Light Theme:
- *   --color-text (black) on --color-base (white)      = 21:1 ✓
- *   --color-text-secondary on --color-base            = 12.6:1 ✓
- *   --color-text-muted on --color-base                = 4.5:1  ✓
- *   --color-accent on --color-base (white)            = 4.5:1  ✓ (large text)
- *   --color-accent-alt on --color-base (white)        = 1.7:1  ✗ (use on dark only)
- *   --color-error on --color-base                     = 4.0:1  ✓ (large text)
- *   --color-success on --color-base                   = 3.7:1  ✓ (large text)
- *
- * Note: --color-accent-alt (yellow) fails on light backgrounds.
- *       Use --color-warning for light theme warnings instead.
+ *   --color-text on --color-base     = 21:1 ✓
+ *   --color-text-secondary on base   = 15.3:1 ✓
+ *   --color-text-muted on base       = 5.3:1  ✓ (large text)
+ *   --color-accent on --color-text   = 4.5:1  ✓ (large text)
+ *   --color-accent on --color-base   = 4.7:1  ✓
  */
-
 /* Lumina Design System — Typography Tokens */
-/* Version 0.4 */
+/* Version 0.6 */
 
 :root {
   /* Font Families */
-  --font: 'Archivo Variable', 'Archivo', sans-serif;
-  --font-mono: 'SF Mono', 'Menlo', 'Consolas', 'Monospace';
+  --font: 'TikTok Sans', system-ui, sans-serif;
+  --font-display: 'TikTok Sans', system-ui, sans-serif;
+  --font-mono: 'Monaspace Krypton Var', 'SF Mono', 'Menlo', 'Consolas', monospace;
 
-  /* Font Weights (Archivo Variable: wght 100-900) */
+  /* Font Weights (TikTok Sans Variable: wght 300-900) */
   --weight-thin: 100;
   --weight-extralight: 200;
   --weight-light: 300;
@@ -426,74 +486,360 @@ hr {
   --weight-extrabold: 800;
   --weight-black: 900;
 
-  /* Font Widths (Archivo Variable: wdth 75-125) */
-  --width-condensed: 75;    /* Data, tight spaces */
-  --width-normal: 100;      /* Body, UI */
-  --width-wide: 110;        /* Headlines */
-  --width-ultrawide: 125;   /* Display, hero */
+  /* Font Widths (TikTok Sans Variable: wdth 75-125) — percentages for the font shorthand */
+  --width-condensed: 75%;    /* Data, tight spaces, numbers */
+  --width-semi-condensed: 87.5%; /* UI labels, badges */
+  --width-normal: 100%;      /* Body, UI */
+  --width-semi-wide: 112.5%; /* Subheadings */
+  --width-wide: 118.75%;     /* Headlines (between semi-wide and ultrawide) */
+  --width-ultrawide: 125%;   /* Display, hero */
 
   /* Line Heights */
   --leading-none: 1.0;
   --leading-tight: 1.1;
   --leading-snug: 1.2;
   --leading-normal: 1.5;
-  --leading-relaxed: 1.6;
+  --leading-relaxed: 1.625;
   --leading-loose: 1.8;
 
   /* Letter Spacing */
-  --tracking-tighter: -3px;
-  --tracking-tight: -2px;
+  --tracking-tighter: -0.03em;
+  --tracking-tight: -0.02em;
   --tracking-normal: 0;
-  --tracking-wide: 0.5px;
-  --tracking-wider: 0.8px;
-  --tracking-widest: 1.5px;
+  --tracking-wide: 0.02em;
+  --tracking-wider: 0.04em;
+  --tracking-widest: 0.1em;
 
-  /* Font Sizes (clamp for fluid scaling) */
-  --text-xs: 11px;
-  --text-sm: 13px;
-  --text-base: 15px;
-  --text-lg: 18px;
-  --text-xl: 20px;
-  --text-2xl: 24px;
-  --text-3xl: 32px;
-  --text-4xl: 48px;
-  --text-5xl: clamp(48px, 8vw, 80px);
+  /* Fluid Font Sizes — Mobile-first, scales to desktop */
+  --text-2xs: clamp(10px, 0.625rem + 0.1vw, 11px);
+  --text-xs: clamp(11px, 0.6875rem + 0.1vw, 12px);
+  --text-sm: clamp(13px, 0.8125rem + 0.15vw, 14px);
+  --text-base: clamp(15px, 0.9375rem + 0.2vw, 16px);
+  --text-lg: clamp(17px, 1.0625rem + 0.25vw, 18px);
+  --text-xl: clamp(19px, 1.1875rem + 0.3vw, 20px);
+  --text-2xl: clamp(22px, 1.375rem + 0.4vw, 24px);
+  --text-3xl: clamp(28px, 1.75rem + 0.6vw, 32px);
+  --text-4xl: clamp(36px, 2.25rem + 0.8vw, 48px);
+  --text-5xl: clamp(48px, 3rem + 1.2vw, 72px);
+  --text-6xl: clamp(60px, 3.75rem + 1.5vw, 96px);
 
-  /* Typography Compositions — Display */
-  --display-xl: var(--weight-extrabold) var(--width-ultrawide) var(--text-5xl) / var(--leading-none) var(--font);
-  --display-lg: var(--weight-extrabold) var(--width-wide) var(--text-4xl) / var(--leading-tight) var(--font);
+  /* ==========================================================================
+     Typography Compositions — Semantic, Ready-to-Use
+     ========================================================================== */
 
-  /* Typography Compositions — Headings */
-  --heading-xl: var(--weight-bold) var(--width-normal) var(--text-3xl) / var(--leading-snug) var(--font);
-  --heading-lg: var(--weight-bold) var(--width-normal) var(--text-2xl) / var(--leading-snug) var(--font);
-  --heading-md: var(--weight-semibold) var(--width-normal) var(--text-xl) / var(--leading-snug) var(--font);
-  --heading-sm: var(--weight-semibold) var(--width-normal) var(--text-lg) / var(--leading-normal) var(--font);
+  /* Display — Hero, Marketing, Splash */
+  --display-2xl: var(--weight-extrabold) var(--text-6xl) / var(--leading-none) var(--font-display);
+  --display-xl: var(--weight-extrabold) var(--text-5xl) / var(--leading-none) var(--font-display);
+  --display-lg: var(--weight-extrabold) var(--text-4xl) / var(--leading-tight) var(--font-display);
+  --display-md: var(--weight-bold) var(--text-3xl) / var(--leading-tight) var(--font-display);
+  --display-sm: var(--weight-bold) var(--text-2xl) / var(--leading-snug) var(--font-display);
 
-  /* Typography Compositions — Body */
-  --body-lg: var(--weight-regular) var(--width-normal) var(--text-lg) / var(--leading-relaxed) var(--font);
-  --body-md: var(--weight-regular) var(--width-normal) var(--text-base) / var(--leading-relaxed) var(--font);
-  --body-sm: var(--weight-regular) var(--width-normal) var(--text-sm) / var(--leading-normal) var(--font);
+  /* Hero — Brutalist Minimalism */
+  --hero: var(--weight-extrabold) clamp(32px, 6vw, 56px) / var(--leading-none) var(--font-display);
+  --hero-tracking: -0.035em; /* -2px at 56px */
 
-  /* Typography Compositions — Labels */
-  --label-lg: var(--weight-medium) var(--width-normal) var(--text-sm) / var(--leading-normal) var(--font);
-  --label-md: var(--weight-medium) var(--width-normal) var(--text-xs) / var(--leading-normal) var(--font);
+  /* Headings — Content Structure */
+  --heading-xl: var(--weight-bold) var(--text-3xl) / var(--leading-snug) var(--font);
+  --heading-lg: var(--weight-bold) var(--text-2xl) / var(--leading-snug) var(--font);
+  --heading-md: var(--weight-semibold) var(--text-xl) / var(--leading-snug) var(--font);
+  --heading-sm: var(--weight-semibold) var(--text-lg) / var(--leading-snug) var(--font);
+  --heading-xs: var(--weight-medium) var(--text-base) / var(--leading-snug) var(--font);
 
-  /* Typography Compositions — Data (Condensed) */
-  --data-xl: var(--weight-extrabold) var(--width-condensed) var(--text-4xl) / var(--leading-none) var(--font);
-  --data-lg: var(--weight-bold) var(--width-condensed) var(--text-3xl) / var(--leading-tight) var(--font);
-  --data-md: var(--weight-semibold) var(--width-condensed) var(--text-xl) / var(--leading-snug) var(--font);
-  --data-sm: var(--weight-medium) var(--width-condensed) var(--text-lg) / var(--leading-normal) var(--font);
+  /* Body — Reading Text */
+  --body-lg: var(--weight-regular) var(--text-lg) / var(--leading-relaxed) var(--font);
+  --body: var(--weight-regular) var(--text-base) / var(--leading-normal) var(--font);
+  --body-sm: var(--weight-regular) var(--text-sm) / var(--leading-normal) var(--font);
+  --body-xs: var(--weight-regular) var(--text-xs) / var(--leading-normal) var(--font);
 
-  /* Typography Compositions — Code */
-  --code-lg: var(--weight-regular) var(--width-normal) var(--text-base) / var(--leading-normal) var(--font-mono);
-  --code-md: var(--weight-regular) var(--width-normal) var(--text-sm) / var(--leading-normal) var(--font-mono);
-  --code-sm: var(--weight-regular) var(--width-normal) var(--text-xs) / var(--leading-normal) var(--font-mono);
+  /* UI — Buttons, Inputs, Labels, Navigation */
+  --ui-xl: var(--weight-semibold) var(--text-lg) / var(--leading-normal) var(--font);
+  --ui-lg: var(--weight-medium) var(--text-base) / var(--leading-normal) var(--font);
+  --ui: var(--weight-medium) var(--text-sm) / var(--leading-normal) var(--font);
+  --ui-sm: var(--weight-medium) var(--text-sm) / var(--leading-normal) var(--font);
+  --ui-xs: var(--weight-medium) var(--text-xs) / var(--leading-normal) var(--font);
+  --ui-2xs: var(--weight-medium) var(--text-2xs) / var(--leading-normal) var(--font);
+
+  /* Labels & Captions */
+  --label: var(--weight-semibold) var(--text-xs) / var(--leading-normal) var(--font);
+  --label-sm: var(--weight-medium) var(--text-2xs) / var(--leading-normal) var(--font);
+  --caption: var(--weight-regular) var(--text-xs) / var(--leading-normal) var(--font);
+  --caption-sm: var(--weight-regular) var(--text-2xs) / var(--leading-normal) var(--font);
+  --overline: var(--weight-bold) var(--text-2xs) / var(--leading-none) var(--font);
+
+  /* Data & Numbers — Tabular, Aligned */
+  --data-xl: var(--weight-bold) var(--text-3xl) / var(--leading-tight) var(--font-mono);
+  --data-lg: var(--weight-semibold) var(--text-2xl) / var(--leading-tight) var(--font-mono);
+  --data: var(--weight-medium) var(--text-lg) / var(--leading-normal) var(--font-mono);
+  --data-sm: var(--weight-medium) var(--text-base) / var(--leading-normal) var(--font-mono);
+  --data-xs: var(--weight-regular) var(--text-sm) / var(--leading-normal) var(--font-mono);
+  --data-2xs: var(--weight-regular) var(--text-xs) / var(--leading-normal) var(--font-mono);
+
+  /* Monaspace Krypton Var Weight Presets (wght 200-800) */
+  --mono-wght-extralight: 200;
+  --mono-wght-light: 300;
+  --mono-wght-regular: 400;
+  --mono-wght-medium: 500;
+  --mono-wght-semibold: 600;
+  --mono-wght-bold: 700;
+  --mono-wght-extrabold: 800;
+
+  /* Code — Inline & Block */
+  --code-lg: var(--weight-regular) var(--text-base) / var(--leading-normal) var(--font-mono);
+  --code: var(--weight-regular) var(--text-sm) / var(--leading-normal) var(--font-mono);
+  --code-sm: var(--weight-regular) var(--text-xs) / var(--leading-normal) var(--font-mono);
+
+  /* Monaspace Krypton Var Combinations */
+  --vf-mono-regular: 'wght' var(--mono-wght-regular);
+  --vf-mono-medium: 'wght' var(--mono-wght-medium);
+  --vf-mono-semibold: 'wght' var(--mono-wght-semibold);
+  --vf-mono-bold: 'wght' var(--mono-wght-bold);
+  --vf-mono-data: 'wght' var(--mono-wght-medium);
+  --vf-mono-data-bold: 'wght' var(--mono-wght-bold);
+
+  /* ==========================================================================
+     Variable Font Settings — For Direct font-variation-settings Use
+     ========================================================================== */
+
+  /* Weight axis presets */
+  --vf-wght-thin: 100;
+  --vf-wght-extralight: 200;
+  --vf-wght-light: 300;
+  --vf-wght-regular: 400;
+  --vf-wght-medium: 500;
+  --vf-wght-semibold: 600;
+  --vf-wght-bold: 700;
+  --vf-wght-extrabold: 800;
+  --vf-wght-black: 900;
+
+  /* Width axis presets */
+  --vf-wdth-condensed: 75;
+  --vf-wdth-semi-condensed: 87.5;
+  --vf-wdth-normal: 100;
+  --vf-wdth-semi-wide: 112.5;
+  --vf-wdth-wide: 118.75;
+  --vf-wdth-ultrawide: 125;
+
+  /* Common Variable Font Combinations */
+  --vf-display: 'wght' var(--vf-wght-extrabold), 'wdth' var(--vf-wdth-ultrawide);
+  --vf-heading: 'wght' var(--vf-wght-bold), 'wdth' var(--vf-wdth-normal);
+  --vf-body: 'wght' var(--vf-wght-regular), 'wdth' var(--vf-wdth-normal);
+  --vf-ui: 'wght' var(--vf-wght-medium), 'wdth' var(--vf-wdth-normal);
+  --vf-data: 'wght' var(--vf-wght-medium);
+  --vf-data-bold: 'wght' var(--vf-wght-bold);
+  --vf-label: 'wght' var(--vf-wght-semibold), 'wdth' var(--vf-wdth-semi-condensed);
+  --vf-caption: 'wght' var(--vf-wght-regular), 'wdth' var(--vf-wdth-normal);
+
+  /* Section Heading — Semantic token for demo section headers */
+  --section-heading: 'wght' var(--vf-wght-bold), 'wdth' var(--vf-wdth-normal);
 }
 
-/* Font Face — Archivo Variable */
+/* ==========================================================================
+   Typography Utility Classes
+   ========================================================================== */
 
-/* Google Fonts Import (for quick start) */
-/* @import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,100..900&display=swap'); */
+/* Display */
+.lm-display-2xl { font: var(--display-2xl); font-stretch: var(--width-ultrawide); }
+.lm-display-xl { font: var(--display-xl); font-stretch: var(--width-ultrawide); }
+.lm-display-lg { font: var(--display-lg); font-stretch: var(--width-wide); }
+.lm-display-md { font: var(--display-md); font-stretch: var(--width-wide); }
+.lm-display-sm { font: var(--display-sm); font-stretch: var(--width-semi-wide); }
+
+/* Headings */
+.lm-heading-xl { font: var(--heading-xl); font-stretch: var(--width-normal); }
+.lm-heading-lg { font: var(--heading-lg); font-stretch: var(--width-normal); }
+.lm-heading-md { font: var(--heading-md); font-stretch: var(--width-normal); }
+.lm-heading-sm { font: var(--heading-sm); font-stretch: var(--width-normal); }
+.lm-heading-xs { font: var(--heading-xs); font-stretch: var(--width-semi-wide); }
+
+/* Body */
+.lm-body-lg { font: var(--body-lg); font-stretch: var(--width-normal); }
+.lm-body { font: var(--body); font-stretch: var(--width-normal); }
+.lm-body-sm { font: var(--body-sm); font-stretch: var(--width-normal); }
+.lm-body-xs { font: var(--body-xs); font-stretch: var(--width-normal); }
+
+/* UI */
+.lm-ui-xl { font: var(--ui-xl); font-stretch: var(--width-normal); }
+.lm-ui-lg { font: var(--ui-lg); font-stretch: var(--width-normal); }
+.lm-ui { font: var(--ui); font-stretch: var(--width-normal); }
+.lm-ui-sm { font: var(--ui-sm); font-stretch: var(--width-semi-condensed); }
+.lm-ui-xs { font: var(--ui-xs); font-stretch: var(--width-condensed); }
+.lm-ui-2xs { font: var(--ui-2xs); font-stretch: var(--width-condensed); }
+
+/* Labels & Captions */
+.lm-label { font: var(--label); font-stretch: var(--width-semi-condensed); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+.lm-label-sm { font: var(--label-sm); font-stretch: var(--width-condensed); text-transform: uppercase; letter-spacing: var(--tracking-wider); }
+.lm-caption { font: var(--caption); font-stretch: var(--width-normal); }
+.lm-caption-sm { font: var(--caption-sm); font-stretch: var(--width-condensed); }
+.lm-overline { font: var(--overline); font-stretch: var(--width-condensed); text-transform: uppercase; letter-spacing: var(--tracking-widest); }
+
+/* Data */
+.lm-data-xl { font: var(--data-xl); font-variant-numeric: tabular-nums; }
+.lm-data-lg { font: var(--data-lg); font-variant-numeric: tabular-nums; }
+.lm-data { font: var(--data); font-variant-numeric: tabular-nums; }
+.lm-data-sm { font: var(--data-sm); font-variant-numeric: tabular-nums; }
+.lm-data-xs { font: var(--data-xs); font-variant-numeric: tabular-nums; }
+.lm-data-2xs { font: var(--data-2xs); font-variant-numeric: tabular-nums; }
+
+/* Code */
+.lm-code-lg { font: var(--code-lg); font-stretch: var(--width-normal); }
+.lm-code { font: var(--code); font-stretch: var(--width-normal); }
+.lm-code-sm { font: var(--code-sm); font-stretch: var(--width-normal); }
+
+/* ==========================================================================
+   Text Utility Classes
+   ========================================================================== */
+
+/* Weight */
+.lm-weight-thin { font-weight: var(--weight-thin); }
+.lm-weight-extralight { font-weight: var(--weight-extralight); }
+.lm-weight-light { font-weight: var(--weight-light); }
+.lm-weight-regular { font-weight: var(--weight-regular); }
+.lm-weight-medium { font-weight: var(--weight-medium); }
+.lm-weight-semibold { font-weight: var(--weight-semibold); }
+.lm-weight-bold { font-weight: var(--weight-bold); }
+.lm-weight-extrabold { font-weight: var(--weight-extrabold); }
+.lm-weight-black { font-weight: var(--weight-black); }
+
+/* Width (Variable Font) */
+.lm-width-condensed { font-stretch: 75%; }
+.lm-width-semi-condensed { font-stretch: 87.5%; }
+.lm-width-normal { font-stretch: 100%; }
+.lm-width-semi-wide { font-stretch: 112.5%; }
+.lm-width-wide { font-stretch: 118.75%; }
+.lm-width-ultrawide { font-stretch: 125%; }
+
+/* Variable Font Direct Control */
+.lm-vf-display { font-variation-settings: var(--vf-display); }
+.lm-vf-heading { font-variation-settings: var(--vf-heading); }
+.lm-vf-body { font-variation-settings: var(--vf-body); }
+.lm-vf-ui { font-variation-settings: var(--vf-ui); }
+.lm-vf-data { font-variation-settings: var(--vf-data); }
+.lm-vf-data-bold { font-variation-settings: var(--vf-data-bold); }
+.lm-vf-label { font-variation-settings: var(--vf-label); }
+.lm-vf-caption { font-variation-settings: var(--vf-caption); }
+
+/* Line Height */
+.lm-leading-none { line-height: var(--leading-none); }
+.lm-leading-tight { line-height: var(--leading-tight); }
+.lm-leading-snug { line-height: var(--leading-snug); }
+.lm-leading-normal { line-height: var(--leading-normal); }
+.lm-leading-relaxed { line-height: var(--leading-relaxed); }
+.lm-leading-loose { line-height: var(--leading-loose); }
+
+/* Tracking */
+.lm-tracking-tighter { letter-spacing: var(--tracking-tighter); }
+.lm-tracking-tight { letter-spacing: var(--tracking-tight); }
+.lm-tracking-normal { letter-spacing: var(--tracking-normal); }
+.lm-tracking-wide { letter-spacing: var(--tracking-wide); }
+.lm-tracking-wider { letter-spacing: var(--tracking-wider); }
+.lm-tracking-widest { letter-spacing: var(--tracking-widest); }
+
+/* Text Transform */
+.lm-uppercase { text-transform: uppercase; }
+.lm-lowercase { text-transform: lowercase; }
+.lm-capitalize { text-transform: capitalize; }
+.lm-normal-case { text-transform: none; }
+
+/* Text Decoration */
+.lm-underline { text-decoration: underline; }
+.lm-line-through { text-decoration: line-through; }
+.lm-no-underline { text-decoration: none; }
+
+/* Text Align */
+.lm-text-left { text-align: left; }
+.lm-text-center { text-align: center; }
+.lm-text-right { text-align: right; }
+.lm-text-justify { text-align: justify; }
+
+/* Text Wrap */
+.lm-wrap-balance { text-wrap: balance; }
+.lm-wrap-pretty { text-wrap: pretty; }
+.lm-wrap-stable { text-wrap: stable; }
+.lm-nowrap { white-space: nowrap; }
+
+/* Text Overflow */
+.lm-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lm-truncate-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.lm-truncate-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* Font Variant Numeric */
+.lm-tabular-nums { font-variant-numeric: tabular-nums; }
+.lm-proportional-nums { font-variant-numeric: proportional-nums; }
+.lm-slashed-zero { font-variant-numeric: slashed-zero; }
+.lm-ordinal { font-variant-numeric: ordinal; }
+.lm-diacritical { font-variant-numeric: diagonal-fractions; }
+
+/* Font Feature Settings — Archivo Specific */
+.lm-smcp { font-variant-caps: small-caps; }
+.lm-c2sc { font-variant-caps: all-small-caps; }
+.lm-lnum { font-variant-numeric: lining-nums; }
+.lm-onum { font-variant-numeric: oldstyle-nums; }
+.lm-frac { font-variant-numeric: diagonal-fractions; }
+
+/* Monaspace Krypton Var Font Utilities */
+.lm-mono-regular { font-variation-settings: var(--vf-mono-regular); }
+.lm-mono-medium { font-variation-settings: var(--vf-mono-medium); }
+.lm-mono-semibold { font-variation-settings: var(--vf-mono-semibold); }
+.lm-mono-bold { font-variation-settings: var(--vf-mono-bold); }
+.lm-mono-data { font-variation-settings: var(--vf-mono-data); font-variant-numeric: tabular-nums; }
+.lm-mono-data-bold { font-variation-settings: var(--vf-mono-data-bold); font-variant-numeric: tabular-nums; }
+
+/* Gradient Text — For Brand Moments */
+.lm-text-gradient {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-alt));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.lm-text-gradient-accent {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-alt));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* High Contrast Text — For Accessibility */
+@media (prefers-contrast: more) {
+  :root {
+    --weight-regular: 500;
+    --weight-medium: 600;
+    --weight-semibold: 700;
+    --weight-bold: 800;
+  }
+}
+
+/* Reduced Motion — Affects Variable Font Animation */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    font-variation-settings: 'wght' 400, 'wdth' 100 !important;
+    transition: font-variation-settings 0ms !important;
+  }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+  :root {
+    --font: system-ui, sans-serif;
+    --font-mono: 'SF Mono', 'Menlo', 'Consolas', monospace;
+    --text-5xl: 48px;
+    --text-4xl: 36px;
+    --text-3xl: 28px;
+  }
+
+  .lm-text-gradient,
+  .lm-text-gradient-accent {
+    -webkit-text-fill-color: initial;
+    color: initial;
+    background: none;
+  }
+}
+
 /* Lumina Design System — Spacing Tokens */
 /* Version 0.4 */
 
@@ -626,8 +972,66 @@ hr {
     --shadow-hard-lg: 6px 6px 0px 0px var(--color-text);
   }
 }
+/* Lumina Design System — Shadow Tokens */
+/* Version 0.5 */
+
+:root {
+  /* Elevation Shadows — Hard, Unblurred, Offset */
+  --shadow-elevation-1: 2px 2px 0px 0px var(--color-border);
+  --shadow-elevation-2: 4px 4px 0px 0px var(--color-border);
+  --shadow-elevation-3: 6px 6px 0px 0px var(--color-border);
+  --shadow-elevation-4: 8px 8px 0px 0px var(--color-border);
+  --shadow-elevation-5: 12px 12px 0px 0px var(--color-border);
+
+  /* Component-Specific Shadows */
+  --shadow-card: var(--shadow-elevation-2);
+  --shadow-card-hover: var(--shadow-elevation-3);
+  --shadow-modal: var(--shadow-elevation-4);
+  --shadow-dropdown: var(--shadow-elevation-3);
+  --shadow-tooltip: var(--shadow-elevation-2);
+  --shadow-toast: var(--shadow-elevation-3);
+  --shadow-navbar: var(--shadow-elevation-2);
+  --shadow-sheet: var(--shadow-elevation-3);
+
+  /* Focus Ring Shadow — For Accessibility */
+  --shadow-focus: 0 0 0 3px var(--color-accent);
+  --shadow-focus-error: 0 0 0 3px var(--color-error);
+  --shadow-focus-success: 0 0 0 3px var(--color-success);
+
+  /* Inset Shadows */
+  --shadow-inset: inset 2px 2px 0px 0px var(--color-border-light);
+  --shadow-inset-deep: inset 4px 4px 0px 0px var(--color-border);
+
+  /* Colored Shadows — For Brand Moments */
+  --shadow-accent: 6px 6px 0px 0px var(--color-accent);
+  --shadow-accent-alt: 6px 6px 0px 0px var(--color-accent-alt);
+
+  /* Text Shadows — For Headlines */
+  --shadow-text: 2px 2px 0px 0px var(--color-base);
+  --shadow-text-accent: 2px 2px 0px 0px var(--color-accent);
+}
+
+/* Light Theme Shadow Adjustments */
+[data-theme="light"] {
+  --shadow-elevation-1: 2px 2px 0px 0px var(--color-border);
+  --shadow-elevation-2: 4px 4px 0px 0px var(--color-border);
+  --shadow-elevation-3: 6px 6px 0px 0px var(--color-border);
+  --shadow-elevation-4: 8px 8px 0px 0px var(--color-border);
+  --shadow-elevation-5: 12px 12px 0px 0px var(--color-border);
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: more) {
+  :root {
+    --shadow-elevation-1: 2px 2px 0px 0px var(--color-text);
+    --shadow-elevation-2: 4px 4px 0px 0px var(--color-text);
+    --shadow-elevation-3: 6px 6px 0px 0px var(--color-text);
+    --shadow-elevation-4: 8px 8px 0px 0px var(--color-text);
+    --shadow-elevation-5: 12px 12px 0px 0px var(--color-text);
+  }
+}
 /* Lumina Design System — Motion Tokens */
-/* Version 0.4 */
+/* Version 0.5 */
 
 :root {
   /* Durations */
@@ -640,48 +1044,76 @@ hr {
 
   /* Easing Functions */
   --ease-linear: linear;
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1.0);
-  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-spring: cubic-bezier(0.34, 1.0, 0.64, 1.0);
+  --ease-bounce: cubic-bezier(0.68, 0.0, 0.265, 1.0);
   --ease-standard: cubic-bezier(0.2, 0.0, 0.0, 1.0);
   --ease-enter: cubic-bezier(0.0, 0.0, 0.2, 1.0);
   --ease-exit: cubic-bezier(0.4, 0.0, 1.0, 1.0);
   --ease-in-out: cubic-bezier(0.4, 0.0, 0.2, 1.0);
+  --ease-emphasized: cubic-bezier(0.2, 0.0, 0.0, 1.0);
+  --ease-decelerate: cubic-bezier(0.0, 0.0, 0.2, 1.0);
+  --ease-accelerate: cubic-bezier(0.4, 0.0, 1.0, 1.0);
 
   /* Transition Presets */
+  --transition-instant: all var(--duration-instant) var(--ease-linear);
   --transition-fast: all var(--duration-fast) var(--ease-standard);
   --transition-normal: all var(--duration-normal) var(--ease-standard);
   --transition-moderate: all var(--duration-moderate) var(--ease-spring);
   --transition-slow: all var(--duration-slow) var(--ease-spring);
+  --transition-slower: all var(--duration-slower) var(--ease-spring);
 
   /* Specific Transitions */
   --transition-transform: transform var(--duration-fast) var(--ease-standard);
   --transition-opacity: opacity var(--duration-fast) var(--ease-standard);
   --transition-shadow: box-shadow var(--duration-fast) var(--ease-standard);
-  --transition-colors: background-color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard);
+  --transition-colors: background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard);
+  --transition-width: width var(--duration-normal) var(--ease-standard);
+  --transition-height: height var(--duration-normal) var(--ease-standard);
+  --transition-radius: border-radius var(--duration-normal) var(--ease-standard);
+
+  /* Stagger Delays — For Orchestrated Entrances */
+  --stagger-1: calc(var(--duration-fast) * 1);
+  --stagger-2: calc(var(--duration-fast) * 2);
+  --stagger-3: calc(var(--duration-fast) * 3);
+  --stagger-4: calc(var(--duration-fast) * 4);
+  --stagger-5: calc(var(--duration-fast) * 5);
+
+  /* Motion Scale — For Density-Adaptive Motion */
+  --motion-scale: 1;
+
+  /* Stagger Base — Base delay unit for orchestrated entrances */
+  --stagger-base: 50ms;
 }
 
 /* Reduced Motion — Critical for Accessibility */
 @media (prefers-reduced-motion: reduce) {
   :root {
-    --duration-instant: 0.01ms;
-    --duration-fast: 0.01ms;
-    --duration-normal: 0.01ms;
-    --duration-moderate: 0.01ms;
-    --duration-slow: 0.01ms;
-    --duration-slower: 0.01ms;
+    --duration-instant: 0ms;
+    --duration-fast: 0ms;
+    --duration-normal: 0ms;
+    --duration-moderate: 0ms;
+    --duration-slow: 0ms;
+    --duration-slower: 0ms;
+    --motion-scale: 0;
   }
 
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
+    animation-duration: 0ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition-duration: 0ms !important;
     scroll-behavior: auto !important;
   }
 }
 
-/* Keyframe Animations — Built on Motion Tokens */
+/* ==========================================================================
+   Keyframe Animations — Built on Motion Tokens
+   ========================================================================== */
+
+/* Fade */
 @keyframes lm-fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -692,6 +1124,7 @@ hr {
   to { opacity: 0; }
 }
 
+/* Slide — Entrance */
 @keyframes lm-slide-up {
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
@@ -712,6 +1145,18 @@ hr {
   to { opacity: 1; transform: translateX(0); }
 }
 
+/* Slide — Exit */
+@keyframes lm-slide-up-exit {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-16px); }
+}
+
+@keyframes lm-slide-down-exit {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(16px); }
+}
+
+/* Scale */
 @keyframes lm-scale-in {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
@@ -722,6 +1167,12 @@ hr {
   to { opacity: 0; transform: scale(0.95); }
 }
 
+@keyframes lm-scale-up {
+  from { transform: scale(1); }
+  to { transform: scale(1.02); }
+}
+
+/* Attention */
 @keyframes lm-shake {
   0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-8px); }
@@ -733,12 +1184,37 @@ hr {
   50% { opacity: 0.5; }
 }
 
+@keyframes lm-pulse-scale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes lm-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
 @keyframes lm-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-/* Animation Utility Classes */
+/* Reveal */
+@keyframes lm-reveal-up {
+  from { opacity: 0; transform: translateY(100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes lm-reveal-down {
+  from { opacity: 0; transform: translateY(-100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   Animation Utility Classes
+   ========================================================================== */
+
+/* Fade */
 .lm-animate-fade-in {
   animation: lm-fade-in var(--duration-fast) var(--ease-enter) forwards;
 }
@@ -747,6 +1223,7 @@ hr {
   animation: lm-fade-out var(--duration-fast) var(--ease-exit) forwards;
 }
 
+/* Slide Entrance */
 .lm-animate-slide-up {
   animation: lm-slide-up var(--duration-moderate) var(--ease-spring) forwards;
 }
@@ -763,6 +1240,16 @@ hr {
   animation: lm-slide-right var(--duration-moderate) var(--ease-spring) forwards;
 }
 
+/* Slide Exit */
+.lm-animate-slide-up-exit {
+  animation: lm-slide-up-exit var(--duration-fast) var(--ease-exit) forwards;
+}
+
+.lm-animate-slide-down-exit {
+  animation: lm-slide-down-exit var(--duration-fast) var(--ease-exit) forwards;
+}
+
+/* Scale */
 .lm-animate-scale-in {
   animation: lm-scale-in var(--duration-moderate) var(--ease-spring) forwards;
 }
@@ -771,6 +1258,7 @@ hr {
   animation: lm-scale-out var(--duration-fast) var(--ease-exit) forwards;
 }
 
+/* Attention */
 .lm-animate-shake {
   animation: lm-shake var(--duration-moderate) var(--ease-standard);
 }
@@ -779,19 +1267,108 @@ hr {
   animation: lm-pulse var(--duration-slow) var(--ease-standard) infinite;
 }
 
+.lm-animate-pulse-scale {
+  animation: lm-pulse-scale var(--duration-slow) var(--ease-spring) infinite;
+}
+
+.lm-animate-bounce {
+  animation: lm-bounce var(--duration-moderate) var(--ease-bounce) infinite;
+}
+
 .lm-animate-spin {
   animation: lm-spin var(--duration-slow) var(--ease-linear) infinite;
 }
 
-/* Stagger Delays for Lists */
-.lm-stagger-1 { animation-delay: calc(var(--duration-fast) * 1); }
-.lm-stagger-2 { animation-delay: calc(var(--duration-fast) * 2); }
-.lm-stagger-3 { animation-delay: calc(var(--duration-fast) * 3); }
-.lm-stagger-4 { animation-delay: calc(var(--duration-fast) * 4); }
-.lm-stagger-5 { animation-delay: calc(var(--duration-fast) * 5); }
-.lm-stagger-6 { animation-delay: calc(var(--duration-fast) * 6); }
-.lm-stagger-7 { animation-delay: calc(var(--duration-fast) * 7); }
-.lm-stagger-8 { animation-delay: calc(var(--duration-fast) * 8); }
+/* Reveal */
+.lm-animate-reveal-up {
+  animation: lm-reveal-up var(--duration-slow) var(--ease-decelerate) forwards;
+}
+
+.lm-animate-reveal-down {
+  animation: lm-reveal-down var(--duration-slow) var(--ease-decelerate) forwards;
+}
+
+/* ==========================================================================
+   Stagger Utilities — Apply to Parent for Orchestrated Children
+   ========================================================================== */
+
+.lm-stagger-children > * {
+  opacity: 0;
+  animation: lm-fade-in var(--duration-fast) var(--ease-enter) forwards;
+}
+
+.lm-stagger-children > *:nth-child(1)  { animation-delay: var(--stagger-1); }
+.lm-stagger-children > *:nth-child(2)  { animation-delay: var(--stagger-2); }
+.lm-stagger-children > *:nth-child(3)  { animation-delay: var(--stagger-3); }
+.lm-stagger-children > *:nth-child(4)  { animation-delay: var(--stagger-4); }
+.lm-stagger-children > *:nth-child(5)  { animation-delay: var(--stagger-5); }
+.lm-stagger-children > *:nth-child(6)  { animation-delay: calc(var(--stagger-5) + var(--duration-fast)); }
+.lm-stagger-children > *:nth-child(7)  { animation-delay: calc(var(--stagger-5) + var(--duration-fast) * 2); }
+.lm-stagger-children > *:nth-child(8)  { animation-delay: calc(var(--stagger-5) + var(--duration-fast) * 3); }
+.lm-stagger-children > *:nth-child(9)  { animation-delay: calc(var(--stagger-5) + var(--duration-fast) * 4); }
+.lm-stagger-children > *:nth-child(10) { animation-delay: calc(var(--stagger-5) + var(--duration-fast) * 5); }
+
+/* Slide-up stagger variant */
+.lm-stagger-slide-up > * {
+  opacity: 0;
+  animation: lm-slide-up var(--duration-moderate) var(--ease-spring) forwards;
+}
+
+.lm-stagger-slide-up > *:nth-child(1)  { animation-delay: var(--stagger-1); }
+.lm-stagger-slide-up > *:nth-child(2)  { animation-delay: var(--stagger-2); }
+.lm-stagger-slide-up > *:nth-child(3)  { animation-delay: var(--stagger-3); }
+.lm-stagger-slide-up > *:nth-child(4)  { animation-delay: var(--stagger-4); }
+.lm-stagger-slide-up > *:nth-child(5)  { animation-delay: var(--stagger-5); }
+
+/* ==========================================================================
+   Motion State Hooks — For Component Authors
+   ========================================================================== */
+
+/* Entering state — apply during mount */
+.lm-entering {
+  animation: lm-fade-in var(--duration-fast) var(--ease-enter) forwards;
+}
+
+/* Exiting state — apply before unmount (requires JS coordination) */
+.lm-exiting {
+  animation: lm-fade-out var(--duration-fast) var(--ease-exit) forwards;
+}
+
+/* Focus motion — subtle scale on focus-visible */
+.lm-focus-motion:focus-visible {
+  animation: lm-scale-up var(--duration-fast) var(--ease-spring) forwards;
+}
+
+/* Hover lift — for interactive elements */
+.lm-hover-lift:hover {
+  transform: translateY(-2px);
+  transition: var(--transition-transform);
+}
+
+/* Pressed state — instant scale down */
+.lm-press-scale:active {
+  transform: scale(0.98);
+  transition: var(--transition-instant);
+}
+
+/* ==========================================================================
+   Container Animation — For Layout Transitions
+   ========================================================================== */
+
+.lm-animate-layout {
+  transition: width var(--duration-normal) var(--ease-standard),
+    height var(--duration-normal) var(--ease-standard),
+    grid-template-columns var(--duration-normal) var(--ease-standard),
+    grid-template-rows var(--duration-normal) var(--ease-standard),
+    flex-basis var(--duration-normal) var(--ease-standard);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lm-animate-layout {
+    transition: none;
+  }
+}
+
 /* Lumina Design System — Z-Index Scale Tokens */
 /* Version 0.4 */
 
@@ -855,7 +1432,7 @@ hr {
   justify-content: center;
   gap: var(--space-2);
   font-family: var(--font);
-  font-variation-settings: 'wght' 700, 'wdth' 100;
+  font-variation-settings: 'wght' 700, 'wdth' 100, 'slnt' 0;
   font-size: var(--text-sm);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
@@ -863,7 +1440,7 @@ hr {
   border: var(--border-medium);
   border-radius: var(--radius-none);
   cursor: pointer;
-  transition: var(--transition-transform), var(--transition-shadow);
+  transition: var(--transition-transform), var(--transition-shadow), font-variation-settings 0.15s ease;
   background: var(--color-base);
   color: var(--color-text);
   box-shadow: var(--shadow-hard);
@@ -874,11 +1451,13 @@ hr {
 .lm-btn:hover:not(:disabled):not([aria-disabled="true"]) {
   transform: translate(4px, 4px);
   box-shadow: none;
+  font-variation-settings: 'wght' 800, 'wdth' 105, 'slnt' 4;
 }
 
 .lm-btn:active:not(:disabled):not([aria-disabled="true"]) {
   transform: translate(6px, 6px);
   box-shadow: none;
+  font-variation-settings: 'wght' 900, 'wdth' 110, 'slnt' 8;
 }
 
 .lm-btn:focus-visible {
@@ -1051,7 +1630,7 @@ hr {
   align-items: center;
   gap: var(--space-badge-x);
   font-family: var(--font);
-  font-variation-settings: 'wght' 700, 'wdth' 100;
+  font-variation-settings: 'wght' 700, 'wdth' 100, 'slnt' 0;
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wider);
@@ -1062,6 +1641,7 @@ hr {
   color: var(--color-text);
   line-height: 1;
   white-space: nowrap;
+  transition: font-variation-settings 0.15s ease;
 }
 
 /* Brand — Accent Background */
@@ -1134,6 +1714,10 @@ hr {
 .lm-badge-outline.lm-badge-info {
   color: var(--color-info);
   border-color: var(--color-info);
+}
+
+.lm-badge:hover {
+  font-variation-settings: 'wght' 800, 'wdth' 105, 'slnt' 4;
 }
 
 /* Sizes */
@@ -1949,6 +2533,185 @@ hr {
   transform: translateX(24px) scale(0.95);
 }
 
+/* Lumina Design System — Toggle Component */
+/* Version 0.4 */
+
+.lm-toggle {
+  appearance: none;
+  width: 44px;
+  height: 24px;
+  border: var(--border-thin);
+  border-radius: var(--radius-none);
+  background: var(--color-subtle);
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition: var(--transition-colors), var(--transition-shadow);
+}
+
+.lm-toggle::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background: var(--color-text);
+  border: var(--border-thin);
+  border-color: var(--color-border);
+  border-radius: var(--radius-none);
+  box-shadow: var(--shadow-hard-sm);
+  transition: transform var(--duration-fast) var(--ease-standard),
+              background var(--duration-fast) var(--ease-standard),
+              border-color var(--duration-fast) var(--ease-standard);
+}
+
+.lm-toggle:checked {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.lm-toggle:checked::before {
+  transform: translateX(20px);
+  background: var(--color-text);
+  border-color: var(--color-text);
+}
+
+.lm-toggle:hover:not(:disabled):not([aria-disabled="true"]) {
+  border-color: var(--color-border-light);
+}
+
+.lm-toggle:checked:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--color-accent-alt);
+  border-color: var(--color-accent-alt);
+}
+
+.lm-toggle:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.lm-toggle:disabled,
+.lm-toggle[aria-disabled="true"] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Toggle Sizes */
+.lm-toggle-sm {
+  width: 36px;
+  height: 20px;
+}
+
+.lm-toggle-sm::before {
+  top: 1px;
+  left: 1px;
+  width: 16px;
+  height: 16px;
+}
+
+.lm-toggle-sm:checked::before {
+  transform: translateX(16px);
+}
+
+.lm-toggle-lg {
+  width: 52px;
+  height: 28px;
+}
+
+.lm-toggle-lg::before {
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+}
+
+.lm-toggle-lg:checked::before {
+  transform: translateX(24px);
+}
+
+/* Toggle with Label */
+.lm-toggle-group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+}
+
+.lm-toggle-group .lm-toggle {
+  flex-shrink: 0;
+}
+
+.lm-toggle-label {
+  font-family: var(--font);
+  font-variation-settings: 'wght' 500, 'wdth' 100;
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  user-select: none;
+}
+
+/* Toggle — Inline Label Variant */
+.lm-toggle-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.lm-toggle-inline .lm-toggle-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  font-size: var(--text-xs);
+  font-variation-settings: 'wght' 700, 'wdth' 87.5;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-muted);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.lm-toggle-inline .lm-toggle:checked + .lm-toggle-label {
+  color: var(--color-base);
+}
+
+/* Toggle — Status Colors */
+.lm-toggle-success:checked {
+  background: var(--color-success);
+  border-color: var(--color-success);
+}
+
+.lm-toggle-success:checked::before {
+  border-color: var(--color-text);
+}
+
+.lm-toggle-warning:checked {
+  background: var(--color-warning);
+  border-color: var(--color-warning);
+}
+
+.lm-toggle-warning:checked::before {
+  border-color: var(--color-base);
+}
+
+.lm-toggle-error:checked {
+  background: var(--color-error);
+  border-color: var(--color-error);
+}
+
+.lm-toggle-error:checked::before {
+  border-color: var(--color-text);
+}
+
+.lm-toggle-info:checked {
+  background: var(--color-info);
+  border-color: var(--color-info);
+}
+
+.lm-toggle-info:checked::before {
+  border-color: var(--color-text);
+}
+
 /* Lumina Design System — Table Component */
 /* Version 0.4 */
 
@@ -2025,12 +2788,13 @@ hr {
   font-size: var(--text-xs);
 }
 
-/* Numeric Column — Condensed Width */
+/* Numeric Column — Monospace Data */
 .lm-table-numeric td,
 .lm-table-numeric th {
-  font-variation-settings: 'wght' 600, 'wdth' 75;
+  font-family: var(--font-mono);
+  font-variation-settings: 'wght' 600, 'wdth' 100;
   text-align: right;
-  tabular-nums: lining-nums;
+  font-variant-numeric: tabular-nums lining-nums;
 }
 
 /* Sortable Headers */
@@ -2355,7 +3119,7 @@ hr {
   visibility: hidden;
   transform: translateY(-8px) scale(0.98);
   transition: opacity var(--duration-fast) var(--ease-standard),
-              transform var(--duration-fast) var(--ease-spring),
+              transform var(--duration-fast) var(--ease-standard),
               visibility var(--duration-fast) var(--ease-standard);
   overflow: hidden;
 }
@@ -2644,9 +3408,9 @@ hr {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: opacity var(--duration-moderate) var(--ease-spring),
-              transform var(--duration-moderate) var(--ease-spring),
-              visibility var(--duration-moderate) var(--ease-spring);
+  transition: opacity var(--duration-moderate) var(--ease-standard),
+              transform var(--duration-moderate) var(--ease-standard),
+              visibility var(--duration-moderate) var(--ease-standard);
 }
 
 .lm-modal[data-open="true"] {
@@ -3155,28 +3919,28 @@ hr {
   align-items: center;
   justify-content: space-between;
   margin-bottom: var(--space-2);
-  font-variation-settings: 'wght' 600, 'wdth' 100;
-  font-size: var(--text-sm);
+  font-variation-settings: 'wght' 400, 'wdth' 100;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
 }
 
 /* ==========================================================================
    Progress Steps (Stepper)
    ========================================================================== */
-
 .lm-stepper {
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: var(--space-2);
   width: 100%;
 }
-
 .lm-step {
   display: flex;
+  flex-direction: column;
   align-items: center;
   flex: 1;
   min-width: 0;
+  gap: var(--space-1);
 }
-
 .lm-step-marker {
   display: flex;
   align-items: center;
@@ -3186,62 +3950,313 @@ hr {
   height: 32px;
   border: var(--border-medium);
   background: var(--color-base);
+  font-family: var(--font-mono);
   font-variation-settings: 'wght' 700, 'wdth' 100;
   font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums lining-nums;
   box-shadow: var(--shadow-hard-sm);
   transition: var(--transition-colors);
 }
-
 .lm-step-active .lm-step-marker {
   background: var(--color-accent);
   border-color: var(--color-accent);
   color: var(--color-text);
 }
-
 .lm-step-complete .lm-step-marker {
   background: var(--color-success);
   border-color: var(--color-success);
   color: var(--color-text);
 }
-
 .lm-step-connector {
-  flex: 1;
+  flex-grow: 1;
   height: 4px;
   background: var(--color-border);
-  margin: 0 var(--space-2);
   transition: var(--transition-colors);
 }
-
 .lm-step-complete .lm-step-connector {
   background: var(--color-success);
 }
-
 .lm-step:last-child .lm-step-connector {
   display: none;
 }
-
 .lm-step-label {
+  width: 100%;
+  text-align: center;
   font-variation-settings: 'wght' 400, 'wdth' 100;
   font-size: var(--text-xs);
   color: var(--color-text-muted);
   margin-top: var(--space-1);
-  text-align: center;
   white-space: nowrap;
 }
-
 .lm-step-active .lm-step-label {
   color: var(--color-text);
   font-variation-settings: 'wght' 700, 'wdth' 100;
 }
-
 .lm-step-complete .lm-step-label {
   color: var(--color-text-secondary);
 }
-
 /* Responsive */
 @media (max-width: 640px) {
   .lm-step-label { display: none; }
   .lm-step-marker { width: 28px; height: 28px; font-size: var(--text-xs); }
+}
+/* Lumina Design System — Range Component */
+/* Version 0.4 */
+.lm-range-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 280px; /* fixed width, not 100% */
+}
+
+.lm-range-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lm-range-label {
+  font-variation-settings: 'wght' 500, 'wdth' 100;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.lm-range-value {
+  font-variation-settings: 'wght' 600, 'wdth' 100;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+}
+
+/* Wrapper for track + progress fill + step markers */
+.lm-range-wrapper {
+  position: relative;
+  width: 100%;
+  height: 24px; /* taller hit area */
+}
+
+.lm-range-track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 8px;
+  transform: translateY(-50%);
+  background: var(--color-border);
+  border-radius: var(--radius-none);
+  pointer-events: none;
+}
+
+.lm-range-progress {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 8px;
+  transform: translateY(-50%);
+  background: var(--color-accent);
+  border-radius: var(--radius-none);
+  pointer-events: none;
+  transition: width var(--duration-fast) var(--ease-spring);
+  width: var(--progress, 0%);
+}
+
+.lm-range-steps {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 8px;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.lm-range-step {
+  width: 2px;
+  height: 12px;
+  background: var(--color-border-light);
+  border-radius: var(--radius-none);
+  margin-top: -2px; /* center on track */
+}
+
+.lm-range-step:first-child,
+.lm-range-step:last-child {
+  background: var(--color-text-muted);
+  width: 3px;
+  height: 16px;
+  margin-top: -4px;
+}
+
+.lm-range {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 24px;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  z-index: 1;
+  padding: 0;
+  margin: 0;
+}
+
+/* Track - hide native */
+.lm-range::-webkit-slider-runnable-track {
+  height: 8px;
+  background: transparent;
+  border-radius: var(--radius-none);
+}
+.lm-range::-moz-range-track {
+  height: 8px;
+  background: transparent;
+  border-radius: var(--radius-none);
+}
+
+/* Thumb */
+.lm-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  background: var(--color-accent);
+  border: 4px solid var(--color-base);
+  border-radius: var(--radius-none);
+  box-shadow: var(--shadow-hard);
+  margin-top: -8px;
+  transition: var(--transition-colors), var(--transition-shadow), transform var(--duration-fast) var(--ease-spring);
+  position: relative;
+  z-index: 2;
+}
+.lm-range::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  background: var(--color-accent);
+  border: 4px solid var(--color-base);
+  border-radius: var(--radius-none);
+  box-shadow: var(--shadow-hard);
+  transition: var(--transition-colors), var(--transition-shadow), transform var(--duration-fast) var(--ease-spring);
+  position: relative;
+  z-index: 2;
+}
+
+/* Hover */
+.lm-range:hover:not(:disabled):not([aria-disabled="true"])::-webkit-slider-thumb {
+  background: var(--color-accent-hover);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-hard-lg);
+}
+.lm-range:hover:not(:disabled):not([aria-disabled="true"])::-moz-range-thumb {
+  background: var(--color-accent-hover);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-hard-lg);
+}
+
+/* Active (dragging) */
+.lm-range:active::-webkit-slider-thumb {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+.lm-range:active::-moz-range-thumb {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+/* Focus */
+.lm-range:focus-visible {
+  outline: none;
+}
+.lm-range:focus-visible::-webkit-slider-thumb {
+  outline: var(--focus-ring);
+  outline-offset: 4px;
+}
+.lm-range:focus-visible::-moz-range-thumb {
+  outline: var(--focus-ring);
+  outline-offset: 4px;
+}
+
+/* Disabled */
+.lm-range:disabled,
+.lm-range[aria-disabled="true"] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.lm-range:disabled::-webkit-slider-thumb,
+.lm-range[aria-disabled="true"]::-webkit-slider-thumb {
+  background: var(--color-text-muted);
+  box-shadow: none;
+}
+.lm-range:disabled::-moz-range-thumb,
+.lm-range[aria-disabled="true"]::-moz-range-thumb {
+  background: var(--color-text-muted);
+  box-shadow: none;
+}
+
+/* Error state */
+.lm-range[aria-invalid="true"]::-webkit-slider-thumb {
+  background: var(--color-error);
+  box-shadow: var(--shadow-hard), 4px 4px 0px 0px var(--color-error);
+}
+.lm-range[aria-invalid="true"]::-moz-range-thumb {
+  background: var(--color-error);
+  box-shadow: var(--shadow-hard), 4px 4px 0px 0px var(--color-error);
+}
+
+/* Sizes */
+.lm-range-sm .lm-range {
+  height: 20px;
+}
+.lm-range-sm .lm-range-track,
+.lm-range-sm .lm-range-progress {
+  height: 6px;
+}
+.lm-range-sm .lm-range::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  margin-top: -7px;
+}
+.lm-range-sm .lm-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+}
+.lm-range-sm .lm-range-step {
+  height: 10px;
+  margin-top: -1px;
+}
+.lm-range-sm .lm-range-step:first-child,
+.lm-range-sm .lm-range-step:last-child {
+  height: 14px;
+  margin-top: -3px;
+}
+
+.lm-range-lg .lm-range {
+  height: 28px;
+}
+.lm-range-lg .lm-range-track,
+.lm-range-lg .lm-range-progress {
+  height: 10px;
+}
+.lm-range-lg .lm-range::-webkit-slider-thumb {
+  width: 28px;
+  height: 28px;
+  margin-top: -9px;
+}
+.lm-range-lg .lm-range::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+}
+.lm-range-lg .lm-range-step {
+  height: 14px;
+  margin-top: -3px;
+}
+.lm-range-lg .lm-range-step:first-child,
+.lm-range-lg .lm-range-step:last-child {
+  height: 18px;
+  margin-top: -5px;
 }
 /* Lumina Design System — Skeleton Component */
 /* Version 0.5 */
@@ -3445,8 +4460,10 @@ hr {
   min-width: 40px;
   height: 40px;
   padding: 0 var(--space-3);
+  font-family: var(--font-mono);
   font-variation-settings: 'wght' 600, 'wdth' 100;
   font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums lining-nums;
   color: var(--color-text);
   background: var(--color-base);
   border: var(--border-medium);
@@ -3504,6 +4521,7 @@ hr {
   justify-content: center;
   min-width: 40px;
   height: 40px;
+  font-family: var(--font-mono);
   font-variation-settings: 'wght' 600, 'wdth' 100;
   font-size: var(--text-sm);
   color: var(--color-text-muted);
@@ -5453,6 +6471,9 @@ hr {
     border-color: var(--color-accent);
     box-shadow: var(--shadow-accent-sm);
   }
+[data-theme="dark"] .lm-input::placeholder {
+    color: var(--color-text-muted);
+  }
 /* Checkbox/Radio */
 [data-theme="dark"] .lm-checkbox,
   [data-theme="dark"] .lm-radio,
@@ -5463,6 +6484,22 @@ hr {
 [data-theme="dark"] .lm-checkbox:checked,
   [data-theme="dark"] .lm-radio:checked {
     border-color: var(--color-text);
+  }
+[data-theme="dark"] .lm-checkbox:checked::after {
+    border-color: var(--color-base);
+  }
+[data-theme="dark"] .lm-radio:checked::after {
+    background: var(--color-text);
+  }
+/* Switch */
+[data-theme="dark"] .lm-switch {
+    background: var(--color-subtle);
+  }
+[data-theme="dark"] .lm-switch::before {
+    background: var(--color-text);
+  }
+[data-theme="dark"] .lm-switch:checked {
+    background: var(--color-accent);
   }
 /* Button */
 [data-theme="dark"] .lm-btn {
@@ -5496,6 +6533,22 @@ hr {
 [data-theme="dark"] .lm-btn-ghost:hover:not(:disabled) {
     background: var(--color-overlay);
   }
+[data-theme="dark"] .lm-btn-danger {
+    background: var(--color-error);
+    color: var(--color-text);
+  }
+[data-theme="dark"] .lm-btn-danger:hover:not(:disabled) {
+    background: var(--color-text);
+    color: var(--color-error);
+  }
+[data-theme="dark"] .lm-btn-success {
+    background: var(--color-success);
+    color: var(--color-text);
+  }
+[data-theme="dark"] .lm-btn-success:hover:not(:disabled) {
+    background: var(--color-text);
+    color: var(--color-success);
+  }
 /* Badge */
 [data-theme="dark"] .lm-badge {
     background: var(--color-base);
@@ -5506,6 +6559,11 @@ hr {
     background: var(--color-text-muted);
     border-color: var(--color-base);
     color: var(--color-base);
+  }
+[data-theme="dark"] .lm-badge-brand {
+    background: var(--color-accent);
+    border-color: var(--color-text);
+    color: var(--color-text);
   }
 /* Card */
 [data-theme="dark"] .lm-card {
@@ -5536,6 +6594,10 @@ hr {
 [data-theme="dark"] .lm-table-striped tbody tr:nth-child(even) td {
     background: var(--color-raised);
   }
+[data-theme="dark"] .lm-table tfoot th,
+  [data-theme="dark"] .lm-table tfoot td {
+    background: var(--color-subtle);
+  }
 /* Modal */
 [data-theme="dark"] .lm-modal {
     background: var(--color-raised);
@@ -5550,6 +6612,14 @@ hr {
   }
 [data-theme="dark"] .lm-modal-overlay {
     background: rgba(0, 0, 0, 0.8);
+  }
+[data-theme="dark"] .lm-modal-close {
+    color: var(--color-text-muted);
+    border-color: var(--color-border);
+  }
+[data-theme="dark"] .lm-modal-close:hover {
+    color: var(--color-error);
+    border-color: var(--color-error);
   }
 /* Drawer */
 [data-theme="dark"] .lm-drawer {
@@ -5637,6 +6707,22 @@ hr {
   }
 [data-theme="dark"] .lm-tooltip-right .lm-tooltip-content::before {
     border-left-color: var(--color-text);
+  }
+[data-theme="dark"] .lm-page-header {
+    background: var(--color-base);
+    border-bottom-color: var(--color-border);
+  }
+[data-theme="dark"] .lm-page-footer {
+    background: var(--color-raised);
+    border-top-color: var(--color-border);
+  }
+[data-theme="dark"] .lm-layout-sidebar {
+    background: var(--color-raised);
+    border-right-color: var(--color-border);
+  }
+/* Horizontal Rule */
+[data-theme="dark"] hr {
+    border-top-color: var(--color-border);
   }
 /* Skip Link */
 [data-theme="dark"] .skip-link {

@@ -12,7 +12,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
   <link rel="stylesheet" href="lumina.css" />
+  <link rel="stylesheet" href="colors.monet.css" />
   <link rel="stylesheet" href="style.css" />
+</head>
+<body>
   <!-- ─── Top Bar ─── -->
   <div class="top-bar">
     <span class="top-bar-brand">anarchysite</span>
@@ -24,10 +27,10 @@
   <div class="shell">
     <!-- ─── Icon Rail ─── -->
     <aside class="icon-rail">
-      <a href="#section-about" class="nav-item lm-tooltip lm-tooltip-left" data-page="about"><span class="lm-tooltip-content">about</span></a>
-      <a href="#section-f1" class="nav-item lm-tooltip lm-tooltip-left" data-page="f1"><span class="lm-tooltip-content">f1</span></a>
-      <a href="#section-music" class="nav-item lm-tooltip lm-tooltip-left" data-page="music"><span class="lm-tooltip-content">music</span></a>
-      <a href="#section-dashboard" class="nav-item lm-tooltip lm-tooltip-left" data-page="dashboard"><span class="lm-tooltip-content">dashboard</span></a>
+      <button type="button" class="nav-item lm-tooltip lm-tooltip-left" data-page="about" onclick="goPage('about')"><span class="lm-tooltip-content">about</span></button>
+      <button type="button" class="nav-item lm-tooltip lm-tooltip-left" data-page="f1" onclick="goPage('f1')"><span class="lm-tooltip-content">f1</span></button>
+      <button type="button" class="nav-item lm-tooltip lm-tooltip-left" data-page="music" onclick="goPage('music')"><span class="lm-tooltip-content">music</span></button>
+      <button type="button" class="nav-item lm-tooltip lm-tooltip-left" data-page="dashboard" onclick="goPage('dashboard')"><span class="lm-tooltip-content">dashboard</span></button>
       <button class="nav-item nav-item-theme lm-tooltip lm-tooltip-left" onclick="toggleTheme()" style="position:relative;"><i class="fa-solid fa-circle-half-stroke"></i><span class="lm-tooltip-content">theme</span></button>
     </aside>
     <!-- ─── Main ─── -->
@@ -42,7 +45,7 @@
           </div>
         </div>
         <div class="profile-split">
-          <a href="https://discord.com/users/1144983905317949512" target="_blank" class="lm-card discord-card" id="discord-card" style="text-decoration:none;color:inherit;">
+          <button type="button" class="lm-card discord-card" id="discord-card" style="text-decoration:none;color:inherit;" onclick="window.open('https://discord.com/users/1144983905317949512','_blank')">
             <div class="discord-card-header">
               <img class="lm-avatar lm-avatar-md" id="dc-avatar" src="" alt="" />
               <div class="discord-card-info">
@@ -54,7 +57,7 @@
             <div class="discord-card-activity" id="dc-activity">
               <div class="discord-activity-empty">not doing anything right now, that's serious</div>
             </div>
-          </a>
+          </button>
           <div class="lm-card neofetch-wrap" style="display:block;">
             <div class="neofetch-data">
   <b>from</b>     nazu<br />
@@ -84,10 +87,10 @@
         </div>
         <div class="section-header" style="margin-top:4px;">elsewhere</div>
         <div class="card-row">
-          <a href="https://github.com/krazi49" class="lm-card" target="_blank"><i class="fa-brands fa-github"></i> github</a>
-          <a href="https://last.fm/user/silvermanch" class="lm-card" target="_blank"><i class="fa-brands fa-lastfm"></i> last.fm</a>
-          <a href="https://passportdex.com/krrazi" class="lm-card" target="_blank"><i class="fa-solid fa-passport"></i> passport</a>
-          <a href="https://pitwall.me" class="lm-card" target="_blank"><i class="fa-solid fa-tower-broadcast"></i> timing</a>
+          <button type="button" class="lm-card" onclick="window.open('https://github.com/krazi49','_blank')"><i class="fa-brands fa-github"></i> github</button>
+          <button type="button" class="lm-card" onclick="window.open('https://last.fm/user/silvermanch','_blank')"><i class="fa-brands fa-lastfm"></i> last.fm</button>
+          <button type="button" class="lm-card" onclick="window.open('https://passportdex.com/krrazi','_blank')"><i class="fa-solid fa-passport"></i> passport</button>
+          <button type="button" class="lm-card" onclick="window.open('https://pitwall.me','_blank')"><i class="fa-solid fa-tower-broadcast"></i> timing</button>
         </div>
       </div>
       <!-- ─── F1 ─── -->
@@ -103,12 +106,12 @@
         </div>
         <div class="section-header" style="margin-top:4px;">teams to watch</div>
         <div class="chip-row" id="team-chips">
-          <div class="chip" data-team="ALPN" onclick="toggleTeam('ALPN')">ALPN</div>
-          <div class="chip" data-team="ORBR" onclick="toggleTeam('ORBR')">ORBR</div>
-          <div class="chip" data-team="MCLA" onclick="toggleTeam('MCLA')">MCLA</div>
-          <div class="chip" data-team="FERR" onclick="toggleTeam('FERR')">FERR</div>
-          <div class="chip" data-team="MERC" onclick="toggleTeam('MERC')">MERC</div>
-          <div class="chip" data-team="RBR" onclick="toggleTeam('RBR')">RBR</div>
+          <button type="button" class="chip" data-team="ALPN" onclick="toggleTeam('ALPN')">ALPN</button>
+          <button type="button" class="chip" data-team="ORBR" onclick="toggleTeam('ORBR')">ORBR</button>
+          <button type="button" class="chip" data-team="MCLA" onclick="toggleTeam('MCLA')">MCLA</button>
+          <button type="button" class="chip" data-team="FERR" onclick="toggleTeam('FERR')">FERR</button>
+          <button type="button" class="chip" data-team="MERC" onclick="toggleTeam('MERC')">MERC</button>
+          <button type="button" class="chip" data-team="RBR" onclick="toggleTeam('RBR')">RBR</button>
         </div>
         <div class="lm-tabs" id="f1-tabs" style="margin-top:4px;">
           <div class="lm-tabs-list" role="tablist">
@@ -118,24 +121,24 @@
             <button class="lm-tab" role="tab" data-tab="last-race" aria-selected="false">last race</button>
           </div>
           <div class="lm-tab-panel" id="panel-f1-calendar" aria-hidden="false">
-            <div class="lm-card" id="f1-calendar" style="font-family:'Paper Mono',monospace;font-size:12px;line-height:1.8;">
+            <div class="lm-card" id="f1-calendar" style="font-family:var(--font-mono);font-size:12px;line-height:1.8;">
               <div class="lm-skeleton lm-skeleton-sm" style="margin:4px 0;"></div>
               <div class="lm-skeleton lm-skeleton-sm lm-skeleton-w-75" style="margin:4px 0;"></div>
               <div class="lm-skeleton lm-skeleton-sm lm-skeleton-w-50" style="margin:4px 0;"></div>
             </div>
           </div>
           <div class="lm-tab-panel" id="panel-driver-standings" aria-hidden="true">
-            <div class="lm-card" id="driver-standings" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+            <div class="lm-card" id="driver-standings" style="font-family:var(--font-mono);font-size:12px;padding:8px 12px;">
               <div class="lm-skeleton-row" style="padding:8px 0;"><span class="lm-skeleton lm-skeleton-circle"></span><span class="lm-skeleton lm-skeleton-sm"></span></div>
             </div>
           </div>
           <div class="lm-tab-panel" id="panel-constructor-standings" aria-hidden="true">
-            <div class="lm-card" id="constructor-standings" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+            <div class="lm-card" id="constructor-standings" style="font-family:var(--font-mono);font-size:12px;padding:8px 12px;">
               <div class="lm-skeleton-row" style="padding:8px 0;"><span class="lm-skeleton lm-skeleton-circle"></span><span class="lm-skeleton lm-skeleton-sm"></span></div>
             </div>
           </div>
           <div class="lm-tab-panel" id="panel-last-race" aria-hidden="true">
-            <div class="lm-card" id="last-race" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+            <div class="lm-card" id="last-race" style="font-family:var(--font-mono);font-size:12px;padding:8px 12px;">
               <div class="lm-skeleton-row" style="padding:8px 0;"><span class="lm-skeleton lm-skeleton-circle"></span><span class="lm-skeleton lm-skeleton-sm"></span></div>
             </div>
           </div>
@@ -144,7 +147,7 @@
       <!-- ─── MUSIC ─── -->
       <div class="section" id="section-music">
         <div class="music-split">
-          <a href="https://last.fm/user/silvermanch" class="music-now-playing" id="scrobbler-card" target="_blank">
+          <button type="button" class="music-now-playing" id="scrobbler-card" onclick="window.open(this.getAttribute('data-url')||'https://last.fm/user/silvermanch','_blank')">
             <img id="track-art" class="music-art hidden" src="" alt="album art" />
             <div class="music-art-fallback"><i class="fa-solid fa-record-vinyl"></i></div>
             <div class="music-art-overlay"></div>
@@ -162,7 +165,7 @@
               <span class="eq-bar"></span>
               <span class="eq-bar"></span>
             </span>
-          </a>
+          </button>
           <div class="music-recent">
             <div class="section-header">recent</div>
             <div class="music-grid" id="recent-tracks">
@@ -171,7 +174,7 @@
           </div>
         </div>
         <p style="font-size:12px;color:var(--text-3);">
-          scrobbling to <a href="https://last.fm/user/silvermanch" class="link-out" target="_blank">last.fm/silvermanch <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          scrobbling to <button type="button" class="link-out" onclick="window.open('https://last.fm/user/silvermanch','_blank')">last.fm/silvermanch <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
         </p>
       </div>
       <!-- Projects and /now moved/removed per user request -->
@@ -182,11 +185,11 @@
           <div id="mood-indicator" style="width:14px;height:14px;border-radius:50%;background:var(--primary);flex-shrink:0;transition:all 0.5s ease;box-shadow:0 0 12px var(--primary);"></div>
           <div style="flex:1;">
             <div id="mood-label" style="font-weight:600;font-size:15px;display:flex;align-items:center;gap:8px;"><span class="lm-spinner lm-spinner-sm"></span> syncing...</div>
-            <div id="mood-sub" style="font-size:12px;color:var(--text-2);font-family:'Paper Mono',monospace;">hex status: —</div>
+            <div id="mood-sub" style="font-size:12px;color:var(--text-2);font-family:var(--font-mono);">hex status: —</div>
           </div>
           <div style="text-align:right;">
             <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">last seen</div>
-            <div id="mood-time" style="font-family:'Paper Mono',monospace;font-size:12px;color:var(--text-2);">—</div>
+            <div id="mood-time" style="font-family:var(--font-mono);font-size:12px;color:var(--text-2);">—</div>
           </div>
         </div>
         <div class="section-header">hardware</div>
@@ -304,23 +307,23 @@
           </div>
         </div>
         <div class="section-header">next race</div>
-        <a href="#" class="lm-card" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;" onclick="document.querySelector('[data-page=f1]').click();return false;">
+        <button type="button" class="lm-card" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;text-align:left;width:100%;" onclick="document.querySelector('[data-page=f1]').click()">
           <div id="dash-race-flag" style="font-size:28px;"><i class="fa-solid fa-flag-checkered"></i></div>
           <div style="flex:1;">
             <div id="dash-race-name" style="font-weight:600;font-size:14px;"><span class="lm-spinner lm-spinner-sm"></span></div>
-            <div id="dash-race-session" style="font-size:12px;color:var(--text-2);font-family:'Paper Mono',monospace;">—</div>
+            <div id="dash-race-session" style="font-size:12px;color:var(--text-2);font-family:var(--font-mono);">—</div>
           </div>
           <div style="text-align:right;">
-            <div id="dash-race-countdown" style="font-family:'Paper Mono',monospace;font-weight:700;font-size:20px;color:var(--primary);">—</div>
+            <div id="dash-race-countdown" style="font-family:var(--font-mono);font-weight:700;font-size:20px;color:var(--primary);">—</div>
             <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-top:-2px;">until race</div>
           </div>
-        </a>
+        </button>
         <div class="section-header">now playing</div>
-        <a href="https://last.fm/user/silvermanch" class="lm-card" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;" target="_blank">
+        <button type="button" class="lm-card" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;text-align:left;width:100%;" onclick="window.open('https://last.fm/user/silvermanch','_blank')">
           <img id="dash-track-art" src="" alt="" style="width:40px;height:40px;border-radius:6px;object-fit:cover;border:1px solid var(--outline);flex-shrink:0;background:var(--surface-3);" />
           <div style="flex:1;overflow:hidden;">
             <div id="dash-track-name" style="font-weight:600;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><span class="lm-spinner lm-spinner-sm"></span></div>
-            <div id="dash-track-artist" style="font-size:11px;color:var(--text-2);font-family:'Paper Mono',monospace;"></div>
+            <div id="dash-track-artist" style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);"></div>
           </div>
           <span class="equaliser" id="dash-eq">
             <span class="eq-bar"></span>
@@ -330,13 +333,13 @@
             <span class="eq-bar"></span>
             <span class="eq-bar"></span>
           </span>
-        </a>
+        </button>
         <div class="section-header">cron jobs</div>
-        <div class="lm-card" id="cron-list" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+        <div class="lm-card" id="cron-list" style="font-family:var(--font-mono);font-size:12px;padding:8px 12px;">
           <div class="lm-skeleton-row" style="padding:8px 0;"><span class="lm-skeleton lm-skeleton-circle"></span><span class="lm-skeleton lm-skeleton-sm"></span></div>
         </div>
         <div class="section-header">recent activity</div>
-        <div class="lm-card" id="activity-list" style="font-family:'Paper Mono',monospace;font-size:12px;padding:8px 12px;">
+        <div class="lm-card" id="activity-list" style="font-family:var(--font-mono);font-size:12px;padding:8px 12px;">
           <div class="lm-skeleton-row" style="padding:8px 0;"><span class="lm-skeleton lm-skeleton-circle"></span><span class="lm-skeleton lm-skeleton-sm"></span></div>
         </div>
       </div>
@@ -362,10 +365,15 @@
       bar.innerHTML = '<span class="card-titlebar-name">' + deckMeta[p] + '</span>';
       sec.insertBefore(bar, sec.firstChild);
     });
-    // highlight the rail link for the room currently in view
+    // jump to a section from the rail
+    function goPage(p) {
+      var el = document.getElementById('section-' + p);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    // highlight the rail button for the room currently in view
     var navLinks = {};
-    document.querySelectorAll('.icon-rail a.nav-item').forEach(function(a) {
-      navLinks[a.getAttribute('href').replace('#section-', '')] = a;
+    document.querySelectorAll('.icon-rail .nav-item[data-page]').forEach(function(b) {
+      navLinks[b.getAttribute('data-page')] = b;
     });
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function(entries) {
@@ -910,7 +918,7 @@
         html += '<span style="color:var(--text-3);width:16px;text-align:right;font-size:10px;">' + p.pos + '</span>';
         html += '<span style="color:' + col + ';">' + code + '</span>';
         html += '</div>';
-        html += '<span style="color:var(--text-3);font-size:10px;font-family:\'Paper Mono\',monospace;">' + (timeStr || '\u2014') + '</span>';
+        html += '<span style="color:var(--text-3);font-size:10px;font-family:var(--font-mono);">' + (timeStr || '\u2014') + '</span>';
         html += '</div>';
       }
       html += weatherHtml;
@@ -946,10 +954,10 @@
       if (expandedTeam === code) { expandedTeam = null; }
       else { expandedTeam = code; expandedRace = null; renderCalendar(); }
       var chips = document.querySelectorAll('.chip[data-team]');
-      chips.forEach(function(c) { c.classList.remove('active'); });
+      chips.forEach(function(c) { c.classList.remove('active'); c.setAttribute('aria-pressed', 'false'); });
       if (expandedTeam) {
         var activeChip = document.querySelector('.chip[data-team="' + expandedTeam + '"]');
-        if (activeChip) activeChip.classList.add('active');
+        if (activeChip) { activeChip.classList.add('active'); activeChip.setAttribute('aria-pressed', 'true'); }
       }
       renderTeams();
     }
@@ -1012,11 +1020,11 @@
           // ── Circuit details bar ──
           html += '<div style="border-top:1px solid var(--outline);margin:6px 4px 4px;"></div>';
           html += '<div style="font-size:11px;padding:0 4px 2px;">';
-          html += '<div style="display:flex;justify-content:space-between;"><span style="color:var(--text-3);font-family:\'Paper Mono\',monospace;">' + r.circuit + '</span><span style="color:var(--text-3);font-family:\'Paper Mono\',monospace;">' + r.loc + '</span></div>';
+          html += '<div style="display:flex;justify-content:space-between;"><span style="color:var(--text-3);font-family:var(--font-mono);">' + r.circuit + '</span><span style="color:var(--text-3);font-family:var(--font-mono);">' + r.loc + '</span></div>';
           html += '<div style="display:flex;gap:10px;padding:3px 0;">';
-          html += '<span style="font-family:\'Paper Mono\',monospace;color:var(--text-2);">' + r.laps + ' laps</span>';
-          html += '<span style="font-family:\'Paper Mono\',monospace;color:var(--text-2);">' + r.length + '</span>';
-          html += '<span style="font-family:\'Paper Mono\',monospace;color:var(--text-2);">' + r.dist + '</span>';
+          html += '<span style="font-family:var(--font-mono);color:var(--text-2);">' + r.laps + ' laps</span>';
+          html += '<span style="font-family:var(--font-mono);color:var(--text-2);">' + r.length + '</span>';
+          html += '<span style="font-family:var(--font-mono);color:var(--text-2);">' + r.dist + '</span>';
           html += '</div>';
           if (ci) {
             html += '<div style="display:flex;flex-wrap:wrap;gap:4px 12px;padding:3px 0;border-top:1px solid var(--outline);margin-top:2px;padding-top:4px;">';
@@ -1031,8 +1039,8 @@
           // ── Past winners ──
           html += '<div style="border-top:1px solid var(--outline);margin:2px 4px 4px;"></div>';
           html += '<div style="font-size:11px;padding:2px 4px;display:flex;gap:12px;">';
-          if (w25) html += '<span style="color:var(--text-2);"><i class="fa-solid fa-flag-checkered"></i> 2025: <strong style="font-family:\'Paper Mono\',monospace;">#' + w25.num + '</strong> ' + w25.n + '</span>';
-          if (w24) html += '<span style="color:var(--text-2);"><i class="fa-solid fa-flag-checkered"></i> 2024: <strong style="font-family:\'Paper Mono\',monospace;">#' + w24.num + '</strong> ' + w24.n + '</span>';
+          if (w25) html += '<span style="color:var(--text-2);"><i class="fa-solid fa-flag-checkered"></i> 2025: <strong style="font-family:var(--font-mono);">#' + w25.num + '</strong> ' + w25.n + '</span>';
+          if (w24) html += '<span style="color:var(--text-2);"><i class="fa-solid fa-flag-checkered"></i> 2024: <strong style="font-family:var(--font-mono);">#' + w24.num + '</strong> ' + w24.n + '</span>';
           html += '</div>';
           html += '</div>'; // end animation wrapper
         }
@@ -1053,18 +1061,18 @@
       for (var d = 0; d < t.drivers.length; d++) {
         var drv = t.drivers[d];
         driverHtml += '<div style="display:flex;align-items:center;gap:8px;padding:4px 0;">'
-          + '<span style="font-family:\'Paper Mono\',monospace;font-size:13px;font-weight:700;color:var(--text-3);width:24px;">#' + drv.num + '</span>'
+          + '<span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--text-3);width:24px;">#' + drv.num + '</span>'
           + '<span style="font-weight:600;font-size:14px;">' + drv.n + '</span>'
           + '</div>';
       }
       div.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1px;">'
         + '<div style="display:flex;align-items:center;gap:8px;"><span style="width:10px;height:10px;border-radius:50%;background:' + t.color + ';"></span><strong style="font-size:15px;">' + t.full + '</strong></div>'
-        + (t.url ? '<a href="' + t.url + '" target="_blank" class="link-out" style="font-size:11px;">f1 page <i class="fa-solid fa-arrow-up-right-from-square"></i></a>' : '')
+        + (t.url ? '<button type="button" class="link-out" style="font-size:11px;" onclick="window.open(\'' + t.url + '\',\'_blank\')">f1 page <i class="fa-solid fa-arrow-up-right-from-square"></i></button>' : '')
         + '</div>'
         + '<div style="margin:6px 0 0;">'
         + driverHtml
         + '</div>'
-        + '<div style="display:flex;gap:14px;font-family:\'Paper Mono\',monospace;font-size:11px;color:var(--text-3);padding-top:6px;margin-top:4px;border-top:1px solid var(--outline);">'
+        + '<div style="display:flex;gap:14px;font-family:var(--font-mono);font-size:11px;color:var(--text-3);padding-top:6px;margin-top:4px;border-top:1px solid var(--outline);">'
         + '<span><i class="fa-solid fa-gear"></i> ' + t.engine + '</span>'
         + '</div>';
       var chips = byId('team-chips');
@@ -1191,7 +1199,7 @@
             if (info.desc) html += '<div style="color:var(--text-2);margin-bottom:1px;">' + info.desc + '</div>';
             if (info.extract && !info.desc) html += '<div style="color:var(--text-2);margin-bottom:1px;line-height:1.4;">' + info.extract.slice(0, 200) + (info.extract.length > 200 ? '…' : '') + '</div>';
           }
-          html += '<a href="' + d.Driver.url + '" target="_blank" class="link-out" style="font-size:11px;">wikipedia <i class="fa-solid fa-arrow-up-right-from-square"></i></a>';
+          html += '<button type="button" class="link-out" style="font-size:11px;" onclick="window.open(\'' + d.Driver.url + '\',\'_blank\')">wikipedia <i class="fa-solid fa-arrow-up-right-from-square"></i></button>';
           html += '</td></tr>';
         }
       }
@@ -1265,14 +1273,14 @@
             var drvs = f1Teams[teamCode].drivers;
             for (var dx = 0; dx < drvs.length; dx++) {
               html += '<div style="display:flex;align-items:center;gap:6px;padding:2px 0;">';
-              html += '<span style="font-family:\'Paper Mono\',monospace;font-size:11px;font-weight:700;color:var(--text-3);width:20px;">#' + drvs[dx].num + '</span>';
+              html += '<span style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--text-3);width:20px;">#' + drvs[dx].num + '</span>';
               html += '<span style="font-size:12px;font-weight:500;">' + drvs[dx].n + '</span>';
               html += '</div>';
             }
             html += '</div>';
           }
           if (info && info.desc) html += '<div style="color:var(--text-2);margin-bottom:1px;">' + info.desc + '</div>';
-          html += '<a href="' + c.Constructor.url + '" target="_blank" class="link-out" style="font-size:11px;">wikipedia <i class="fa-solid fa-arrow-up-right-from-square"></i></a>';
+          html += '<button type="button" class="link-out" style="font-size:11px;" onclick="window.open(\'' + c.Constructor.url + '\',\'_blank\')">wikipedia <i class="fa-solid fa-arrow-up-right-from-square"></i></button>';
           html += '</td></tr>';
         }
       }
@@ -1360,7 +1368,7 @@
         html += '<td style="font-weight:' + (isPodium ? '700' : '500') + ';color:' + col + ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + driverCode + ' ' + r.Driver.familyName + (hasFL ? ' <span title="fastest lap" style="display:inline-block;font-size:9px;color:#fbbf24;transform:translateY(-1px);"><i class="fa-solid fa-bolt"></i></span>' : '') + '</td>';
         html += '<td style="text-align:right;color:' + col + ';font-size:11px;font-weight:600;">' + pts + '</td>';
         var tm = timeStr || '—';
-        html += '<td style="text-align:right;color:var(--text-3);font-size:11px;font-family:\'Paper Mono\',monospace;">' + tm + '</td>';
+        html += '<td style="text-align:right;color:var(--text-3);font-size:11px;font-family:var(--font-mono);">' + tm + '</td>';
         html += '</tr>';
         if (isExpanded) {
           html += '<tr><td colspan="5" style="padding:4px 6px;font-size:12px;animation:fadeIn 0.15s ease;border-top:1px solid var(--outline);">';
@@ -1383,7 +1391,7 @@
             html += '</div>';
           }
           html += '<div style="margin-top:4px;">';
-          html += '<a href="' + driverUrl + '" target="_blank" class="link-out" style="font-size:11px;">driver wiki <i class="fa-solid fa-arrow-up-right-from-square"></i></a>';
+          html += '<button type="button" class="link-out" style="font-size:11px;" onclick="window.open(\'' + driverUrl + '\',\'_blank\')">driver wiki <i class="fa-solid fa-arrow-up-right-from-square"></i></button>';
           html += '</div>';
           html += '</td></tr>';
         }
@@ -1632,7 +1640,7 @@
             document.getElementById('track-name').textContent = nowPlaying.name || 'unknown';
             document.getElementById('track-artist').textContent = nowPlaying.artist['#text'] || 'unknown';
             document.getElementById('track-album').textContent = nowPlaying.album['#text'] || 'single';
-            document.getElementById('scrobbler-card').href = scrobbleUrl;
+            document.getElementById('scrobbler-card').setAttribute('data-url', scrobbleUrl);
             setTrackArt(art && art['#text']);
             recentCache = tracks.slice(1, 6);
             bars.forEach(function(b) { b.classList.remove('paused'); });
@@ -1643,7 +1651,7 @@
             document.getElementById('track-name').textContent = nowPlaying.name || 'unknown';
             document.getElementById('track-artist').textContent = nowPlaying.artist['#text'] || 'unknown';
             document.getElementById('track-album').textContent = nowPlaying.album['#text'] || 'single';
-            document.getElementById('scrobbler-card').href = scrobbleUrl;
+            document.getElementById('scrobbler-card').setAttribute('data-url', scrobbleUrl);
             setTrackArt(art && art['#text']);
             recentCache = tracks.slice(0, 5);
             bars.forEach(function(b) { b.classList.add('paused'); });
@@ -1687,15 +1695,15 @@
         }
         var trackUrl = 'https://www.last.fm/music/' + encodeURIComponent(artist) + '/_/' + encodeURIComponent(name);
         if (thumb) {
-          html += '<a href="' + trackUrl + '" class="music-tile" target="_blank">';
+          html += '<button type="button" class="music-tile" onclick="window.open(\'' + trackUrl + '\',\'_blank\')">';
           html += '<img src="' + thumb + '" alt="" loading="lazy" />';
           html += '<div class="music-tile-info"><span class="music-tile-name">' + name + '</span><span class="music-tile-artist">' + artist + '</span></div>';
-          html += '</a>';
+          html += '</button>';
         } else {
-          html += '<a href="' + trackUrl + '" class="music-tile" target="_blank">';
+          html += '<button type="button" class="music-tile" onclick="window.open(\'' + trackUrl + '\',\'_blank\')">';
           html += '<div class="music-tile-placeholder"><span>' + name + '</span></div>';
           html += '<div class="music-tile-info"><span class="music-tile-name">' + name + '</span><span class="music-tile-artist">' + artist + '</span></div>';
-          html += '</a>';
+          html += '</button>';
         }
       }
       el.innerHTML = html;
