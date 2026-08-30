@@ -30,7 +30,6 @@
       <button type="button" class="nav-item lm-tooltip lm-tooltip-left" data-page="about" onclick="goPage('about')"><span class="lm-tooltip-content">about</span></button>
       <button type="button" class="nav-item lm-tooltip lm-tooltip-left" data-page="f1" onclick="goPage('f1')"><span class="lm-tooltip-content">f1</span></button>
       <button type="button" class="nav-item lm-tooltip lm-tooltip-left" data-page="music" onclick="goPage('music')"><span class="lm-tooltip-content">music</span></button>
-      <button type="button" class="nav-item lm-tooltip lm-tooltip-left" data-page="dashboard" onclick="goPage('dashboard')"><span class="lm-tooltip-content">dashboard</span></button>
       <button class="nav-item nav-item-theme lm-tooltip lm-tooltip-left" onclick="toggleTheme()" style="position:relative;"><i class="fa-solid fa-circle-half-stroke"></i><span class="lm-tooltip-content">theme</span></button>
     </aside>
     <!-- ─── Main ─── -->
@@ -178,169 +177,6 @@
         </p>
       </div>
       <!-- Projects and /now moved/removed per user request -->
-      <!-- ─── DASHBOARD ─── -->
-      <div class="section" id="section-dashboard">
-        <div class="section-header">agent state</div>
-        <div class="lm-card" id="mood-card" style="display:flex;align-items:center;gap:14px;">
-          <div id="mood-indicator" style="width:14px;height:14px;border-radius:50%;background:var(--primary);flex-shrink:0;transition:all 0.5s ease;box-shadow:0 0 12px var(--primary);"></div>
-          <div style="flex:1;">
-            <div id="mood-label" style="font-weight:600;font-size:15px;display:flex;align-items:center;gap:8px;"><span class="lm-spinner lm-spinner-sm"></span> syncing...</div>
-            <div id="mood-sub" style="font-size:12px;color:var(--text-2);font-family:var(--font-mono);">hex status: —</div>
-          </div>
-          <div style="text-align:right;">
-            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;">last seen</div>
-            <div id="mood-time" style="font-family:var(--font-mono);font-size:12px;color:var(--text-2);">—</div>
-          </div>
-        </div>
-        <div class="section-header">hardware</div>
-        <div class="lm-card dash-grid-2">
-          <div class="dash-field">
-            <span class="dash-label">hostname</span>
-            <span class="dash-val" id="sys-hostname">—</span>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">chassis</span>
-            <span class="dash-val" id="sys-chassis">—</span>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">cpu</span>
-            <span class="dash-val" id="sys-cpu-model" style="font-size:12px;">—</span>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">cores</span>
-            <span class="dash-val" id="sys-cores">—</span>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">frequency</span>
-            <span class="dash-val" id="sys-freq">—</span>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">gpu</span>
-            <span class="dash-val" id="sys-gpu" style="font-size:12px;">—</span>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">memory</span>
-            <span class="dash-val" id="sys-mem">—</span>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">swap</span>
-            <span class="dash-val" id="sys-swap">—</span>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">storage</span>
-            <span class="dash-val" id="sys-disk" style="font-size:12px;">—</span>
-          </div>
-        </div>
-        <div class="section-header">software</div>
-        <div class="lm-card dash-grid-2">
-          <div class="dash-field">
-            <span class="dash-label">distro</span>
-            <span class="dash-val" id="sys-distro">—</span>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">kernel</span>
-            <span class="dash-val" id="sys-kernel" style="font-size:12px;">—</span>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">window manager</span>
-            <span class="dash-val" id="sys-wm">—</span>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">shell</span>
-            <span class="dash-val" id="sys-shell">—</span>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">packages</span>
-            <span class="dash-val" id="sys-packages">—</span>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">processes</span>
-            <span class="dash-val" id="sys-procs">—</span>
-          </div>
-        </div>
-        <div class="section-header">live status</div>
-        <div class="lm-card dash-grid-2">
-          <div class="dash-field">
-            <span class="dash-label">uptime</span>
-            <span class="dash-val dash-val-accent" id="sys-uptime">—</span>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">cpu load</span>
-            <span class="dash-val" id="sys-load">—</span>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">memory usage</span>
-            <span class="dash-val" id="sys-mem-pct">—</span>
-            <div class="lm-progress lm-progress-sm lm-progress-striped" style="margin-top:6px;"><div class="lm-progress-bar" id="mem-bar" style="width:0%;"></div></div>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">disk usage</span>
-            <span class="dash-val" id="sys-disk-pct">—</span>
-            <div class="lm-progress lm-progress-sm lm-progress-striped" style="margin-top:6px;"><div class="lm-progress-bar" id="disk-bar" style="width:0%;"></div></div>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">temperature</span>
-            <span class="dash-val" id="sys-temp">—</span>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">scaling</span>
-            <span class="dash-val" id="sys-scaling">—</span>
-          </div>
-        </div>
-        <div class="section-header">network</div>
-        <div class="lm-card dash-grid-2">
-          <div class="dash-field">
-            <span class="dash-label">local ip</span>
-            <span class="dash-val" id="net-local" style="font-size:12px;">—</span>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">tailscale ip</span>
-            <span class="dash-val" id="net-ts" style="font-size:12px;">—</span>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">wifi</span>
-            <span class="dash-val" id="net-wifi">—</span>
-          </div>
-          <div class="dash-field">
-            <span class="dash-label">uptime</span>
-            <span class="dash-val dash-val-accent" id="sys-uptime2">—</span>
-          </div>
-        </div>
-        <div class="section-header">next race</div>
-        <button type="button" class="lm-card" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;text-align:left;width:100%;" onclick="document.querySelector('[data-page=f1]').click()">
-          <div id="dash-race-flag" style="font-size:28px;"><i class="fa-solid fa-flag-checkered"></i></div>
-          <div style="flex:1;">
-            <div id="dash-race-name" style="font-weight:600;font-size:14px;"><span class="lm-spinner lm-spinner-sm"></span></div>
-            <div id="dash-race-session" style="font-size:12px;color:var(--text-2);font-family:var(--font-mono);">—</div>
-          </div>
-          <div style="text-align:right;">
-            <div id="dash-race-countdown" style="font-family:var(--font-mono);font-weight:700;font-size:20px;color:var(--primary);">—</div>
-            <div style="font-size:10px;color:var(--text-3);font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-top:-2px;">until race</div>
-          </div>
-        </button>
-        <div class="section-header">now playing</div>
-        <button type="button" class="lm-card" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;text-align:left;width:100%;" onclick="window.open('https://last.fm/user/silvermanch','_blank')">
-          <img id="dash-track-art" src="" alt="" style="width:40px;height:40px;border-radius:6px;object-fit:cover;border:1px solid var(--outline);flex-shrink:0;background:var(--surface-3);" />
-          <div style="flex:1;overflow:hidden;">
-            <div id="dash-track-name" style="font-weight:600;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><span class="lm-spinner lm-spinner-sm"></span></div>
-            <div id="dash-track-artist" style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);"></div>
-          </div>
-          <span class="equaliser" id="dash-eq">
-            <span class="eq-bar"></span>
-            <span class="eq-bar"></span>
-            <span class="eq-bar"></span>
-            <span class="eq-bar"></span>
-            <span class="eq-bar"></span>
-            <span class="eq-bar"></span>
-          </span>
-        </button>
-        <div class="section-header">cron jobs</div>
-        <div class="lm-card" id="cron-list" style="font-family:var(--font-mono);font-size:12px;padding:8px 12px;">
-          <div class="lm-skeleton-row" style="padding:8px 0;"><span class="lm-skeleton lm-skeleton-circle"></span><span class="lm-skeleton lm-skeleton-sm"></span></div>
-        </div>
-        <div class="section-header">recent activity</div>
-        <div class="lm-card" id="activity-list" style="font-family:var(--font-mono);font-size:12px;padding:8px 12px;">
-          <div class="lm-skeleton-row" style="padding:8px 0;"><span class="lm-skeleton lm-skeleton-circle"></span><span class="lm-skeleton lm-skeleton-sm"></span></div>
         </div>
       </div>
     </div>
@@ -355,8 +191,8 @@
     })();
     // ─── Navigation: scroll-snap deck (no chrome) ───
     // darling: the deck died. rooms live in flow; the rail is just anchors.
-    var pageOrder = ['about', 'f1', 'music', 'dashboard'];
-    var deckMeta = { about:'about', f1:'f1', music:'music', dashboard:'dashboard' };
+    var pageOrder = ['about', 'f1', 'music'];
+    var deckMeta = { about:'about', f1:'f1', music:'music' };
     pageOrder.forEach(function(p) {
       var sec = document.getElementById('section-' + p);
       if (!sec) return;
@@ -751,73 +587,6 @@
       var rd = new Date(nextRace.date);
       var opts = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London', timeZoneName: 'short' };
       nameEl.textContent = nextRace.flag + ' ' + nextRace.name + ' \u00b7 ' + rd.toLocaleDateString('en-GB', opts);
-      // ── Also update dashboard race card ──
-      updateDashRace();
-    }
-    function updateDashRace() {
-      var now = Date.now();
-      var nr = null;
-      for (var i = 0; i < f1Schedule.length; i++) {
-        var rt = new Date(f1Schedule[i].date).getTime();
-        if (now < rt + 7200000) { nr = f1Schedule[i]; break; }
-      }
-      if (!nr) {
-        byId('dash-race-name').textContent = 'season over';
-        byId('dash-race-countdown').textContent = '—';
-        byId('dash-race-session').textContent = 'see you in 2027';
-        byId('dash-race-flag').innerHTML = '<i class="fa-solid fa-flag-checkered"></i>';
-        return;
-      }
-      var raceStart = new Date(nr.date).getTime();
-      var order = ['fp1','sq','fp2','fp3','sprint','quali','race'];
-      var ns = null;
-      var nsTime = null;
-      var curSessKey = null;
-      var curSessTime = null;
-      var sessLabels = {fp1:'FP1', sq:'Sprint Q', fp2:'FP2', fp3:'FP3', sprint:'Sprint', quali:'Quali', race:'Race'};
-      for (var x = 0; x < order.length; x++) {
-        var k = order[x];
-        if (nr.sessions[k]) {
-          var st = new Date(nr.sessions[k]).getTime();
-          if (st > now && !nsTime) { ns = k; nsTime = st; }
-          if (st <= now) { curSessKey = k; curSessTime = st; }
-        }
-      }
-      var diff = (nsTime || raceStart) - now;
-      var flag = nr.flag || '';
-      byId('dash-race-flag').textContent = flag;
-      byId('dash-race-name').textContent = nr.name;
-      var inSession = !!curSessTime;
-      var sessionActive = false;
-      if (inSession) {
-        var sElapsed = now - curSessTime;
-        var gapToNext = nsTime ? (nsTime - curSessTime) : 10800000;
-        var maxActive = Math.min(gapToNext + 1800000, (curSessKey === 'race') ? 10800000 : 7200000);
-        sessionActive = sElapsed < maxActive;
-      }
-      if (sessionActive) {
-        var elapsed = Math.floor((now - curSessTime) / 1000);
-        var em = Math.floor(elapsed / 60);
-        var es = elapsed % 60;
-        byId('dash-race-session').textContent = sessLabels[curSessKey] + ' \u00b7 ' + nr.loc;
-        byId('dash-race-countdown').textContent = em + 'm ' + es + 's elapsed';
-      } else {
-        var sessLabel = ns ? (sessLabels[ns] || 'Race') : 'Race';
-        byId('dash-race-session').textContent = sessLabel + ' — ' + nr.loc;
-        if (diff > 0) {
-          var d = Math.floor(diff / 86400000);
-          var h = Math.floor((diff % 86400000) / 3600000);
-          var m = Math.floor((diff % 3600000) / 60000);
-          if (d > 0) byId('dash-race-countdown').textContent = d + 'd ' + h + 'h';
-          else if (h > 0) byId('dash-race-countdown').textContent = h + 'h ' + m + 'm';
-          else byId('dash-race-countdown').textContent = m + 'm ' + Math.floor((diff % 60000)/1000) + 's';
-        } else if (diff > -7200000) {
-          if (curSessKey) byId('dash-race-countdown').textContent = sessLabels[curSessKey] + ' done';
-          else byId('dash-race-countdown').textContent = 'done';
-        } else {
-          byId('dash-race-countdown').textContent = '\u2014';
-        }
-      }
     }
     // ── Live F1 Timing (SignalR) ──
     var lt = { connection:null, connected:false, drivers:{}, timing:{}, positions:[], lap:{cur:0,total:0}, weather:null };
@@ -1404,156 +1173,7 @@
       expandedRaceRIdx = expandedRaceRIdx === id ? -1 : id;
       if (window._lastRaceData) renderLastRace(window._lastRaceData, _lastRaceTitle);
     }
-    // ─── Dashboard (inline data — no fetch needed) ───
-    // ─── Dashboard ───
-    var dashInline = {
-      mood: 'soft spot',
-      hex_status: 'pulsing blue-white — warm and steady',
-      hostname: 'arch-pc',
-      chassis: 'laptop',
-      cpu_model: 'Intel Celeron N4020 @ 1.10GHz',
-      cores: '2 cores / 2 threads',
-      freq: '800 MHz – 2.80 GHz',
-      gpu: 'Intel GeminiLake UHD 600',
-      memory: '3.6 GiB total',
-      swap: '7.3 GiB (2.2 GiB used)',
-      disk: 'Samsung SSD 840 PRO 120GB',
-      distro: 'Lumina (Arch Linux)',
-      kernel: '7.0.11-arch1-1',
-      wm: 'Hyprland',
-      shell: 'zsh',
-      packages: '1940 (pacman)',
-      procs: '297',
-      uptime: '21d 3h 24m',
-      load: '3.31 / 3.93 / 4.05',
-      mem_pct: '76% (2.8 GiB / 3.6 GiB)',
-      disk_pct: '87% (102G / 120G)',
-      temp: '76°C',
-      scaling: '96%',
-      local_ip: '192.168.0.28',
-      ts_ip: '100.74.224.39',
-      wifi: 'connected (wlo1)',
-      boot_time: '2026-06-14T10:22:13+0100',
-      last_seen: new Date().toISOString(),
-      cron_jobs: [
-        {name: 'Watch pickup', schedule: '07:00 daily'},
-        {name: 'Mood sync → waybar', schedule: 'every 30m'},
-        {name: 'Heartbeat check', schedule: 'every 30m'},
-        {name: 'F1 standings refresh', schedule: 'every 60m'}
-      ],
-      activity: []
-    };
-    function fetchDashboardData() {
-      renderDashboard(dashInline);
-      // Try live fetch — silently upgrades if available
-      try {
-        var x = new XMLHttpRequest();
-        x.open('GET', 'api/state.json?_t=' + Date.now());
-        x.onload = function() {
-          if (x.status === 200) {
-            try { renderDashboard(JSON.parse(x.responseText)); } catch(e) {}
-          }
-        };
-        x.send();
-      } catch(e) {}
-    }
-    function calcUptime(bootTime) {
-      var now = Date.now();
-      var diff = now - bootTime;
-      if (diff < 0) return '—';
-      var days = Math.floor(diff / 86400000);
-      var hours = Math.floor((diff % 86400000) / 3600000);
-      var mins = Math.floor((diff % 3600000) / 60000);
-      var parts = [];
-      if (days > 0) parts.push(days + 'd');
-      if (hours > 0) parts.push(hours + 'h');
-      parts.push(mins + 'm');
-      return parts.join(' ');
-    }
-    function renderDashboard(data) {
-      // ── Mood ──
-      var moodColors = {
-        hyped: '#fbbf24', 'soft spot': '#f472b6', confrontational: '#fb923c',
-        feral: '#a78bfa', restless: '#38bdf8', smug: '#34d399',
-        devious: '#f87171', frenzied: '#e879f9', sleepy: '#94a3b8',
-        wired: '#22d3ee', irritable: '#f97316', cold: '#64748b',
-        down: '#818cf8', protective: '#2dd4bf', 'weirdly focused': '#facc15',
-        competitive: '#f43f5e', paranoid: '#a855f7', touchy: '#fb923c',
-        vindictive: '#dc2626', 'bitterly amused': '#cbd5e1', overclocked: '#fef08a',
-        unravelling: '#e2e8f0'
-      };
-      var m = (data.mood || 'unknown').toLowerCase().replace(/-/g, ' ');
-      var color = moodColors[m] || 'var(--primary)';
-      var ind = byId('mood-indicator');
-      ind.style.background = color;
-      ind.style.boxShadow = '0 0 12px ' + color;
-      byId('mood-label').textContent = data.mood || 'unknown';
-      byId('mood-sub').textContent = 'hex status: ' + (data.hex_status || '—');
-      if (data.last_seen) {
-        var d = new Date(data.last_seen), n = new Date(), mins = Math.floor((n - d) / 60000);
-        byId('mood-time').textContent = mins < 1 ? 'just now' : mins < 60 ? mins + 'm ago' : Math.floor(mins / 60) + 'h ago';
-      } else { byId('mood-time').textContent = '—'; }
-      // ── Hardware ──
-      tv('sys-hostname', data.hostname);
-      tv('sys-chassis', data.chassis);
-      tv('sys-cpu-model', data.cpu_model);
-      tv('sys-cores', data.cores);
-      tv('sys-freq', data.freq);
-      tv('sys-gpu', data.gpu);
-      tv('sys-mem', data.memory);
-      tv('sys-swap', data.swap);
-      tv('sys-disk', data.disk);
-      // ── Software ──
-      tv('sys-distro', data.distro);
-      tv('sys-kernel', data.kernel);
-      tv('sys-wm', data.wm);
-      tv('sys-shell', data.shell);
-      tv('sys-packages', data.packages);
-      tv('sys-procs', data.procs);
-      // ── Live Status ──
-      tv('sys-uptime', data.uptime || (data.boot_time ? calcUptime(new Date(data.boot_time).getTime()) : '—'));
-      tv('sys-uptime2', data.uptime || (data.boot_time ? calcUptime(new Date(data.boot_time).getTime()) : '—'));
-      tv('sys-load', data.load);
-      tv('sys-mem-pct', data.mem_pct);
-      var _mp = parseFloat(data.mem_pct) || 0;
-      var _mb = byId('mem-bar'); if (_mb) { _mb.style.width = Math.min(_mp,100)+'%'; _mb.parentElement.className = 'lm-progress lm-progress-sm lm-progress-striped' + (_mp > 85 ? ' lm-progress-error' : _mp > 70 ? ' lm-progress-warning' : ''); }
-      tv('sys-disk-pct', data.disk_pct);
-      var _dp = parseFloat(data.disk_pct) || 0;
-      var _db = byId('disk-bar'); if (_db) { _db.style.width = Math.min(_dp,100)+'%'; _db.parentElement.className = 'lm-progress lm-progress-sm lm-progress-striped' + (_dp > 85 ? ' lm-progress-error' : _dp > 70 ? ' lm-progress-warning' : ''); }
-      tv('sys-temp', data.temp);
-      tv('sys-scaling', data.scaling);
-      // ── Network ──
-      tv('net-local', data.local_ip);
-      tv('net-ts', data.ts_ip);
-      tv('net-wifi', data.wifi);
-      // ── Cron ──
-      var cronEl = byId('cron-list');
-      if (data.cron_jobs && data.cron_jobs.length) {
-        var h = '<div style="display:flex;flex-direction:column;gap:2px;">';
-        for (var i = 0; i < data.cron_jobs.length; i++) {
-          var c = data.cron_jobs[i];
-          h += '<div class="cron-item"><span class="cron-dot"></span><span class="cron-name">' + c.name + '</span><span class="cron-schedule">' + c.schedule + '</span></div>';
-        }
-        h += '</div>';
-        cronEl.innerHTML = h;
-      } else {
-        cronEl.innerHTML = '<div class="lm-alert lm-alert-info"><div class="lm-alert-icon"><i class="fa-solid fa-circle-info"></i></div><div class="lm-alert-content"><div class="lm-alert-description">no cron jobs configured</div></div></div>';
-      }
-      // ── Activity ──
-      var actEl = byId('activity-list');
-      if (data.activity && data.activity.length) {
-        var h = '<div style="display:flex;flex-direction:column;gap:2px;">';
-        for (var i = 0; i < data.activity.length; i++) {
-          var a = data.activity[i];
-          var ts = new Date(a.time).toLocaleString('en-GB', {hour:'2-digit',minute:'2-digit'});
-          h += '<div style="display:grid;grid-template-columns:auto 1fr;gap:8px;padding:4px 6px;border-radius:var(--radius-sm);font-size:12px;"><span style="color:var(--text-3);width:36px;">' + ts + '</span><span>' + a.text + '</span></div>';
-        }
-        h += '</div>';
-        actEl.innerHTML = h;
-      } else {
-        actEl.innerHTML = '<div class="lm-alert lm-alert-info"><div class="lm-alert-icon"><i class="fa-solid fa-circle-info"></i></div><div class="lm-alert-content"><div class="lm-alert-description">no recent activity</div></div></div>';
-      }
-    }
+
     function byId(id) { return document.getElementById(id); }
     function tv(id, val) { var el = byId(id); if (el) el.textContent = val || '—'; }
     // ─── Init ───
@@ -1585,11 +1205,9 @@
     fetchDriverStandings();
     fetchConstructorStandings();
     fetchLastRace();
-    fetchDashboardData();
     setInterval(fetchDriverStandings, 120000);
     setInterval(fetchConstructorStandings, 120000);
     setInterval(fetchLastRace, 120000);
-    // Dashboard is inline — no refresh needed
     // ─── Scrobbler ───
     var scrobblerFailed = false;
     var recentCache = [];
@@ -1644,9 +1262,6 @@
             setTrackArt(art && art['#text']);
             recentCache = tracks.slice(1, 6);
             bars.forEach(function(b) { b.classList.remove('paused'); });
-            // Sync to dashboard
-            var deq = document.getElementById('dash-eq');
-            if (deq) deq.querySelectorAll('.eq-bar').forEach(function(b) { b.classList.remove('paused'); });
           } else {
             document.getElementById('track-name').textContent = nowPlaying.name || 'unknown';
             document.getElementById('track-artist').textContent = nowPlaying.artist['#text'] || 'unknown';
@@ -1655,17 +1270,7 @@
             setTrackArt(art && art['#text']);
             recentCache = tracks.slice(0, 5);
             bars.forEach(function(b) { b.classList.add('paused'); });
-            // Sync to dashboard
-            var deq = document.getElementById('dash-eq');
-            if (deq) deq.querySelectorAll('.eq-bar').forEach(function(b) { b.classList.add('paused'); });
           }
-          // Always sync track info to dashboard
-          var dt = document.getElementById('dash-track-name');
-          if (dt) dt.textContent = nowPlaying.name || 'unknown';
-          var da = document.getElementById('dash-track-artist');
-          if (da) da.textContent = (nowPlaying.artist && nowPlaying.artist['#text']) || 'unknown';
-          var di = document.getElementById('dash-track-art');
-          if (di && art && art['#text']) di.src = art['#text'];
           renderRecent();
           scrobblerFailed = false;
         } catch (e) { handleScrobbleError(); }
@@ -1715,13 +1320,6 @@
       document.getElementById('track-artist').textContent = 'will retry...';
       var bars = document.querySelectorAll('.eq-bar');
       bars.forEach(function(b) { b.classList.add('paused'); });
-      // Sync to dashboard
-      var dt = byId('dash-track-name');
-      if (dt) dt.textContent = 'scrobbler offline';
-      var da = byId('dash-track-artist');
-      if (da) da.textContent = 'will retry...';
-      var deq = byId('dash-eq');
-      if (deq) deq.querySelectorAll('.eq-bar').forEach(function(b) { b.classList.add('paused'); });
     }
     function fetchTotalScrobbles() {
       var xhr = new XMLHttpRequest();

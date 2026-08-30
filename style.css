@@ -94,7 +94,6 @@ body {
 .icon-rail .nav-item[data-page="about"]::before { content:'A'; }
 .icon-rail .nav-item[data-page="f1"]::before { content:'F1'; font-size:10px; }
 .icon-rail .nav-item[data-page="music"]::before { content:'\f001'; font-family:'Font Awesome 6 Free'; font-weight:900; }
-.icon-rail .nav-item[data-page="dashboard"]::before { content:'▦'; }
 .icon-rail .nav-item-theme { margin-top:auto; }
 .icon-rail .nav-item-theme::before { content:'\f042'; font-family:'Font Awesome 6 Free'; font-weight:900; }
 .nav-tooltip { display:none; }
@@ -124,11 +123,6 @@ body {
   border:var(--border-thin);
   gap:14px;
 }
-#section-dashboard {
-  background:var(--color-overlay);
-  border:var(--border-medium);
-  gap:16px;
-}
 
 /* ── Section headers ── */
 .section-header {
@@ -139,7 +133,6 @@ body {
 }
 #section-f1 .section-header::before { content:'## '; }
 #section-music .section-header { background:var(--color-accent-alt); color:var(--color-base); }
-#section-dashboard .section-header { background:var(--color-text); color:var(--color-base); }
 
 /* ── Cards ── */
 .lm-card {
@@ -150,13 +143,11 @@ body {
 #section-about .lm-card { background:var(--color-base); border:var(--border-medium); box-shadow:var(--shadow-hard-sm); }
 #section-f1 .lm-card { background:var(--color-raised); border:none; border-left:var(--border-thick); }
 #section-music .lm-card { background:transparent; border:var(--border-thin); }
-#section-dashboard .lm-card { background:var(--color-raised); border:var(--border-thin); }
 
 .card-titlebar { display:flex; align-items:center; justify-content:space-between; }
 #section-about .card-titlebar { border-bottom:var(--border-thick); padding-bottom:8px; margin-bottom:10px; }
 #section-f1 .card-titlebar { border-bottom:none; padding-bottom:0; margin-bottom:4px; }
 #section-music .card-titlebar { border-bottom:var(--border-thin); padding-bottom:6px; margin-bottom:8px; }
-#section-dashboard .card-titlebar { border-bottom:var(--border-thin); padding-bottom:10px; margin-bottom:12px; }
 
 .card-titlebar-name {
   font-family:var(--font-display);
@@ -324,12 +315,6 @@ button.music-tile:hover {
 .music-tile-name { font-weight:800; font-size:10px; }
 .music-tile-empty { grid-column:1/-1; padding:14px; font-size:11px; color:var(--color-text-muted); }
 
-/* ── Dashboard ── */
-.dash-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:4px 12px; }
-.dash-field { display:flex; flex-direction:column; gap:1px; padding:3px 0; }
-.dash-label { font-family:var(--font-display); font-variation-settings:'wght'700,'wdth'75; font-size:8px; text-transform:uppercase; letter-spacing:1.5px; color:var(--color-text-muted); }
-.dash-val { font-family:var(--font-display); font-variation-settings:'wght'500,'wdth'75; font-size:12px; word-break:break-all; }
-.dash-val-accent { color:var(--color-accent); }
 
 /* ── Standings ── */
 .pos-1,.pos-2,.pos-3 { color:var(--color-text); font-family:var(--font-display); font-variation-settings:'wght'900,'wdth'75; }
@@ -379,7 +364,6 @@ button.music-now-playing, button.music-tile { padding:0; }
   .main { padding:0; }
   .section { position:relative; inset:auto; padding:12px 10px calc(20px + env(safe-area-inset-bottom,0px)); gap:10px; }
   .music-split { grid-template-columns:1fr; gap:6px; }
-  .dash-grid-2 { grid-template-columns:1fr; gap:2px; }
   .profile-split { grid-template-columns:1fr; }
   .card-row { grid-template-columns:1fr 1fr; gap:4px; }
 }
