@@ -2,7 +2,7 @@
 /* brutalist. sharp corners. hard shadows. thick borders.  */
 /* no acrylic. no blur. no rounding. — power              */
 
-/* ── Fonts ── */
+@import './colors.monet.css';
 
 /* ── Alias old site tokens → lumina tokens ── */
 :root {
