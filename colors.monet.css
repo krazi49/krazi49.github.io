@@ -1,82 +1,159 @@
-     [data-theme="dark"]
-     --color-primary: #0c7e9f;
-      --color-on-primary: #ffffff;
-      --color-primary-container: #004c61;
-      --color-on-primary-container: #b8e2f0;
-      --color-secondary: #4d8fa3;
-      --color-on-secondary: #ffffff;
-      --color-secondary-container: #1f4655;
-      --color-on-secondary-container: #cfe7f0;
-      --color-tertiary: #b09b6a;
-      --color-on-tertiary: #ffffff;
-      --color-tertiary-container: #4d4020;
-      --color-on-tertiary-container: #eee4c9;
-      --color-error: #ff7e89;
-      --color-on-error: #ffffff;
-      --color-error-container: #ab0016;
-      --color-on-error-container: #ebe0de;
-      --color-background: #0a1214;
-      --color-on-background: #d9e4e8;
-      --color-surface: #0e171a;
-      --color-on-surface: #d9e4e8;
-      --color-surface-variant: #3a4a50;
-      --color-on-surface-variant: #bccbd1;
-      --color-outline: #7b8f96;
-      --color-outline-variant: #3e525a;
-      --color-inverse-surface: #d9e4e8;
-      --color-inverse-on-surface: #252f33;
-      --color-inverse-primary: #8bb6c4;
-      --color-shadow: #000000;
-      --color-surface-container-low: #161e21;
-      --color-surface-container: #1d2b2f;
-      --color-surface-container-high: #26383e;
-      --color-surface-container-highest: #31454b;
-    }
+/* Lumina Design System — Colour Tokens (Monet Generated) */
+/* Seed: #b6e04c */
+/* Version 0.7 */
 
-    [data-theme="light"] {
-      --color-primary: #00647e;
-      --color-on-primary: #ffffff;
-      --color-primary-container: #b8e2f0;
-      --color-on-primary-container: #003543;
-      --color-secondary: #3b6d7e;
-      --color-on-secondary: #ffffff;
-      --color-secondary-container: #cfe7f0;
-      --color-on-secondary-container: #1f3a44;
-      --color-tertiary: #7a6830;
-      --color-on-tertiary: #ffffff;
-      --color-tertiary-container: #f0e5c4;
-      --color-on-tertiary-container: #3d3000;
-      --color-error: #b00020;
-      --color-on-error: #ffffff;
-      --color-error-container: #fbdbd9;
-      --color-on-error-container: #410002;
-      --color-background: #f7fafc;
-      --color-on-background: #1a272b;
-      --color-surface: #f2f7f9;
-      --color-on-surface: #1a272b;
-      --color-surface-variant: #dee7eb;
-      --color-on-surface-variant: #4b5b61;
-      --color-outline: #73878e;
-      --color-outline-variant: #cbd8de;
-      --color-inverse-surface: #2f3b3f;
-      --color-inverse-on-surface: #eef4f6;
-      --color-inverse-primary: #b0c9d2;
-      --color-shadow: #000000;
-      --color-surface-container-low: #eaf1f4;
-      --color-surface-container: #e0e9ed;
-      --color-surface-container-high: #d5e0e5;
-      --color-surface-container-highest: #c3d1d7;
+[data-theme="dark"] {
+  /* Surface — Dark */
+  --color-base: #0f1208;
+  --color-raised: #181d12;
+  --color-overlay: #303824;
+  --color-subtle: #3a4030;
+  --color-elevated: #262d1c;
+
+  /* Text — Dark */
+  --color-text: #e2e8d4;
+  --color-text-secondary: #c0c8b0;
+  --color-text-muted: #8a9480;
+  --color-text-subtle: #6a7460;
+
+  /* Border — Dark */
+  --color-border: #8a9480;
+  --color-border-light: #4a5240;
+  --color-border-subtle: #1e2416;
+
+  /* Brand — Dark */
+  --color-accent: #b6e04c;
+  --color-accent-hover: #c5e07a;
+  --color-accent-press: #d4f27a;
+  --color-accent-alt: #6a9e6a;
+  --color-accent-alt-hover: #8fb83a;
+  --color-accent-alt-press: #3d6b3d;
+
+  /* Feedback — Dark */
+  --color-success: #8fb83a;
+  --color-success-hover: #b6e04c;
+  --color-error: #ff7e89;
+  --color-error-hover: #ff9aa3;
+  --color-warning: #d4f27a;
+  --color-warning-hover: #e2f7a8;
+  --color-info: #6a9e6a;
+  --color-info-hover: #8fb83a;
+
+  /* Material 3 semantic aliases (optional, for M3-style consumers) */
+  --color-primary: #b6e04c;
+  --color-on-primary: #1a2e00;
+  --color-primary-container: #3a4d00;
+  --color-on-primary-container: #d4f27a;
+  --color-secondary: #8fb83a;
+  --color-on-secondary: #1a2e00;
+  --color-secondary-container: #33470a;
+  --color-on-secondary-container: #c5e07a;
+  --color-tertiary: #6a9e6a;
+  --color-on-tertiary: #00210a;
+  --color-tertiary-container: #1a3d1a;
+  --color-on-tertiary-container: #b8e0b8;
+  --color-on-error: #ffffff;
+  --color-error-container: #ab0016;
+  --color-on-error-container: #ebe0de;
+  --color-background: #0f1208;
+  --color-on-background: #e2e8d4;
+  --color-surface: #12160c;
+  --color-on-surface: #e2e8d4;
+  --color-surface-variant: #3a4030;
+  --color-on-surface-variant: #c0c8b0;
+  --color-outline: #8a9480;
+  --color-outline-variant: #4a5240;
+  --color-inverse-surface: #e2e8d4;
+  --color-inverse-on-surface: #2a2f22;
+  --color-inverse-primary: #5a7a00;
+  --color-shadow: #000000;
+  --color-surface-container-low: #181d12;
+  --color-surface-container: #1e2416;
+  --color-surface-container-high: #262d1c;
+  --color-surface-container-highest: #303824;
+}
+
+[data-theme="light"] {
+  /* Surface — Light */
+  --color-base: #f8faf0;
+  --color-raised: #eef4e0;
+  --color-overlay: #d0dcb8;
+  --color-subtle: #e0e8d0;
+  --color-elevated: #dce5c8;
+
+  /* Text — Light */
+  --color-text: #1a1f14;
+  --color-text-secondary: #4a5240;
+  --color-text-muted: #7a8468;
+  --color-text-subtle: #9aa48a;
+
+  /* Border — Light */
+  --color-border: #7a8468;
+  --color-border-light: #c8d4b8;
+  --color-border-subtle: #e0e8d0;
+
+  /* Brand — Light */
+  --color-accent: #4a6e00;
+  --color-accent-hover: #5a7a00;
+  --color-accent-press: #3d6b3d;
+  --color-accent-alt: #3d6b3d;
+  --color-accent-alt-hover: #5a7a00;
+  --color-accent-alt-press: #4a6e00;
+
+  /* Feedback — Light */
+  --color-success: #4a6e00;
+  --color-success-hover: #5a7a00;
+  --color-error: #b00020;
+  --color-error-hover: #c62828;
+  --color-warning: #7a6830;
+  --color-warning-hover: #8a7838;
+  --color-info: #3d6b3d;
+  --color-info-hover: #4a7a4a;
+
+  /* Material 3 semantic aliases (optional) */
+  --color-primary: #4a6e00;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #d4f27a;
+  --color-on-primary-container: #1a2e00;
+  --color-secondary: #5a7a00;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #c5e07a;
+  --color-on-secondary-container: #2a3a00;
+  --color-tertiary: #3d6b3d;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #b8e0b8;
+  --color-on-tertiary-container: #00210a;
+  --color-on-error: #ffffff;
+  --color-error-container: #fbdbd9;
+  --color-on-error-container: #410002;
+  --color-background: #f8faf0;
+  --color-on-background: #1a1f14;
+  --color-surface: #f4f7ec;
+  --color-on-surface: #1a1f14;
+  --color-surface-variant: #e0e8d0;
+  --color-on-surface-variant: #4a5240;
+  --color-outline: #7a8468;
+  --color-outline-variant: #c8d4b8;
+  --color-inverse-surface: #2a2f22;
+  --color-inverse-on-surface: #eef2e4;
+  --color-inverse-primary: #b6e04c;
+  --color-shadow: #000000;
+  --color-surface-container-low: #eef4e0;
+  --color-surface-container: #e6edd6;
+  --color-surface-container-high: #dce5c8;
+  --color-surface-container-highest: #d0dcb8;
+}
 
 /* High Contrast Mode Support */
 @media (prefers-contrast: more) {
   :root {
-    --color-outline: var(--color-on-background);
-    --color-outline-variant: var(--color-on-background);
-    --color-on-surface-variant: var(--color-on-surface);
+    --color-border: var(--color-text);
+    --color-border-light: var(--color-text);
+    --color-text-muted: var(--color-text-secondary);
   }
   [data-theme="light"] {
-    --color-outline: var(--color-on-background);
-    --color-outline-variant: var(--color-on-background);
-    --color-on-surface-variant: var(--color-on-surface);
+    --color-border: var(--color-text);
+    --color-border-light: var(--color-text);
+    --color-text-muted: var(--color-text-secondary);
   }
 }
