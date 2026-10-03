@@ -10,7 +10,7 @@
   <meta property="og:type" content="website" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23E6007E'/></svg>" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="lumina.css" />
+    <link rel="stylesheet" href="oganesson.css" />
   <link rel="stylesheet" href="colors.monet.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -26,44 +26,44 @@
   <div class="shell">
     <!-- ─── Icon Rail ─── -->
     <aside class="icon-rail">
-      <button type="button" class="nav-item lm-tooltip lm-tooltip-left" data-page="about" onclick="goPage('about')"><span class="lm-tooltip-content">about</span></button>
-      <button type="button" class="nav-item lm-tooltip lm-tooltip-left" data-page="f1" onclick="goPage('f1')"><span class="lm-tooltip-content">f1</span></button>
-      <button type="button" class="nav-item lm-tooltip lm-tooltip-left" data-page="music" onclick="goPage('music')"><span class="lm-tooltip-content">music</span></button>
-      <button class="nav-item nav-item-theme lm-tooltip lm-tooltip-left" onclick="toggleTheme()" style="position:relative;"><i class="fa-solid fa-circle-half-stroke"></i><span class="lm-tooltip-content">theme</span></button>
+      <button type="button" class="nav-item og-tooltip og-tooltip-left" data-page="about" onclick="goPage('about')"><span class="og-tooltip-content">about</span></button>
+      <button type="button" class="nav-item og-tooltip og-tooltip-left" data-page="f1" onclick="goPage('f1')"><span class="og-tooltip-content">f1</span></button>
+      <button type="button" class="nav-item og-tooltip og-tooltip-left" data-page="music" onclick="goPage('music')"><span class="og-tooltip-content">music</span></button>
+      <button class="nav-item nav-item-theme og-tooltip og-tooltip-left" onclick="toggleTheme()" style="position:relative;"><i class="fa-solid fa-circle-half-stroke"></i><span class="og-tooltip-content">theme</span></button>
     </aside>
     <!-- ─── Main ─── -->
     <div class="main" id="main-stage">
       <!-- ─── ABOUT ─── -->
       <div class="section" id="section-about">
         <div class="hero">
-          <div class="lm-avatar lm-avatar-lg"><img src="assets/pfp.jpg" alt="pfp" /></div>
+          <div class="og-avatar og-avatar-lg"><img src="assets/pfp.jpg" alt="pfp" /></div>
           <div class="hero-text">
             <h1 id="greeting">yawn</h1>
             <p>c2 larper</p>
           </div>
         </div>
         <div class="profile-split">
-          <button type="button" class="lm-card discord-card" id="discord-card" style="text-decoration:none;color:inherit;" onclick="window.open('https://discord.com/users/1144983905317949512','_blank')">
+          <button type="button" class="og-card discord-card" id="discord-card" style="text-decoration:none;color:inherit;" onclick="window.open('https://discord.com/users/1144983905317949512','_blank')">
             <div class="discord-card-header">
-              <img class="lm-avatar lm-avatar-md" id="dc-avatar" src="" alt="" />
+              <img class="og-avatar og-avatar-md" id="dc-avatar" src="" alt="" />
               <div class="discord-card-info">
                 <span class="discord-card-name" id="dc-name">—</span>
                 <span class="discord-card-user" id="dc-user">—</span>
               </div>
-              <span class="discord-card-status" id="dc-status-label"><span class="lm-badge lm-badge-muted lm-badge-dot">offline</span></span>
+              <span class="discord-card-status" id="dc-status-label"><span class="og-badge og-badge-muted og-badge-dot">offline</span></span>
             </div>
             <div class="discord-card-activity" id="dc-activity">
               <div class="discord-activity-empty">not doing anything right now, that's serious</div>
             </div>
           </button>
-          <div class="lm-card neofetch-wrap" style="display:block;">
+          <div class="og-card neofetch-wrap" style="display:block;">
             <div class="neofetch-data">
   <b>from</b>     krazierchat<br />
   <b>on domain</b>     stocki.nx.kg<br />
   <b>from os</b>       linux 7.0.11-arch1-1<br />
   <b>in shell</b>    zsh 5.9.1<br />
   <b>with wm</b>       hyprland 0.55.3<br />
-  <b>using brand system</b>  lumina<br />
+  <b>using brand system</b>  oganesson<br />
   <b>in karting...</b>  41.1 @ ts leeds
             </div>
           </div>
@@ -74,7 +74,7 @@
             <div class="project-thumb" style="background:linear-gradient(135deg,#E6007E,#F5A623);"></div>
             <div class="project-body">
               <div class="project-meta">
-                <h3>lumina</h3>
+                <h3>oganesson</h3>
               </div>>
               <p class="project-desc">brand system; it has tokens, it has typography, it looks awful, and you're looking at an example of it right now</p></div>
           </article>
@@ -104,22 +104,22 @@
         </div>
         <div class="section-header" style="margin-top:4px;">elsewhere</div>
         <div class="card-row">
-          <button type="button" class="lm-card" onclick="window.open('https://github.com/krazi49','_blank')"><i class="fa-brands fa-github"></i> github</button>
-          <button type="button" class="lm-card" onclick="window.open('https://last.fm/user/silvermanch','_blank')"><i class="fa-brands fa-lastfm"></i> last.fm</button>
-          <button type="button" class="lm-card" onclick="window.open('https://passportdex.com/krrazi','_blank')"><i class="fa-solid fa-passport"></i> passport</button>
-          <button type="button" class="lm-card" onclick="window.open('https://pitwall.me','_blank')"><i class="fa-solid fa-tower-broadcast"></i> timing</button>
+          <button type="button" class="og-card" onclick="window.open('https://github.com/krazi49','_blank')"><i class="fa-brands fa-github"></i> github</button>
+          <button type="button" class="og-card" onclick="window.open('https://last.fm/user/silvermanch','_blank')"><i class="fa-brands fa-lastfm"></i> last.fm</button>
+          <button type="button" class="og-card" onclick="window.open('https://passportdex.com/krrazi','_blank')"><i class="fa-solid fa-passport"></i> passport</button>
+          <button type="button" class="og-card" onclick="window.open('https://pitwall.me','_blank')"><i class="fa-solid fa-tower-broadcast"></i> timing</button>
         </div>
       </div>
       <!-- ─── F1 ─── -->
       <div class="section" id="section-f1">
         <div class="section-header">formula 1 2026</div>
-        <div class="lm-card countdown-card">
+        <div class="og-card countdown-card">
           <div class="countdown-session" id="f1-label">next race</div>
           <div class="countdown-number" id="f1-countdown">--:--:--:--</div>
           <div class="countdown-units">days&nbsp;&nbsp;&nbsp;&nbsp;hrs&nbsp;&nbsp;&nbsp;&nbsp;min&nbsp;&nbsp;&nbsp;&nbsp;sec</div>
           <div class="countdown-meta" id="f1-race-name"></div>
           <div class="countdown-circuit" id="f1-circuit-info" style="display:none;"></div>
-          <div class="lm-stepper" id="f1-stepper" style="margin-top:10px;"></div>
+          <div class="og-stepper" id="f1-stepper" style="margin-top:10px;"></div>
         </div>
         <p style="font-size:12px;color:var(--text-3);">
           live timing on <button type="button" class="link-out" onclick="window.open('https://pitwall.me','_blank')">pitwall.me <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
@@ -134,7 +134,7 @@
             <div class="music-art-overlay"></div>
             <div class="scrobble-counter" id="scrobble-counter">—</div>
             <div class="music-info">
-              <span id="track-name" class="music-track-name"><span class="lm-spinner lm-spinner-sm" style="vertical-align:middle;"></span></span>
+              <span id="track-name" class="music-track-name"><span class="og-spinner og-spinner-sm" style="vertical-align:middle;"></span></span>
               <span id="track-artist" class="music-track-artist"></span>
               <span id="track-album" class="music-track-album"></span>
             </div>
@@ -150,7 +150,7 @@
           <div class="music-recent">
             <div class="section-header">recent</div>
             <div class="music-grid" id="recent-tracks">
-              <div class="lm-skeleton-card" style="height:120px;"><span class="lm-skeleton lm-skeleton-lg"></span><span class="lm-skeleton lm-skeleton-md lm-skeleton-w-75"></span></div>
+              <div class="og-skeleton-card" style="height:120px;"><span class="og-skeleton og-skeleton-lg"></span><span class="og-skeleton og-skeleton-md og-skeleton-w-75"></span></div>
             </div>
           </div>
         </div>
@@ -261,21 +261,21 @@
       var html = '';
       for (var j = 0; j < keys.length; j++) {
         var k = keys[j];
-        var cls = 'lm-step';
+        var cls = 'og-step';
         var marker = '';
         if (activeIdx >= 0 && j < activeIdx) {
-          cls += ' lm-step-complete';
+          cls += ' og-step-complete';
           marker = '<i class="fa-solid fa-check" style="font-size:11px;"></i>';
         } else if (j === activeIdx) {
-          cls += ' lm-step-active';
+          cls += ' og-step-active';
           marker = '<i class="fa-solid fa-bolt" style="font-size:11px;"></i>';
         } else {
           marker = String(j + 1);
         }
         html += '<div class="' + cls + '">'
-          + '<div class="lm-step-marker">' + marker + '</div>'
-          + '<div class="lm-step-label">' + sLabel[k] + '</div>'
-          + '<div class="lm-step-connector"></div>'
+          + '<div class="og-step-marker">' + marker + '</div>'
+          + '<div class="og-step-label">' + sLabel[k] + '</div>'
+          + '<div class="og-step-connector"></div>'
           + '</div>';
       }
       el.innerHTML = html;
@@ -585,9 +585,9 @@
             // status label
             var statusLabel = document.getElementById('dc-status-label');
             if (statusLabel) {
-              var badge = statusLabel.querySelector('.lm-badge');
+              var badge = statusLabel.querySelector('.og-badge');
               if (badge) {
-                badge.className = 'lm-badge lm-badge-dot ' + (statusInfo.dot === 'discord-online' ? 'lm-badge-success' : statusInfo.dot === 'discord-idle' ? 'lm-badge-warning' : statusInfo.dot === 'discord-dnd' ? 'lm-badge-error' : 'lm-badge-muted');
+                badge.className = 'og-badge og-badge-dot ' + (statusInfo.dot === 'discord-online' ? 'og-badge-success' : statusInfo.dot === 'discord-idle' ? 'og-badge-warning' : statusInfo.dot === 'discord-dnd' ? 'og-badge-error' : 'og-badge-muted');
                 badge.lastChild.textContent = statusInfo.label;
               }
             }
