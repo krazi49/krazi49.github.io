@@ -57,7 +57,7 @@ body {
   border-bottom: var(--border-thick);
 }
 .top-bar-brand {
-  font: var(--vf-display);
+  font-variation-settings: var(--vf-display);
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: var(--tracking-widest);
@@ -129,7 +129,7 @@ body {
 
 /* ── Section headers ── */
 .section-header {
-  font: var(--vf-label);
+  font-variation-settings: var(--vf-label);
   font-size: var(--text-2xs);
   text-transform: uppercase;
   letter-spacing: var(--tracking-widest);
@@ -154,7 +154,7 @@ body {
 #section-music .card-titlebar { border-bottom: var(--border-thin); padding-bottom: var(--space-2); margin-bottom: var(--space-2); }
 
 .card-titlebar-name {
-  font: var(--vf-label);
+  font-variation-settings: var(--vf-label);
   font-size: var(--text-2xs);
   text-transform: uppercase;
   letter-spacing: var(--tracking-widest);
@@ -180,7 +180,7 @@ body {
 .hero { display: flex; align-items: flex-start; gap: var(--space-4); }
 #section-about .hero { border-bottom: var(--border-thick); padding-bottom: var(--space-3); }
 .hero-text h1 {
-  font: var(--vf-display);
+  font-variation-settings: var(--vf-display);
   font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
   line-height: var(--leading-none);
   letter-spacing: var(--tracking-tighter);
@@ -190,21 +190,25 @@ body {
 
 /* ── Neofetch ── */
 #section-about .neofetch-wrap { border-left: var(--border-thick); padding-left: var(--space-3); }
-.neofetch-data { font: var(--vf-data); font-size: var(--text-sm); line-height: 1.8; }
+.neofetch-data { 
+  font-family: var(--font-mono);
+  font-variation-settings: var(--vf-mono-data);
+  font-size: var(--text-sm); line-height: 1.8; 
+}
 .neofetch-data b { color: var(--color-accent); font-weight: var(--weight-bold); }
 
 /* ── Countdown ── */
 #section-f1 .countdown-card { text-align: center; padding: var(--space-5) var(--space-4); background: var(--color-base); border: var(--border-thin); box-shadow: var(--shadow-hard); }
-#section-f1 .countdown-session { font: var(--vf-label); font-size: var(--text-2xs); text-transform: uppercase; letter-spacing: var(--tracking-widest); color: var(--color-text-muted); margin-bottom: var(--space-3); }
+#section-f1 .countdown-session { font-variation-settings: var(--vf-label); font-size: var(--text-2xs); text-transform: uppercase; letter-spacing: var(--tracking-widest); color: var(--color-text-muted); margin-bottom: var(--space-3); }
 #section-f1 .countdown-number {
-  font: var(--vf-display);
+  font-variation-settings: var(--vf-display);
   font-size: var(--text-3xl);
   line-height: var(--leading-none);
   color: var(--color-accent); display: inline-block; background: var(--color-base);
   border: var(--border-thin); padding: var(--space-2) var(--space-3); box-shadow: var(--shadow-hard-sm);
 }
 #section-f1 .countdown-colon { padding: 0 var(--space-1); }
-#section-f1 .countdown-units { font: var(--vf-label); font-size: var(--text-2xs); text-transform: uppercase; letter-spacing: var(--tracking-wide); color: var(--color-text-muted); margin-top: var(--space-1); }
+#section-f1 .countdown-units { font-variation-settings: var(--vf-label); font-size: var(--text-2xs); text-transform: uppercase; letter-spacing: var(--tracking-wide); color: var(--color-text-muted); margin-top: var(--space-1); }
 #section-f1 .countdown-meta { font-size: var(--text-sm); color: var(--color-text-secondary); margin-top: var(--space-2); }
 .live-pulse { display: inline-block; width: 8px; height: 8px; background: var(--color-error); margin-right: var(--space-2); vertical-align: middle; }
 .circuit-divider { height: 1px; background: var(--color-border); margin: var(--space-2) 0; }
@@ -213,7 +217,7 @@ body {
 .chip-row { display: flex; gap: var(--space-1); flex-wrap: wrap; }
 .chip {
   background: var(--color-base); border: var(--border-thin); padding: var(--space-1) var(--space-2);
-  font: var(--vf-data);
+  font-variation-settings: var(--vf-mono-data);
   font-size: var(--text-xs); cursor: pointer; color: var(--color-text-secondary);
 }
 .chip:hover, .chip.active { background: var(--color-accent); color: var(--color-base); border-color: var(--color-accent); box-shadow: var(--shadow-accent-sm); }
@@ -302,11 +306,11 @@ button.music-tile:hover {
 .music-now-playing.no-art .music-art-fallback { display: flex; }
 .music-art-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 55%); }
 .music-info { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; padding: var(--space-4); }
-.music-track-name { font: var(--vf-display); font-size: var(--text-sm); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.music-track-name { font-variation-settings: var(--vf-display); font-size: var(--text-sm); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .music-track-artist { font-size: var(--text-xs); color: var(--color-text-secondary); }
 .music-track-album { font-size: var(--text-2xs); color: var(--color-text-muted); }
 .scrobble-counter {
-  position: absolute; top: var(--space-3); left: var(--space-3); z-index: 4; font: var(--vf-label); font-size: var(--text-2xs);
+  position: absolute; top: var(--space-3); left: var(--space-3); z-index: 4; font-variation-settings: var(--vf-label); font-size: var(--text-2xs);
   color: var(--color-base); background: var(--color-accent); padding: var(--space-1) var(--space-2); letter-spacing: var(--tracking-wide); text-transform: uppercase;
 }
 .equaliser { display: none; }
@@ -324,7 +328,7 @@ button.music-tile:hover {
 
 
 /* ── Standings ── */
-.pos-1, .pos-2, .pos-3 { color: var(--color-text); font: var(--vf-data-bold); }
+.pos-1, .pos-2, .pos-3 { color: var(--color-text); font-family: var(--font-mono); font-variation-settings: var(--vf-mono-data-bold); }
 
 /* ── Discord card ── */
 .discord-card { text-decoration: none; color: inherit; }
@@ -340,7 +344,7 @@ button.music-now-playing, button.music-tile { padding: 0; }
 .link-out:hover { color: var(--color-text); }
 .discord-card-avatar { width: 44px; height: 44px; border: var(--border-thin); overflow: hidden; flex-shrink: 0; }
 .discord-card-avatar img { width: 100%; height: 100%; object-fit: cover; }
-.discord-card-name { font: var(--vf-display); font-size: var(--text-sm); }
+.discord-card-name { font-variation-settings: var(--vf-display); font-size: var(--text-sm); }
 .discord-card-status { font-size: var(--text-xs); color: var(--color-text-secondary); }
 .discord-card-activity { margin-top: var(--space-3); border-top: var(--border-thin); padding-top: var(--space-3); display: flex; gap: var(--space-3); align-items: center; }
 .discord-activity-name { font-weight: var(--weight-extrabold); font-size: var(--text-xs); }
@@ -418,7 +422,7 @@ button.music-now-playing, button.music-tile { padding: 0; }
   gap: var(--space-2);
 }
 .project-meta h3 {
-  font: var(--vf-display);
+  font-variation-settings: var(--vf-display);
   font-size: var(--text-sm);
   margin: 0;
 }
