@@ -12,7 +12,7 @@
 /* TikTok Sans — self-hosted variable font (opsz, slnt, wdth, wght) */
 @font-face {
   font-family: 'TikTok Sans';
-  src: url('fonts/tiktok-sans-var.woff2') format('woff2');
+  src: url('../fonts/tiktok-sans-var.woff2') format('woff2');
   font-weight: 300 900;
   font-stretch: 75% 125%;
   font-style: oblique 0deg 12deg;
@@ -22,7 +22,7 @@
 /* Monaspace Krypton Var — self-hosted variable mono */
 @font-face {
   font-family: 'Monaspace Krypton Var';
-  src: url('fonts/monaspace-krypton-var.woff2') format('woff2');
+  src: url('../fonts/monaspace-krypton-var.woff2') format('woff2');
   font-weight: 200 800;
   font-stretch: 100% 125%;
   font-style: normal;
@@ -511,21 +511,18 @@ hr {
   --tracking-widest: 0.1em;
 
   /* Fluid Font Sizes — Mobile-first, scales to desktop */
+  /* Display — Hero, Marketing, Splash */
   --text-2xs: clamp(10px, 0.625rem + 0.1vw, 11px);
   --text-xs: clamp(11px, 0.6875rem + 0.1vw, 12px);
-  --text-sm: clamp(13px, 0.8125rem + 0.15vw, 14px);
-  --text-base: clamp(15px, 0.9375rem + 0.2vw, 16px);
-  --text-lg: clamp(17px, 1.0625rem + 0.25vw, 18px);
-  --text-xl: clamp(19px, 1.1875rem + 0.3vw, 20px);
-  --text-2xl: clamp(22px, 1.375rem + 0.4vw, 24px);
-  --text-3xl: clamp(28px, 1.75rem + 0.6vw, 32px);
-  --text-4xl: clamp(36px, 2.25rem + 0.8vw, 48px);
-  --text-5xl: clamp(48px, 3rem + 1.2vw, 72px);
-  --text-6xl: clamp(60px, 3.75rem + 1.5vw, 96px);
-
-  /* ==========================================================================
-     Typography Compositions — Semantic, Ready-to-Use
-     ========================================================================== */
+  --text-sm: clamp(12px, 0.75rem + 0.1vw, 13px);
+  --text-base: clamp(13px, 0.8125rem + 0.1vw, 14px);
+  --text-lg: clamp(14px, 0.875rem + 0.1vw, 16px);
+  --text-xl: clamp(16px, 1rem + 0.15vw, 18px);
+  --text-2xl: clamp(18px, 1.125rem + 0.2vw, 22px);
+  --text-3xl: clamp(22px, 1.375rem + 0.3vw, 28px);
+  --text-4xl: clamp(28px, 1.75rem + 0.4vw, 36px);
+  --text-5xl: clamp(36px, 2.25rem + 0.5vw, 48px);
+  --text-6xl: clamp(48px, 3rem + 0.6vw, 64px);
 
   /* Display — Hero, Marketing, Splash */
   --display-2xl: var(--weight-extrabold) var(--text-6xl) / var(--leading-none) var(--font-display);
@@ -533,8 +530,6 @@ hr {
   --display-lg: var(--weight-extrabold) var(--text-4xl) / var(--leading-tight) var(--font-display);
   --display-md: var(--weight-bold) var(--text-3xl) / var(--leading-tight) var(--font-display);
   --display-sm: var(--weight-bold) var(--text-2xl) / var(--leading-snug) var(--font-display);
-
-  /* Hero — Brutalist Minimalism */
   --hero: var(--weight-extrabold) clamp(32px, 6vw, 56px) / var(--leading-none) var(--font-display);
   --hero-tracking: -0.035em; /* -2px at 56px */
 
@@ -588,14 +583,6 @@ hr {
   --code: var(--weight-regular) var(--text-sm) / var(--leading-normal) var(--font-mono);
   --code-sm: var(--weight-regular) var(--text-xs) / var(--leading-normal) var(--font-mono);
 
-  /* Monaspace Krypton Var Combinations */
-  --vf-mono-regular: 'wght' var(--mono-wght-regular);
-  --vf-mono-medium: 'wght' var(--mono-wght-medium);
-  --vf-mono-semibold: 'wght' var(--mono-wght-semibold);
-  --vf-mono-bold: 'wght' var(--mono-wght-bold);
-  --vf-mono-data: 'wght' var(--mono-wght-medium);
-  --vf-mono-data-bold: 'wght' var(--mono-wght-bold);
-
   /* ==========================================================================
      Variable Font Settings — For Direct font-variation-settings Use
      ========================================================================== */
@@ -631,6 +618,17 @@ hr {
 
   /* Section Heading — Semantic token for demo section headers */
   --section-heading: 'wght' var(--vf-wght-bold), 'wdth' var(--vf-wdth-normal);
+
+  /* Active / Pressed State — For Interactive Elements */
+  --vf-active: 'wght' var(--vf-wght-black), 'wdth' 110, 'slnt' 8;
+
+  /* Monospace Weight Presets */
+  --vf-mono-regular: 'wght' var(--mono-wght-regular);
+  --vf-mono-medium: 'wght' var(--mono-wght-medium);
+  --vf-mono-semibold: 'wght' var(--mono-wght-semibold);
+  --vf-mono-bold: 'wght' var(--mono-wght-bold);
+  --vf-mono-data: 'wght' var(--mono-wght-medium);
+  --vf-mono-data-bold: 'wght' var(--mono-wght-bold);
 }
 
 /* ==========================================================================
@@ -672,7 +670,7 @@ hr {
 .og-caption-sm { font: var(--caption-sm); font-stretch: var(--width-condensed); }
 .og-overline { font: var(--overline); font-stretch: var(--width-condensed); text-transform: uppercase; letter-spacing: var(--tracking-widest); }
 
-/* Data */
+/* Data & Numbers (Monaspace Krypton) */
 .og-data-xl { font: var(--data-xl); font-variant-numeric: tabular-nums; }
 .og-data-lg { font: var(--data-lg); font-variant-numeric: tabular-nums; }
 .og-data { font: var(--data); font-variant-numeric: tabular-nums; }
@@ -680,35 +678,12 @@ hr {
 .og-data-xs { font: var(--data-xs); font-variant-numeric: tabular-nums; }
 .og-data-2xs { font: var(--data-2xs); font-variant-numeric: tabular-nums; }
 
-/* Code */
+/* Code (Monaspace Krypton) */
 .og-code-lg { font: var(--code-lg); font-stretch: var(--width-normal); }
 .og-code { font: var(--code); font-stretch: var(--width-normal); }
 .og-code-sm { font: var(--code-sm); font-stretch: var(--width-normal); }
 
-/* ==========================================================================
-   Text Utility Classes
-   ========================================================================== */
-
-/* Weight */
-.og-weight-thin { font-weight: var(--weight-thin); }
-.og-weight-extralight { font-weight: var(--weight-extralight); }
-.og-weight-light { font-weight: var(--weight-light); }
-.og-weight-regular { font-weight: var(--weight-regular); }
-.og-weight-medium { font-weight: var(--weight-medium); }
-.og-weight-semibold { font-weight: var(--weight-semibold); }
-.og-weight-bold { font-weight: var(--weight-bold); }
-.og-weight-extrabold { font-weight: var(--weight-extrabold); }
-.og-weight-black { font-weight: var(--weight-black); }
-
-/* Width (Variable Font) */
-.og-width-condensed { font-stretch: 75%; }
-.og-width-semi-condensed { font-stretch: 87.5%; }
-.og-width-normal { font-stretch: 100%; }
-.og-width-semi-wide { font-stretch: 112.5%; }
-.og-width-wide { font-stretch: 118.75%; }
-.og-width-ultrawide { font-stretch: 125%; }
-
-/* Variable Font Direct Control */
+/* Variable Font Control — Direct font-variation-settings */
 .og-vf-display { font-variation-settings: var(--vf-display); }
 .og-vf-heading { font-variation-settings: var(--vf-heading); }
 .og-vf-body { font-variation-settings: var(--vf-body); }
@@ -718,128 +693,22 @@ hr {
 .og-vf-label { font-variation-settings: var(--vf-label); }
 .og-vf-caption { font-variation-settings: var(--vf-caption); }
 
-/* Line Height */
-.og-leading-none { line-height: var(--leading-none); }
-.og-leading-tight { line-height: var(--leading-tight); }
-.og-leading-snug { line-height: var(--leading-snug); }
-.og-leading-normal { line-height: var(--leading-normal); }
-.og-leading-relaxed { line-height: var(--leading-relaxed); }
-.og-leading-loose { line-height: var(--leading-loose); }
-
-/* Tracking */
-.og-tracking-tighter { letter-spacing: var(--tracking-tighter); }
-.og-tracking-tight { letter-spacing: var(--tracking-tight); }
-.og-tracking-normal { letter-spacing: var(--tracking-normal); }
-.og-tracking-wide { letter-spacing: var(--tracking-wide); }
-.og-tracking-wider { letter-spacing: var(--tracking-wider); }
-.og-tracking-widest { letter-spacing: var(--tracking-widest); }
-
-/* Text Transform */
-.og-uppercase { text-transform: uppercase; }
-.og-lowercase { text-transform: lowercase; }
-.og-capitalize { text-transform: capitalize; }
-.og-normal-case { text-transform: none; }
-
-/* Text Decoration */
-.og-underline { text-decoration: underline; }
-.og-line-through { text-decoration: line-through; }
-.og-no-underline { text-decoration: none; }
-
-/* Text Align */
-.og-text-left { text-align: left; }
-.og-text-center { text-align: center; }
-.og-text-right { text-align: right; }
-.og-text-justify { text-align: justify; }
-
-/* Text Wrap */
-.og-wrap-balance { text-wrap: balance; }
-.og-wrap-pretty { text-wrap: pretty; }
-.og-wrap-stable { text-wrap: stable; }
-.og-nowrap { white-space: nowrap; }
-
-/* Text Overflow */
-.og-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.og-truncate-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.og-truncate-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-
-/* Font Variant Numeric */
-.og-tabular-nums { font-variant-numeric: tabular-nums; }
-.og-proportional-nums { font-variant-numeric: proportional-nums; }
-.og-slashed-zero { font-variant-numeric: slashed-zero; }
-.og-ordinal { font-variant-numeric: ordinal; }
-.og-diacritical { font-variant-numeric: diagonal-fractions; }
-
-/* Font Feature Settings — Archivo Specific */
-.og-smcp { font-variant-caps: small-caps; }
-.og-c2sc { font-variant-caps: all-small-caps; }
-.og-lnum { font-variant-numeric: lining-nums; }
-.og-onum { font-variant-numeric: oldstyle-nums; }
-.og-frac { font-variant-numeric: diagonal-fractions; }
-
-/* Monaspace Krypton Var Font Utilities */
+/* Monospace Variable Font Control */
 .og-mono-regular { font-variation-settings: var(--vf-mono-regular); }
 .og-mono-medium { font-variation-settings: var(--vf-mono-medium); }
 .og-mono-semibold { font-variation-settings: var(--vf-mono-semibold); }
 .og-mono-bold { font-variation-settings: var(--vf-mono-bold); }
-.og-mono-data { font-variation-settings: var(--vf-mono-data); font-variant-numeric: tabular-nums; }
-.og-mono-data-bold { font-variation-settings: var(--vf-mono-data-bold); font-variant-numeric: tabular-nums; }
+.og-mono-data { font-variation-settings: var(--vf-mono-data); }
+.og-mono-data-bold { font-variation-settings: var(--vf-mono-data-bold); }
 
-/* Gradient Text — For Brand Moments */
+/* Text Gradient Utility */
 .og-text-gradient {
-  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-alt));
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-alt) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
-
-.og-text-gradient-accent {
-  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-alt));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
-
-/* High Contrast Text — For Accessibility */
-@media (prefers-contrast: more) {
-  :root {
-    --weight-regular: 500;
-    --weight-medium: 600;
-    --weight-semibold: 700;
-    --weight-bold: 800;
-  }
-}
-
-/* Reduced Motion — Affects Variable Font Animation */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    font-variation-settings: 'wght' 400, 'wdth' 100 !important;
-    transition: font-variation-settings 0ms !important;
-  }
-}
-
-/* ==========================================================================
-   Print Styles
-   ========================================================================== */
-
-@media print {
-  :root {
-    --font: system-ui, sans-serif;
-    --font-mono: 'SF Mono', 'Menlo', 'Consolas', monospace;
-    --text-5xl: 48px;
-    --text-4xl: 36px;
-    --text-3xl: 28px;
-  }
-
-  .og-text-gradient,
-  .og-text-gradient-accent {
-    -webkit-text-fill-color: initial;
-    color: initial;
-    background: none;
-  }
-}
-
 /* Oganesson Design System — Spacing Tokens */
 /* Version 0.4 */
 
