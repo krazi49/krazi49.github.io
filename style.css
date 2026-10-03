@@ -26,7 +26,6 @@
   --surface: var(--color-raised);
   --surface-2: var(--color-overlay);
   --surface-3: var(--color-subtle);
-  --vf-active: 'wght' var(--weight-black), 'wdth' 110, 'slnt' 8;
 }
 
 * { box-sizing:border-box; margin:0; padding:0; }
