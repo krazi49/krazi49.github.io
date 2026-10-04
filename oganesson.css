@@ -9,13 +9,13 @@
 /* Oganesson Design System — Base Reset */
 /* Version 0.4 */
 
-/* TikTok Sans — self-hosted variable font (opsz, slnt, wdth, wght) */
+/* Zalando Sans — self-hosted variable font (wdth, wght) */
 @font-face {
-  font-family: 'TikTok Sans';
-  src: url('fonts/tiktok-sans-var.woff2') format('woff2');
-  font-weight: 300 900;
+  font-family: 'Zalando Sans';
+  src: url('fonts/zalando-sans-var.woff2') format('woff2');
+  font-weight: 200 900;
   font-stretch: 75% 125%;
-  font-style: oblique 0deg 12deg;
+  font-style: normal;
   font-display: swap;
 }
 
@@ -471,11 +471,11 @@ hr {
 
 :root {
   /* Font Families */
-  --font: 'TikTok Sans', system-ui, sans-serif;
-  --font-display: 'TikTok Sans', system-ui, sans-serif;
+  --font: 'Zalando Sans', system-ui, sans-serif;
+  --font-display: 'Zalando Sans', system-ui, sans-serif;
   --font-mono: 'Monaspace Krypton Var', 'SF Mono', 'Menlo', 'Consolas', monospace;
 
-  /* Font Weights (TikTok Sans Variable: wght 300-900) */
+  /* Font Weights (Zalando Sans Variable: wght 200-900) */
   --weight-thin: 100;
   --weight-extralight: 200;
   --weight-light: 300;
@@ -486,7 +486,7 @@ hr {
   --weight-extrabold: 800;
   --weight-black: 900;
 
-  /* Font Widths (TikTok Sans Variable: wdth 75-125) — percentages for the font shorthand */
+  /* Font Widths (Zalando Sans Variable: wdth 75-125) — percentages for the font shorthand */
   --width-condensed: 75%;    /* Data, tight spaces, numbers */
   --width-semi-condensed: 87.5%; /* UI labels, badges */
   --width-normal: 100%;      /* Body, UI */
