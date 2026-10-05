@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>stocki.nx.kg</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="personal homepage — f1 countdown, last.fm scrobbler, pc stats" />
+  <meta property="og:title" content="stock site" />
+  <meta property="og:description" content="do solar panels need electricity? like i get they generate it but surely they need to be plugged in to do something" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23E6007E'/></svg>" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="oganesson.css" />
+  <link rel="stylesheet" href="colors.monet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ─── Top Bar ─── -->
+  <div class="top-bar">
+    <span class="top-bar-brand">krazikrazikrazi</span>
+    <div class="top-bar-discord" id="discord-pill">
+      <span class="discord-pill-dot discord-offline"></span>
+      <span class="discord-pill-text">checking it</span>
+    </div>
+  </div>
+  <div class="shell">
+    <!-- ─── Icon Rail ─── -->
+    <aside class="icon-rail">
+      <button type="button" class="nav-item og-tooltip og-tooltip-left" data-page="about" onclick="goPage('about')"><span class="og-tooltip-content">about</span></button>
+      <button type="button" class="nav-item og-tooltip og-tooltip-left" data-page="f1" onclick="goPage('f1')"><span class="og-tooltip-content">f1</span></button>
+      <button type="button" class="nav-item og-tooltip og-tooltip-left" data-page="music" onclick="goPage('music')"><span class="og-tooltip-content">music</span></button>
+      <button class="nav-item nav-item-theme og-tooltip og-tooltip-left" onclick="toggleTheme()" style="position:relative;"><i class="fa-solid fa-circle-half-stroke"></i><span class="og-tooltip-content">theme</span></button>
+    </aside>
+    <!-- ─── Main ─── -->
+    <div class="main" id="main-stage">
+      <!-- ─── ABOUT ─── -->
+      <div class="section" id="section-about">
+        <div class="hero">
+          <div class="og-avatar og-avatar-lg"><img src="assets/pfp.jpg" alt="pfp" /></div>
+          <div class="hero-text">
+            <h1 id="greeting">yawn</h1>
+            <p>c2 larper</p>
+          </div>
+        </div>
+        <div class="profile-split">
+          <button type="button" class="og-card discord-card" id="discord-card" style="text-decoration:none;color:inherit;" onclick="window.open('https://discord.com/users/1144983905317949512','_blank')">
+            <div class="discord-card-header">
+              <img class="og-avatar og-avatar-md" id="dc-avatar" src="" alt="" />
+              <div class="discord-card-info">
+                <span class="discord-card-name" id="dc-name">—</span>
+                <span class="discord-card-user" id="dc-user">—</span>
+              </div>
+              <span class="discord-card-status" id="dc-status-label"><span class="og-badge og-badge-muted og-badge-dot">offline</span></span>
+            </div>
+            <div class="discord-card-activity" id="dc-activity">
+              <div class="discord-activity-empty">not doing anything right now, that's serious</div>
+            </div>
+          </button>
+          <div class="og-card neofetch-wrap" style="display:block;">
+            <div class="neofetch-data">
+  <b>from</b>     krazierchat<br />
+  <b>on domain</b>     stocki.nx.kg<br />
+  <b>from os</b>       linux 7.0.11-arch1-1<br />
+  <b>in shell</b>    zsh 5.9.1<br />
+  <b>with wm</b>       hyprland 0.55.3<br />
+  <b>using brand system</b>  oganesson<br />
+  <b>in karting...</b>  41.1 @ ts leeds
+            </div>
+          </div>
+        </div>
+        <div class="section-header" style="margin-top:12px;">projects</div>
+        <div class="projects-grid">
+          <article class="project-card" data-tags="design-system,tokens,css">
+            <div class="project-thumb" style="background:linear-gradient(135deg,#E6007E,#F5A623);"></div>
+            <div class="project-body">
+              <div class="project-meta">
+                <h3>oganesson</h3>
+              </div>>
+              <p class="project-desc">brand system; it has tokens, it has typography, it looks awful, and you're looking at an example of it right now</p></div>
+          </article>
+          <article class="project-card" data-tags="agents,router,go">
+            <div class="project-thumb" style="background:linear-gradient(135deg,#00D4AA,#0066FF);"></div>
+            <div class="project-body">
+              <div class="project-meta">
+                <h3>openclaw (but on my end)</h3>
+              </div>>
+              <p class="project-desc">the stack: openclaw + omniroute, now i never hit rate limits. i'm in heaven...</p><div class="project-links">
+                <a class="link-out" href="https://github.com/openclaw/openclaw" target="_blank"><i class="fa-brands fa-github"></i> repo</a>
+              </div>
+            </div>
+          </article>
+          <article class="project-card" data-tags="cli,python,package-manager">
+            <div class="project-thumb" style="background:linear-gradient(135deg,#FF6B35,#F7C331);"></div>
+            <div class="project-body">
+              <div class="project-meta">
+                <h3>poli</h3>
+              </div>>
+              <p class="project-desc">pacman wrapper. currently fixing so i'd prefer if you didn't look at it right now</p><div class="project-links">
+                <a class="link-out" href="https://github.com/krazi49/poli" target="_blank"><i class="fa-brands fa-github"></i> repo</a>
+              </div>
+            </div>
+          </article>
+          
+        </div>
+        <div class="section-header" style="margin-top:4px;">elsewhere</div>
+        <div class="card-row">
+          <button type="button" class="og-card" onclick="window.open('https://github.com/krazi49','_blank')"><i class="fa-brands fa-github"></i> github</button>
+          <button type="button" class="og-card" onclick="window.open('https://last.fm/user/silvermanch','_blank')"><i class="fa-brands fa-lastfm"></i> last.fm</button>
+          <button type="button" class="og-card" onclick="window.open('https://passportdex.com/krrazi','_blank')"><i class="fa-solid fa-passport"></i> passport</button>
+          <button type="button" class="og-card" onclick="window.open('https://pitwall.me','_blank')"><i class="fa-solid fa-tower-broadcast"></i> timing</button>
+        </div>
+      </div>
+      <!-- ─── F1 ─── -->
+      <div class="section" id="section-f1">
+        <div class="section-header">formula 1 2026</div>
+        <div class="og-card countdown-card">
+          <div class="countdown-session" id="f1-label">next race</div>
+          <div class="countdown-number" id="f1-countdown">--:--:--:--</div>
+          <div class="countdown-units">days&nbsp;&nbsp;&nbsp;&nbsp;hrs&nbsp;&nbsp;&nbsp;&nbsp;min&nbsp;&nbsp;&nbsp;&nbsp;sec</div>
+          <div class="countdown-meta" id="f1-race-name"></div>
+          <div class="countdown-circuit" id="f1-circuit-info" style="display:none;"></div>
+          <div class="og-stepper" id="f1-stepper" style="margin-top:10px;"></div>
+        </div>
+        <p style="font-size:12px;color:var(--text-3);">
+          live timing on <button type="button" class="link-out" onclick="window.open('https://pitwall.me','_blank')">pitwall.me <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+        </p>
+      </div>
+      <!-- ─── MUSIC ─── -->
+      <div class="section" id="section-music">
+        <div class="music-split">
+          <button type="button" class="music-now-playing" id="scrobbler-card" onclick="window.open(this.getAttribute('data-url')||'https://last.fm/user/silvermanch','_blank')">
+            <img id="track-art" class="music-art hidden" src="" alt="album art" />
+            <div class="music-art-fallback"><i class="fa-solid fa-record-vinyl"></i></div>
+            <div class="music-art-overlay"></div>
+            <div class="scrobble-counter" id="scrobble-counter">—</div>
+            <div class="music-info">
+              <span id="track-name" class="music-track-name"><span class="og-spinner og-spinner-sm" style="vertical-align:middle;"></span></span>
+              <span id="track-artist" class="music-track-artist"></span>
+              <span id="track-album" class="music-track-album"></span>
+            </div>
+            <span class="equaliser" id="eq">
+              <span class="eq-bar"></span>
+              <span class="eq-bar"></span>
+              <span class="eq-bar"></span>
+              <span class="eq-bar"></span>
+              <span class="eq-bar"></span>
+              <span class="eq-bar"></span>
+            </span>
+          </button>
+          <div class="music-recent">
+            <div class="section-header">recent</div>
+            <div class="music-grid" id="recent-tracks">
+              <div class="og-skeleton-card" style="height:120px;"><span class="og-skeleton og-skeleton-lg"></span><span class="og-skeleton og-skeleton-md og-skeleton-w-75"></span></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--text-3);">
+          scrobbling to <button type="button" class="link-out" onclick="window.open('https://last.fm/user/silvermanch','_blank')">last.fm/silvermanch <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+        </p>
+      </div>
+      <!-- Projects and /now moved/removed per user request -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast">copied!</div>
+  <script>
+    // ─── Greeting ───
+    (function updateGreeting() {
+      var h = new Date().getHours();
+      var g = h < 12 ? 'morning' : h < 18 ? 'afternoon' : 'evening';
+      document.getElementById('greeting').textContent = 'good ' + g + '!';
+    })();
+    // ─── Navigation: scroll-snap deck (no chrome) ───
+    var pageOrder = ['about', 'f1', 'music'];
+    var deckMeta = { about:'about', f1:'f1', music:'music' };
+    pageOrder.forEach(function(p) {
+      var sec = document.getElementById('section-' + p);
+      if (!sec) return;
+      var bar = document.createElement('div');
+      bar.className = 'card-titlebar';
+      bar.innerHTML = '<span class="card-titlebar-name">' + deckMeta[p] + '</span>';
+      sec.insertBefore(bar, sec.firstChild);
+    });
+    // jump to a section from the rail
+    function goPage(p) {
+      var el = document.getElementById('section-' + p);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    // highlight the rail button for the room currently in view
+    var navLinks = {};
+    document.querySelectorAll('.icon-rail .nav-item[data-page]').forEach(function(b) {
+      navLinks[b.getAttribute('data-page')] = b;
+    });
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(en) {
+          if (en.isIntersecting) {
+            Object.keys(navLinks).forEach(function(k) { navLinks[k].classList.remove('active'); });
+            var key = en.target.id.replace('section-', '');
+            if (navLinks[key]) navLinks[key].classList.add('active');
+          }
+        });
+      }, { root: document.getElementById('main-stage'), threshold: 0.5 });
+      pageOrder.forEach(function(p) {
+        var s = document.getElementById('section-' + p);
+        if (s) io.observe(s);
+      });
+    }
+    // ─── Theme ───
+    function toggleTheme() {
+      var body = document.body;
+      body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    }
+    // ─── Toast ───
+    function showToast(msg) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.opacity = '1';
+      setTimeout(function() { t.style.opacity = '0'; }, 1200);
+    }
+    function copyColor(c) {
+      navigator.clipboard.writeText(c).then(function() { showToast('copied ' + c); });
+    }
+    // ─── F1 ───
+    var f1Schedule = [
+      { name: "Australian GP",          date: "2026-03-08T05:00:00Z", flag: "AU", circuit: "Albert Park Grand Prix Circuit", loc: "Melbourne", laps: 58, length: "5.278 km", dist: "306.1 km", sprint: false, circuit_wiki: "Albert_Park_Circuit", sessions: { fp1: "2026-03-06T02:30:00Z", fp2: "2026-03-06T06:00:00Z", fp3: "2026-03-07T02:30:00Z", quali: "2026-03-07T06:00:00Z", race: "2026-03-08T05:00:00Z" } },
+      { name: "Chinese GP",             date: "2026-03-15T07:00:00Z", flag: "CN", circuit: "Shanghai International Circuit", loc: "Shanghai", laps: 56, length: "5.451 km", dist: "305.3 km", sprint: true,  circuit_wiki: "Shanghai_International_Circuit", sessions: { fp1: "2026-03-13T03:30:00Z", sq: "2026-03-13T07:30:00Z", sprint: "2026-03-14T03:00:00Z", quali: "2026-03-14T07:00:00Z", race: "2026-03-15T07:00:00Z" } },
+      { name: "Japanese GP",            date: "2026-03-29T05:00:00Z", flag: "JP", circuit: "Suzuka International Racing Course", loc: "Suzuka", laps: 53, length: "5.807 km", dist: "307.8 km", sprint: false, circuit_wiki: "Suzuka_International_Racing_Course", sessions: { fp1: "2026-03-27T03:30:00Z", fp2: "2026-03-27T07:00:00Z", fp3: "2026-03-28T03:30:00Z", quali: "2026-03-28T07:00:00Z", race: "2026-03-29T05:00:00Z" } },
+      { name: "Miami GP",               date: "2026-05-03T21:00:00Z", flag: "US", circuit: "Miami International Autodrome", loc: "Miami", laps: 57, length: "5.412 km", dist: "308.5 km", sprint: true,  circuit_wiki: "Miami_International_Autodrome", sessions: { fp1: "2026-05-01T17:30:00Z", sq: "2026-05-01T21:30:00Z", sprint: "2026-05-02T18:00:00Z", quali: "2026-05-02T22:00:00Z", race: "2026-05-03T21:00:00Z" } },
+      { name: "Canadian GP",            date: "2026-05-24T19:00:00Z", flag: "CA", circuit: "Circuit Gilles Villeneuve", loc: "Montreal", laps: 70, length: "4.361 km", dist: "305.3 km", sprint: true,  circuit_wiki: "Circuit_Gilles_Villeneuve", sessions: { fp1: "2026-05-22T17:30:00Z", sq: "2026-05-22T21:30:00Z", sprint: "2026-05-23T18:00:00Z", quali: "2026-05-23T22:00:00Z", race: "2026-05-24T19:00:00Z" } },
+      { name: "Monaco GP",              date: "2026-06-07T13:00:00Z", flag: "MC", circuit: "Circuit de Monaco", loc: "Monte Carlo", laps: 78, length: "3.337 km", dist: "260.3 km", sprint: false, circuit_wiki: "Circuit_de_Monaco", sessions: { fp1: "2026-06-05T11:30:00Z", fp2: "2026-06-05T15:00:00Z", fp3: "2026-06-06T10:30:00Z", quali: "2026-06-06T14:00:00Z", race: "2026-06-07T13:00:00Z" } },
+      { name: "Spanish GP",             date: "2026-06-14T13:00:00Z", flag: "ES", circuit: "Circuit de Barcelona-Catalunya", loc: "Barcelona", laps: 66, length: "4.657 km", dist: "307.4 km", sprint: false, circuit_wiki: "Circuit_de_Barcelona-Catalunya", sessions: { fp1: "2026-06-12T11:30:00Z", fp2: "2026-06-12T15:00:00Z", fp3: "2026-06-13T10:30:00Z", quali: "2026-06-13T14:00:00Z", race: "2026-06-14T13:00:00Z" } },
+      { name: "Austrian GP",            date: "2026-06-28T13:00:00Z", flag: "AT", circuit: "Red Bull Ring", loc: "Spielberg", laps: 71, length: "4.318 km", dist: "306.6 km", sprint: false, circuit_wiki: "Red_Bull_Ring", sessions: { fp1: "2026-06-26T10:30:00Z", fp2: "2026-06-26T14:30:00Z", fp3: "2026-06-27T09:30:00Z", quali: "2026-06-27T13:00:00Z", race: "2026-06-28T13:00:00Z" } },
+      { name: "British GP",             date: "2026-07-05T14:00:00Z", flag: "GB", circuit: "Silverstone Circuit", loc: "Silverstone", laps: 52, length: "5.891 km", dist: "306.3 km", sprint: true,  circuit_wiki: "Silverstone_Circuit", sessions: { fp1: "2026-07-03T11:30:00Z", sq: "2026-07-03T15:30:00Z", sprint: "2026-07-04T11:00:00Z", quali: "2026-07-04T15:00:00Z", race: "2026-07-05T14:00:00Z" } },
+      { name: "Belgian GP",             date: "2026-07-19T13:00:00Z", flag: "BE", circuit: "Circuit de Spa-Francorchamps", loc: "Spa", laps: 44, length: "7.004 km", dist: "308.2 km", sprint: false, circuit_wiki: "Circuit_de_Spa-Francorchamps", sessions: { fp1: "2026-07-17T11:30:00Z", fp2: "2026-07-17T15:00:00Z", fp3: "2026-07-18T10:30:00Z", quali: "2026-07-18T14:00:00Z", race: "2026-07-19T13:00:00Z" } },
+      { name: "Hungarian GP",           date: "2026-07-26T13:00:00Z", flag: "HU", circuit: "Hungaroring", loc: "Budapest", laps: 70, length: "4.381 km", dist: "306.7 km", sprint: false, circuit_wiki: "Hungaroring", sessions: { fp1: "2026-07-24T11:30:00Z", fp2: "2026-07-24T15:00:00Z", fp3: "2026-07-25T10:30:00Z", quali: "2026-07-25T14:00:00Z", race: "2026-07-26T13:00:00Z" } },
+      { name: "Dutch GP",               date: "2026-08-23T13:00:00Z", flag: "NL", circuit: "Circuit Zandvoort", loc: "Zandvoort", laps: 72, length: "4.259 km", dist: "306.6 km", sprint: true,  circuit_wiki: "Circuit_Zandvoort", sessions: { fp1: "2026-08-21T10:30:00Z", sq: "2026-08-21T14:30:00Z", sprint: "2026-08-22T10:00:00Z", quali: "2026-08-22T14:00:00Z", race: "2026-08-23T13:00:00Z" } },
+      { name: "Italian GP",             date: "2026-09-06T13:00:00Z", flag: "IT", circuit: "Autodromo Nazionale di Monza", loc: "Monza", laps: 53, length: "5.793 km", dist: "307.1 km", sprint: false, circuit_wiki: "Autodromo_Nazionale_di_Monza", sessions: { fp1: "2026-09-04T11:30:00Z", fp2: "2026-09-04T15:00:00Z", fp3: "2026-09-05T10:30:00Z", quali: "2026-09-05T14:00:00Z", race: "2026-09-06T13:00:00Z" } },
+      { name: "Madrid GP",              date: "2026-09-13T13:00:00Z", flag: "ES", circuit: "Circuito San Sebastián", loc: "Madrid", laps: 55, length: "5.610 km", dist: "308.6 km", sprint: false, circuit_wiki: "Circuito_San_Sebasti%C3%A1n", sessions: { fp1: "2026-09-11T12:00:00Z", fp2: "2026-09-11T15:30:00Z", fp3: "2026-09-12T11:00:00Z", quali: "2026-09-12T14:30:00Z", race: "2026-09-13T13:00:00Z" } },
+      { name: "Azerbaijan GP",          date: "2026-09-26T11:00:00Z", flag: "AZ", circuit: "Baku City Circuit", loc: "Baku", laps: 51, length: "6.003 km", dist: "306.2 km", sprint: false, circuit_wiki: "Baku_City_Circuit", sessions: { fp1: "2026-09-25T07:00:00Z", fp2: "2026-09-25T10:30:00Z", fp3: "2026-09-26T07:00:00Z", quali: "2026-09-26T10:30:00Z", race: "2026-09-26T11:00:00Z" } },
+      { name: "Singapore GP",           date: "2026-10-11T14:00:00Z", flag: "SG", circuit: "Marina Bay Street Circuit", loc: "Singapore", laps: 62, length: "4.940 km", dist: "306.3 km", sprint: true,  circuit_wiki: "Marina_Bay_Street_Circuit", sessions: { fp1: "2026-10-09T10:30:00Z", sq: "2026-10-09T14:30:00Z", sprint: "2026-10-10T11:00:00Z", quali: "2026-10-10T15:00:00Z", race: "2026-10-11T14:00:00Z" } },
+      { name: "United States GP",       date: "2026-10-25T20:00:00Z", flag: "US", circuit: "Circuit of the Americas", loc: "Austin", laps: 56, length: "5.513 km", dist: "308.8 km", sprint: false, circuit_wiki: "Circuit_of_the_Americas", sessions: { fp1: "2026-10-23T17:30:00Z", fp2: "2026-10-23T21:00:00Z", fp3: "2026-10-24T17:30:00Z", quali: "2026-10-24T21:00:00Z", race: "2026-10-25T20:00:00Z" } },
+      { name: "Mexico City GP",         date: "2026-11-01T20:00:00Z", flag: "MX", circuit: "Autódromo Hermanos Rodríguez", loc: "Mexico City", laps: 71, length: "4.304 km", dist: "305.6 km", sprint: false, circuit_wiki: "Aut%C3%B3dromo_Hermanos_Rodr%C3%ADguez", sessions: { fp1: "2026-10-30T17:30:00Z", fp2: "2026-10-30T21:00:00Z", fp3: "2026-10-31T16:30:00Z", quali: "2026-10-31T20:00:00Z", race: "2026-11-01T20:00:00Z" } },
+      { name: "São Paulo GP",           date: "2026-11-08T18:00:00Z", flag: "BR", circuit: "Autódromo José Carlos Pace", loc: "São Paulo", laps: 71, length: "4.309 km", dist: "305.9 km", sprint: false, circuit_wiki: "Aut%C3%B3dromo_Jos%C3%A9_Carlos_Pace", sessions: { fp1: "2026-11-06T14:30:00Z", fp2: "2026-11-06T18:00:00Z", fp3: "2026-11-07T14:30:00Z", quali: "2026-11-07T18:00:00Z", race: "2026-11-08T18:00:00Z" } },
+      { name: "Las Vegas GP",           date: "2026-11-22T06:00:00Z", flag: "US", circuit: "Las Vegas Strip Circuit", loc: "Las Vegas", laps: 50, length: "6.201 km", dist: "310.1 km", sprint: false, circuit_wiki: "Las_Vegas_Strip_Circuit", sessions: { fp1: "2026-11-20T02:30:00Z", fp2: "2026-11-20T06:00:00Z", fp3: "2026-11-21T02:30:00Z", quali: "2026-11-21T06:00:00Z", race: "2026-11-22T06:00:00Z" } },
+      { name: "Qatar GP",               date: "2026-11-29T17:00:00Z", flag: "QA", circuit: "Lusail International Circuit", loc: "Lusail", laps: 57, length: "5.419 km", dist: "308.9 km", sprint: false, circuit_wiki: "Lusail_International_Circuit", sessions: { fp1: "2026-11-27T13:30:00Z", fp2: "2026-11-27T17:00:00Z", fp3: "2026-11-28T13:30:00Z", quali: "2026-11-28T17:00:00Z", race: "2026-11-29T17:00:00Z" } },
+      { name: "Abu Dhabi GP",           date: "2026-12-06T13:00:00Z", flag: "AE", circuit: "Yas Marina Circuit", loc: "Abu Dhabi", laps: 55, length: "5.281 km", dist: "290.5 km", sprint: false, circuit_wiki: "Yas_Marina_Circuit", sessions: { fp1: "2026-12-04T09:30:00Z", fp2: "2026-12-04T13:00:00Z", fp3: "2026-12-05T09:30:00Z", quali: "2026-12-05T13:00:00Z", race: "2026-12-06T13:00:00Z" } }
+    ];
+    function renderStepper(race, currentKey, nextKey) {
+      var el = byId('f1-stepper');
+      if (!el) return;
+      if (!race) { el.innerHTML = ''; return; }
+      var order = ['fp1','sq','fp2','fp3','sprint','quali','race'];
+      var sLabel = {fp1:'FP1', sq:'SQ', fp2:'FP2', fp3:'FP3', sprint:'SPR', quali:'QUALI', race:'RACE'};
+      var keys = [];
+      for (var i = 0; i < order.length; i++) { if (race.sessions[order[i]]) keys.push(order[i]); }
+      if (!keys.length) { el.innerHTML = ''; return; }
+      var activeKey = currentKey || nextKey;
+      var activeIdx = activeKey ? keys.indexOf(activeKey) : -1;
+      var html = '';
+      for (var j = 0; j < keys.length; j++) {
+        var k = keys[j];
+        var cls = 'og-step';
+        var marker = '';
+        if (activeIdx >= 0 && j < activeIdx) {
+          cls += ' og-step-complete';
+          marker = '<i class="fa-solid fa-check" style="font-size:11px;"></i>';
+        } else if (j === activeIdx) {
+          cls += ' og-step-active';
+          marker = '<i class="fa-solid fa-bolt" style="font-size:11px;"></i>';
+        } else {
+          marker = String(j + 1);
+        }
+        html += '<div class="' + cls + '">'
+          + '<div class="og-step-marker">' + marker + '</div>'
+          + '<div class="og-step-label">' + sLabel[k] + '</div>'
+          + '<div class="og-step-connector"></div>'
+          + '</div>';
+      }
+      el.innerHTML = html;
+    }
+    function updateF1() {
+      var now = Date.now();
+      var nextRace = null;
+      var nextRaceIdx = -1;
+      nextSessKey = null;
+      nextSessTime = null;
+      for (var i = 0; i < f1Schedule.length; i++) {
+        var raceTime = new Date(f1Schedule[i].date).getTime();
+        if (now < raceTime + 7200000) { nextRaceIdx = i; nextRace = f1Schedule[i]; break; }
+      }
+      var label = document.getElementById('f1-label');
+      var timer = document.getElementById('f1-countdown');
+      var unitsRow = document.querySelector('.countdown-units');
+      var nameEl = document.getElementById('f1-race-name');
+      var pad2 = function(n) { return String(n).padStart(2, '0'); };
+      var setCountdownDigits = function(d, h, m, s) {
+        unitsRow.style.display = 'block';
+        timer.innerHTML = pad2(d) + '<span class="countdown-colon">:</span>' + pad2(h) +
+          '<span class="countdown-colon">:</span>' + pad2(m) + '<span class="countdown-colon">:</span>' + pad2(s);
+      };
+      var setCountdownText = function(html) {
+        unitsRow.style.display = 'none';
+        timer.innerHTML = html;
+      };
+      if (!nextRace) {
+        label.innerHTML = 'season over';
+        setCountdownText('---');
+        nameEl.textContent = 'see you in 2027';
+        return;
+      }
+      // Find current & next sessions
+      var order = ['fp1','sq','fp2','fp3','sprint','quali','race'];
+      var raceStart = new Date(nextRace.date).getTime();
+      var sessLabels = {fp1:'FP1', sq:'Sprint Q', fp2:'FP2', fp3:'FP3', sprint:'Sprint', quali:'Quali', race:'Race'};
+      nextSessKey = null;
+      nextSessTime = null;
+      var currentSessKey = null;
+      var currentSessTime = null;
+      // Find current session (most recent started) & next upcoming
+      for (var x = 0; x < order.length; x++) {
+        var k = order[x];
+        if (nextRace.sessions[k]) {
+          var st = new Date(nextRace.sessions[k]).getTime();
+          if (st > now && !nextSessTime) { nextSessKey = k; nextSessTime = st; }
+          if (st <= now) { currentSessKey = k; currentSessTime = st; }
+        }
+      }
+      _currentSessKey = currentSessKey;
+      renderStepper(nextRace, currentSessKey, nextSessKey);
+      var targetTime = nextSessTime || raceStart;
+      var diff = targetTime - now;
+      // Is a session in-progress? use gap to next session when available
+      var inSession = !!currentSessTime;
+      var sessionActive = false;
+      if (inSession) {
+        var sessElapsed_ms = now - currentSessTime;
+        var gapToNext = nextSessTime ? (nextSessTime - currentSessTime) : 10800000;
+        var maxActive = Math.min(gapToNext + 1800000, (currentSessKey === 'race') ? 10800000 : 7200000);
+        sessionActive = sessElapsed_ms < maxActive;
+      }
+      if (sessionActive) {
+        // ── Session in progress ──
+        var elapsed = Math.floor((now - currentSessTime) / 1000);
+        var em = Math.floor(elapsed / 60);
+        var es = elapsed % 60;
+        var sessName = sessLabels[currentSessKey];
+        label.innerHTML = '<span class="live-pulse"></span>' + sessName;
+        setCountdownText(em + 'm ' + es + 's <span style="font-size:18px;font-weight:400;color:var(--text-3);">elapsed</span>');
+      } else if (diff > 0) {
+        // ── Countdown to next session ──
+        var d = Math.floor(diff / 86400000);
+        var h = Math.floor((diff % 86400000) / 3600000);
+        var m = Math.floor((diff % 3600000) / 60000);
+        var s = Math.floor((diff % 60000) / 1000);
+        if (nextSessTime && diff < 3600000) {
+          label.innerHTML = '<span class="live-pulse"></span>' + sessLabels[nextSessKey];
+        } else {
+          label.textContent = nextSessKey ? sessLabels[nextSessKey] : 'next race';
+        }
+        setCountdownDigits(d, h, m, s);
+        byId('f1-circuit-info').style.display = 'none';
+      } else if (diff > -7200000) {
+        // ── In the 2h cooldown after last session ──
+        byId('f1-circuit-info').style.display = 'none';
+        if (currentSessKey) {
+          label.innerHTML = '<span class="live-pulse"></span>' + sessLabels[currentSessKey];
+          setCountdownText('done <span style="font-size:18px;font-weight:400;color:var(--text-3);">' + sessLabels[currentSessKey] + ' over</span>');
+        } else {
+          label.textContent = 'race weekend';
+          setCountdownText('done');
+        }
+      } else {
+        setCountdownText('past');
+        label.textContent = 'next race';
+      }
+      var rd = new Date(nextRace.date);
+      var opts = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London', timeZoneName: 'short' };
+      nameEl.textContent = nextRace.flag + ' ' + nextRace.name + ' \u00b7 ' + rd.toLocaleDateString('en-GB', opts);
+    }
+    function byId(id) { return document.getElementById(id); }
+    function tv(id, val) { var el = byId(id); if (el) el.textContent = val || '—'; }
+    // ─── Init ───
+    // ─── Lumina tabs ───
+    setInterval(updateF1, 1000);
+    updateF1();
+    _calendarAnimated = true;
+    // ─── Scrobbler ───
+    var scrobblerFailed = false;
+    var recentCache = [];
+    // last.fm returns a known generic grey placeholder hash when it has no
+    // real art for a track — treat that (and empty urls) as "no art" instead
+    // of rendering a tiny, wrong-looking thumbnail.
+    var LASTFM_PLACEHOLDER_HASHES = ['2a96cbd8b46e442fc41c2b86b821562f', 'c6f59c1e5e7240a4c0d427abd71f3dbb'];
+    function setTrackArt(url) {
+      var img = document.getElementById('track-art');
+      var card = document.getElementById('scrobbler-card');
+      var isPlaceholder = !url || LASTFM_PLACEHOLDER_HASHES.some(function(h) { return url.indexOf(h) > -1; });
+      if (isPlaceholder) {
+        img.classList.add('hidden');
+        img.removeAttribute('src');
+        card.classList.add('no-art');
+        return;
+      }
+      img.onload = function() {
+        img.classList.remove('hidden');
+        card.classList.remove('no-art');
+      };
+      img.onerror = function() {
+        img.classList.add('hidden');
+        card.classList.add('no-art');
+      };
+      img.src = url;
+    }
+    function updateScrobbler() {
+      var xhr = new XMLHttpRequest();
+      var apiKey = '4f08815f48f04e98c8ec8f294b21d080';
+      xhr.open('GET', 'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=silvermanch&api_key=' + apiKey + '&format=json&limit=10');
+      xhr.onload = function() {
+        if (xhr.status !== 200) { handleScrobbleError(); return; }
+        try {
+          var data = JSON.parse(xhr.responseText);
+          var tracks = data.recenttracks.track;
+          if (!tracks || tracks.length === 0) { handleScrobbleError(); return; }
+          var nowPlaying = tracks[0];
+          var isNowPlaying = nowPlaying['@attr'] && nowPlaying['@attr'].nowplaying === 'true';
+          var eq = document.getElementById('eq');
+          var bars = eq.querySelectorAll('.eq-bar');
+          var scrobbleUrl = 'https://www.last.fm/music/' + encodeURIComponent(nowPlaying.artist['#text'] || '') + '/_/' + encodeURIComponent(nowPlaying.name || '');
+          var art = null;
+          for (var j = 0; j < nowPlaying.image.length; j++) {
+            if (nowPlaying.image[j].size === 'extralarge') { art = nowPlaying.image[j]; break; }
+          }
+          if (isNowPlaying) {
+            document.getElementById('track-name').textContent = nowPlaying.name || 'unknown';
+            document.getElementById('track-artist').textContent = nowPlaying.artist['#text'] || 'unknown';
+            document.getElementById('track-album').textContent = nowPlaying.album['#text'] || 'single';
+            document.getElementById('scrobbler-card').setAttribute('data-url', scrobbleUrl);
+            setTrackArt(art && art['#text']);
+            recentCache = tracks.slice(1, 6);
+            bars.forEach(function(b) { b.classList.remove('paused'); });
+          } else {
+            document.getElementById('track-name').textContent = nowPlaying.name || 'unknown';
+            document.getElementById('track-artist').textContent = nowPlaying.artist['#text'] || 'unknown';
+            document.getElementById('track-album').textContent = nowPlaying.album['#text'] || 'single';
+            document.getElementById('scrobbler-card').setAttribute('data-url', scrobbleUrl);
+            setTrackArt(art && art['#text']);
+            recentCache = tracks.slice(0, 5);
+            bars.forEach(function(b) { b.classList.add('paused'); });
+          }
+          renderRecent();
+          scrobblerFailed = false;
+        } catch (e) { handleScrobbleError(); }
+      };
+      xhr.onerror = handleScrobbleError;
+      xhr.send();
+    }
+    function renderRecent() {
+      var el = document.getElementById('recent-tracks');
+      if (!recentCache.length) {
+        el.innerHTML = '<div class="music-tile-empty">no recent tracks</div>';
+        return;
+      }
+      var html = '';
+      for (var i = 0; i < recentCache.length; i++) {
+        var t = recentCache[i];
+        var name = t.name || 'unknown';
+        var artist = t.artist['#text'] || 'unknown';
+        var thumb = '';
+        for (var j = 0; j < t.image.length; j++) {
+          if (t.image[j].size === 'extralarge') { thumb = t.image[j]['#text']; break; }
+        }
+        if (!thumb) {
+          for (var j = 0; j < t.image.length; j++) {
+            if (t.image[j].size === 'large') { thumb = t.image[j]['#text']; break; }
+          }
+        }
+        var trackUrl = 'https://www.last.fm/music/' + encodeURIComponent(artist) + '/_/' + encodeURIComponent(name);
+        if (thumb) {
+          html += '<button type="button" class="music-tile" onclick="window.open(\'' + trackUrl + '\',\'_blank\')">';
+          html += '<img src="' + thumb + '" alt="" loading="lazy" />';
+          html += '<div class="music-tile-info"><span class="music-tile-name">' + name + '</span><span class="music-tile-artist">' + artist + '</span></div>';
+          html += '</button>';
+        } else {
+          html += '<button type="button" class="music-tile" onclick="window.open(\'' + trackUrl + '\',\'_blank\')">';
+          html += '<div class="music-tile-placeholder"><span>' + name + '</span></div>';
+          html += '<div class="music-tile-info"><span class="music-tile-name">' + name + '</span><span class="music-tile-artist">' + artist + '</span></div>';
+          html += '</button>';
+        }
+      }
+      el.innerHTML = html;
+    }
+    function handleScrobbleError() {
+      if (scrobblerFailed) return;
+      scrobblerFailed = true;
+      document.getElementById('track-name').textContent = 'scrobbler offline';
+      document.getElementById('track-artist').textContent = 'will retry...';
+      var bars = document.querySelectorAll('.eq-bar');
+      bars.forEach(function(b) { b.classList.add('paused'); });
+    }
+    function fetchTotalScrobbles() {
+      var xhr = new XMLHttpRequest();
+      var apiKey = '4f08815f48f04e98c8ec8f294b21d080';
+      xhr.open('GET', 'https://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=silvermanch&api_key=' + apiKey + '&format=json');
+      xhr.onload = function() {
+        if (xhr.status !== 200) return;
+        try {
+          var data = JSON.parse(xhr.responseText);
+          var total = parseInt(data.user.playcount) || 0;
+          var el = document.getElementById('scrobble-counter');
+          if (el) el.textContent = total.toLocaleString() + ' scrobbles';
+        } catch(e) {}
+      };
+      xhr.send();
+    }
+    setInterval(updateScrobbler, 30000);
+    updateScrobbler();
+    fetchTotalScrobbles();
+    setInterval(fetchTotalScrobbles, 300000);
+    // ─── Discord Presence (Lanyard) ───
+    var DISCORD_ID = '1144983905317949512';
+    var STATUS_MAP = {
+      online: { dot: 'discord-online', label: 'online' },
+      idle: { dot: 'discord-idle', label: 'idle' },
+      dnd: { dot: 'discord-dnd', label: 'do not disturb' },
+      offline: { dot: 'discord-offline', label: 'offline' }
+    };
+    function avatarUrl(hash, id, size) {
+      if (!hash || !id) return '';
+      var ext = hash.indexOf('a_') === 0 ? 'gif' : 'webp';
+      return 'https://cdn.discordapp.com/avatars/' + id + '/' + hash + '.' + ext + '?size=' + (size || 128);
+    }
+    function updateDiscord() {
+      var pill = document.getElementById('discord-pill');
+      if (!pill) return;
+      fetch('https://api.lanyard.rest/v1/users/' + DISCORD_ID, { cache: 'no-store' })
+        .then(function(r) { return r.json(); })
+        .then(function(res) {
+          if (!res.success || !res.data) throw new Error('no data');
+          var d = res.data;
+          var statusInfo = STATUS_MAP[d.discord_status] || STATUS_MAP.offline;
+          // ── activity text for pill ──
+          var activityText = '';
+          if (d.activities && d.activities.length) {
+            var topAct = d.activities[0];
+            if (topAct.type === 2 && d.spotify) {
+              activityText = d.spotify.song + ' — ' + d.spotify.artist;
+            } else if (topAct.type === 0) {
+              activityText = topAct.name + (topAct.state ? ': ' + topAct.state : '');
+            } else if (topAct.type === 4 && topAct.state) {
+              activityText = topAct.state;
+            } else if (topAct.state) {
+              activityText = topAct.state;
+            } else if (topAct.details) {
+              activityText = topAct.details;
+            }
+          }
+          var truncated = activityText.length > 40
+            ? activityText.substring(0, 38) + '..'
+            : activityText;
+          // ── update pill ──
+          pill.querySelector('.discord-pill-dot').className = 'discord-pill-dot ' + statusInfo.dot;
+          pill.querySelector('.discord-pill-text').textContent = truncated || statusInfo.label;
+          // ── update full card ──
+          var card = document.getElementById('discord-card');
+          if (card) {
+            // avatar
+            var avatarEl = document.getElementById('dc-avatar');
+            if (avatarEl && d.discord_user && d.discord_user.avatar) {
+              avatarEl.src = avatarUrl(d.discord_user.avatar, d.discord_user.id, 128);
+            }
+            // name
+            var nameEl = document.getElementById('dc-name');
+            if (nameEl) {
+              nameEl.textContent = d.discord_user.display_name || d.discord_user.global_name || d.discord_user.username;
+            }
+            // username
+            var userEl = document.getElementById('dc-user');
+            if (userEl) {
+              userEl.textContent = d.discord_user.discriminator && d.discord_user.discriminator !== '0'
+                ? d.discord_user.username + '#' + d.discord_user.discriminator
+                : '@' + d.discord_user.username;
+            }
+            // status label
+            var statusLabel = document.getElementById('dc-status-label');
+            if (statusLabel) {
+              var badge = statusLabel.querySelector('.og-badge');
+              if (badge) {
+                badge.className = 'og-badge og-badge-dot ' + (statusInfo.dot === 'discord-online' ? 'og-badge-success' : statusInfo.dot === 'discord-idle' ? 'og-badge-warning' : statusInfo.dot === 'discord-dnd' ? 'og-badge-error' : 'og-badge-muted');
+                badge.lastChild.textContent = statusInfo.label;
+              }
+            }
+            // activity
+            var activityEl = document.getElementById('dc-activity');
+            if (activityEl) {
+              activityEl.innerHTML = '';
+              // spotify first (most interesting)
+              if (d.spotify && d.listening_to_spotify) {
+                var spotDiv = document.createElement('div');
+                spotDiv.className = 'discord-activity-item';
+                spotDiv.innerHTML = '';
+                var spotImg = document.createElement('img');
+                spotImg.className = 'discord-activity-art';
+                spotImg.src = d.spotify.album_art_url || '';
+                spotImg.alt = '';
+                spotDiv.appendChild(spotImg);
+                var spotMeta = document.createElement('div');
+                spotMeta.className = 'discord-activity-meta';
+                spotMeta.innerHTML = '<div class="discord-activity-name"><i class="fa-brands fa-spotify"></i> ' + escHtml(d.spotify.song) + '</div>'
+                  + '<div class="discord-activity-detail">' + escHtml(d.spotify.artist) + ' · ' + escHtml(d.spotify.album) + '</div>';
+                spotDiv.appendChild(spotMeta);
+                activityEl.appendChild(spotDiv);
+              }
+              // other activities (skip custom status, skip spotify since it's handled)
+              var shownSpotify = d.spotify && d.listening_to_spotify;
+              if (d.activities && d.activities.length) {
+                for (var i = 0; i < d.activities.length; i++) {
+                  var act = d.activities[i];
+                  if (act.type === 4) continue; // skip custom status
+                  if (act.type === 2 && shownSpotify) continue; // already shown spotify
+                  var actDiv = document.createElement('div');
+                  actDiv.className = 'discord-activity-item';
+                  var actImg = '';
+                  if (act.assets && act.assets.large_image) {
+                    var imgUrl = act.assets.large_image.indexOf('spotify:') === 0
+                      ? 'https://i.scdn.co/image/' + act.assets.large_image.replace('spotify:', '')
+                      : 'https://cdn.discordapp.com/app-assets/' + act.application_id + '/' + act.assets.large_image + '.webp?size=128';
+                    actImg = '<img class="discord-activity-art" src="' + imgUrl + '" alt="" />';
+                  } else {
+                    actImg = '<div class="discord-activity-art discord-activity-art-placeholder"><i class="fa-solid fa-gamepad"></i></div>';
+                  }
+                  var actDetails = '';
+                  if (act.details) actDetails += '<div class="discord-activity-name">' + escHtml(act.details) + '</div>';
+                  if (act.state) actDetails += '<div class="discord-activity-detail">' + escHtml(act.state) + '</div>';
+                  if (!actDetails) actDetails = '<div class="discord-activity-name">' + escHtml(act.name || 'unknown activity') + '</div>';
+                  actDiv.innerHTML = actImg + '<div class="discord-activity-meta">' + actDetails + '</div>';
+                  activityEl.appendChild(actDiv);
+                }
+              }
+              if (!activityEl.children.length) {
+                activityEl.innerHTML = '<div class="discord-activity-empty">no activity right now</div>';
+              }
+              // custom status as a tag if present
+              if (d.activities) {
+                for (var j = 0; j < d.activities.length; j++) {
+                  if (d.activities[j].type === 4 && d.activities[j].state) {
+                    var cs = d.activities[j];
+                    var csEl = document.createElement('div');
+                    csEl.className = 'discord-custom-status';
+                    csEl.innerHTML = (cs.emoji && cs.emoji.name ? cs.emoji.name + ' ' : '') + escHtml(cs.state);
+                    activityEl.insertBefore(csEl, activityEl.firstChild);
+                  }
+                }
+              }
+            }
+          }
+        })
+        .catch(function() {
+          pill.querySelector('.discord-pill-dot').className = 'discord-pill-dot discord-offline';
+          pill.querySelector('.discord-pill-text').textContent = 'offline';
+        });
+    }
+    function escHtml(str) {
+      if (!str) return '';
+      var d = document.createElement('div');
+      d.textContent = str;
+      return d.innerHTML;
+    }
+    updateDiscord();
+    setInterval(updateDiscord, 15000);
+  </script>
+</body>
+</html>
